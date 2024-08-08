@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    gap: 1px;
+    margin-top: 20px;
+    margin-left: 10%;
+  }
+  .config{
+    
+    margin-right: 20%;
+  }
+  .cell {
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .cell.alive {
+    background-color: black;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-bottom: 10px;
+  }
