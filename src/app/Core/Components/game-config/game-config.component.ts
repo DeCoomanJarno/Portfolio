@@ -16,6 +16,7 @@ export class GameConfigComponent implements OnInit {
   @Output() RowsChanged = new EventEmitter<number>();
   @Output() CellSizeChanged = new EventEmitter<number>();
   @Output() UpdateTimeChanged = new EventEmitter<number>();
+  @Output() ConfigChanged = new EventEmitter<GameConfig>();
 
   ngOnInit(): void {
     // Merge default values with provided config
@@ -26,6 +27,11 @@ export class GameConfigComponent implements OnInit {
       updateTime: 100, 
       ...this.config 
     };
+    
+    this.RowsChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
+    this.ColsChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
+    this.CellSizeChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
+    this.UpdateTimeChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
   }
 
   UpdateCol($event: Event) {

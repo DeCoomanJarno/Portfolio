@@ -14,7 +14,7 @@
     <div class="col-md-3 d-flex align-items-center">
         <div class="card config">
             <div class="card-body">
-                <app-game-config [config]="config"></app-game-config>
+                <app-game-config [config]="config" (ConfigChanged)="ConfigChange($event)"></app-game-config>
             </div>
             <div class="card-body">
                 <table class="table">

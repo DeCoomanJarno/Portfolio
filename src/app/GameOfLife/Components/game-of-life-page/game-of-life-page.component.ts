@@ -96,4 +96,8 @@ export class GameOfLifePageComponent implements OnInit {
     this.grid[row][col] = !this.grid[row][col];
   }
 
+  ConfigChange($event: GameConfig) {
+    this.config = $event;
+    this.grid = this.CreateGrid();
+  }
 }
