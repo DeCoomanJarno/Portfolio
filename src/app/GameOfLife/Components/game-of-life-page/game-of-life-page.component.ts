@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GameConfig } from '../../../Core/Models/GameConfig.Model';
 import { CommonModule } from '@angular/common';
+import { GameConfigComponent } from '../../../Core/Components/game-config/game-config.component';
 
 @Component({
   selector: 'app-game-of-life-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, GameConfigComponent],
   templateUrl: './game-of-life-page.component.html',
   styleUrl: './game-of-life-page.component.css'
 })
@@ -16,23 +17,6 @@ export class GameOfLifePageComponent implements OnInit {
   interval!: NodeJS.Timeout;
   isRunning: boolean = false;
 
-
-  ChangeCol($event: Event) {
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cols = Number(inputElement.value);
-    this.grid = this.CreateGrid();
-  }
-  
-  ChangeRow($event: Event) {
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.rows = Number(inputElement.value);
-    this.grid = this.CreateGrid();
-  }
-  
-  ChangeCellSize($event: Event) {
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cellSize = Number(inputElement.value);
-  }
   ngOnInit(): void {
     this.grid = this.CreateGrid();
     this.Randomize();
@@ -107,14 +91,7 @@ export class GameOfLifePageComponent implements OnInit {
       }
     }
   }
-
-  UpdateTimeChanged($event: Event): void {
-    this.Deactivate();
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.updateTime = Number(inputElement.value); // Convert string to number
-    this.Activate();
-  }
-
+  
   ToggleCell(row: number, col: number): void {
     this.grid[row][col] = !this.grid[row][col];
   }
