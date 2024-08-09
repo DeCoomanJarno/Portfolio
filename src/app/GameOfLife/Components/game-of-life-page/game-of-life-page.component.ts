@@ -3,69 +3,70 @@ import { GameConfig } from '../../../Core/Models/GameConfig.Model';
 import { CommonModule } from '@angular/common';
 import { GameConfigComponent } from '../../../Core/Components/game-config/game-config.component';
 import { LoadingComponent } from "../../../Core/Components/loading/loading.component";
+import { Cell } from '../../../Core/Models/Cell.Model';
 
 @Component({
   selector: 'app-game-of-life-page',
   standalone: true,
   imports: [CommonModule, GameConfigComponent, LoadingComponent],
   templateUrl: './game-of-life-page.component.html',
-  styleUrl: './game-of-life-page.component.css'
+  styleUrls: ['./game-of-life-page.component.css']
 })
 export class GameOfLifePageComponent implements OnInit {
 
-  grid: boolean[][] = [];
+  grid: Cell[][] = [];
   config: GameConfig = { rows: 100, cols: 100, updateTime: 100, cellSize: 10 };
   interval!: NodeJS.Timeout;
-  isRunning: boolean = false
-  isLoading: boolean = false
+  isRunning: boolean = false;
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.grid = this.CreateGrid();
     this.Randomize();
   }
 
-  CreateGrid(): boolean[][] {
-    let newGrid: boolean[][] = [];
+  CreateGrid(): Cell[][] {
+    const newGrid: Cell[][] = [];
     for (let i = 0; i < this.config.rows; i++) {
       newGrid[i] = [];
       for (let j = 0; j < this.config.cols; j++) {
-        newGrid[i][j] = false;
+        newGrid[i][j] = { state: false, x: i, y: j }; // Initialize cells with `true`
       }
     }
-    return newGrid
+    return newGrid;
   }
 
   Activate(): void {
-    if (this.isRunning)
-      return;
+    if (this.isRunning) return;
     this.isRunning = true;
     this.interval = setInterval(() => {
       this.Update();
     }, this.config.updateTime);
   }
+
   Deactivate(): void {
-    if (!this.isRunning)
-      return;
+    if (!this.isRunning) return;
     this.isRunning = false;
     clearInterval(this.interval);
   }
 
   Clear(): void {
     this.Deactivate();
-    this.grid = this.CreateGrid();
+    this.grid = this.CreateGrid(); // Reinitialize grid with all cells as `true`
   }
 
   Update(): void {
-    const newGrid: boolean[][] = [];
+    const newGrid: Cell[][] = [];
     for (let i = 0; i < this.config.rows; i++) {
       newGrid[i] = [];
       for (let j = 0; j < this.config.cols; j++) {
         const aliveNeighbours = this.CountAliveNeighbours(i, j);
-        if (this.grid[i][j]) {
-          newGrid[i][j] = aliveNeighbours === 2 || aliveNeighbours === 3;
-        } else {
-          newGrid[i][j] = aliveNeighbours === 3;
-        }
+        const currentCell = this.grid[i][j];
+        newGrid[i][j] = {
+          ...currentCell,
+          state: (currentCell.state && (aliveNeighbours === 2 || aliveNeighbours === 3)) ||
+                 (!currentCell.state && aliveNeighbours === 3)
+        };
       }
     }
     this.grid = newGrid;
@@ -78,7 +79,7 @@ export class GameOfLifePageComponent implements OnInit {
         if (i === 0 && j === 0) continue;
         const x = row + i;
         const y = col + j;
-        if (x >= 0 && x < this.config.rows && y >= 0 && y < this.config.cols && this.grid[x][y]) {
+        if (x >= 0 && x < this.config.rows && y >= 0 && y < this.config.cols && this.grid[x][y].state) {
           count++;
         }
       }
@@ -89,13 +90,13 @@ export class GameOfLifePageComponent implements OnInit {
   Randomize(): void {
     for (let i = 0; i < this.config.rows; i++) {
       for (let j = 0; j < this.config.cols; j++) {
-        this.grid[i][j] = Math.random() > 0.5;
+        this.grid[i][j].state = Math.random() > 0.5;
       }
     }
   }
 
   ToggleCell(row: number, col: number): void {
-    this.grid[row][col] = !this.grid[row][col];
+    this.grid[row][col].state = !this.grid[row][col].state;
   }
 
   ConfigChange($event: { gameConfig: GameConfig | undefined, propertyChanged?: string | undefined }) {
@@ -114,6 +115,7 @@ export class GameOfLifePageComponent implements OnInit {
       this.config = $event.gameConfig;
     }
   }
+
   RowsChanged(newRowCount: number) {
     this.isLoading = true;
 
