@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { GameConfig } from '../../../Core/Models/GameConfig.Model';
 import { CommonModule } from '@angular/common';
 import { GameConfigComponent } from '../../../Core/Components/game-config/game-config.component';
+import { LoadingComponent } from "../../../Core/Components/loading/loading.component";
 
 @Component({
   selector: 'app-game-of-life-page',
   standalone: true,
-  imports: [CommonModule, GameConfigComponent],
+  imports: [CommonModule, GameConfigComponent, LoadingComponent],
   templateUrl: './game-of-life-page.component.html',
   styleUrl: './game-of-life-page.component.css'
 })
@@ -15,7 +16,8 @@ export class GameOfLifePageComponent implements OnInit {
   grid: boolean[][] = [];
   config: GameConfig = { rows: 100, cols: 100, updateTime: 100, cellSize: 10 };
   interval!: NodeJS.Timeout;
-  isRunning: boolean = false;
+  isRunning: boolean = false
+  isLoading: boolean = false
 
   ngOnInit(): void {
     this.grid = this.CreateGrid();
@@ -91,13 +93,65 @@ export class GameOfLifePageComponent implements OnInit {
       }
     }
   }
-  
+
   ToggleCell(row: number, col: number): void {
     this.grid[row][col] = !this.grid[row][col];
   }
 
-  ConfigChange($event: GameConfig) {
-    this.config = $event;
-    this.grid = this.CreateGrid();
+  ConfigChange($event: { gameConfig: GameConfig | undefined, propertyChanged?: string | undefined }) {
+    if (!$event.gameConfig)
+      return;
+
+    if ($event.propertyChanged === 'Rows' || $event.propertyChanged === 'Cols')
+      return;
+
+    if (this.isRunning) {
+      this.Deactivate()
+      this.config = $event.gameConfig;
+      this.Activate()
+    }
+    else {
+      this.config = $event.gameConfig;
+    }
+  }
+  RowsChanged(newRowCount: number) {
+    this.isLoading = true;
+
+    const currentRowCount = this.grid.length;
+    setTimeout(() => { }, 0);
+    // Adjust the number of rows
+    if (newRowCount > currentRowCount) {
+      // Add new rows
+      for (let i = currentRowCount; i < newRowCount; i++) {
+        this.grid.push(new Array(this.config.cols).fill(false));
+      }
+    } else if (newRowCount < currentRowCount) {
+      // Remove extra rows
+      this.grid.splice(newRowCount);
+    }
+
+    this.config.rows = newRowCount;
+
+    this.isLoading = false;
+  }
+
+  ColsChanged(newColCount: number) {
+    this.isLoading = true;
+    const currentColCount = this.grid[0]?.length || 0;
+    // Process each row asynchronously to avoid blocking the UI
+    for (let i = 0; i < this.grid.length; i++) {
+      
+        const row = this.grid[i];
+        if (newColCount > currentColCount) {
+          // Add new columns
+          row.push(...Array(newColCount - currentColCount).fill(false));
+        } else if (newColCount < currentColCount) {
+          // Remove extra columns
+          row.splice(newColCount);
+        }
+
+    }
+    this.config.cols = newColCount;
+    this.isLoading = false;
   }
 }

@@ -16,7 +16,8 @@ export class GameConfigComponent implements OnInit {
   @Output() RowsChanged = new EventEmitter<number>();
   @Output() CellSizeChanged = new EventEmitter<number>();
   @Output() UpdateTimeChanged = new EventEmitter<number>();
-  @Output() ConfigChanged = new EventEmitter<GameConfig>();
+
+  @Output() ConfigChanged = new EventEmitter<{gameConfig: GameConfig | undefined, propertyChanged?: 'Rows' | 'Cols' | 'CellSize' | 'UpdateTime'}>();
 
   ngOnInit(): void {
     // Merge default values with provided config
@@ -28,10 +29,10 @@ export class GameConfigComponent implements OnInit {
       ...this.config 
     };
     
-    this.RowsChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
-    this.ColsChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
-    this.CellSizeChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
-    this.UpdateTimeChanged.subscribe(() => {this.ConfigChanged.emit(this.config);}) ;
+    this.RowsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Rows'});}) ;
+    this.ColsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Cols'});}) ;
+    this.CellSizeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'CellSize'});}) ;
+    this.UpdateTimeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'UpdateTime'});}) ;
   }
 
   UpdateCol($event: Event) {

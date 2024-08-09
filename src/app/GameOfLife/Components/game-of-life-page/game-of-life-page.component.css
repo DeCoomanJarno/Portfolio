@@ -2,11 +2,6 @@
     display: grid;
     gap: 1px;
     margin-top: 20px;
-    margin-left: 10%;
-  }
-  .config{
-    
-    margin-right: 20%;
   }
   .cell {
     border: 1px solid #ddd;
@@ -21,6 +16,6 @@
     margin-bottom: 10px;
   }
   
-  button {
-    margin-bottom: 10px;
+  .btn {
+    margin: 5px;
   }

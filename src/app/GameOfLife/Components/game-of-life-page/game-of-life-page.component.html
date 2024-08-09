@@ -1,32 +1,32 @@
 <h1 class="text-center">Game Of Life</h1>
 <div class="row">
     <div class="col-md-9">
-        <div class="grid" [ngStyle]="{'grid-template-columns': 'repeat(' + config.cols + ', ' + config.cellSize + 'px)'}">
+        <div class="grid"
+            [ngStyle]="{'grid-template-columns': 'repeat(' + config.cols + ', ' + config.cellSize + 'px)'}">
             @for (row of grid; track $index) {
             @for (cell of row; track $index) {
             <div [class.alive]="cell" class="cell"
-                [ngStyle]="{'width': config.cellSize + 'px', 'height': config.cellSize + 'px'}"
-                ></div>
+                [ngStyle]="{'width': config.cellSize + 'px', 'height': config.cellSize + 'px'}"></div>
             }
-        }
+            }
         </div>
     </div>
     <div class="col-md-3 d-flex align-items-center">
         <div class="card config">
             <div class="card-body">
-                <app-game-config [config]="config" (ConfigChanged)="ConfigChange($event)"></app-game-config>
+                <app-game-config [config]="config" (ConfigChanged)="ConfigChange($event)"
+                    (ColsChanged)="ColsChanged($event)" (RowsChanged)="RowsChanged($event)"></app-game-config>
+                <app-loading [isLoading]="isLoading"></app-loading>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr class="mt-3">
-                            <td><button (click)="Activate()" class="btn btn-primary btn-block">Start</button></td>
-                            <td><button (click)="Deactivate()" class="btn btn-danger btn-block">Stop</button></td>
-                            <td><button (click)="Clear()" class="btn btn-warning btn-block">Reset</button></td>
-                            <td><button (click)="Randomize()" class="btn btn-info btn-block">Randomize</button></td>
-                        </tr>
-                    </thead>
-                </table>
+                <nav class="mb-9">
+                    <ul class="nav nav-tabs">
+                        <button (click)="Activate()" class="btn btn-primary btn-block">Start</button>
+                        <button (click)="Deactivate()" class="btn btn-danger btn-block">Stop</button>
+                        <button (click)="Clear()" class="btn btn-warning btn-block">Reset</button>
+                        <button (click)="Randomize()" class="btn btn-info btn-block">Randomize</button>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
