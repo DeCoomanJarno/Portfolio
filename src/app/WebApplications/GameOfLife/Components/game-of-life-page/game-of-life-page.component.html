@@ -18,13 +18,13 @@
                     (ColsChanged)="ColsChanged($event)" (RowsChanged)="RowsChanged($event)"></app-game-config>
                 <app-loading [isLoading]="isLoading"></app-loading>
             </div>
-            <div class="card-body">
+            <div class="card-body" >
                 <nav class="mb-9">
                     <ul class="nav nav-tabs">
-                        <button (click)="Activate()" class="btn btn-primary btn-block">Start</button>
-                        <button (click)="Deactivate()" class="btn btn-danger btn-block">Stop</button>
-                        <button (click)="Clear()" class="btn btn-warning btn-block">Reset</button>
-                        <button (click)="Randomize()" class="btn btn-info btn-block">Randomize</button>
+                        <button (click)="Activate()" class="btn btn-primary btn-block" [disabled]="isLoading">Start</button>
+                        <button (click)="Deactivate()" class="btn btn-danger btn-block"[disabled]="isLoading">Stop</button>
+                        <button (click)="Clear()" class="btn btn-warning btn-block"[disabled]="isLoading">Reset</button>
+                        <button (click)="Randomize()" class="btn btn-info btn-block"[disabled]="isLoading">Randomize</button>
                     </ul>
                 </nav>
             </div>

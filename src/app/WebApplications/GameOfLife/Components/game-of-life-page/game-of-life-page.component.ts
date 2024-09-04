@@ -1,40 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { GameConfig } from '../../../Core/Models/GameConfig.Model';
+import { GameConfig } from '../../../../Core/Models/GameConfig.Model';
 import { CommonModule } from '@angular/common';
-import { GameConfigComponent } from '../../../Core/Components/game-config/game-config.component';
-import { LoadingComponent } from "../../../Core/Components/loading/loading.component";
-import { Cell } from '../../../Core/Models/Cell.Model';
+import { GameConfigComponent } from '../../../../Core/Components/game-config/game-config.component';
+import { LoadingComponent } from "../../../../Core/Components/loading/loading.component";
+import { Cell } from '../../../../Core/Models/Cell.Model';
 
 @Component({
   selector: 'app-game-of-life-page',
   standalone: true,
   imports: [CommonModule, GameConfigComponent, LoadingComponent],
   templateUrl: './game-of-life-page.component.html',
-  styleUrls: ['./game-of-life-page.component.css']
+  styleUrls: ['./game-of-life-page.component.css'],
 })
 export class GameOfLifePageComponent implements OnInit {
 
-  grid: Cell[][] = [];
   config: GameConfig = { rows: 100, cols: 100, updateTime: 100, cellSize: 10 };
+  grid!: Cell[][];
   interval!: NodeJS.Timeout;
   isRunning: boolean = false;
   isLoading: boolean = false;
 
   ngOnInit(): void {
-    this.grid = this.CreateGrid();
-    this.Randomize();
+    this.isLoading = true;
+    this.initializeGridAsync();
   }
 
+  initializeGridAsync(): void {
+    // Delay execution to prevent blocking the main thread
+    setTimeout(() => {
+      this.grid = this.CreateGrid();
+      this.Randomize();
+      this.isLoading = false;
+    }, 0);
+  }
+
+
   CreateGrid(): Cell[][] {
-    const newGrid: Cell[][] = [];
+    const newGrid: Cell[][] = new Array(this.config.rows);
+
     for (let i = 0; i < this.config.rows; i++) {
-      newGrid[i] = [];
+      const row: Cell[] = new Array(this.config.cols);
       for (let j = 0; j < this.config.cols; j++) {
-        newGrid[i][j] = { state: false, x: i, y: j }; // Initialize cells with `true`
+        row[j] = { state: false, x: i, y: j };
       }
+      newGrid[i] = row;
     }
+
     return newGrid;
   }
+
 
   Activate(): void {
     if (this.isRunning) return;
@@ -52,8 +66,13 @@ export class GameOfLifePageComponent implements OnInit {
 
   Clear(): void {
     this.Deactivate();
-    this.grid = this.CreateGrid(); // Reinitialize grid with all cells as `true`
+    this.isLoading = true;
+    setTimeout(() => {
+      this.grid = this.CreateGrid();
+      this.isLoading = false;
+    }, 0);
   }
+
 
   Update(): void {
     const newGrid: Cell[][] = [];
@@ -65,7 +84,7 @@ export class GameOfLifePageComponent implements OnInit {
         newGrid[i][j] = {
           ...currentCell,
           state: (currentCell.state && (aliveNeighbours === 2 || aliveNeighbours === 3)) ||
-                 (!currentCell.state && aliveNeighbours === 3)
+            (!currentCell.state && aliveNeighbours === 3)
         };
       }
     }
@@ -88,12 +107,13 @@ export class GameOfLifePageComponent implements OnInit {
   }
 
   Randomize(): void {
-    for (let i = 0; i < this.config.rows; i++) {
-      for (let j = 0; j < this.config.cols; j++) {
-        this.grid[i][j].state = Math.random() > 0.5;
+    for (const row of this.grid) {
+      for (const cell of row) {
+        cell.state = Math.random() > 0.5;
       }
     }
   }
+
 
   ToggleCell(row: number, col: number): void {
     this.grid[row][col].state = !this.grid[row][col].state;
@@ -120,12 +140,15 @@ export class GameOfLifePageComponent implements OnInit {
     this.isLoading = true;
 
     const currentRowCount = this.grid.length;
-    setTimeout(() => { }, 0);
+
     // Adjust the number of rows
     if (newRowCount > currentRowCount) {
       // Add new rows
       for (let i = currentRowCount; i < newRowCount; i++) {
-        this.grid.push(new Array(this.config.cols).fill(false));
+        let arr = new Array(this.config.cols).fill(0).map((_, j) => {
+          return { state: false, x: j, y: i };
+        });
+        this.grid.push(arr);
       }
     } else if (newRowCount < currentRowCount) {
       // Remove extra rows
@@ -133,27 +156,32 @@ export class GameOfLifePageComponent implements OnInit {
     }
 
     this.config.rows = newRowCount;
-
     this.isLoading = false;
   }
 
   ColsChanged(newColCount: number) {
     this.isLoading = true;
     const currentColCount = this.grid[0]?.length || 0;
-    // Process each row asynchronously to avoid blocking the UI
-    for (let i = 0; i < this.grid.length; i++) {
-      
-        const row = this.grid[i];
-        if (newColCount > currentColCount) {
-          // Add new columns
-          row.push(...Array(newColCount - currentColCount).fill(false));
-        } else if (newColCount < currentColCount) {
-          // Remove extra columns
-          row.splice(newColCount);
-        }
 
+    // Adjust the number of columns in each row
+    if (newColCount > currentColCount) {
+      // Add new columns to each row
+      for (let i = 0; i < this.grid.length; i++) {
+        const row = this.grid[i];
+        const newCells = new Array(newColCount - currentColCount).fill(0).map((_, j) => {
+          return { state: false, x: currentColCount + j, y: i };
+        });
+        row.push(...newCells);
+      }
+    } else if (newColCount < currentColCount) {
+      // Remove extra columns from each row
+      for (let i = 0; i < this.grid.length; i++) {
+        this.grid[i].splice(newColCount);
+      }
     }
+
     this.config.cols = newColCount;
     this.isLoading = false;
   }
+
 }
