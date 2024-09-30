@@ -11,7 +11,7 @@ import {  RouterModule } from '@angular/router';
 
 })
 export class HeaderComponent {
-  navbarfixed: boolean = false;
+  navbarfixed = false;
  
   @HostListener('window:scroll', ['$event'])
 OnScroll() {

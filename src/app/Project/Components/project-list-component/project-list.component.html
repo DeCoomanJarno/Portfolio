@@ -1,0 +1,11 @@
+
+<div class="project-list">
+  @for (project of projects; track $index) {
+    <div class="project-card">
+    <h2>{{ project.title }}</h2>
+    <p>{{ project.description }}</p>
+    <a [routerLink]="['/project', project.id]">Learn More</a>
+  </div>
+  }
+</div>
+  

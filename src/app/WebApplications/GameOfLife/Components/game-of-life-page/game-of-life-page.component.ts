@@ -17,8 +17,8 @@ export class GameOfLifePageComponent implements OnInit {
   config: GameConfig = { rows: 100, cols: 100, updateTime: 100, cellSize: 10 };
   grid!: Cell[][];
   interval!: NodeJS.Timeout;
-  isRunning: boolean = false;
-  isLoading: boolean = false;
+  isRunning = false;
+  isLoading = false;
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -145,7 +145,7 @@ export class GameOfLifePageComponent implements OnInit {
     if (newRowCount > currentRowCount) {
       // Add new rows
       for (let i = currentRowCount; i < newRowCount; i++) {
-        let arr = new Array(this.config.cols).fill(0).map((_, j) => {
+        const arr = new Array(this.config.cols).fill(0).map((_, j) => {
           return { state: false, x: j, y: i };
         });
         this.grid.push(arr);
@@ -175,11 +175,10 @@ export class GameOfLifePageComponent implements OnInit {
       }
     } else if (newColCount < currentColCount) {
       // Remove extra columns from each row
-      for (let i = 0; i < this.grid.length; i++) {
-        this.grid[i].splice(newColCount);
+      for (const element of this.grid) {
+        element.splice(newColCount);
       }
     }
-
     this.config.cols = newColCount;
     this.isLoading = false;
   }

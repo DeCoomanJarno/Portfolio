@@ -1,0 +1,117 @@
+.resume {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .ProfileImage img
+  {
+    display: block;
+    margin: 20px auto;
+    border: white 3px solid;
+    border-radius: 5px;
+    width: 50%;
+  }
+  .SidePanel
+  {
+    float: left;
+    background-color: #006680;
+    width: 40%;
+    color: white;
+  }
+  .MainPanel
+  {
+    float: right;
+    width: 60%;
+  }
+  
+ .MainPanel .Name {
+    font-size: 36px;
+  }
+  
+  .MainPanel .Title {
+    font-size: 24px;
+    color: #666;
+  }
+  .Panel{
+    margin: 0px 10%;
+  }
+  .Header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0 10px 0;
+  }
+
+  .Header .Title {
+    font-size: xx-large;
+    margin: 0;
+    padding: 0;
+  }
+
+  .Header .SubTitle {
+    margin: 0;
+    font-size: medium;
+    padding: 0;
+  }
+
+
+.contact-list p {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+.icon {
+    margin-right: 10px; /* Space between icon and text */
+    display: flex; /* Ensure icons are centered */
+    align-items: center; /* Center icons */
+}
+
+.data {
+    flex-wrap: wrap;
+}
+.data a{
+    color: white;
+}
+
+.data a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+.ProfileText{
+    text-align: justify;
+}
+/* Align items in the skill container */
+.Skill {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space between each skill */
+}
+
+/* Style the skill name */
+.Skill .Name {
+    width: 60%; /* Set a fixed width for the skill name */
+    margin-right: 10px; /* Space between the skill name and progress bar */
+    text-align: right; /* Align skill names to the right */
+}
+
+/* Style the progress bar */
+.progress-bar {
+    background-color: #acacac;
+    border-radius: 5px;
+    height: 10px;
+    width: 100%; /* Set to fill the remaining space */
+    flex-grow: 1; /* Allow the progress bar to grow to fill the space */
+}
+
+/* Style the fill inside the progress bar */
+.progress-fill {
+    height: 100%; /* Fill the height of the progress bar */
+    background-color: white; /* You can change this color to your preference */
+    border-radius: 5px;
+    transition: width 0.3s; /* Smooth transition for width change */
+}

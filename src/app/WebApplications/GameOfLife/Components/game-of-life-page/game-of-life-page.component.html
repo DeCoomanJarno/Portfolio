@@ -6,7 +6,7 @@
             @for (row of grid; track $index) {
             @for (cell of row; track $index) {
             <div [class.alive]="cell.state" class="cell"
-                [ngStyle]="{'width': config.cellSize + 'px', 'height': config.cellSize + 'px'}" (click)="ToggleCell(cell.x,cell.y)"></div>
+                [ngStyle]="{'width': config.cellSize + 'px', 'height': config.cellSize + 'px'}" (keydown)="ToggleCell(cell.x,cell.y)"></div>
             }
             }
         </div>
@@ -21,10 +21,10 @@
             <div class="card-body" >
                 <nav class="mb-9">
                     <ul class="nav nav-tabs">
-                        <button (click)="Activate()" class="btn btn-primary btn-block" [disabled]="isLoading">Start</button>
-                        <button (click)="Deactivate()" class="btn btn-danger btn-block"[disabled]="isLoading">Stop</button>
-                        <button (click)="Clear()" class="btn btn-warning btn-block"[disabled]="isLoading">Reset</button>
-                        <button (click)="Randomize()" class="btn btn-info btn-block"[disabled]="isLoading">Randomize</button>
+                        <button (keydown)="Activate()" class="btn btn-primary btn-block" [disabled]="isLoading">Start</button>
+                        <button (keydown)="Deactivate()" class="btn btn-danger btn-block"[disabled]="isLoading">Stop</button>
+                        <button (keydown)="Clear()" class="btn btn-warning btn-block"[disabled]="isLoading">Reset</button>
+                        <button (keydown)="Randomize()" class="btn btn-info btn-block"[disabled]="isLoading">Randomize</button>
                     </ul>
                 </nav>
             </div>
