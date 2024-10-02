@@ -1,117 +1,258 @@
 .resume {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    font-size: 16px;
-  }
+  font-family: Arial, sans-serif;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 20px; /* Add some padding */
+  display: flex; /* Use flexbox to align SidePanel and MainPanel */
+}
+.List{
+  display: flex;
+  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
+  gap: 10px; /* Adds space between the items */
+}
+/* ProfileImage with fixed height */
+.ProfileImage {
+  height: 20ch; /* Adjust the height as needed */
+}
+.ProfileImage img {
+  display: block;
+  margin: 20px auto;
+  border: white 3px solid;
+  border-radius: 5px;
+  width: 20ch;
+}
 
-  .ProfileImage img
-  {
-    display: block;
-    margin: 20px auto;
-    border: white 3px solid;
-    border-radius: 5px;
-    width: 50%;
-  }
-  .SidePanel
-  {
-    float: left;
-    background-color: #006680;
-    width: 40%;
-    color: white;
-  }
-  .MainPanel
-  {
-    float: right;
-    width: 60%;
-  }
-  
- .MainPanel .Name {
-    font-size: 36px;
-  }
-  
-  .MainPanel .Title {
-    font-size: 24px;
-    color: #666;
-  }
-  .Panel{
-    margin: 0px 10%;
-  }
-  .Header {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin: 20px 0 10px 0;
-  }
+/* SidePanel and MainPanel */
+.SidePanel {
+  top: 0;
+  background-color: #006680;
+  width: 35%;
+  color: white;
+}
+.MainPanel {
+  width: 65%;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .Header .Title {
-    font-size: xx-large;
-    margin: 0;
-    padding: 0;
-  }
+/* HeaderBlock with the same height as ProfileImage */
+.MainPanel .HeaderBlock {
+  margin-top: 20px;
+  height: 20ch; /* Match this height with ProfileImage */
+  align-items: center;
+  justify-content: center;
+  text-wrap: nowrap;
+}
 
-  .Header .SubTitle {
-    margin: 0;
-    font-size: medium;
-    padding: 0;
-  }
+.MainPanel .FirstName {
+  font: 400 3.562rem / 2rem Roboto, sans-serif;
+  padding: 20px 0;
+  margin: 0;
+  color: #4d4d4f;
+  font-weight: bold;
+  font-size: 55px;
+  letter-spacing: 1vw;
+}
+.MainPanel .Name {
+  font: 400 3.562rem / 4rem Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  color: #4d4d4f;
+  font-size: 45px;
+  letter-spacing: 1vw;
+}
 
+.MainPanel .Title {
+  letter-spacing: 2px;
+  font: 400 2rem / 1.25rem Roboto, sans-serif;
+  font-size: 20px;
+  color: #666;
+}
 
+/* Panels inside the MainPanel */
+.Panel {
+  margin: 0px 10%;
+}
+
+/* Header styles */
+.Header {
+  text-align: center;
+  font-size: xx-large;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  margin: 20px 0 10px 0;
+}
+
+.Header .SubTitle {
+  font-size: medium;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flexbox layout for contact-list */
 .contact-list p {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
+  display: flex;
+  align-items: center;
 }
 
+/* Styling for icons in the contact list */
 .icon {
-    margin-right: 10px; /* Space between icon and text */
-    display: flex; /* Ensure icons are centered */
-    align-items: center; /* Center icons */
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
+/* Ensure long text in .data elements wraps */
 .data {
-    flex-wrap: wrap;
-}
-.data a{
-    color: white;
+  width: 100%;
 }
 
+.data a {
+  color: white;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
 .data a:hover {
-    text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
-.ProfileText{
-    text-align: justify;
+
+/* Profile text alignment */
+.ProfileText {
+  text-align: justify;
 }
-/* Align items in the skill container */
+
+/* Skill section styling */
 .Skill {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 10px; /* Space between each skill */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-/* Style the skill name */
 .Skill .Name {
-    width: 60%; /* Set a fixed width for the skill name */
-    margin-right: 10px; /* Space between the skill name and progress bar */
-    text-align: right; /* Align skill names to the right */
+  width: 70%;
+  margin-right: 10px;
+  text-align: right;
 }
 
-/* Style the progress bar */
 .progress-bar {
-    background-color: #acacac;
-    border-radius: 5px;
-    height: 10px;
-    width: 100%; /* Set to fill the remaining space */
-    flex-grow: 1; /* Allow the progress bar to grow to fill the space */
+  background-color: #acacac;
+  border-radius: 5px;
+  height: 10px;
+  width: 100%;
+  flex-grow: 1;
 }
 
-/* Style the fill inside the progress bar */
 .progress-fill {
-    height: 100%; /* Fill the height of the progress bar */
-    background-color: white; /* You can change this color to your preference */
-    border-radius: 5px;
-    transition: width 0.3s; /* Smooth transition for width change */
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+
+.Entry
+{
+  padding: 10px;
+  border: 2px solid #c1c1f2;
+  border-radius: 8px;
+  background-color: white;
+  width: 100%;
+}
+/* Style for each education entry */
+.EntryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Style for the right side (School, Location, Year) */
+.RightSide {
+  text-align: right;
+}
+
+/* Degree (larger, bolded title) */
+ .Degree {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+/* School and Location */
+ .Company {
+  font-weight: bold;
+  margin: 5px 0 0 0;
+  color: #666;
+}
+
+/* Location */
+ .Location {
+  font-size: 14px;
+  margin: 0;
+  color: #999;
+}
+
+/* Year (dates) */
+ .Year {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Description */
+ .Description {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+  text-align: justify;
+}
+.References
+{
+  display: flex;
+  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
+}
+.ReferenceEntry
+{
+  padding: 10px;
+  border: 2px solid #c1c1f2;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  color: #333;
+}
+/* Contact info styling */
+.ContactInfo {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Icon styling */
+.ContactInfo .icon {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Email styling */
+.ContactInfo a {
+  text-decoration: none;
+  color: #333;
+}
+
+.ContactInfo a:hover {
+  text-decoration: underline;
 }

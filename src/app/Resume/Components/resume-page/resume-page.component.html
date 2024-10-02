@@ -98,43 +98,80 @@
         </div>
     </div>
     <div class="MainPanel">
-        <div class="Panel">
+        <div class="HeaderBlock Panel">
+            <h1 class="FirstName">{{ resumeData.FirstName }}</h1>
             <h1 class="Name">{{ resumeData.Name }}</h1>
             <h2 class="Title">{{ resumeData.Title }}</h2>
         </div>
         <div class="Panel">
             <div class="Header">Education</div>
-            @for (edu of resumeData.Education; track $index)
-            {
-            <div>
-                <h4>{{ edu.Degree }}</h4>
-                <p>{{ edu.School }}, {{ edu.Location }} ({{ edu.Year }})</p>
-                <p>{{ edu.Description }}</p>
+            <div class="List">
+                @for (edu of resumeData.Education; track $index)
+                {
+                <div class="Entry">
+                    <div class="EntryHeader">
+                        <div class="LeftSide">
+                            <h4 class="Degree">{{ edu.Degree }}</h4>
+                            <div class="Year">({{ edu.Year }})</div>
+                        </div>
+                        <div class="RightSide">
+                            <div class="Company">{{ edu.School }}</div>
+                            <div class="Location">{{ edu.Location }}</div>
+                        </div>
+                    </div>
+                    <p class="Description">{{ edu.Description }}</p>
+                </div>
+                }
             </div>
-            }
         </div>
 
         <div class="Panel">
             <div class="Header">Work Experience</div>
-            @for (exp of resumeData.Experience; track $index)
-            {
-            <div>
-                <h4>{{ exp.Title }}</h4>
-                <p>{{ exp.Company }}, {{ exp.Location }} ({{ exp.Dates }})</p>
-                <p>{{ exp.Description }}</p>
+            <div class="List">
+                @for (exp of resumeData.Experience; track $index)
+                {
+                <div class="Entry">
+                    <div class="EntryHeader">
+                        <div class="LeftSide">
+                            <h4 class="Degree">{{ exp.Title }}</h4>
+                            <div class="Year">({{ exp.Dates }})</div>
+                        </div>
+                        <div class="RightSide">
+                            <div class="Company">{{ exp.Company }}</div>
+                            <div class="Location">{{ exp.Location }}</div>
+                        </div>
+                    </div>
+                    <p class="Description">{{ exp.Description }}</p>
+                </div>
+                }
             </div>
-            }
         </div>
 
         <div class="Panel">
             <div class="Header">References</div>
-            @for (ref of resumeData.References; track $index)
-            {
-            <div>
-                <p><strong>{{ ref.Name }}</strong> - {{ ref.Title }}</p>
-                <p>{{ ref.Phone }} | <a href="mailto:{{ ref.Email }}">{{ ref.Email }}</a></p>
+            <div class="References">
+                @for (ref of resumeData.References; track $index)
+                {
+                <div class="ReferenceEntry">
+                    <p class="Degree">{{ ref.Name }}</p>
+                    <p class="Company">{{ ref.Title }}</p>
+                    <div class="ContactInfo">
+                        <span class="icon">
+                            <i class="material-icons-outlined">phone</i>
+                        </span>
+                        <span class="Phone">{{ ref.Phone }}</span>
+                    </div>
+                    <div class="ContactInfo">
+                        <span class="icon">
+                            <i class="material-icons-outlined">email</i>
+                        </span>
+                        <span class="Email">
+                            <a href="mailto:{{ ref.Email }}">{{ ref.Email }}</a>
+                        </span>
+                    </div>
+                </div>
+                }
             </div>
-            }
         </div>
     </div>
 </div>

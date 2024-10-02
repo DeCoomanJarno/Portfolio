@@ -1,0 +1,10 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes the wrapper take the full viewport height */
+  }
+  
+  .Content {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+  }
+  

@@ -1,5 +1,6 @@
 export interface ResumeData {
   Name: string;
+  FirstName: string;
   Title: string;
   Contact: Contact;
   Profile: string;
