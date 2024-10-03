@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ResumeData } from '../../Models/ResumeData.model';
+import { ResumeService } from '../../Services/resume.service';
 
 @Component({
   selector: 'app-resume-page',
@@ -10,17 +11,18 @@ import { ResumeData } from '../../Models/ResumeData.model';
   styleUrls: ['./resume-page.component.css']
 })
 export class ResumePageComponent implements OnInit {
-[x: string]: any;
-  resumeData: ResumeData | undefined;  // Use your model here
+resumeData: ResumeData | undefined;
 
-  constructor(private http: HttpClient) {}
+constructor(private resumeService: ResumeService) {}
 
-  ngOnInit(): void {
-    this.http.get<ResumeData>('Resources/Resume.json')  // Specify the type as Resume
-      .subscribe(data => {
-        this.resumeData = data;
-      }, error => {
-        console.error('Error loading resume data', error);
-      });
-  }
+ngOnInit() {
+  this.resumeService.getResumeData().subscribe(
+    data => {
+      this.resumeData = data;
+    },
+    error => {
+      console.error('Error loading resume data:', error);
+    }
+  );
+}
 }

@@ -114,3 +114,26 @@
     background-color: lightblue;
   }
 }
+
+.language-selector select:focus {
+  border-color: #007bff; /* Highlight border when the select is focused */
+}
+
+.language-selector select option {
+  font-size: 16px;
+}
+.language-selector {
+  margin-right: 20px; /* Optional spacing from the right side */
+  height: 100px;
+}
+
+.language-selector label {
+  font-size: 14px;
+  margin-right: 10px; /* Spacing between label and select box */
+}
+
+.language-selector select {
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
