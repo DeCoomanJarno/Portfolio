@@ -1,0 +1,85 @@
+{
+    "Name": "De Cooman",
+    "FirstName": "Jarno",
+    "Title": "Software Engineer",
+    "ProfileImage": "Resources/Jarno-image.png",
+    "Contact": {
+      "Address": "Kloosterland 81, 9260 Schellebelle, België",
+      "Email": "decoomanjarno02@gmail.com",
+      "Phone": "+32 472 73 27 82",
+      "Website": "jarnodecooman.be",
+      "LinkedIn_Preview": "@jarnodecooman",
+      "LinkedIn_URL": "http://www.linkedin.com/in/jarno-de-cooman-223515243",
+      "Driverlicense": "Rijbewijs B"
+    },
+    "Profile": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
+    "Skills": {
+      "Programming_Languages": [
+        { "Name": "C++", "Value": 90 },
+        { "Name": "C#", "Value": 85 },
+        { "Name": "Angular", "Value": 80 },
+        { "Name": "Typescript", "Value": 75 },
+        { "Name": "Git / Perforce / TFS / Azure DevOps", "Value": 70 }
+      ],
+      "Languages": [
+        { "Name": "Nederlands", "Value": 90 },
+        { "Name": "Engels", "Value": 70 },
+        { "Name": "Frans", "Value": 30 }
+      ]
+    },
+    "Education": [
+      {
+        "Degree": "Game Development",
+        "School": "Howest, DAE",
+        "Location": "Kortrijk, Belgium",
+        "Year": "2020 - 2023",
+        "Description": "Immersive program with training in C++, C#, game design, 3D modeling, and animation."
+      },
+      {
+        "Degree": "Industrial Sciences",
+        "School": "Scheppersinstituut",
+        "Location": "Wetteren, Belgium",
+        "Year": "2014 - 2020",
+        "Description": "Comprehensive curriculum in physics, chemistry, mathematics, and engineering."
+      }
+    ],
+    "Experience": [
+      {
+        "Title": "Software Engineer",
+        "Company": "Dematic",
+        "Location": "Antwerp, Belgium",
+        "Dates": "November 2023 - Present",
+        "Description": "I develop software for the automation of AGVs and ensure the seamless integration of these systems in the supply chain."
+      },
+      {
+        "Title": "Intern",
+        "Company": "OneBonsai",
+        "Location": "Leuven, Belgium",
+        "Dates": "February 2023 - June 2023",
+        "Description": "Gained hands-on experience developing VR applications using Unreal Engine."
+      },
+      {
+        "Title": "Study Council",
+        "Company": "Howest, DAE",
+        "Location": "Kortrijk, Belgium",
+        "Dates": "2021 - 2022",
+        "Description": "Helped develop the Game Development study by attending meetings with the study leader to provide feedback on teachers, subjects, and exams."
+      },
+      {
+        "Title": "Waiter/Bartender",
+        "Company": "De Plaetse",
+        "Location": "Schellebelle, Belgium",
+        "Dates": "2020 - 2022",
+        "Description": "Worked as a waiter, and occasionally helped in the kitchen or behind the bar."
+      }
+    ],
+    "References": [
+      {
+        "Name": "Everest Schoofs",
+        "Title": "CEO at OneBonsai",
+        "Phone": "+32 478 26 23 57",
+        "Email": "everest@onebonsai.com"
+      }
+    ]
+  }
+  
