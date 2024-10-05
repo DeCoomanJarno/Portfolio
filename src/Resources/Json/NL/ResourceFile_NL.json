@@ -1,5 +1,11 @@
 {
   "Resume": "CV",
+  "Profile": "Profiel",
+  "ProgrammingLanguage": "Programmeertalen",
+  "Language": "Talen",
+  "Education": "Studies",
+  "WorkExperience": "Werkervaring",
+  "References": "References",
     "languageSelector": {
       "EN": "Engels",
       "NL": "Nederlands"

@@ -1,5 +1,14 @@
 {
     "Resume": "Resume",
+    "Contact": "Contact",
+    "Profile": "Profile",
+    "Skills": "Skills",
+    "ProgrammingLanguage": "Programming Language",
+    "Language": "Language",
+    "Education": "Education",
+    "WorkExperience": "Work Experience",
+    "References": "References",
+    "DownloadPDF": "Download PDF",
     "languageSelector": {
       "EN": "English",
       "NL": "Dutch"

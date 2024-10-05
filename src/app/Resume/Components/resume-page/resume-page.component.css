@@ -1,9 +1,9 @@
 .resume {
+  margin-top: 20px;
   font-family: Arial, sans-serif;
   max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 8px;
   font-size: 16px;
   padding: 20px; /* Add some padding */
@@ -32,13 +32,17 @@
   background-color: #006680;
   width: 35%;
   color: white;
+  border-radius: 8px 0 0 8px;
 }
+
 .MainPanel {
   width: 65%;
   box-sizing: border-box; /* Ensure padding doesn't affect width */
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius:0 8px 8px 0;
 }
 
 /* HeaderBlock with the same height as ProfileImage */
@@ -255,4 +259,36 @@
 
 .ContactInfo a:hover {
   text-decoration: underline;
+}
+/* Button styling */
+button {
+  background-color: #006680; /* Matches the SidePanel color */
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 20px auto; /* Center the button */
+  display: block; /* Center the button in block layout */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #005266;
+  transform: scale(1.05); /* Slight enlarge on hover */
+}
+
+/* Button focus effect */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button active effect (when clicked) */
+button:active {
+  background-color: #004552;
+  transform: scale(0.98);
 }
