@@ -1,7 +1,6 @@
-<div class="project-card">
+<div class="project-card" [class.border]="!project.images">
   @if(project.images)
   {
-
     <div class="image-container">
       @for (image of project.images; track $index) {
         <img 
@@ -13,7 +12,7 @@
     </div>
   }
   
-  <div class="project-info" [class.overlay]="project.images && project.images.length > 0">
+  <div class="project-info" [class.overlay]="project.images && project.images.length > 0" >
     <h2>{{ project.title }}</h2>
     <p>{{ project.description }}</p>
     <a [routerLink]="['/Project', project.id]">Learn More</a>
