@@ -2,7 +2,11 @@
     {
       "id": "1",
       "title": "Project 1",
-      "description": "This is a detailed description of Project 1."
+      "description": "This is a detailed description of Project 1.",
+      "images": [
+        "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg",
+        "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
+      ]
     },
     {
       "id": 2,

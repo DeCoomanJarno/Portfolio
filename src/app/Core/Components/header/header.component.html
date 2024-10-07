@@ -13,12 +13,9 @@
     <!-- Navbar collapse section -->
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/Home" routerLinkActive="active">Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Home" routerLinkActive="active">{{languageService.getTranslation('Home')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Projects" routerLinkActive="active">{{languageService.getTranslation('Projects')}}</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/Resume" routerLinkActive="active">{{languageService.getTranslation('Resume')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/GameOfLife" routerLinkActive="active">Game Of Life</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" routerLink="/LangtonsAnt" routerLinkActive="active">Langton's Ant</a>
-        </li>
       </ul>
 <!-- Language Selector, aligned to the right -->
 <div class="ml-auto language-selector d-flex align-items-center">

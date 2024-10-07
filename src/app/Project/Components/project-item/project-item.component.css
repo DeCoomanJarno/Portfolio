@@ -1,0 +1,110 @@
+.project-card {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; /* Set image height */
+  transition: opacity 0.3s ease; /* Smooth transition for image */
+}
+
+.project-card h2 {
+  font-size: 1.5em;
+  margin: 10px 0; /* Adjusted margin */
+}
+
+.project-card p {
+  font-size: 1em;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Allow this section to grow to fill space */
+}
+
+.project-card a {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.project-card a:hover {
+  background-color: #2980b9;
+}
+
+/* The project-info section is always visible unless overlay is added */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* Make sure it appears above other elements */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+/* When there are images, project info becomes an overlay */
+.project-info.overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: #fff; /* Text color for better visibility */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+/* On hover, show the overlay */
+.project-card:hover .project-info.overlay {
+  opacity: 1; /* Make overlay visible */
+}
+
+/* Image container should have the images stacked on top of each other */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* The "fade" class will control the opacity and looping of images */
+}
+.project-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.fade {
+  animation-name: fadeAnimation;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+/* Keyframes for fading images in and out */
+@keyframes fadeAnimation {
+  0% {
+    opacity: 1;
+    z-index: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+}
