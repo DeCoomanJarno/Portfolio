@@ -1,0 +1,36 @@
+<title>test</title>
+@if (homeData) {
+<div class="home">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>{{ homeData.Name }}</h1>
+            <h2>{{ homeData.Title }}</h2>
+            <p>{{ homeData.ShortBio }}</p>
+            <a routerLink="/Resume" class="cta-button">{{ languageService.getTranslation('Resume') }}</a>
+        </div>
+        <div class="hero-image">
+            <img [src]="homeData.ProfileImage" alt="Profile Picture">
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>{{ languageService.getTranslation('About') }}</h2>
+        <p>{{ homeData.AboutMe }}</p>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>{{ languageService.getTranslation('Projects') }}</h2>
+        <div class="project-list">
+            @for (project of projects; track $index) {
+                    <app-project-item [project]="project"></app-project-item>
+            }
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2>{{ languageService.getTranslation('Contact') }}</h2>
+        <p>{{ homeData.ContactMessage }}</p>
+        <p>{{ contact?.Email}}</p>
+    </section>
+</div>
+}

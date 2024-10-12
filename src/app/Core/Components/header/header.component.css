@@ -8,17 +8,20 @@
   padding: 0 20px;
   width: 100%;
   position: sticky; /* Make the header sticky */
-  top: 0; /* Position at the top */
-  z-index: 1000;
+  top: 5px;
 }
 
 /* Logo container styles */
 .logo-container {
-  position: absolute; /* Keep the logo centered at the top */
+  display: flex; /* Keep logo flexible */
+  align-items: center; /* Center the logo vertically */
+  position: absolute; /* Change to relative */
+  width: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 1001;
   transition: all 0.6s ease;
+}
+.logo-container img{
+  max-height: 40px;
 }
 
 /* Separate class for logo on scroll */

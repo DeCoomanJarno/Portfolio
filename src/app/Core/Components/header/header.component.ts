@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LanguageService } from '../../Services/language.service';
+import { CommonDataService } from '../../Services/common-data.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,7 @@ export class HeaderComponent {
       this.navbarfixed = false;
     }
   }
-  constructor(public languageService: LanguageService) {}
+  constructor(public languageService: LanguageService, public commonDataService: CommonDataService) {}
 
   ngOnInit() {
     // Set the initial language (you can get this from a setting or default to 'EN')

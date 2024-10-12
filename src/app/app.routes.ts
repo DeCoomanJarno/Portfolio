@@ -6,10 +6,10 @@ import { ResumePageComponent } from './Resume/Components/resume-page/resume-page
 import { ProjectsPageComponent } from './Project/Components/projects-page/projects-page.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'Home', pathMatch: 'full'},
+    { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomePageComponent },
-    { path: 'Projects', component: ProjectsPageComponent },
+    { path: 'Projects', component: ProjectsPageComponent},
     { path: 'Resume', component: ResumePageComponent },
-    { path: 'GameOfLife', component: GameOfLifePageComponent},
+    { path: 'GameOfLife', component: GameOfLifePageComponent },
     { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
 ];

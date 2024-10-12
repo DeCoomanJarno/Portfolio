@@ -1,9 +1,9 @@
 <header class="header">
   <nav class="navbar navbar-expand-custom fixed-top navbar-light bg-light">
+    <div class="logo-container" [ngClass]="navbarfixed ? 'logo-left' : ''">
+      <a class="navbar-brand"><img src="{{commonDataService.CommonData?.Logo}}" /></a>
+    </div>
     <div class="AlignRight">
-      <div class="logo-container" [ngClass]="navbarfixed ? 'logo-left' : ''">
-        <a class="navbar-brand">Your Logo</a>
-      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,17 +13,20 @@
     <!-- Navbar collapse section -->
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/Home" routerLinkActive="active">{{languageService.getTranslation('Home')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Projects" routerLinkActive="active">{{languageService.getTranslation('Projects')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Resume" routerLinkActive="active">{{languageService.getTranslation('Resume')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Home"
+            routerLinkActive="active">{{languageService.getTranslation('Home')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Projects"
+            routerLinkActive="active">{{languageService.getTranslation('Projects')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Resume"
+            routerLinkActive="active">{{languageService.getTranslation('Resume')}}</a></li>
       </ul>
-<!-- Language Selector, aligned to the right -->
-<div class="ml-auto language-selector d-flex align-items-center">
-  <select id="language" (change)="changeLanguage($event)" class="form-control">
-    <option value="EN">{{ languageService.getTranslation('languageSelector')['EN'] }}</option>
-    <option value="NL">{{ languageService.getTranslation('languageSelector')['NL'] }}</option>
-  </select>
-</div>
+      <!-- Language Selector, aligned to the right -->
+      <div class="ml-auto language-selector d-flex align-items-center">
+        <select id="language" (change)="changeLanguage($event)" class="form-control">
+          <option value="EN">{{ languageService.getTranslation('languageSelector')['EN'] }}</option>
+          <option value="NL">{{ languageService.getTranslation('languageSelector')['NL'] }}</option>
+        </select>
+      </div>
 
     </div>
   </nav>

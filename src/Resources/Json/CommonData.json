@@ -1,0 +1,13 @@
+{
+    "Name": "De Cooman",
+    "FirstName": "Jarno",
+    "ProfileImage": "Resources/Jarno-image.png",
+    "Logo": "Resources/Logo.png",
+    "Contact": {
+        "Email": "decoomanjarno02@gmail.com",
+        "Phone": "+32 472 73 27 82"
+    },
+    "Website": "jarnodecooman.be",
+    "LinkedIn_URL": "http://www.linkedin.com/in/jarno-de-cooman-223515243",
+    "Github_URL": "https://github.com/your-username"
+}

@@ -1,31 +1,16 @@
-import { NgClass } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-import {  RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonData, CommonDataService } from '../../Services/common-data.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterModule,NgClass],
+  imports: [],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css' ,
 
 })
 export class FooterComponent {
-  navbarfixed = false;
- 
-  @HostListener('window:scroll', ['$event'])
-OnScroll() {
-  if(window.scrollY > 40)
-  {
-    this.navbarfixed = true;
-  }
-  else
-    {
-      this.navbarfixed = false;
-    }
-  
+  currentYear: number = new Date().getFullYear();
 
-}
-
-
+  constructor(public commonDataService: CommonDataService) {}
 }

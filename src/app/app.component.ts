@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {  Router, NavigationEnd, RouterOutlet, RouterModule, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { filter, map } from 'rxjs/operators';
 import { HeaderComponent } from './Core/Components/header/header.component';
-import { GameOfLifePageComponent } from './WebApplications/GameOfLife/Components/game-of-life-page/game-of-life-page.component';
 import { FooterComponent } from './Core/Components/Footer/footer.component';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, GameOfLifePageComponent, HeaderComponent, RouterModule, FooterComponent],
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',  
-  providers: []
+  imports: [RouterOutlet, HeaderComponent, RouterModule, FooterComponent],
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Portfolio';
+export class AppComponent implements OnInit {
+  public fallbackTitle: string = 'Portfolio';  // Fallback title
+
+  constructor(
+    private router: Router,
+    private titleService: Title
+  ) {}
+
+  ngOnInit(): void {
+  }
 }

@@ -1,15 +1,8 @@
 {
-    "Name": "De Cooman",
-    "FirstName": "Jarno",
     "Title": "Software Engineer",
-    "ProfileImage": "Resources/Jarno-image.png",
     "Contact": {
       "Address": "Kloosterland 81, 9260 Schellebelle, Belgium",
-      "Email": "decoomanjarno02@gmail.com",
-      "Phone": "+32 472 73 27 82",
-      "Website": "jarnodecooman.be",
       "LinkedIn_Preview": "@jarnodecooman",
-      "LinkedIn_URL": "http://www.linkedin.com/in/jarno-de-cooman-223515243",
       "Driverlicense": "Driver license B"
     },
     "Profile": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
