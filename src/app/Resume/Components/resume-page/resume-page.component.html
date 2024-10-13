@@ -11,13 +11,13 @@
             <div class="contact-list">
                 <p>
                     <span class="icon">
-                        <i class="material-icons-outlined">home</i>
+                        <i class="bi-geo-alt"></i>
                     </span>
                     <span class="data" [innerHTML]="resumeData.Contact.Address.replaceAll(', ',',\<br\>')"></span>
                 </p>
                 <p>
                     <span class="icon">
-                        <i class="material-icons-outlined">mail</i>
+                        <i class="bi-envelope"></i>
                     </span>
                     <span class="data">
                         <a href="mailto:{{ commonDataService.CommonData?.Contact?.Email }}">{{ commonDataService.CommonData?.Contact?.Email }}</a>
@@ -25,13 +25,13 @@
                 </p>
                 <p>
                     <span class="icon">
-                        <i class="material-icons-outlined">phone</i>
+                        <i class="bi-telephone"></i>
                     </span>
                     <span class="data">{{ commonDataService.CommonData?.Contact?.Phone }}</span>
                 </p>
                 <p>
                     <span class="icon">
-                        <i class="material-icons-outlined">language</i>
+                        <i class="bi-globe"></i>
                     </span>
                     <span class="data">
                         <a href="http://{{ commonDataService.CommonData?.Website }}">{{ commonDataService.CommonData?.Website }}</a>
@@ -39,12 +39,7 @@
                 </p>
                 <p>
                     <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" fill="white"
-                            viewBox="0 0 50 50">
-                            <path
-                                d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z">
-                            </path>
-                        </svg>
+                        <i class="bi-linkedin"></i>
                     </span>
                     <span class="data">
                         <a href="{{ commonDataService.CommonData?.LinkedIn_URL }}">{{ resumeData.Contact.LinkedIn_Preview }}</a>
@@ -52,7 +47,7 @@
                 </p>
                 <p>
                     <span class="icon">
-                        <i class="material-icons-outlined">badge</i>
+                        <i class="bi-person-vcard"></i>
                     </span>
                     <span class="data">{{ resumeData.Contact.Driverlicense }}</span>
                 </p>
@@ -157,13 +152,13 @@
                     <p class="Company">{{ ref.Title }}</p>
                     <div class="ContactInfo">
                         <span class="icon">
-                            <i class="material-icons-outlined">phone</i>
+                            <i class="bi-telephone"></i>
                         </span>
                         <span class="Phone">{{ ref.Phone }}</span>
                     </div>
                     <div class="ContactInfo">
                         <span class="icon">
-                            <i class="material-icons-outlined">email</i>
+                            <i class="bi-envelope"></i>
                         </span>
                         <span class="Email">
                             <a href="mailto:{{ ref.Email }}">{{ ref.Email }}</a>

@@ -108,9 +108,10 @@
 
 /* Styling for icons in the contact list */
 .icon {
-  margin-right: 10px;
+  margin-right: 15px;
   display: flex;
   align-items: center;
+  font-size: 18px;
 }
 
 /* Ensure long text in .data elements wraps */
