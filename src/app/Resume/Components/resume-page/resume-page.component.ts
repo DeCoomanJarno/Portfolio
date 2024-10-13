@@ -4,6 +4,7 @@ import { ResumeService } from '../../Services/resume.service';
 import { LanguageService } from '../../../Core/Services/language.service';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CommonDataService } from '../../../Core/Services/common-data.service';
 
 @Component({
   selector: 'app-resume-page',
@@ -15,7 +16,11 @@ import html2canvas from 'html2canvas';
 export class ResumePageComponent implements OnInit {
   resumeData: ResumeData | undefined;
 
-  constructor(private resumeService: ResumeService, public languageService: LanguageService) { }
+  constructor(
+    private resumeService: ResumeService, 
+    public languageService: LanguageService, 
+    public commonDataService: CommonDataService
+  ) { }
 
   ngOnInit() {
     // Load initial resume data with the default language
@@ -56,7 +61,7 @@ export class ResumePageComponent implements OnInit {
         heightLeft -= pageHeight;
       }
 
-      pdf.save(`${this.resumeData!.FirstName}_${this.resumeData!.Name}_${this.languageService.getTranslation('Resume')}.pdf`);
+      pdf.save(`${this.commonDataService.CommonData?.FirstName}_${this.commonDataService.CommonData?.Name}_${this.languageService.getTranslation('Resume')}.pdf`);
     });
   }
 }

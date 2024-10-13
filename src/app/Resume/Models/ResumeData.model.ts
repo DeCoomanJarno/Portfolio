@@ -1,10 +1,7 @@
 export interface ResumeData {
-  Name: string;
-  FirstName: string;
   Title: string;
   Contact: Contact;
   Profile: string;
-  ProfileImage: string;
   Skills: Skills;
   Education: Education[];
   Experience: Experience[];
@@ -13,11 +10,7 @@ export interface ResumeData {
 
 export interface Contact {
   Address: string;
-  Email: string;
-  Phone: string;
-  Website: string;
   LinkedIn_Preview: string;
-  LinkedIn_URL: string;
   Driverlicense: string;
 }
 

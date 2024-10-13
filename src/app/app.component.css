@@ -4,7 +4,6 @@
     min-height: 100vh; /* Makes the wrapper take the full viewport height */
   }
   
-  .Content {
-    flex-grow: 1; /* Pushes the footer to the bottom */
-  }
-  
+.Content {
+  flex-grow: 1; /* Pushes the footer to the bottom */
+}

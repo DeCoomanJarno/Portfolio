@@ -7,8 +7,7 @@ import { RouterLink } from '@angular/router';
 import { HomeModel } from '../../Models/home-model';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
-import { Contact } from '../../../Resume/Models/ResumeData.model';
-import { ResumeService } from '../../../Resume/Services/resume.service';
+import { CommonDataService } from '../../../Core/Services/common-data.service';
 
 export function mergeDeep(target: any, source: any): any {
   const isObject = (obj: any) => obj && typeof obj === 'object';
@@ -39,18 +38,16 @@ export function mergeDeep(target: any, source: any): any {
 export class HomePageComponent implements OnInit {
   homeData:HomeModel | undefined;
   projects: ProjectModel[] = [];
-  contact: Contact | undefined;
 
   constructor(
     public languageService: LanguageService,
     private projectService: ProjectService,
-    private resumeService: ResumeService,
+    public commonDataService: CommonDataService,
     private http: HttpClient // Injecting HttpClient for fetching JSON
   ) {}
 
   ngOnInit(): void {
     this.LoadHomeData();
-    this.LoadContact();
     // Fetch projects from the service
     this.projectService.getProjects().subscribe((data: ProjectModel[]) => {
       // Filter projects based on the IDs in homeData.Projects
@@ -79,11 +76,5 @@ export class HomePageComponent implements OnInit {
         this.homeData = mergeDeep(en, localized);
       });
     });
-  }
-
-  LoadContact()
-  {
-    this.languageService.currentLanguage$.subscribe(lang => this.resumeService.getResumeData(lang).subscribe(data => this.contact = data.Contact))
-
   }
 }

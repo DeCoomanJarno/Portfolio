@@ -2,11 +2,11 @@
   margin-top: 20px;
   font-family: Arial, sans-serif;
   max-width: 1300px;
+  min-width: 1100px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
   font-size: 16px;
-  padding: 20px; /* Add some padding */
   display: flex; /* Use flexbox to align SidePanel and MainPanel */
 }
 .List{

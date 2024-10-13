@@ -2,7 +2,7 @@
 <div class="resume" #resumeContent>
     <div class="SidePanel">
         <div class="ProfileImage">
-            <img src="{{resumeData.ProfileImage}}" alt="Profile Picture">
+            <img src="{{commonDataService.CommonData?.ProfileImage}}" alt="Profile Picture">
         </div>
 
         <div class="contact Panel">
@@ -20,21 +20,21 @@
                         <i class="material-icons-outlined">mail</i>
                     </span>
                     <span class="data">
-                        <a href="mailto:{{ resumeData.Contact.Email }}">{{ resumeData.Contact.Email }}</a>
+                        <a href="mailto:{{ commonDataService.CommonData?.Contact?.Email }}">{{ commonDataService.CommonData?.Contact?.Email }}</a>
                     </span>
                 </p>
                 <p>
                     <span class="icon">
                         <i class="material-icons-outlined">phone</i>
                     </span>
-                    <span class="data">{{ resumeData.Contact.Phone }}</span>
+                    <span class="data">{{ commonDataService.CommonData?.Contact?.Phone }}</span>
                 </p>
                 <p>
                     <span class="icon">
                         <i class="material-icons-outlined">language</i>
                     </span>
                     <span class="data">
-                        <a href="http://{{ resumeData.Contact.Website }}">{{ resumeData.Contact.Website }}</a>
+                        <a href="http://{{ resumeData.Contact.Website }}">{{ commonDataService.CommonData?.Website }}</a>
                     </span>
                 </p>
                 <p>
@@ -47,7 +47,7 @@
                         </svg>
                     </span>
                     <span class="data">
-                        <a href="{{ resumeData.Contact.LinkedIn_URL }}">{{ resumeData.Contact.LinkedIn_Preview }}</a>
+                        <a href="{{ commonDataService.CommonData?.LinkedIn_URL }}">{{ resumeData.Contact.LinkedIn_Preview }}</a>
                     </span>
                 </p>
                 <p>
@@ -99,8 +99,8 @@
     </div>
     <div class="MainPanel">
         <div class="HeaderBlock Panel">
-            <h1 class="FirstName">{{ resumeData.FirstName }}</h1>
-            <h1 class="Name">{{ resumeData.Name }}</h1>
+            <h1 class="FirstName">{{ commonDataService.CommonData?.FirstName }}</h1>
+            <h1 class="Name">{{ commonDataService.CommonData?.Name }}</h1>
             <h2 class="Title">{{ resumeData.Title }}</h2>
         </div>
         <div class="Panel">

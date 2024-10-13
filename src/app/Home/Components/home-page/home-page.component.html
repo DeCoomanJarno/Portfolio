@@ -1,15 +1,14 @@
-<title>test</title>
 @if (homeData) {
 <div class="home">
     <section class="hero">
         <div class="hero-content">
-            <h1>{{ homeData.Name }}</h1>
+            <h1>{{ commonDataService.CommonData?.FullName }}</h1>
             <h2>{{ homeData.Title }}</h2>
             <p>{{ homeData.ShortBio }}</p>
             <a routerLink="/Resume" class="cta-button">{{ languageService.getTranslation('Resume') }}</a>
         </div>
         <div class="hero-image">
-            <img [src]="homeData.ProfileImage" alt="Profile Picture">
+            <img [src]="commonDataService.CommonData?.ProfileImage" alt="Profile Picture">
         </div>
     </section>
 
@@ -30,7 +29,7 @@
     <section class="contact">
         <h2>{{ languageService.getTranslation('Contact') }}</h2>
         <p>{{ homeData.ContactMessage }}</p>
-        <p>{{ contact?.Email}}</p>
+        <p>{{ this.commonDataService.CommonData?.Contact?.Email}}</p>
     </section>
 </div>
 }
