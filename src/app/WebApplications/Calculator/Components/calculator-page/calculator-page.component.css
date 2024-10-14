@@ -1,0 +1,137 @@
+/* Main Container - Flexbox */
+.calculator-container {
+  display: flex;
+  justify-content: center; /* Center calculator in the container */
+  margin: auto;
+  padding: 20px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+
+.calculator { 
+  width: 100%;
+  max-width: 400px; /* Set a max-width to avoid stretching */
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f7f9fc;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.expression-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #4a90e2;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+/* Style for the buttons container */
+.buttons {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+/* Each row of buttons */
+.buttons li {
+  display: flex;
+  justify-content: space-between; /* Space the buttons evenly */
+  margin-bottom: 10px; /* Add space between the rows */
+}
+
+/* Individual button styling */
+.button {
+  padding: 15px;
+  flex: 1; /* Ensure the buttons in the same row have the same width */
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button.zero-button {
+  flex: 5; 
+}
+
+.button.equal-button {
+  background-color: #28a745;
+}
+
+.button:hover {
+  background-color: #3e8fbd;
+}
+
+/* History takes 30% of the width */
+.history {
+  max-width: 300px;
+  flex-basis: 30%; /* History takes 30% of the container width */
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+/* When history is present, show and apply flex layout */
+.history.active {
+  display: block;
+}
+.history-list {
+  display: flex;                /* Use flexbox for layout */
+  flex-direction: column-reverse; /* Reverse the order of children */
+  padding: 0;                  /* Remove padding */
+  margin: 0;                   /* Remove margin */
+}
+.history h3 {
+  font-family: 'Arial', sans-serif;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  background-color: #fff;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.history-item:hover {
+  background-color: #e7f0f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.history-item:active {
+  background-color: #d1e6f1;
+}
+/* Temporary result styling */
+.temporary-result {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  font-size: 14px;
+  color: #666;
+  text-align: right;
+  text-wrap: nowrap;
+}
+.error{
+  text-align: left;
+  text-wrap: wrap;
+}

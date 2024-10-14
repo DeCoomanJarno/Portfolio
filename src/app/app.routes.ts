@@ -4,6 +4,7 @@ import { HomePageComponent } from './Home/Components/home-page/home-page.compone
 import { LangtonsAntPageComponent } from './WebApplications/LangtonsAnt/Components/langtons-ant-page/langtons-ant-page.component';
 import { ResumePageComponent } from './Resume/Components/resume-page/resume-page.component';
 import { ProjectsPageComponent } from './Project/Components/projects-page/projects-page.component';
+import { CalculatorPageComponent } from './WebApplications/Calculator/Components/calculator-page/calculator-page.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -12,4 +13,5 @@ export const routes: Routes = [
     { path: 'Resume', component: ResumePageComponent },
     { path: 'GameOfLife', component: GameOfLifePageComponent },
     { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
+    { path: 'Calculator', component: CalculatorPageComponent },
 ];

@@ -29,7 +29,7 @@
     <section class="contact">
         <h2>{{ languageService.getTranslation('Contact') }}</h2>
         <p>{{ homeData.ContactMessage }}</p>
-        <p>{{ this.commonDataService.CommonData?.Contact?.Email}}</p>
+        <a href="mailto:{{this.commonDataService.CommonData?.Contact?.Email }}">{{ this.commonDataService.CommonData?.Contact?.Email }}</a>
     </section>
 </div>
 }
