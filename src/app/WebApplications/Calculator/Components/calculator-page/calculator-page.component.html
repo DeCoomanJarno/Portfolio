@@ -1,95 +1,29 @@
-<div class="calculator-container">
-  <!-- Calculator Section -->
-  <div class="calculator">
-    <h1>Calculator</h1>
-
-    <!-- Main Expression Input -->
-    <input type="text" [(ngModel)]="expression" (keypress)="handleKeyPress($event)" 
-           (input)="updateTemporaryResult()" placeholder="Enter expression" class="expression-input"/>
-
-            @if (error !== '') {
-              <!-- Readonly Temporary Result Display -->
-              <h2 type="text" class="temporary-result error" >{{error}}</h2>
-            }
-            @else if (temporaryResult !== '') {
-              <!-- Readonly Temporary Result Display -->
-              <h2 type="text" class="temporary-result" >{{temporaryResult}}</h2>
-            }
-
-            <ul class="buttons">
-              <!-- 1st Row (²nd, π, e, CE, remove last) -->
-              <li>
-                <button (click)="toggleSecond()" class="button">²nd</button>
-                <button (click)="appendValue('pi')" class="button">π</button>
-                <button (click)="appendValue('e')" class="button">e</button>
-                <button (click)="clearEntry()" class="button">CE</button>
-                <button (click)="removeLast()" class="button"><i class="bi-backspace"></i></button>
-              </li>
-        
-              <!-- 2nd Row (x², 1/√x, |x|, exp, mod) -->
-              <li>
-                <button (click)="square()" class="button">x²</button>
-                <button (click)="sqrt()" class="button">√x</button>
-                <button (click)="absolute()" class="button">|x|</button>
-                <button (click)="appendValue('exp')" class="button">exp</button>
-                <button (click)="appendValue('mod')" class="button">mod</button>
-              </li>
-        
-              <!-- 3rd Row (xʸ, 7, 8, 9, ÷) -->
-              <li>
-                <button (click)="toggleSecond()" class="button">{{ secondMode ? 'xʸ' : 'x²' }}</button>
-                <button (click)="appendValue('7')" class="button">7</button>
-                <button (click)="appendValue('8')" class="button">8</button>
-                <button (click)="appendValue('9')" class="button">9</button>
-                <button (click)="appendValue('/')" class="button">÷</button>
-              </li>
-        
-              <!-- 4th Row (10ˣ, 4, 5, 6, ×) -->
-              <li>
-                <button (click)="powerOfTen()" class="button">10ˣ</button>
-                <button (click)="appendValue('4')" class="button">4</button>
-                <button (click)="appendValue('5')" class="button">5</button>
-                <button (click)="appendValue('6')" class="button">6</button>
-                <button (click)="appendValue('*')" class="button">×</button>
-              </li>
-        
-              <!-- 5th Row (log, 1, 2, 3, -) -->
-              <li>
-                <button (click)="log()" class="button">log</button>
-                <button (click)="appendValue('1')" class="button">1</button>
-                <button (click)="appendValue('2')" class="button">2</button>
-                <button (click)="appendValue('3')" class="button">3</button>
-                <button (click)="appendValue('-')" class="button">-</button>
-              </li>
-        
-              <!-- 6th Row (ln, ±, 0, , +) -->
-              <li>
-                <button (click)="ln()" class="button">ln</button>
-                <button (click)="toggleSign()" class="button">±</button>
-                <button (click)="appendValue('0')" class="button zero-button">0</button>
-                <button (click)="appendValue('.')" class="button">.</button>
-                <button (click)="appendValue('+')" class="button">+</button>
-              </li>
-        
-              <!-- Last Row (=) -->
-              <li>
-                <button (click)="calculate()" class="button equal-button">=</button>
-              </li>
-    </ul>
-
-
+<div class="calculator-page">
+    <div class="sidebar">
+      <button (click)="switchCalculator('simple')" class="sidebar-button">Simple</button>
+      <button (click)="switchCalculator('science')" class="sidebar-button">Science</button>
+      <button (click)="switchCalculator('programming')" class="sidebar-button">Programming</button>
+    </div>
+  
+    <div class="calculator-container">
+        @if(selectedCalculator === 'simple')
+        {
+            <ng-container>
+                <app-simple-calculator></app-simple-calculator>
+              </ng-container>
+        }
+        @else if (selectedCalculator === 'science') 
+        {
+            <ng-container>
+                <app-science-calculator></app-science-calculator>
+              </ng-container>
+        }
+        @else if (selectedCalculator === 'programming') 
+        {
+            <ng-container>
+              <app-programming-calculator></app-programming-calculator>
+            </ng-container>
+        }
+    </div>
   </div>
-  @if (history.length !== 0) {
-  <!-- History Section -->
-  <div class="history">
-    <h3>History</h3>
-    <ul class="history-list">
-      @for (item of history; track $index) {
-      <li (click)="loadFromHistory(item)" class="history-item">
-        {{ item.Equation }} = {{item.Result}}
-      </li>
-      }
-    </ul>
-  </div>
-  }
-</div>
+  
