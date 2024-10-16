@@ -113,7 +113,6 @@ export class BaseCalculatorComponent {
     } else if (param instanceof Event) {
       // If param is an Event, extract the button text
       buttonValue = (param.target as HTMLButtonElement).textContent || '';
-      buttonValue = buttonValue.replace('×', '*').replace('÷', '/'); // Normalize symbols
     }
 
     const currentValue = this.displayControl.value || '';

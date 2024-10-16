@@ -1,25 +1,46 @@
-<!-- programming-calculator.component.html -->
-  <app-base-calculator #baseCalculator [title]="'Programming Calculator'">
-    <button class="button" (click)="baseCalculator.clear()">C</button>
-    <button class="button" (click)="baseCalculator.backspace()">←</button>
-    <button class="button" (click)="binary()">Bin</button>
-    <button class="button" (click)="octal()">Oct</button>
-    <button class="button" (click)="hex()">Hex</button>
-    <button class="button" (click)="dec()">Dec</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">+</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">-</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">×</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">÷</button>
-    <button class="button" (click)="baseCalculator.equals()">=</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">7</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">8</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">9</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">4</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">5</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">6</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">1</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">2</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">3</button>
-    <button class="button" (click)="baseCalculator.AddValue($event)">0</button>
-    <button class="button" (click)="baseCalculator.decimal()">.</button>
-</app-base-calculator>
+<div class="calculator">
+  <div class="display">
+    <input type="text" [(ngModel)]="currentValue.value" readonly />
+  </div>
+
+  <div class="modes">
+  @for (valueMode of values; track $index)
+  {
+    <div class="mode" (click)="switchMode(valueMode.mode)">
+      <a class="title" [text]="valueMode.title"></a>
+      <a class="value" [text]="valueMode.value"></a>
+    </div>
+  }
+  </div>
+
+  <div class="grid">
+    <!-- Hexadecimal digits (A-F) will be disabled when the current base is not HEX -->
+    <button (click)="pressKey('A')" [disabled]="currentValue.mode <= 10">A</button>
+    <button (click)="pressKey('B')" [disabled]="currentValue.mode <= 11">B</button>
+    <button (click)="pressKey('C')" [disabled]="currentValue.mode <= 12">C</button>
+    <button (click)="pressKey('D')" [disabled]="currentValue.mode <= 13">D</button>
+    <button (click)="pressKey('E')" [disabled]="currentValue.mode <= 14">E</button>
+    <button (click)="pressKey('F')" [disabled]="currentValue.mode <= 15">F</button>
+
+    <!-- Number digits and operators -->
+    <button (click)="pressKey('7')" [disabled]="currentValue.mode <= 7">7</button>
+    <button (click)="pressKey('8')" [disabled]="currentValue.mode <= 8">8</button>
+    <button (click)="pressKey('9')" [disabled]="currentValue.mode <= 9">9</button>
+    <button (click)="pressKey('/')">÷</button>
+
+    <button (click)="pressKey('4')" [disabled]="currentValue.mode <= 4">4</button>
+    <button (click)="pressKey('5')" [disabled]="currentValue.mode <= 5">5</button>
+    <button (click)="pressKey('6')" [disabled]="currentValue.mode <= 6">6</button>
+    <button (click)="pressKey('*')">×</button>
+
+    <button (click)="pressKey('1')">1</button>
+    <button (click)="pressKey('2')" [disabled]="currentValue.mode <= 2">2</button>
+    <button (click)="pressKey('3')" [disabled]="currentValue.mode <= 3">3</button>
+    <button (click)="pressKey('-')">−</button>
+
+    <button (click)="pressKey('0')">0</button>
+    <button (click)="clearDisplay()">C</button>
+    <button (click)="calculate()">=</button>
+    <button (click)="pressKey('+')">+</button>
+  </div>
+</div>
