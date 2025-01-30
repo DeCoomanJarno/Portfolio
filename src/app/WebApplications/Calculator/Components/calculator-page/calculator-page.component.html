@@ -1,29 +1,20 @@
 <div class="calculator-page">
-    <div class="sidebar">
-      <button (click)="switchCalculator('simple')" class="sidebar-button">Simple</button>
-      <button (click)="switchCalculator('science')" class="sidebar-button">Science</button>
-      <button (click)="switchCalculator('programming')" class="sidebar-button">Programming</button>
-    </div>
-  
-    <div class="calculator-container">
-        @if(selectedCalculator === 'simple')
-        {
-            <ng-container>
-                <app-simple-calculator></app-simple-calculator>
-              </ng-container>
-        }
-        @else if (selectedCalculator === 'science') 
-        {
-            <ng-container>
-                <app-science-calculator></app-science-calculator>
-              </ng-container>
-        }
-        @else if (selectedCalculator === 'programming') 
-        {
-            <ng-container>
-              <app-programming-calculator></app-programming-calculator>
-            </ng-container>
-        }
-    </div>
+  <div class="sidebar">
+    <button (click)="switchCalculator(ECalculatorType.Simple)" class="sidebar-button">Simple</button>
+    <button (click)="switchCalculator(ECalculatorType.Science)" class="sidebar-button">Science</button>
+    <button (click)="switchCalculator(ECalculatorType.Programming)" class="sidebar-button">Programming</button>
   </div>
-  
+
+  <div class="calculator-container">
+    <ng-container>
+      @switch (selectedCalculator) {
+      @case (ECalculatorType.Simple) {
+      <app-simple-calculator></app-simple-calculator>}
+      @case (ECalculatorType.Science) {
+      <app-science-calculator></app-science-calculator>}
+      @case (ECalculatorType.Programming) {
+      <app-programming-calculator></app-programming-calculator>}
+      }
+    </ng-container>
+  </div>
+</div>

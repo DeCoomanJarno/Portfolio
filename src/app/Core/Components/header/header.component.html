@@ -1,7 +1,9 @@
 <header class="header">
   <nav class="navbar navbar-expand-custom fixed-top navbar-light bg-light">
-    <div class="logo-container" [ngClass]="navbarfixed ? 'logo-left' : ''">
-      <a class="navbar-brand"><img src="{{commonDataService.CommonData?.Logo}}" /></a>
+    <div class="logo-container">
+      <a routerLink="/Home">
+        <img class="nav-item" src="{{commonDataService.CommonData?.Logo}}" alt="Logo" />
+      </a>
     </div>
     <div class="AlignRight">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

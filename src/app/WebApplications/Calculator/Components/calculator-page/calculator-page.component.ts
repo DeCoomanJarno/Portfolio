@@ -3,6 +3,11 @@ import { SimpleCalculatorComponent } from "../simple-calculator/simple-calculato
 import { ScienceCalculatorComponent } from "../science-calculator/science-calculator.component";
 import { ProgrammingCalculatorComponent } from "../programming-calculator/programming-calculator.component"; // Import the evaluate function from mathjs
 
+enum ECalculatorType
+{
+  Simple,Science,Programming
+}
+
 @Component({
   selector: 'app-calculator-page',
   standalone: true,
@@ -11,10 +16,11 @@ import { ProgrammingCalculatorComponent } from "../programming-calculator/progra
   styleUrl: './calculator-page.component.css'
 })
 export class CalculatorPageComponent {
+  ECalculatorType = ECalculatorType;
 
-  selectedCalculator: 'simple' | 'science' | 'programming' = 'simple'; // Default to Simple Calculator
+  selectedCalculator: ECalculatorType = ECalculatorType.Simple; // Default to Simple Calculator
 
-  switchCalculator(calculator: 'simple' | 'science' | 'programming') {
+  switchCalculator(calculator: ECalculatorType) {
     this.selectedCalculator = calculator;
   }
 }

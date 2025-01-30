@@ -1,0 +1,17 @@
+@if (history.length !== 0) {
+    <!-- History Section -->
+    <div class="history">
+        <h3>History</h3>
+        <ul class="history-list">
+            @for (item of history; track $index) {
+            <li (click)="LoadFromHistory(item)" class="history-item">
+                {{ item.Equation }} = {{item.Result}}
+            </li>         
+            @if (isProgrammingCalculation(item)) {
+                <span> (Mode: {{ item.mode }})</span>
+            }       
+
+            }
+        </ul>
+    </div>
+    }

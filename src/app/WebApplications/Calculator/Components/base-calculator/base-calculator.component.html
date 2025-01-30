@@ -17,17 +17,5 @@
         <ng-content></ng-content> <!-- Buttons from child components will be injected here -->
     </div>
 
-    @if (history.length !== 0) {
-    <!-- History Section -->
-    <div class="history">
-        <h3>History</h3>
-        <ul class="history-list">
-            @for (item of history; track $index) {
-            <li (click)="loadFromHistory(item)" class="history-item">
-                {{ item.Equation }} = {{item.Result}}
-            </li>
-            }
-        </ul>
-    </div>
-    }
+    <app-history-tab (OnLoadFromHistory)="loadFromHistory($event)"></app-history-tab>
 </div>

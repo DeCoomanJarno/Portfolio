@@ -7,23 +7,12 @@ import { CommonDataService } from '../../Services/common-data.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, NgClass],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 
 })
 export class HeaderComponent {
-  navbarfixed = false;
-
-  @HostListener('window:scroll', ['$event'])
-  OnScroll() {
-    if (window.scrollY > 40) {
-      this.navbarfixed = true;
-    }
-    else {
-      this.navbarfixed = false;
-    }
-  }
   constructor(public languageService: LanguageService, public commonDataService: CommonDataService) {}
 
   ngOnInit() {

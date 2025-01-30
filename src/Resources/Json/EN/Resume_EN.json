@@ -8,16 +8,16 @@
     "Profile": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
     "Skills": {
       "Programming_Languages": [
-        { "Name": "C++", "Value": 90 },
-        { "Name": "C#", "Value": 85 },
-        { "Name": "Angular", "Value": 80 },
-        { "Name": "Typescript", "Value": 75 },
-        { "Name": "Git / Perforce / TFS / Azure DevOps", "Value": 70 }
+        { "Name": "C++", "Value": "3 years School + Hobby" },
+        { "Name": "C#", "Value": "> 1 year Work + 1 year School" },
+        { "Name": "Angular", "Value": "< 1 year Work + < 1 year Hobby" },
+        { "Name": "Typescript", "Value": "< 1 year Work + < 1 year Hobby" },
+        { "Name": "Git / Perforce / TFS / Azure DevOps", "Value": "3 years School + 1 year Work" }
       ],
       "Languages": [
-        { "Name": "Dutch", "Value": 90 },
-        { "Name": "English", "Value": 70 },
-        { "Name": "French", "Value": 30 }
+        { "Name": "Dutch", "Value": "Mother tongue" },
+        { "Name": "English", "Value": "Good" },
+        { "Name": "French", "Value": "Basic" }
       ]
     },
     "Education": [

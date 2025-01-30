@@ -1,46 +1,51 @@
 <div class="calculator">
   <div class="display">
-    <input type="text" [(ngModel)]="currentValue.value" readonly />
+    <input type="text" [(ngModel)]="currentValue" (keydown)="handleKeyPress($event)" 
+      placeholder="Enter" class="expression-input" />
   </div>
 
   <div class="modes">
-  @for (valueMode of values; track $index)
-  {
-    <div class="mode" (click)="switchMode(valueMode.mode)">
+    @for (valueMode of values; track $index)
+    {
+    <div class="mode" (click)="switchMode(valueMode.mode)" [ngClass]="currentMode == valueMode.mode ? 'active' : ''">
       <a class="title" [text]="valueMode.title"></a>
       <a class="value" [text]="valueMode.value"></a>
     </div>
-  }
+    }
   </div>
 
   <div class="grid">
-    <!-- Hexadecimal digits (A-F) will be disabled when the current base is not HEX -->
-    <button (click)="pressKey('A')" [disabled]="currentValue.mode <= 10">A</button>
-    <button (click)="pressKey('B')" [disabled]="currentValue.mode <= 11">B</button>
-    <button (click)="pressKey('C')" [disabled]="currentValue.mode <= 12">C</button>
-    <button (click)="pressKey('D')" [disabled]="currentValue.mode <= 13">D</button>
-    <button (click)="pressKey('E')" [disabled]="currentValue.mode <= 14">E</button>
-    <button (click)="pressKey('F')" [disabled]="currentValue.mode <= 15">F</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 10">A</button>
+    <button (click)="AddValue($event)"class="operators">(</button>
+    <button (click)="AddValue($event)"class="operators">)</button>
+    <button (click)="clearDisplay()"class="operators">C</button>
+    <button (click)="backspace()"class="operators">⌫</button>
 
-    <!-- Number digits and operators -->
-    <button (click)="pressKey('7')" [disabled]="currentValue.mode <= 7">7</button>
-    <button (click)="pressKey('8')" [disabled]="currentValue.mode <= 8">8</button>
-    <button (click)="pressKey('9')" [disabled]="currentValue.mode <= 9">9</button>
-    <button (click)="pressKey('/')">÷</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 11">B</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 7">7</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 8">8</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 9">9</button>
+    <button (click)="AddValue($event)"class="operators">÷</button>
 
-    <button (click)="pressKey('4')" [disabled]="currentValue.mode <= 4">4</button>
-    <button (click)="pressKey('5')" [disabled]="currentValue.mode <= 5">5</button>
-    <button (click)="pressKey('6')" [disabled]="currentValue.mode <= 6">6</button>
-    <button (click)="pressKey('*')">×</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 12">C</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 4">4</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 5">5</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 6">6</button>
+    <button (click)="AddValue($event)"class="operators">×</button>
 
-    <button (click)="pressKey('1')">1</button>
-    <button (click)="pressKey('2')" [disabled]="currentValue.mode <= 2">2</button>
-    <button (click)="pressKey('3')" [disabled]="currentValue.mode <= 3">3</button>
-    <button (click)="pressKey('-')">−</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 13">D</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 1">1</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 2">2</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 3">3</button>
+    <button (click)="AddValue($event)"class="operators">-</button>
 
-    <button (click)="pressKey('0')">0</button>
-    <button (click)="clearDisplay()">C</button>
-    <button (click)="calculate()">=</button>
-    <button (click)="pressKey('+')">+</button>
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 14">E</button>
+    <button (click)="ToggleSign()"class="operators">±</button>
+    <button (click)="AddValue($event)" class="double-width">0</button>
+    <button (click)="AddValue($event)" class="operators">+</button>
+
+    <button (click)="AddValue($event)" [disabled]="currentMode <= 15">F</button>
+    <button (click)="calculate()" class="equals double-width">=</button>
   </div>
 </div>
+<app-history-tab (OnLoadFromHistory)="loadFromHistory($event)"></app-history-tab>

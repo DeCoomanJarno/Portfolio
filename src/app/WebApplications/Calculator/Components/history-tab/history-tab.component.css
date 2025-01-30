@@ -1,0 +1,61 @@
+
+/* History takes 30% of the width */
+.history {
+    max-width: 300px;
+    flex-basis: 30%;
+    /* History takes 30% of the container width */
+    background-color: #f0f4f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* When history is present, show and apply flex layout */
+  .history.active {
+    display: block;
+  }
+  
+  .history-list {
+    display: flex;
+    /* Use flexbox for layout */
+    flex-direction: column-reverse;
+    /* Reverse the order of children */
+    padding: 0;
+    /* Remove padding */
+    margin: 0;
+    /* Remove margin */
+  }
+  
+  .history h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .history ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .history-item {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .history-item:hover {
+    background-color: #e7f0f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .history-item:active {
+    background-color: #d1e6f1;
+  }

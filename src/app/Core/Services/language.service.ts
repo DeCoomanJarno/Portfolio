@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 export interface Translations {
@@ -22,27 +22,24 @@ export class LanguageService {
     this.loadTranslations(this.defaultLang);
   }
 
-  // Load a translation file based on the language code
   private loadTranslations(lang: string): void {
-    const filePath = `Resources/Json/${lang}/ResourceFile_${lang}.json`; // Construct file path
-    this.http.get<Translations>(filePath).pipe(
-      catchError(err => {
-        console.error(`Error loading translations for language: ${lang}`, err);
-        return of({}); // Return an empty object on error
-      })
-    ).subscribe(translations => {
-      this.translations = translations; // Cache the translations
+    const currentLangPath = `Resources/Json/${lang}/ResourceFile_${lang}.json`;
+    const defaultLangPath = `Resources/Json/${this.defaultLang}/ResourceFile_${this.defaultLang}.json`;
+  
+    forkJoin({
+      currentLang: this.http.get<Translations>(currentLangPath).pipe(catchError(() => of({}))),
+      defaultLang: this.http.get<Translations>(defaultLangPath).pipe(catchError(() => of({})))
+    }).subscribe(({ currentLang, defaultLang }) => {
+      // Merge current language translations with default translations
+      this.translations = { ...defaultLang, ...currentLang };
+  
+      // If loading default translations, cache them separately
+      if (lang === this.defaultLang) {
+        this.defaultTranslations = defaultLang;
+      }
     });
-
-    // Load default translations if the current language is not available
-    if (lang === this.defaultLang) {
-      this.http.get<Translations>(`Resources/Json/${this.defaultLang}/ResourceFile_${this.defaultLang}.json`)
-        .pipe(catchError(() => of({}))) // Catch errors and return empty object
-        .subscribe(defaultTranslations => {
-          this.defaultTranslations = defaultTranslations; // Cache default translations
-        });
-    }
   }
+  
 
   // Set the current language
   setLanguage(lang: string): void {

@@ -11,10 +11,9 @@
       }
     </div>
   }
-  
-  <div class="project-info" [class.overlay]="project.images && project.images.length > 0" >
+  <div class="project-info" [class.overlay]="project.images && project.images.length > 0">
     <h2>{{ project.title }}</h2>
     <p>{{ project.description }}</p>
-    <a [routerLink]="['/Project', project.id]">Learn More</a>
+    <a [routerLink]="['/projects', project.id]">Learn More</a>
   </div>
 </div>

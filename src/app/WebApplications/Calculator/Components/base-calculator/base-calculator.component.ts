@@ -1,6 +1,7 @@
 // base-calculator.component.ts
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HistoryTabComponent } from '../history-tab/history-tab.component';
 
 export interface Calculation {
   Result: string;
@@ -10,7 +11,7 @@ export interface Calculation {
 @Component({
   selector: 'app-base-calculator',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, HistoryTabComponent],
   templateUrl: './base-calculator.component.html',
   styleUrls: ['./base-calculator.component.css'],
 })
@@ -20,7 +21,7 @@ export class BaseCalculatorComponent {
   displayControl = new FormControl('');
   temporaryResult: string = '';
   error: string = '';
-  history: Calculation[] = [];
+  @ViewChild(HistoryTabComponent) historyTabComponent!: HistoryTabComponent; // Reference to HistoryTabComponent
 
   constructor() {
     // Subscribe to changes in the displayControl value
@@ -34,6 +35,14 @@ export class BaseCalculatorComponent {
     var input = event.key;
     if (input === 'Enter') {
       this.equals(); // Calculate if Enter is pressed
+    }
+    if(input === 'Backspace')
+    {
+      this.backspace();
+    }
+    if(!allowedCharacters.test(input))
+    {
+      event.preventDefault();
     }
   }
 
@@ -88,8 +97,7 @@ export class BaseCalculatorComponent {
         return;
 
       // Save to history
-      if (!this.history.find(c => c.Equation == this.displayControl.value && c.Result == calculatedResult))
-        this.history.push({ Result: calculatedResult, Equation: this.displayControl.value || ''});
+      this.historyTabComponent.AddCalculation({ Result: calculatedResult, Equation: this.displayControl.value || ''})
 
       this.displayControl.setValue(calculatedResult); // Override input with result
       this.error = ''; // Clear any error messages
