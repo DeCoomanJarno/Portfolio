@@ -1,6 +1,6 @@
 [
     {
-      "id": "1",
+      "id": "0",
       "title": "Project 1",
       "description": "This is a detailed description of Project 1.",
       "images": [
@@ -9,39 +9,75 @@
       ]
     },
     {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
+      "id": "1",
+      "title": "Game Development in Unity",
+      "description": "A 3D game created using Unity engine. It features rich graphics, interactive gameplay, and AI-driven enemies.",
+      "technologies": ["Unity", "C#", "Blender", "Photoshop"],
+      "images": [
+        "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg",
+        "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
+      ],
+      "links": [
+        {
+          "name": "GitHub Repository",
+          "url": "https://github.com/username/game-project"
+        },
+        {
+          "name": "Play the Game",
+          "url": "https://example.com/play-game"
+        }
+      ],
+      "features": [
+        "3D Open World",
+        "AI-Powered Enemies",
+        "Multiplayer Mode",
+        "Dynamic Weather System"
+      ],
+      "challenges": [
+        "Optimizing AI performance for smooth gameplay",
+        "Creating a responsive environment with weather changes",
+        "Balancing multiplayer game mechanics"
+      ],
+      "futurePlans": [
+        "Integrating VR support",
+        "Adding new game levels and challenges",
+        "Improving multiplayer stability"
+      ],
+      "additionalInfo": "This game was created during a 6-month game development course. It aims to teach players about strategy and survival in a hostile environment."
     },
     {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
-    },
-    {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
-    },
-    {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
-    },
-    {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
-    },
-    {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
-    },
-    {
-      "id": "Test",
-      "title": "Project 2",
-      "description": "This is a detailed description of Project 2."
+      "id": "2",
+      "title": "Weather Forecasting Web App",
+      "description": "A web application that allows users to check weather forecasts by entering their city or location. Built with Angular and open APIs.",
+      "technologies": ["Angular", "TypeScript", "OpenWeatherMap API", "CSS"],
+      "images": [
+        "https://example.com/images/weather-app-screenshot1.jpg",
+        "https://example.com/images/weather-app-screenshot2.jpg"
+      ],
+      "links": [
+        {
+          "name": "GitHub Repository",
+          "url": "https://github.com/username/weather-app"
+        },
+        {
+          "name": "Live Demo",
+          "url": "https://example.com/weather-app"
+        }
+      ],
+      "features": [
+        "Search weather by city or location",
+        "Shows current weather and 5-day forecast",
+        "Responsive design for mobile devices"
+      ],
+      "challenges": [
+        "Dealing with inconsistent data from the OpenWeatherMap API",
+        "Ensuring accurate and up-to-date weather information"
+      ],
+      "futurePlans": [
+        "Adding geolocation-based weather search",
+        "Implementing a weather radar feature"
+      ],
+      "additionalInfo": "This app was built as part of a personal project to improve my Angular skills while working with third-party APIs."
     }
   ]
   

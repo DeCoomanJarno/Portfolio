@@ -1,0 +1,95 @@
+<div class="project-detail-page">
+    @if(project) {
+      <!-- Project Header -->
+      <div class="project-header">
+        <h1>{{ project.title }}</h1>
+        <p class="project-description">{{ project.description }}</p>
+      </div>
+  
+      <!-- Technologies Used -->
+      <div class="project-tech">
+        <h3>Technologies Used</h3>
+        <ul class="tech-list">
+          @for (tech of project.technologies; track $index) {
+            <li class="tech-item">{{ tech }}</li>
+          }
+        </ul>
+      </div>
+  
+      <!-- Project Media (Images) -->
+      @if(project.images && project.images.length > 0) {
+        <div class="project-media">
+          <h3>Images</h3>
+          <div class="image-gallery">
+            @for (img of project.images; track $index) {
+              <div class="image-item">
+                <img [src]="img" alt="{{ project.title }}" class="project-image">
+              </div>
+            }
+          </div>
+        </div>
+      }
+  
+      <!-- Links Section (GitHub, Web Link, etc.) -->
+      @if(project.links && project.links.length > 0) {
+        <div class="project-links">
+          <h3>Links</h3>
+          <ul class="link-list">
+            @for (link of project.links; track $index) {
+              <li class="link-item">
+                <a [href]="link.url" target="_blank" class="project-link">{{ link.name }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+  
+      <!-- Features Section -->
+      @if(project.features && project.features.length > 0) {
+        <div class="project-features">
+          <h3>Features</h3>
+          <ul class="feature-list">
+            @for (feature of project.features; track $index) {
+              <li class="feature-item">{{ feature }}</li>
+            }
+          </ul>
+        </div>
+      }
+  
+      <!-- Challenges Section -->
+      @if(project.challenges && project.challenges.length > 0) {
+        <div class="project-challenges">
+          <h3>Challenges</h3>
+          <ul class="challenge-list">
+            @for (challenge of project.challenges; track $index) {
+              <li class="challenge-item">{{ challenge }}</li>
+            }
+          </ul>
+        </div>
+      }
+  
+      <!-- Future Plans Section -->
+      @if(project.futurePlans && project.futurePlans.length > 0) {
+        <div class="project-future-plans">
+          <h3>Future Plans</h3>
+          <ul class="future-plans-list">
+            @for (plan of project.futurePlans; track $index) {
+              <li class="future-plan-item">{{ plan }}</li>
+            }
+          </ul>
+        </div>
+      }
+  
+      <!-- Additional Information -->
+      @if(project.additionalInfo) {
+        <div class="additional-info">
+          <h3>Additional Information</h3>
+          <p>{{ project.additionalInfo }}</p>
+        </div>
+      }
+  
+    } @else {
+      <p>Project not found.</p>
+    }
+  </div>
+  
