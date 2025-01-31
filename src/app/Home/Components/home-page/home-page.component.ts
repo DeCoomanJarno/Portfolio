@@ -74,6 +74,12 @@ export class HomePageComponent implements OnInit {
       }).subscribe(({ en, localized }) => {
         // Merge localized data with English fallback
         this.homeData = mergeDeep(en, localized);
+        this.projectService.getProjects().subscribe((data: ProjectModel[]) => {
+          // Filter projects based on the IDs in homeData.Projects
+          this.projects = data.filter(pr => 
+            this.homeData?.Projects.some(project => project === pr.id)
+          );
+        });
       });
     });
   }

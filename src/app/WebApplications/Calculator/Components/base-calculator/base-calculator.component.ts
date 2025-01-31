@@ -46,6 +46,20 @@ export class BaseCalculatorComponent {
     }
   }
 
+  /** Toggles the sign of the current value */
+  toggleSign(): void {
+    const currentValue = this.displayControl.value || '';
+    if (currentValue.startsWith('-')) {
+      this.displayControl.setValue(currentValue.slice(1));
+    } else {
+      this.displayControl.setValue(`-${currentValue}`);
+    }
+
+    try {
+      this.updateTemporaryResult(this.displayControl.value || '')
+    } catch (error) { }
+  }
+
   decimal() {
     const currentValue = this.displayControl.value || '';
     if (!currentValue.includes('.')) {
@@ -82,8 +96,17 @@ export class BaseCalculatorComponent {
   }
 
   backspace() {
+    const inputElement = this.expressionInput.nativeElement;
+    if (!inputElement) return;
+  
     const currentValue = this.displayControl.value || '';
-    this.displayControl.setValue(currentValue.slice(0, -1));
+    const cursorPosition = inputElement.selectionStart || 0;
+  
+    if (cursorPosition === 0) return; // If cursor is at the start, do nothing
+  
+    const newValue = currentValue.slice(0, cursorPosition - 1) + currentValue.slice(cursorPosition);
+    this.displayControl.setValue(newValue);
+    inputElement.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
   }
 
   equals() {
@@ -113,6 +136,7 @@ export class BaseCalculatorComponent {
 
   // Single function implementation that handles both cases
   AddValue(param: Event | string): void {
+    const inputElement = this.expressionInput.nativeElement;
     let buttonValue = '';
 
     if (typeof param === 'string') {
@@ -124,11 +148,25 @@ export class BaseCalculatorComponent {
     }
 
     const currentValue = this.displayControl.value || '';
-    this.displayControl.setValue(currentValue + buttonValue);
+    const cursorPosition = inputElement.selectionStart || 0;
+  
+    // Insert the buttonValue at the cursor position
+    const newValue = currentValue.slice(0, cursorPosition) + buttonValue + currentValue.slice(cursorPosition);
+    this.displayControl.setValue(newValue);
 
-    // If the value contains '()', move the cursor between parentheses
+
+    // If the inserted value contains '()', move cursor inside parentheses
     if (buttonValue.includes('()')) {
-      this.moveCursorToParentheses(this.displayControl.value || '');
+      this.moveCursorToParentheses( this.displayControl.value || '')
+    }
+    else
+    {
+      let newCursorPos = cursorPosition + buttonValue.length;
+
+      setTimeout(() => {
+        inputElement.focus();
+        inputElement.setSelectionRange(newCursorPos, newCursorPos);
+      }, 0); // Slight delay to ensure the DOM updates
     }
   }
 

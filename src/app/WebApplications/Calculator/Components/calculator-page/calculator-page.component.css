@@ -1,38 +1,51 @@
+/* Page Layout */
 .calculator-page {
-    display: flex;
-    height: 100vh; /* Full height */
-  }
-  
-  .sidebar {
-    width: 200px; /* Width of sidebar */
-    background-color: #f0f0f0; /* Light grey background */
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional shadow */
-  }
-  
-  .sidebar-button {
-    display: block; /* Button occupies full width */
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    background-color: #4CAF50; /* Green background */
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transition for hover effect */
-  }
-  
-  .sidebar-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
-  .calculator-container {
-    flex-grow: 1; /* Allow it to take the remaining space */
-    padding: 20px;
-    background-color: #fff; /* White background for the calculator */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #c4c4c4; /* Light gray for contrast */
+}
+
+/* Button Container */
+.calculator-switch {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* Button Styling */
+.calculator-switch button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #006680;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.calculator-switch button:hover {
+  background-color: #0088a0;
+  box-shadow: 0 4px 8px rgba(0, 136, 160, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Active/Selected Button */
+.calculator-switch button.active {
+  background-color: #004552;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 69, 82, 0.5);
+}
+
+/* Calculator Container */
+.calculator-container {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 12px;
+}

@@ -4,19 +4,26 @@ import { NgClass } from '@angular/common';
 import { HistoryTabComponent } from '../history-tab/history-tab.component';
 import { Calculation } from '../base-calculator/base-calculator.component';
 
-export interface ProgrammingCalculation extends Calculation {
-  mode: EProgrammingMode;
-}
-enum EProgrammingMode {
+/** Enum representing different programming modes */
+export enum EProgrammingMode {
   Binary = 2,
   Octal = 8,
   Dec = 10,
   Hex = 16,
 }
-export class ProgrammingModeValue {
-  constructor(public mode: EProgrammingMode, public value: string = '0', public title?: string) {
 
-  }
+/** Interface extending Calculation with mode property */
+export interface ProgrammingCalculation extends Calculation {
+  mode: EProgrammingMode;
+}
+
+/** Class for handling programming mode values */
+export class ProgrammingModeValue {
+  constructor(
+    public mode: EProgrammingMode,
+    public value: string = '0',
+    public title?: string
+  ) { }
 }
 
 @Component({
@@ -24,144 +31,117 @@ export class ProgrammingModeValue {
   standalone: true,
   imports: [FormsModule, NgClass, ReactiveFormsModule, HistoryTabComponent],
   templateUrl: './programming-calculator.component.html',
-  styleUrls: ['./programming-calculator.component.css', '../base-calculator/base-calculator.component.css']
+  styleUrls: [
+    './programming-calculator.component.css',
+    '../base-calculator/base-calculator.component.css',
+  ],
 })
 export class ProgrammingCalculatorComponent {
-  values!: ProgrammingModeValue[];
+  operators = /([-+×÷()*/])/;
+  error: string = '';
+  values: ProgrammingModeValue[] = [];
   currentMode: EProgrammingMode = EProgrammingMode.Dec;
-  tempResult: string = "";
-  currentValue: string = "";
-  @ViewChild(HistoryTabComponent) historyTabComponent!: HistoryTabComponent; // Reference to HistoryTabComponent
+  tempResult: string = '';
+  currentValue: string = '';
+
+  @ViewChild(HistoryTabComponent) historyTabComponent!: HistoryTabComponent;
 
   constructor() {
-    this.values = [];
-
-    // Loop through keys in EProgrammingMode enum, excluding numeric values
-    const keys = Object.keys(EProgrammingMode).filter(key => isNaN(Number(key)));
-
-    keys.forEach((key) => {
-      const mode = EProgrammingMode[key as keyof typeof EProgrammingMode];  // Get the enum value
-      this.values.push({ value: '0', mode: mode, title: key.toString() });
-    });
+    this.initializeModes();
   }
 
-  // Function to handle Enter key
-  handleKeyPress(event: KeyboardEvent) {
-    var input = event.key;
-    if (input === 'Enter') {
-      this.calculate(); // Calculate if Enter is pressed
-    }
-    if (input === 'Backspace') {
-      this.backspace();
-    }
-    if (!this.GetAllowedCharacters().test(input.toUpperCase())) {
+  /** Initializes values for each programming mode */
+  private initializeModes(): void {
+    const keys = Object.keys(EProgrammingMode).filter((key) =>
+      isNaN(Number(key))
+    ) as (keyof typeof EProgrammingMode)[];
+
+    this.values = keys.map((key) => ({
+      value: '0',
+      mode: EProgrammingMode[key],
+      title: key.toString(),
+    }));
+  }
+
+  /** Handles keypress events */
+  handleKeyPress(event: KeyboardEvent): void {
+    this.error = '';
+    const input = event.key;
+
+    if (input === 'Enter') this.calculate();
+    else if (input === 'Backspace') this.backspace();
+    else if (!this.getAllowedCharacters().test(input.toUpperCase())) {
       event.preventDefault();
-    }
-    else {
-      this.AddValue(input);
-    }
-  }
-
-  GetAllowedCharacters(): RegExp {
-    switch (this.currentMode) {
-      case EProgrammingMode.Binary:
-        return /[0-1+\-*/()]/;
-      case EProgrammingMode.Octal:
-        return /[0-7+\-*/()]/;
-      case EProgrammingMode.Dec:
-        return /[0-9+\-*/()]/;
-      case EProgrammingMode.Hex:
-        return /[0-9A-Fa-f+\-*/()]/;
-
-    }
-  }
-
-  loadFromHistory(item: ProgrammingCalculation | Calculation) {
-    const programmingItem = item as ProgrammingCalculation;
-    if(!programmingItem)
-      return;
-    this.currentValue = programmingItem.Equation
-    this.currentMode = programmingItem.mode;
-    this.updateValues(Number.parseInt(programmingItem.Result))
-  }
-
-  ToggleSign() {
-    const operators = /[-+×÷]/;
-
-    if (this.currentValue.startsWith("(") && this.currentValue.endsWith(")")) {
-      // If the expression is wrapped in "(...)", toggle it to "-(...)"
-      if (this.currentValue.startsWith("-(") && this.currentValue.endsWith(")")) {
-        // If it's already wrapped with "-(...)", remove the "-(...)"
-        this.currentValue = this.currentValue.slice(2, -1);
-      } else {
-        // Otherwise, add the "-(...)"
-        this.currentValue = `-(${this.currentValue})`;
-      }
-    } else if (operators.test(this.currentValue.slice(1))) {
-      // For complex expressions containing operators
-      if (this.currentValue.startsWith("-(") && this.currentValue.endsWith(")")) {
-        const innerExpression = this.currentValue.slice(2, -1);
-
-        // Check if doubly negated, e.g., -(-(equation))
-        if (innerExpression.startsWith("-(") && innerExpression.endsWith(")") && this.isBalanced(innerExpression)) {
-          // Remove outer negation to simplify to -(equation)
-          this.currentValue = innerExpression;
-        } else if (this.isBalanced(innerExpression)) {
-          // If fully wrapped in "-(...)", remove the outer "-(...)"
-          this.currentValue = innerExpression;
-        } else {
-          // Wrap the expression in "-(...)"
-          this.currentValue = `-(${this.currentValue})`;
-        }
-      } else {
-        // If expression has operators but is not wrapped, wrap it in "-(...)"
-        this.currentValue = `-(${this.currentValue})`;
-      }
     } else {
-      // Simple case: single part, toggle leading minus sign
-      this.currentValue = this.currentValue.startsWith("-")
-        ? this.currentValue.slice(1)
-        : `-${this.currentValue}`;
+      this.addValue(input);
     }
+  }
+
+
+/** Returns the allowed characters for the current mode */
+private getAllowedCharacters(): RegExp {
+  const operatorsPattern = this.escapeRegex(this.operators.source); // Extracts pattern from RegExp
+
+  switch (this.currentMode) {
+    case EProgrammingMode.Binary:
+      return new RegExp(`^[01${operatorsPattern}]$`); // Binary: 0,1 + operators
+    case EProgrammingMode.Octal:
+      return new RegExp(`^[0-7${operatorsPattern}]$`); // Octal: 0-7 + operators
+    case EProgrammingMode.Dec:
+      return new RegExp(`^[0-9${operatorsPattern}]$`); // Decimal: 0-9 + operators
+    case EProgrammingMode.Hex:
+      return new RegExp(`^[0-9A-Fa-f${operatorsPattern}]$`); // Hex: 0-9, A-F, a-f + operators
+    default:
+      return new RegExp(`^[${operatorsPattern}]$`); // Only operators
+  }
+}
+
+
+/** Escapes special regex characters to avoid breaking the pattern */
+private escapeRegex(value: string): string {
+  return value.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'); 
+}
+
+
+  /** Loads an equation from history */
+  loadFromHistory(item: ProgrammingCalculation | Calculation): void {
+    this.error = '';
+    if (!item) return;
+
+    const programmingItem = item as ProgrammingCalculation;
+    this.currentValue = programmingItem.Equation;
+    this.currentMode = programmingItem.mode;
+    this.updateValues(parseInt(programmingItem.Result, 10));
+  }
+
+  /** Toggles the sign of the current value */
+  toggleSign(): void {
+    if (this.currentValue.startsWith('-')) {
+      this.currentValue = this.currentValue.slice(1);
+    } else {
+      this.currentValue = `-${this.currentValue}`;
+    }
+
     try {
-      let number = eval(this.ReplaceOperators(this.ConvertExpression(EProgrammingMode.Dec)));
+      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
       this.tempResult = number.toString();
       this.updateValues(number);
-    }
-    catch (error) {
-
-    }
+    } catch (error) { }
   }
 
-  // Helper function to check if parentheses are balanced in the expression
-  isBalanced(expression: string) {
-    let stack = [];
-    for (let char of expression) {
-      if (char === '(') {
-        stack.push(char);
-      } else if (char === ')') {
-        if (stack.length === 0) return false;
-        stack.pop();
-      }
-    }
-    return stack.length === 0;
-  }
+  /** Handles backspace key */
+  backspace(): void {
+    this.currentValue = this.currentValue.slice(0, -1);
 
-
-
-  backspace() {
-    const currentValue = this.currentValue || '';
-    this.currentValue = currentValue.slice(0, -1);
     try {
-      let number = eval(this.ReplaceOperators(this.ConvertExpression(EProgrammingMode.Dec))) ?? 0;
-      this.tempResult = number;
+      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))) ?? 0;
+      this.tempResult = number.toString();
       this.updateValues(number);
-    }
-    catch (error) {
-    }
+    } catch (error) { }
   }
 
-  AddValue(param: Event | string): void {
+  /** Adds a value to the current input */
+  addValue(param: Event | string): void {
     let buttonValue = '';
 
     if (typeof param === 'string') {
@@ -171,122 +151,93 @@ export class ProgrammingCalculatorComponent {
       // If param is an Event, extract the button text
       buttonValue = (param.target as HTMLButtonElement).textContent || '';
     }
-
     this.currentValue += buttonValue;
 
     try {
-
-      let number = eval(this.ReplaceOperators(this.ConvertExpression(EProgrammingMode.Dec)));
-      this.tempResult = number;
+      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
+      this.tempResult = number.toString();
       this.updateValues(number);
-    }
-    catch (error) {
-
-    }
+    } catch (error) { }
   }
-  /**
-   * Clears the calculator display and resets the values.
-   */
-  clearDisplay() {
-    this.currentValue = "";
-    this.tempResult = "";
+
+  /** Clears the calculator display */
+  clearDisplay(): void {
+    this.currentValue = '';
+    this.tempResult = '';
+    this.error = '';
     this.updateValues(0);
   }
 
-  /**
-   * Updates the hexadecimal, decimal, octal, and binary values based on the current input.
-   */
-  updateValues(value: number) {
-    this.values.forEach(valueMode => {
-      valueMode.value = value.toString(valueMode.mode).toUpperCase();
-    });
+  /** Updates the stored values for different bases */
+  private updateValues(value: number): void {
+    this.values.forEach(
+      (valueMode) => (valueMode.value = value.toString(valueMode.mode).toUpperCase())
+    );
   }
 
-  /**
-   * Switches between number modes (HEX, DEC, OCT, BIN) when the mode is clicked.
-   */
-  switchMode(base: number) {
+  /** Switches to a different mode */
+  switchMode(base: EProgrammingMode): void {
     try {
-      if (this.currentValue !== "") {
-        var convertedExpression = this.ConvertExpression(base);
+      let convertedExpression = this.convertExpression(base);
+      this.tempResult = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
 
-        if (base !== EProgrammingMode.Dec) // not yet converted to base 10 -> convert yourself
-        {
-          var convertHexExpression = this.ConvertExpression(EProgrammingMode.Dec);
-          this.tempResult = eval(this.ReplaceOperators(convertHexExpression));
-        }
-        else {
-          this.tempResult = eval(this.ReplaceOperators(convertedExpression));
-        }
-
-        // change value
-        this.currentValue = convertedExpression;
-      }
-      // change currentmode
-      this.currentMode = base;
-    }
-    catch (error) {
-      // change value
-      var convertedExpression = this.ConvertExpression(base);
       this.currentValue = convertedExpression;
-      // change currentmode
+      this.currentMode = base;
+    } catch (error) {
+      this.currentValue = this.convertExpression(base);
       this.currentMode = base;
     }
   }
 
-  ConvertExpression(base: number): string {
-    try
-    {
-      
-    const operators = /([-+×÷()])/;
-    const parts = this.currentValue.split(operators);
-
-    let evalExpression = '';
-
-    parts?.forEach(part => {
-      if (part && part.length !== 0) {
-        if (operators.test(part)) {
-          evalExpression += part;  // Directly concatenate the operator
-        } else {
-          evalExpression += parseInt(part, this.currentMode).toString(base).toUpperCase();  // Directly concatenate the number part as a string
-        }
-      }
-    });
-    return evalExpression;
-  } catch (error) {
-    return "";
-  }
-  }
-
-  ReplaceOperators(expression: string): string {
-    return expression.replaceAll("×", "*").replaceAll("÷", "/")
-  }
-
-  UpdateTemperary() {
-    var convertHexExpression = this.ConvertExpression(EProgrammingMode.Dec);
-    this.tempResult = eval(this.ReplaceOperators(convertHexExpression));
-  }
-
-  /**
-   * Perform the calculation based on the current input.
-   * You can expand this with actual arithmetic logic as needed.
-   */
-  calculate() {
+  /** Converts an expression to the specified base */
+  private convertExpression(base: number): string {
     try {
-      // Evaluate the expression
-      var convertHexExpression = this.ConvertExpression(EProgrammingMode.Dec);
-      const calculatedResult = eval(this.ReplaceOperators(convertHexExpression));
-
-      // expression is just a number
-      if (convertHexExpression === calculatedResult)
-        return;
-
-      // Save to history
-      this.historyTabComponent.AddCalculation({ Result: calculatedResult.toString(this.currentMode), Equation: this.currentValue || '', mode: this.currentMode})
-      
-      this.currentValue = calculatedResult.toString(this.currentMode); // Override input with result
-      this.updateValues(Number.parseInt(calculatedResult))
+      return this.currentValue
+        .split(this.operators)
+        .map((part) =>
+          part && part.length !== 0
+            ? this.operators.test(part)
+              ? part
+              : parseInt(part, this.currentMode).toString(base).toUpperCase()
+            : ""
+        )
+        .join('');
     } catch (error) {
+      return "";
+    }
+  }
+
+  /** Replaces special operators with JavaScript-compatible ones */
+  private replaceOperators(expression: string): string {
+    return expression.replaceAll('×', '*').replaceAll('÷', '/');
+  }
+
+  /** Updates temporary result */
+  updateTemporary(): void {
+    try {
+      this.tempResult = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
+    } catch (error) { }
+  }
+
+  /** Performs calculation and stores result in history */
+  calculate(): void {
+    try {
+      this.error = '';
+      const convertHexExpression = this.convertExpression(EProgrammingMode.Dec);
+      const calculatedResult = eval(this.replaceOperators(convertHexExpression));
+
+      if (convertHexExpression === calculatedResult.toString()) return;
+
+      this.historyTabComponent.AddCalculation({
+        Result: calculatedResult.toString(this.currentMode),
+        Equation: this.currentValue || '',
+        mode: this.currentMode,
+      });
+
+      this.currentValue = calculatedResult.toString(this.currentMode);
+      this.updateValues(parseInt(calculatedResult.toString(), 10));
+    } catch (error) {
+      this.error = 'Invalid expression';
     }
   }
 }

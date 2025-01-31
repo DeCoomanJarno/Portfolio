@@ -1,109 +1,26 @@
-/* base-calculator.component.css */
-.calculator {
-  width: 300px;
-  margin: 0 auto;
-}
-
-.expression-input {
-  width: 100%;
-  font-size: 1.5rem;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-button {
-  flex: 1 1 30%;
-  padding: 15px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.history {
-  margin-top: 20px;
-}
-
-/* Main Container - Flexbox */
-.calculator-container {
+.container {
   display: flex;
   justify-content: center;
-  /* Center calculator in the container */
-  margin: auto;
-  padding: 20px;
-  gap: 20px;
   align-items: flex-start;
+  gap: 20px; /* Space between calculator and history tab */
+  padding: 20px;
 }
 
-
+/* Ensure calculator doesn't stretch too much */
 .calculator {
   width: 100%;
   max-width: 400px;
-  /* Set a max-width to avoid stretching */
   padding: 20px;
   border-radius: 10px;
   background-color: #f7f9fc;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-.expression-input {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid #4a90e2;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-bottom: 10px;
-  text-align: right;
-}
-
-/* Style for the buttons container */
-.buttons {
-  list-style-type: none;
-  /* Remove bullet points */
-  padding: 0;
-  margin: 0;
-}
-
-/* Each row of buttons */
-.buttons li {
   display: flex;
-  justify-content: space-between;
-  /* Space the buttons evenly */
-  margin-bottom: 10px;
-  /* Add space between the rows */
+  flex-direction: column;
+  border: 2px solid #444;
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
-
-/* Individual button styling */
-.button {
-  padding: 15px;
-  flex: 1;
-  /* Ensure the buttons in the same row have the same width */
-  margin: 0 5px;
-  border-radius: 5px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-}
-
-.button.zero-button {
-  flex: 5;
-}
-
-.button.equal-button {
-  background-color: #28a745;
-}
-
-.button:hover {
-  background-color: #3e8fbd;
-}
-
 
 /* Temporary result styling */
 .temporary-result {
@@ -121,4 +38,118 @@ button {
 .error {
   text-align: left;
   text-wrap: wrap;
+}
+
+.display {
+  background-color: #222;
+  padding: 10px;
+  font-size: 32px;
+  text-align: right;
+  border-bottom: 1px solid #444;
+  border-radius: 10px 10px 0 0;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Ensures text stays on a single line */
+  display: flex;
+  align-items: center;
+}
+
+.display input {
+  width: 100%;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: right;
+  outline: none;
+  padding: 5px 10px;
+  white-space: nowrap; /* Prevents wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modes {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.mode:hover {
+  background-color: #c4c4c4;
+}
+
+.mode .title {
+  color: #006680;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.mode .value {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: black;
+  text-align: center;
+  width: 60px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.active {
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+}
+
+button {
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5em;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #006680;
+}
+
+button:active {
+  background-color: #004552;
+}
+
+button.double-width {
+  grid-column: span 2;
+}
+.four-width {
+  grid-column: span 4;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr) ;
+}
+button.operators {
+  background-color: #7e7e7e;
+}
+button.equals {
+  background-color: #004552;
+  grid-column: span 4;
 }
