@@ -14,6 +14,8 @@ export class ResumeService {
     const currentLangPath = `Resources/Json/${lang}/Resume_${lang}.json`;
     const defaultLangPath = `Resources/Json/${this.languageService.defaultLang}/Resume_${this.languageService.defaultLang}.json`;
   
+    if(lang == this.languageService.defaultLang)
+      return this.http.get<any>(currentLangPath).pipe(catchError(() => of({})));
     // Fetch current language and default language JSON files
     return forkJoin({
       currentLangData: this.http.get<any>(currentLangPath).pipe(catchError(() => of({}))),

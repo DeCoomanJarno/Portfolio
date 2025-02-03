@@ -7,17 +7,17 @@
     },
     "Profile": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
     "Skills": {
-      "Programming_Languages": [
-        { "Name": "C++", "Value": "3 years School + Hobby" },
-        { "Name": "C#", "Value": "> 1 year Work + 1 year School" },
-        { "Name": "Angular", "Value": "< 1 year Work + < 1 year Hobby" },
-        { "Name": "Typescript", "Value": "< 1 year Work + < 1 year Hobby" },
-        { "Name": "Git / Perforce / TFS / Azure DevOps", "Value": "3 years School + 1 year Work" }
+      "ProgrammingLanguages": [
+        { "Name": "C++", "Experience": { "School": "3 years", "Hobby": "4 years" } },
+        { "Name": "C#", "Experience": { "Work": "1 year", "School": "1 year", "Hobby": "2 years" } },
+        { "Name": "Angular", "Experience": { "Work": "< 1 year", "Hobby": "< 1 year" } },
+        { "Name": "Typescript", "Experience": { "Work": "< 1 year", "Hobby": "< 1 year" } },
+        { "Name": "Git / Perforce / TFS / Azure DevOps", "Experience": { "School": "3 years", "Work": "1 year" } }
       ],
       "Languages": [
-        { "Name": "Dutch", "Value": "Mother tongue" },
-        { "Name": "English", "Value": "Good" },
-        { "Name": "French", "Value": "Basic" }
+        { "Name": "Dutch", "Proficiency": "Native" },
+        { "Name": "English", "Proficiency": "Fluent" },
+        { "Name": "French", "Proficiency": "Basic" }
       ]
     },
     "Education": [

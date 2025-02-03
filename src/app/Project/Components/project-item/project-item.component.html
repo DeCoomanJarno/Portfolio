@@ -1,7 +1,8 @@
-<div class="project-card" [class.border]="!project.images">
-  @if(project.images)
+<div class="project-card" [routerLink]="['/projects', project.id]">
+  @if(project.images && project.images.length > 0)
   {
     <div class="image-container">
+      @if (hasMultipleImages) {
       @for (image of project.images; track $index) {
         <img 
         [src]="image" 
@@ -9,11 +10,30 @@
         class="project-image fade" 
         [ngStyle]="{'animation-delay': getAnimationDelay($index), 'animation-duration': getAnimationDuration()}" />
       }
+    }
+    @else {
+      <img 
+      [src]="project.images[0]" 
+      [alt]="'Project image'" 
+      class="project-image"/>
+
+    }
     </div>
   }
-  <div class="project-info" [class.overlay]="project.images && project.images.length > 0">
-    <h2>{{ project.title }}</h2>
+  <div class="project-info">
+    <div class="project-header">
+      <h2>{{ project.title }}</h2>
+      <a [href]="this.project.githubLink" (click)="$event.stopPropagation()">
+        <img [src]="'Github' | icon" alt="GitHub" class="github-icon">
+      </a>
+    </div>
     <p>{{ project.description }}</p>
-    <a [routerLink]="['/projects', project.id]">Learn More</a>
+  <div class="tech-list">
+    @for (item of this.project.technologies; track $index) {
+      <div class="tech-item">
+        <img [src]="item | icon" [alt]="item" [title]="item">
+      </div>
+    }
   </div>
+</div>
 </div>

@@ -1,58 +1,22 @@
 [
     {
-      "id": "0",
-      "title": "Project 1",
-      "description": "This is a detailed description of Project 1.",
-      "images": [
-        "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg",
-        "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
-      ]
-    },
-    {
-      "id": "1",
-      "title": "Game Development in Unity",
-      "description": "A 3D game created using Unity engine. It features rich graphics, interactive gameplay, and AI-driven enemies.",
-      "technologies": ["Unity", "C#", "Blender", "Photoshop"],
+      "id": "GameOfLife",
+      "title": "Conway's Game of Life",
+      "description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
+      "technologies": ["C++", "SDL2"],
       "images": [
         "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg",
         "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
       ],
-      "links": [
-        {
-          "name": "GitHub Repository",
-          "url": "https://github.com/username/game-project"
-        },
-        {
-          "name": "Play the Game",
-          "url": "https://example.com/play-game"
-        }
-      ],
-      "features": [
-        "3D Open World",
-        "AI-Powered Enemies",
-        "Multiplayer Mode",
-        "Dynamic Weather System"
-      ],
-      "challenges": [
-        "Optimizing AI performance for smooth gameplay",
-        "Creating a responsive environment with weather changes",
-        "Balancing multiplayer game mechanics"
-      ],
-      "futurePlans": [
-        "Integrating VR support",
-        "Adding new game levels and challenges",
-        "Improving multiplayer stability"
-      ],
-      "additionalInfo": "This game was created during a 6-month game development course. It aims to teach players about strategy and survival in a hostile environment."
+      "githubLink": "https://github.com/Jarnodc/Conway-GameOfLife"
     },
     {
       "id": "2",
       "title": "Weather Forecasting Web App",
+      "shortDescription": "A web application that allows users to check weather forecasts by entering their city or location. Built with Angular and open APIs.",
       "description": "A web application that allows users to check weather forecasts by entering their city or location. Built with Angular and open APIs.",
-      "technologies": ["Angular", "TypeScript", "OpenWeatherMap API", "CSS"],
+      "technologies": ["Angular", "TypeScript", "Github", "CSS", "Unreal Engine"],
       "images": [
-        "https://example.com/images/weather-app-screenshot1.jpg",
-        "https://example.com/images/weather-app-screenshot2.jpg"
       ],
       "links": [
         {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../Services/project-service';
-import { ProjectModel } from '../../Models/project-model';
+import { ProjectPreviewModel } from '../../Models/project-model';
 import { ProjectItemComponent } from '../project-item/project-item.component';
 
 @Component({
@@ -11,12 +11,12 @@ import { ProjectItemComponent } from '../project-item/project-item.component';
   styleUrl: './projects-page.component.css'
 })
 export class ProjectsPageComponent implements OnInit {
-  projects: ProjectModel[] = [];
+  projects: ProjectPreviewModel[] = [];
 
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((data: ProjectModel[]) => {
+    this.projectService.getProjects().subscribe((data: ProjectPreviewModel[]) => {
       this.projects = data;
     });
   }

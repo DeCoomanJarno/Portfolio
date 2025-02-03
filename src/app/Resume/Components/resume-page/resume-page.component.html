@@ -59,34 +59,61 @@
             <div class="Header">{{ languageService.getTranslation('Profile') }}</div>
             <p class="ProfileText">{{ resumeData.Profile }}</p>
         </div>
-
         <div class="Panel">
             <div class="Header">
-                <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
-                <div class="SubTitle">{{ languageService.getTranslation('ProgrammingLanguage') }}</div>
+              <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
+              <div class="SubTitle">{{ languageService.getTranslation('ProgrammingLanguage') }}</div>
             </div>
-            @for (skill of resumeData.Skills.Programming_Languages; track $index)
-            {
-            <div class="Skill">
-                <div class="Name">{{ skill.Name }}</div>
-                <div>{{skill.Value}}</div>
+          
+            <div class="SkillList">
+              @for (skill of resumeData.Skills.ProgrammingLanguages; track $index) {
+                <div class="skill">
+                  <div class="skill-name">{{ skill.Name }}</div>
+                  
+                  <div class="skill-experience">
+                    @if(skill.Experience.School) {
+                      <div class="experience-item">
+                        <span class="badge school">School</span>
+                        <span>{{ skill.Experience.School }}</span>
+                      </div>
+                    }
+          
+                    @if(skill.Experience.Work) {
+                      <div class="experience-item">
+                        <span class="badge work">{{languageService.getTranslation('Work')}}</span>
+                        <span>{{ skill.Experience.Work }}</span>
+                      </div>
+                    }
+          
+                    @if(skill.Experience.Hobby) {
+                      <div class="experience-item">
+                        <span class="badge hobby">Hobby</span>
+                        <span>{{ skill.Experience.Hobby }}</span>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
             </div>
-            }
-        </div>
-
-        <div class="Panel">
+          </div>
+          
+          <!-- Language Section -->
+          <div class="Panel">
             <div class="Header">
-                <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
-                <div class="SubTitle">{{ languageService.getTranslation('Language') }}</div>
+              <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
+              <div class="SubTitle">{{ languageService.getTranslation('Language') }}</div>
             </div>
-            @for (language of resumeData.Skills.Languages; track $index)
-            {
-            <div class="Skill">
-                <div class="Name">{{ language.Name }}</div>
-                <div>{{language.Value}}</div>
+          
+            <div class="SkillList">
+              @for (language of resumeData.Skills.Languages; track $index) {
+                <div class="skill">
+                  <div class="skill-name">{{ language.Name }}</div>
+                  <div class="skill-proficiency">{{ language.Proficiency }}</div>
+                </div>
+              }
             </div>
-            }
-        </div>
+          </div>
+          
     </div>
     <div class="MainPanel">
         <div class="HeaderBlock Panel">

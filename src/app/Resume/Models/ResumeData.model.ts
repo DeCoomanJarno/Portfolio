@@ -15,13 +15,24 @@ export interface Contact {
 }
 
 export interface Skills {
-  Programming_Languages: Skill[];
-  Languages: Skill[];
+  ProgrammingLanguages: Skill[];
+  Languages: LanguageSkill[];
 }
 
 export interface Skill {
   Name: string;
-  Value: number;
+  Experience: SkillExperience;
+}
+
+export interface SkillExperience {
+  School: string;
+  Work: string;
+  Hobby: string;
+}
+
+export interface LanguageSkill {
+  Name: string;
+  Proficiency: string;
 }
 
 export interface Education {

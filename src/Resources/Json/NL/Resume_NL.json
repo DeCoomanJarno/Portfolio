@@ -6,16 +6,17 @@
   },
   "Profile": "Ik ben een gedreven software engineer met ervaring in automatisatie.",
   "Skills": {
-    "Programming_Languages": [
-      { "Name": "C++", "Value": "3 jaar School + Hobby" },
-      { "Name": "C#", "Value": "> 1 jaar Werk + 1 jaar School" },
-      { "Name": "Angular", "Value": "< 1 jaar Werk + < 1 jaar Hobby" },
-      { "Name": "Typescript", "Value": "< 1 jaar Werk + < 1 jaar Hobby" }
+    "ProgrammingLanguages": [
+      { "Name": "C++", "Experience": { "School": "3 jaar", "Hobby": "4 jaar" } },
+      { "Name": "C#", "Experience": { "Work": "1 jaar", "School": "1 jaar", "Hobby": "2 jaar"  } },
+      { "Name": "Angular", "Experience": { "Work": "< 1 jaar", "Hobby": "< 1 jaar" } },
+      { "Name": "Typescript", "Experience": { "Work": "< 1 jaar", "Hobby": "< 1 jaar" } },
+      { "Name": "Git / Perforce / TFS / Azure DevOps", "Experience": { "School": "3 jaar", "Work": "1 jaar" } }
     ],
     "Languages": [
-      { "Name": "Dutch", "Value": "Moedertaal" },
-      { "Name": "English", "Value": "Goed" },
-      { "Name": "French", "Value": "Basis" }
+      { "Name": "Nederlands", "Proficiency": "Moedertaal" },
+      { "Name": "Engels", "Proficiency": "vlot" },
+      { "Name": "Frans", "Proficiency": "basis" }
     ]
   },
   "Education": [

@@ -1,9 +1,35 @@
 .project-card {
-  position: relative;
   width: 400px;
-  height: 250px;
-  overflow: hidden;
   border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  background-color: #e1e1e1;
+}
+
+.project-header {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes title left & icon right */
+  width: 100%;
+  border-bottom: 2px solid #006680; /* Horizontal line effect */
+  margin-top: 10px; 
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.project-header h2 {
+  font-size: 1.5em;
+}
+
+.github-icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+}
+
+.github-icon:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
 }
 
 .project-card:hover {
@@ -12,34 +38,13 @@
 }
 
 .project-card img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%; /* Set image height */
   transition: opacity 0.3s ease; /* Smooth transition for image */
-}
-
-.project-card h2 {
-  font-size: 1.5em;
-  margin: 10px 0; /* Adjusted margin */
 }
 
 .project-card p {
   font-size: 1em;
   margin-bottom: 15px;
   flex-grow: 1; /* Allow this section to grow to fill space */
-}
-
-.project-card a {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
-  transition: background-color 0.3s ease;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.project-card a:hover {
-  background-color: #2980b9;
 }
 
 /* The project-info section is always visible unless overlay is added */
@@ -54,12 +59,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  position: absolute;
 }
 
 /* When there are images, project info becomes an overlay */
 .project-info.overlay {
-  position: absolute;
   background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
   color: #fff; /* Text color for better visibility */
   opacity: 0; /* Initially hidden */
@@ -73,24 +76,41 @@
 
 /* Image container should have the images stacked on top of each other */
 .image-container {
-  position: relative;
+  position: relative; /* Ensure it acts as a parent for absolute positioning */
   width: 100%;
-  height: 100%;
-  /* The "fade" class will control the opacity and looping of images */
-}
-.project-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
+  height: 250px; /* Adjust height to match images */
+  overflow: hidden;
 }
 
+.project-image {
+  position: absolute; /* Stack all images on top of each other */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure images fit well */
+  transition: opacity 0.5s ease-in-out;
+  border-radius: 10px;
+}
+
+/* Ensure images are shown in a loop with fading effect */
 .fade {
+  opacity: 0; /* Start hidden */
   animation-name: fadeAnimation;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+.tech-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.tech-item img {
+  width: 40px;
+  height: 40px;
+}
+
+
 /* Keyframes for fading images in and out */
 @keyframes fadeAnimation {
   0% {

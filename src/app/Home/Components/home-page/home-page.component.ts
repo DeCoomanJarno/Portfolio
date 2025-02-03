@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageService } from '../../../Core/Services/language.service';
 import { ProjectItemComponent } from '../../../Project/Components/project-item/project-item.component';
-import { ProjectModel } from '../../../Project/Models/project-model';
+import { ProjectPreviewModel } from '../../../Project/Models/project-model';
 import { ProjectService } from '../../../Project/Services/project-service';
 import { RouterLink } from '@angular/router';
 import { HomeModel } from '../../Models/home-model';
@@ -37,7 +37,7 @@ export function mergeDeep(target: any, source: any): any {
 })
 export class HomePageComponent implements OnInit {
   homeData:HomeModel | undefined;
-  projects: ProjectModel[] = [];
+  projects: ProjectPreviewModel[] = [];
 
   constructor(
     public languageService: LanguageService,
@@ -49,7 +49,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.LoadHomeData();
     // Fetch projects from the service
-    this.projectService.getProjects().subscribe((data: ProjectModel[]) => {
+    this.projectService.getProjects().subscribe((data: ProjectPreviewModel[]) => {
       // Filter projects based on the IDs in homeData.Projects
       this.projects = data.filter(pr => 
         this.homeData?.Projects.some(project => project === pr.id)
@@ -74,7 +74,7 @@ export class HomePageComponent implements OnInit {
       }).subscribe(({ en, localized }) => {
         // Merge localized data with English fallback
         this.homeData = mergeDeep(en, localized);
-        this.projectService.getProjects().subscribe((data: ProjectModel[]) => {
+        this.projectService.getProjects().subscribe((data: ProjectPreviewModel[]) => {
           // Filter projects based on the IDs in homeData.Projects
           this.projects = data.filter(pr => 
             this.homeData?.Projects.some(project => project === pr.id)
