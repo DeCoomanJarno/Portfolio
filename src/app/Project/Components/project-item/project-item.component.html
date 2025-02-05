@@ -1,39 +1,40 @@
 <div class="project-card" [routerLink]="['/projects', project.id]">
   @if(project.images && project.images.length > 0)
   {
-    <div class="image-container">
-      @if (hasMultipleImages) {
-      @for (image of project.images; track $index) {
-        <img 
-        [src]="image" 
-        [alt]="'Project image ' + ($index + 1)" 
-        class="project-image fade" 
-        [ngStyle]="{'animation-delay': getAnimationDelay($index), 'animation-duration': getAnimationDuration()}" />
-      }
+  <div class="image-container">
+    @if (hasMultipleImages) {
+      <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          @for (image of project.images; track $index) {
+          <div class="carousel-item" [ngClass]="{'active': $index === 0}" data-bs-interval="10000">
+            <img [src]="image" class="d-block w-100 project-image" [alt]="'Project image ' + ($index + 1)">
+          </div>
+        }
+        </div>
+      </div>
     }
     @else {
-      <img 
-      [src]="project.images[0]" 
-      [alt]="'Project image'" 
-      class="project-image"/>
+    <img [src]="project.images[0]" [alt]="'Project image'" class="project-image" />
 
     }
-    </div>
+  </div>
   }
   <div class="project-info">
     <div class="project-header">
       <h2>{{ project.title }}</h2>
-      <a [href]="this.project.githubLink" (click)="$event.stopPropagation()">
-        <img [src]="'Github' | icon" alt="GitHub" class="github-icon">
+      @if(project.link) {
+      <a [href]="project.link.url" (click)="$event.stopPropagation()">
+        <img [src]="project.link.icon | icon" [alt]="project.link.icon" class="github-icon">
       </a>
+      }
     </div>
     <p>{{ project.description }}</p>
-  <div class="tech-list">
-    @for (item of this.project.technologies; track $index) {
+    <div class="tech-list">
+      @for (item of this.project.technologies; track $index) {
       <div class="tech-item">
-        <img [src]="item | icon" [alt]="item" [title]="item">
+        <img [src]="item | icon" [alt]="item" data-toggle="tooltip" data-bs-placement="top" [title]="item">
       </div>
-    }
+      }
+    </div>
   </div>
-</div>
 </div>

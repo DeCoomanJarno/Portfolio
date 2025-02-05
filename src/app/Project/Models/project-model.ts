@@ -9,7 +9,7 @@ export interface ProjectModel {
   export interface ProjectPreviewModel {
     id: string;
     title: string;
-    githubLink: string;
+    link: { name:string; icon: string; url: string};
     description: string;
     images?: string[];
     technologies: string[];

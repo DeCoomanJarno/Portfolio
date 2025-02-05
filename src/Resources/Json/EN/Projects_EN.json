@@ -3,45 +3,31 @@
       "id": "GameOfLife",
       "title": "Conway's Game of Life",
       "description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
-      "technologies": ["C++", "SDL2"],
+      "technologies": ["C", "C++", "SDL2", "Visual Studio"],
       "images": [
-        "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg",
-        "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
+        "Resources/Projects/GameOfLife/Images/GameOfLife_1.png"
       ],
-      "githubLink": "https://github.com/Jarnodc/Conway-GameOfLife"
+      "link": {
+        "name": "Github Repository",
+        "icon": "Github",
+        "url": "https://github.com/DeCoomanJarno/Conway-GameOfLife"
+      }
     },
     {
-      "id": "2",
-      "title": "Weather Forecasting Web App",
-      "shortDescription": "A web application that allows users to check weather forecasts by entering their city or location. Built with Angular and open APIs.",
-      "description": "A web application that allows users to check weather forecasts by entering their city or location. Built with Angular and open APIs.",
-      "technologies": ["Angular", "TypeScript", "Github", "CSS", "Unreal Engine"],
+      "id": "Calculator",
+      "title": "Calculator",
+      "description": "A collection of three calculators: Simple Calculator, Science Calculator, and Programming Calculator.",
+      "technologies": ["TypeScript", "CSS", "Angular", "Visual Studio Code"],
       "images": [
+        "Resources/Projects/Calculator/Images/Calculator_Programming.png",
+        "Resources/Projects/Calculator/Images/Calculator_Science.png",
+        "Resources/Projects/Calculator/Images/Calculator_Simple.png"
       ],
-      "links": [
-        {
-          "name": "GitHub Repository",
-          "url": "https://github.com/username/weather-app"
-        },
-        {
-          "name": "Live Demo",
-          "url": "https://example.com/weather-app"
-        }
-      ],
-      "features": [
-        "Search weather by city or location",
-        "Shows current weather and 5-day forecast",
-        "Responsive design for mobile devices"
-      ],
-      "challenges": [
-        "Dealing with inconsistent data from the OpenWeatherMap API",
-        "Ensuring accurate and up-to-date weather information"
-      ],
-      "futurePlans": [
-        "Adding geolocation-based weather search",
-        "Implementing a weather radar feature"
-      ],
-      "additionalInfo": "This app was built as part of a personal project to improve my Angular skills while working with third-party APIs."
+      "link": {
+        "name": "Try out",
+        "icon": "Export",
+        "url": "/Calculator"
+      }
     }
   ]
   

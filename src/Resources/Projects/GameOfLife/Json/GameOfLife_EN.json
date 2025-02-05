@@ -4,7 +4,7 @@
   "content": [
     {
       "type": "image",
-      "value": "Resources/Projects/GameOfLife/Images/GameOfLife_1.jpg"
+      "value": "Resources/Projects/GameOfLife/Images/GameOfLife.gif"
     },
     {
       "type": "text",
@@ -24,12 +24,12 @@
     },
     {
       "type": "code",
-      "value": "class GameOfLife {\n  public:\n    GameOfLife(const int scale);\n    void HandleEvents(const SDL_Event& event);\n    void Update();\n    void Render();\n  private:\n    bool IsAlive(int x, int y) const;\n    void RenderPixel(int x, int y);\n    int m_Scale;\n    TMatrix<bool>* m_pGrid;\n    TMatrix<bool>* m_pBuffer;\n};",
+      "value": "class GameOfLife final: public GameTemplate\n{\npublic:\n\tGameOfLife(const int scale = 3);\n\t~GameOfLife() override;\n\n\tGameOfLife(const GameOfLife& other) = delete;\n\tGameOfLife(GameOfLife&& other) noexcept = delete;\n\tGameOfLife& operator=(const GameOfLife& other) = delete;\n\tGameOfLife& operator=(GameOfLife&& other) noexcept = delete;\n\n\tvoid HandleEvents(const SDL_Event& event) override;\n\tvoid Update() override;\n\tvoid Resize(int new_width, int new_height);\n\tvoid Render() override;\nprivate:\n\tstatic void RenderPixel(int x, int y);\n\tbool IsAlive(int x, int y) const;\n\tTMatrix<bool>* m_pGrid;\n\tTMatrix<bool>* m_pBuffer;\n\tconst int m_Scale = 1;\n};",
       "codeLanguage": "cpp"
     },
     {
       "type": "image",
-      "value": "Resources/Projects/GameOfLife/Images/GameOfLife_2.png"
+      "value": "Resources/Projects/GameOfLife/Images/GameOfLife_1.png"
     },
     {
       "type": "text",
@@ -54,13 +54,17 @@
     "Cellular Automation",
     "Object Oriented Programming",
     "Real-time rendering with SDL2",
-    "dynamic memory allocation"
+    "Dynamic memory allocation"
   ],
   "futurePlans": [
-    "Add user interaction for cell placement",
-    "Improve rendering performance",
-    "Implement different rule sets for customization"
+    "Options can be added for user interaction, allowing manual cell placement and modifications to the grid.",
+    "Rendering performance can be improved to ensure smoother visuals and better efficiency, especially for larger grids.",
+    "UI settings can be introduced for adjusting grid scale, colors, and other visual aspects to enhance customization.",
+    "Start and stop options can be implemented, giving users more control over when the simulation runs or pauses."
   ],
   "links": [
+    {
+      "name": "Wikipedia: Conway's Game of Life", "url": "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+    }
   ]
 }

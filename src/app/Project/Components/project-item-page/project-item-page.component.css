@@ -18,6 +18,11 @@
   height: 50px;
 }
 
+/* Tooltip Styling */
+.tech-item img[title] {
+  color: red;
+}
+
 .project-header {
   text-align: center;
 }
@@ -92,6 +97,10 @@
 .image-block {
   margin-bottom: 15px;
   height: auto;
+  max-width: 250px;
+}
+.image-block img{
+  border-radius: 10px;
 }
 
 .image-block.right {

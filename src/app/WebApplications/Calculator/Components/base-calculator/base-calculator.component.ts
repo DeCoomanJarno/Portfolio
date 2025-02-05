@@ -80,8 +80,8 @@ export class BaseCalculatorComponent {
     return expression
     .replace('÷', '/')
     .replace('×', '*')
-    .replace(/π/g, 'pi')
-    .replace(/\be\b/g, 'e')
+    .replace(/π/g, 'Math.PI')
+    .replace(/\be\b/g, 'Math.E')
     .replace('²', '**2')  // Replace '²' with '**2' for square
     .replace('√', 'Math.sqrt')  // Replace √ with Math.sqrt()
     .replace('sin', 'Math.sin')  // Use Math.sin in eval
@@ -106,6 +106,7 @@ export class BaseCalculatorComponent {
   
     const newValue = currentValue.slice(0, cursorPosition - 1) + currentValue.slice(cursorPosition);
     this.displayControl.setValue(newValue);
+    inputElement.focus();
     inputElement.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
   }
 

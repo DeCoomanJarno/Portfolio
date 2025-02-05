@@ -1,33 +1,27 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import { ProjectPreviewModel } from '../../Models/project-model';
 import { RouterLink } from '@angular/router';
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { IconPipe } from '../../../Core/Pipes/icon.pipe';
+declare var bootstrap: any; // Ensure Bootstrap JS is recognized
 
 @Component({
   selector: 'app-project-item',
   standalone: true,
-  imports: [RouterLink, NgStyle, IconPipe],
+  imports: [RouterLink, IconPipe, NgClass],
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.css'
 })
-export class ProjectItemComponent implements OnInit{
+export class ProjectItemComponent implements OnInit, AfterViewInit {
   @Input() project!: ProjectPreviewModel;
   hasMultipleImages : boolean | undefined;
-  imageDuration: number = 20; // Duration for each image in seconds
-  totalDuration: number = 0; // Total animation duration
+
+  ngAfterViewInit(): void {
+  const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
+  tooltipElements.forEach(el => new bootstrap.Tooltip(el));
+  }
 
   ngOnInit(): void {
     this.hasMultipleImages = this.project.images && this.project.images.length > 1;
-    if(this.project.images?.length)
-      this.totalDuration = this.project.images.length * this.imageDuration;
-  }
-
-  getAnimationDelay(index: number): string {
-    return `${index * this.imageDuration}s`;
-  }
-
-  getAnimationDuration(): string {
-    return `${this.totalDuration}s`;
   }
 }

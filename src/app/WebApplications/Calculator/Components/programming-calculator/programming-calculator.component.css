@@ -2,3 +2,39 @@
 .grid {
   grid-template-columns: repeat(5, 1fr) !important;
 }
+
+.modes {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.mode:hover {
+  background-color: #c4c4c4;
+}
+
+.mode .title {
+  color: #006680;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.mode .value {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: black;
+  text-align: center;
+  width: 60px;
+  word-wrap: break-word;
+  word-break: break-all;    
+  text-decoration: none
+}

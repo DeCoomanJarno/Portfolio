@@ -6,12 +6,15 @@
   <button (click)="baseCalculator.backspace()" class="operators">←</button>
   
   <div class="four-width">
-    <button (click)="baseCalculator.AddValue('√()')" class="operators">√</button>
-    <button (click)="baseCalculator.AddValue('²')" class="operators ">x²</button>
     <button (click)="baseCalculator.AddValue('sin()')" class="operators">sin</button>
     <button (click)="baseCalculator.AddValue('cos()')" class="operators">cos</button>
     <button (click)="baseCalculator.AddValue('tan()')" class="operators">tan</button>
   </div>
+
+  <button (click)="baseCalculator.AddValue('√()')" class="operators">√</button>
+  <button (click)="baseCalculator.AddValue('²')" class="operators ">x²</button>
+  <button (click)="baseCalculator.AddValue('e')" class="operators">e</button>
+  <button (click)="baseCalculator.AddValue('π')" class="operators">π</button>
   
   <button (click)="baseCalculator.AddValue($event)">7</button>
   <button (click)="baseCalculator.AddValue($event)">8</button>
