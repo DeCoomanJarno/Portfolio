@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import { ProjectPreviewModel } from '../../Models/project-model';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgStyle } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgStyle } from '@angular/common';
 import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 declare var bootstrap: any; // Ensure Bootstrap JS is recognized
 
@@ -16,9 +16,13 @@ export class ProjectItemComponent implements OnInit, AfterViewInit {
   @Input() project!: ProjectPreviewModel;
   hasMultipleImages : boolean | undefined;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
   ngAfterViewInit(): void {
-  const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
-  tooltipElements.forEach(el => new bootstrap.Tooltip(el));
+    if (isPlatformBrowser(this.platformId)) {
+      const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
+      tooltipElements.forEach(el => new bootstrap.Tooltip(el));
+    }
   }
 
   ngOnInit(): void {

@@ -8,11 +8,11 @@ import { CalculatorPageComponent } from './WebApplications/Calculator/Components
 import { ProjectItemPageComponent } from './Project/Components/project-item-page/project-item-page.component';
 
 export const routes: Routes = [
+    { path: '**', redirectTo: '/Home' },
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomePageComponent },
     { path: 'Projects', component: ProjectsPageComponent},
-    { path: 'projects/0', component: ProjectsPageComponent },
-    { path: 'projects/:id', component: ProjectItemPageComponent },
+    { path: 'Projects/:id', component: ProjectItemPageComponent },
     { path: 'Resume', component: ResumePageComponent },
     { path: 'GameOfLife', component: GameOfLifePageComponent },
     { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
