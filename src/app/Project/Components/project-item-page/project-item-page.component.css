@@ -1,0 +1,150 @@
+.project-detail-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.feature-list,
+.tech-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.tech-item img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Tooltip Styling */
+.tech-item img[title] {
+  color: red;
+}
+
+.project-header {
+  text-align: center;
+}
+
+.project-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.content-section h3,
+.project-tech h3,
+.project-features h3,
+.project-future-plans h3,
+.project-links h3,
+.project-content h3 {
+  border-bottom: 2px solid #006680;
+  /* Horizontal line effect */
+  font-size: 1.6rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.feature-item {
+  background-color: #006680;
+  color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.project-links {
+  margin-top: 50px;
+}
+
+.link-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.link-item {
+  margin-bottom: 15px;
+}
+
+.project-link {
+  font-size: 1.1rem;
+  color: #006680;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: #004552;
+}
+
+.text-block {
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.text-block.other {
+  clear: both;
+}
+
+.image-block {
+  margin-bottom: 15px;
+  height: auto;
+  max-width: 250px;
+}
+.image-block img{
+  border-radius: 10px;
+}
+
+.image-block.right {
+  margin-left: 20px;
+  float: right;
+}
+
+.image-block.left {
+  margin-right: 20px;
+  float: left;
+}
+
+.code-block {
+  position: relative;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 0px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  clear: both;
+}
+
+.code-block pre {
+  margin: 0;
+  height: auto;
+  top: 0;
+}
+
+.code-block code {
+  padding: 0px 20px;
+}
+
+.copy-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.copy-button:hover {
+  background: #666;
+}

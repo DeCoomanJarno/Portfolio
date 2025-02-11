@@ -1,0 +1,112 @@
+.project-card {
+  width: 400px;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  background-color: #e1e1e1;
+}
+
+.project-header {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes title left & icon right */
+  width: 100%;
+  border-bottom: 2px solid #006680; /* Horizontal line effect */
+  margin-top: 10px; 
+  padding-bottom: 10px;
+}
+
+.project-header h2 {
+  margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+.github-icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease;
+}
+
+.github-icon:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-card img {
+  transition: opacity 0.3s ease; /* Smooth transition for image */
+}
+
+.project-card p {
+  font-size: 1em;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Allow this section to grow to fill space */
+}
+
+/* The project-info section is always visible unless overlay is added */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+  z-index: 1; /* Make sure it appears above other elements */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* When there are images, project info becomes an overlay */
+.project-info.overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: #fff; /* Text color for better visibility */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+/* On hover, show the overlay */
+.project-card:hover .project-info.overlay {
+  opacity: 1; /* Make overlay visible */
+}
+
+/* Image container should have the images stacked on top of each other */
+.image-container {
+  position: relative; /* Ensure it acts as a parent for absolute positioning */
+  overflow: hidden;
+}
+.project-image {
+  max-height: 400px; /* Adjust height as needed */
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Ensure images are shown in a loop with fading effect */
+.fade {
+  animation-name: fade;
+  animation-iteration-count: infinite;
+}
+.tech-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.tech-item img {
+  width: 40px;
+  height: 40px;
+}
+
+
+/* Keyframes for fading images in and out */
+
+@keyframes fade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { opacity: 0; }
+}

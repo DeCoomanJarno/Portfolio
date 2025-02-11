@@ -1,0 +1,93 @@
+<div class="project-detail-page">
+  @if(project && projectPreviewModel) {
+  <!-- Project Header -->
+  <div class="project-header">
+    <h1>{{ project.title }}</h1>
+    <p class="project-description">{{ project.description }}</p>
+
+    <!-- Features Section -->
+    @if(project.features && project.features.length > 0) {
+    <div class="feature-list">
+      @for (feature of project.features; track $index) {
+      <div class="feature-item">
+        <a>{{ feature }}</a>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <h3>Description</h3>
+    @for (item of project.content; track $index) {
+    @if(item.type === 'text') {
+    <div class="text-block">
+      <p>{{ item.value }}</p>
+    </div>
+    }
+    @else if(item.type === 'image') {
+    <div class="image-block" [class]="$index % 2 === 0 ? 'right' : 'left'">
+      <img [src]="item.value" alt="Project Image">
+    </div>
+    }
+    @else if(item.type === 'code') {
+    <div class="code-block">
+      <pre>
+            <code [class]="item.codeLanguage ?? 'c'" class="code-block">{{ item.value }}</code>
+          </pre>
+      <button class="copy-button bi-copy" (click)="copyCode(item.value, $event.target)"></button>
+    </div>
+    }
+    @else if (item.type === 'other') {
+    <div class="text-block other" [innerHTML]="ConvertToHTML(item.value)">
+    </div>
+    }
+    }
+  </div>
+
+
+  <!-- Future Plans Section -->
+  @if(project.futurePlans && project.futurePlans.length > 0) {
+  <div class="project-future-plans">
+    <h3>Future Plans</h3>
+    <ul class="future-plans-list">
+      @for (plan of project.futurePlans; track $index) {
+      <p class="future-plan-item">{{ plan }}</p>
+      }
+    </ul>
+  </div>
+  }
+  <!-- Technologies Used -->
+  <div class="project-tech">
+    <h3>Technologies Used</h3>
+    <ul class="tech-list">
+      @for (item of projectPreviewModel.technologies; track $index) {
+      <div class="tech-item">
+        <img [src]="item | icon" [alt]="item" data-toggle="tooltip" data-bs-placement="top" [title]="item">
+      </div>
+      }
+    </ul>
+  </div>
+
+  <!-- Links Section (GitHub, Web Link, etc.) -->
+  @if(project.links && (projectPreviewModel.link || project.links.length > 0)) {
+  <div class="project-links">
+    <h3>Links</h3>
+    <ul class="link-list">
+      <li class="link-item">
+        <a [href]="projectPreviewModel.link.url" target="_blank" class="project-link">{{projectPreviewModel.link.name}}</a>
+      </li>
+      @for (link of project.links; track $index) {
+      <li class="link-item">
+        <a [href]="link.url" target="_blank" class="project-link">{{ link.name }}</a>
+      </li>
+      }
+    </ul>
+  </div>
+  }
+
+  } @else {
+  <p>Project not found.</p>
+  }
+</div>

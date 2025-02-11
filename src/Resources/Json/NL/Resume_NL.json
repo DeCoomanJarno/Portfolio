@@ -1,0 +1,58 @@
+{
+  "Title": "Software Engineer",
+  "Contact": {
+    "Address": "Kloosterland 81, 9260 Schellebelle, België",
+    "Driverlicense": "Rijbewijs B"
+  },
+  "Profile": "Ik ben een gedreven software engineer met ervaring in automatisatie.",
+  "Skills": {
+    "ProgrammingLanguages": [
+      { "Name": "C++", "Experience": { "School": "3 jaar", "Hobby": "4 jaar" } },
+      { "Name": "C#", "Experience": { "Work": "1 jaar", "School": "1 jaar", "Hobby": "2 jaar"  } },
+      { "Name": "Angular", "Experience": { "Work": "< 1 jaar", "Hobby": "< 1 jaar" } },
+      { "Name": "Typescript", "Experience": { "Work": "< 1 jaar", "Hobby": "< 1 jaar" } },
+      { "Name": "Git / Perforce / TFS / Azure DevOps", "Experience": { "School": "3 jaar", "Work": "1 jaar" } }
+    ],
+    "Languages": [
+      { "Name": "Nederlands", "Proficiency": "Moedertaal" },
+      { "Name": "Engels", "Proficiency": "vlot" },
+      { "Name": "Frans", "Proficiency": "basis" }
+    ]
+  },
+  "Education": [
+    {
+      "Degree": "Game Development",
+      "Location": "Kortrijk, België",
+      "Description": "Intensief programma met training in C++, C#, game design, 3D-modellering en animatie."
+     },
+    {
+      "Degree": "Industrial Sciences",
+      "Location": "Wetteren, België",
+      "Description": "Comprehensive curriculum in physics, chemistry, mathematics, and engineering."
+    }
+  ],
+  "Experience": [ 
+    {
+    "Title": "Software Engineer",
+    "Location": "Antwerpen, België",
+    "Dates": "November 2023 - Heden",
+    "Description": "Ik ontwikkel software voor de automatisering van AGV's en zorg voor de naadloze integratie van deze systemen in de toeleveringsketen."
+  },
+  {
+    "Title": "Stagair",
+    "Location": "Leuven, België",
+    "Dates": "Februari 2023 - Juni 2023",
+    "Description": "Gained hands-on experience developing VR applications using Unreal Engine."
+  },
+  {
+    "Title": "Study Council",
+    "Location": "Kortrijk, België",
+    "Description": "Helped develop the Game Development study by attending meetings with the study leader to provide feedback on teachers, subjects, and exams."
+  },
+  {
+    "Title": "Waiter/Bartender",
+    "Location": "Schellebelle, België",
+    "Description": "Worked as a waiter, and occasionally helped in the kitchen or behind the bar."
+  }
+  ]
+}

@@ -1,0 +1,30 @@
+<!-- Simple-calculator.component.html -->
+  
+<app-base-calculator #baseCalculator>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">(</button>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">)</button>
+  <button (click)="baseCalculator.clear()" class="operators">C</button>
+  <button (click)="baseCalculator.backspace()" class="operators">←</button>
+
+  <button (click)="baseCalculator.AddValue($event)">7</button>
+  <button (click)="baseCalculator.AddValue($event)">8</button>
+  <button (click)="baseCalculator.AddValue($event)">9</button>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">+</button>
+
+  <button (click)="baseCalculator.AddValue($event)">4</button>
+  <button (click)="baseCalculator.AddValue($event)">5</button>
+  <button (click)="baseCalculator.AddValue($event)">6</button>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">-</button>
+
+  <button (click)="baseCalculator.AddValue($event)">1</button>
+  <button (click)="baseCalculator.AddValue($event)">2</button>
+  <button (click)="baseCalculator.AddValue($event)">3</button>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">×</button>
+
+  <button (click)="baseCalculator.toggleSign()" class="operators">±</button>
+  <button (click)="baseCalculator.AddValue($event)">0</button>
+  <button (click)="baseCalculator.decimal()" class="operators">.</button>
+  <button (click)="baseCalculator.AddValue($event)" class="operators">÷</button>
+  
+  <button (click)="baseCalculator.equals()" class="equals double-width">=</button>
+</app-base-calculator>

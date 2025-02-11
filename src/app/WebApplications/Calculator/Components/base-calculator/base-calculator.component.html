@@ -1,0 +1,25 @@
+<!-- base-calculator.component.html -->
+<div class="container">
+    <div class="calculator"> 
+      <div class="display">
+        <input #expressionInput (keydown)="handleKeyPress($event)" [formControl]="displayControl" placeholder="Enter" class="expression-input" />
+  
+    </div>
+      @if (error !== '') {
+        <!-- Readonly Temporary Result Display -->
+        <h2 type="text" class="temporary-result error">{{error}}</h2>
+        }
+        @else if (temporaryResult !== '') {
+        <!-- Readonly Temporary Result Display -->
+        <h2 type="text" class="temporary-result">{{temporaryResult}}</h2>
+        }
+
+      <div class="grid">
+        <ng-content></ng-content> <!-- Buttons from child components will be injected here -->
+      </div>
+    </div>
+  
+    <!-- History Tab Positioned to the Right -->
+    <app-history-tab (OnLoadFromHistory)="loadFromHistory($event)"></app-history-tab>
+  </div>
+  

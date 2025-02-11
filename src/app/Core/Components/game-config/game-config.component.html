@@ -1,0 +1,18 @@
+
+<h5 class="card-title">Configuration</h5>
+<div class="form-group">
+    <label for="rows">Rows</label>
+    <input min="1" class="form-control" type="number" id="rows" (input)="UpdateRow($event)" [(ngModel)]="config!.rows" name="rows" />
+</div>
+<div class="form-group">
+    <label for="cols">Cols</label>
+    <input min="1" class="form-control" type="number" id="cols" (input)="UpdateCol($event)" [(ngModel)]="config!.cols" name="cols" />
+</div>
+<div class="form-group">
+    <label for="updateTime">Update Time (ms)</label>
+    <input min="1" class="form-control" type="number" id="updateTime" (input)="UpdateTime($event)" [(ngModel)]="config!.updateTime" name="updateTime" />
+</div>
+<div class="form-group">
+    <label for="cellSize">Cell Size (px)</label>
+    <input min="1" class="form-control" type="number" id="cellSize" (input)="UpdateCellSize($event)" [(ngModel)]="config!.cellSize" name="cellSize"/>
+</div>

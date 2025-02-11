@@ -1,0 +1,123 @@
+/* Basic header styles */
+.header {
+  height: 60px;
+  background: #eaebec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+  position: sticky; /* Make the header sticky */
+  top: 5px;
+  z-index: 1000; /* Added z-index to ensure header stays above other elements */
+}
+
+/* Logo container styles */
+.logo-container {
+  display: flex; /* Keep logo flexible */
+  align-items: center; /* Center the logo vertically */
+  position: relative; /* Change from absolute to relative */
+  left: 1rem;
+  transition: all 0.6s ease;
+}
+.logo-container img{
+  max-height: 40px;
+}
+/* Separate class for logo on scroll */
+.logo-left {
+  left: 20px; /* Adjust based on padding */
+  transform: translateX(0); /* Reset transform */
+  transition: all 0.6s ease;
+}
+
+/* Navbar collapse styles */
+.collapse {
+  position: relative;
+}
+
+/* Navbar toggler styles */
+.navbar-toggler {
+  position: relative; /* Removed absolute positioning */
+  margin-left: auto; /* Align the toggler to the right */
+  transform: translateY(0); /* Ensure it's not offset */
+  z-index: 1010; /* Make sure it stays on top */
+}
+
+/* Adjustments for navbar-toggler to vertically align in the center */
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
+.active {
+  font-weight: bold;
+}
+.nav-link:hover {
+  color: cadetblue ;
+}
+/* Media Queries */
+@media (min-width: 1300px) {
+  /* AlignRight container to hold the toggler and nav items */
+  .AlignRight {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+   }
+  .navbar-expand-custom {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-custom .navbar-collapse {
+    display: flex !important;
+  }
+  .navbar-expand-custom .navbar-toggler {
+    display: none; /* This hides the toggler on large screens */
+  }
+  .nav-link {
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 1300px) {
+  /* AlignRight container to hold the toggler and nav items */
+  .AlignRight {
+    margin-left: auto; /* Ensure right alignment */
+  }
+  /* Navbar collapse styles */
+  .collapse {
+    position: relative;
+    background: #eaebec;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+    opacity: 0; /* Start hidden */
+  }
+  
+  .collapse.show {
+    opacity: 1; /* Show the menu */
+  }
+  .nav-item {
+    width: 100%;
+  }
+  .nav-link {
+    padding: 1% 5%;
+    margin-right: 15px;
+  }
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .active {
+    background-color: lightblue;
+  }
+}
+
+.language-selector {
+  margin-right: 20px; 
+  margin-left: 10px; 
+}

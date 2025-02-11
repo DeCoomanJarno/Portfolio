@@ -1,0 +1,332 @@
+.resume {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1300px;
+  min-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex; /* Use flexbox to align SidePanel and MainPanel */
+}
+.List{
+  display: flex;
+  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
+  gap: 10px; /* Adds space between the items */
+}
+/* ProfileImage with fixed height */
+.ProfileImage {
+  height: 20ch; /* Adjust the height as needed */
+}
+.ProfileImage img {
+  display: block;
+  margin: 20px auto;
+  border: white 3px solid;
+  border-radius: 5px;
+  width: 20ch;
+}
+
+/* SidePanel and MainPanel */
+.SidePanel {
+  top: 0;
+  background-color: #006680;
+  width: 35%;
+  color: white;
+  border-radius: 8px 0 0 8px;
+}
+
+.MainPanel {
+  width: 65%;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius:0 8px 8px 0;
+}
+
+/* HeaderBlock with the same height as ProfileImage */
+.MainPanel .HeaderBlock {
+  margin-top: 20px;
+  height: 20ch; /* Match this height with ProfileImage */
+  align-items: center;
+  justify-content: center;
+  text-wrap: nowrap;
+}
+
+.MainPanel .FirstName {
+  font: 400 3.562rem / 2rem Roboto, sans-serif;
+  padding: 20px 0;
+  margin: 0;
+  color: #4d4d4f;
+  font-weight: bold;
+  font-size: 55px;
+  letter-spacing: 1vw;
+}
+.MainPanel .Name {
+  font: 400 3.562rem / 4rem Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  color: #4d4d4f;
+  font-size: 45px;
+  letter-spacing: 1vw;
+}
+
+.MainPanel .Title {
+  letter-spacing: 2px;
+  font: 400 2rem / 1.25rem Roboto, sans-serif;
+  font-size: 20px;
+  color: #666;
+}
+
+/* Panels inside the MainPanel */
+.Panel {
+  margin: 0px 10%;
+}
+
+/* Header styles */
+.Header {
+  text-align: center;
+  font-size: xx-large;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  margin: 20px 0 10px 0;
+}
+
+.Header .SubTitle {
+  font-size: medium;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flexbox layout for contact-list */
+.contact-list p {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for icons in the contact list */
+.icon {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+/* Ensure long text in .data elements wraps */
+.data {
+  width: 100%;
+}
+
+.data a {
+  color: white;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+.data a:hover {
+  text-decoration: underline;
+}
+
+/* Profile text alignment */
+.ProfileText {
+  text-align: justify;
+}
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between skills */
+  margin-top: 15px;
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align the items vertically */
+  padding: 10px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.skill:hover {
+  transform: translateY(-5px); /* Slight hover effect */  
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.skill-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex: 1; /* Take all available space */
+}
+
+.skill-experience {
+  flex-wrap: wrap; /* Allow the badges to wrap */
+  gap: 8px;
+  text-align: right;
+}
+
+.experience-item {
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.badge.school {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.badge.work {
+  background-color: #2196F3;
+  color: white;
+}
+
+.badge.hobby {
+  background-color: #FF9800;
+  color: white;
+}
+
+.skill-proficiency {
+  font-size: 1rem;
+}
+
+
+.Entry
+{
+  padding: 10px;
+  border: 2px solid #c1c1f2;
+  border-radius: 8px;
+  background-color: white;
+  width: 100%;
+}
+/* Style for each education entry */
+.EntryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Style for the right side (School, Location, Year) */
+.RightSide {
+  text-align: right;
+}
+
+/* Degree (larger, bolded title) */
+ .Degree {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+/* School and Location */
+ .Company {
+  font-weight: bold;
+  margin: 5px 0 0 0;
+  color: #666;
+}
+
+/* Location */
+ .Location {
+  font-size: 14px;
+  margin: 0;
+  color: #999;
+}
+
+/* Year (dates) */
+ .Year {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Description */
+ .Description {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+  text-align: justify;
+}
+.References
+{
+  display: flex;
+  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
+}
+.ReferenceEntry
+{
+  padding: 10px;
+  border: 2px solid #c1c1f2;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  color: #333;
+}
+/* Contact info styling */
+.ContactInfo {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Icon styling */
+.ContactInfo .icon {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Email styling */
+.ContactInfo a {
+  text-decoration: none;
+  color: #333;
+}
+
+.ContactInfo a:hover {
+  text-decoration: underline;
+}
+/* Button styling */
+button {
+  background-color: #006680; /* Matches the SidePanel color */
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 20px auto; /* Center the button */
+  display: block; /* Center the button in block layout */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #005266;
+  transform: scale(1.05); /* Slight enlarge on hover */
+}
+
+/* Button focus effect */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button active effect (when clicked) */
+button:active {
+  background-color: #004552;
+  transform: scale(0.98);
+}

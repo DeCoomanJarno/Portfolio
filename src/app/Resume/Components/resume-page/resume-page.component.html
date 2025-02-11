@@ -1,0 +1,197 @@
+@if (resumeData) {
+<div class="resume" #resumeContent>
+    <div class="SidePanel">
+        <div class="ProfileImage">
+            <img src="{{commonDataService.CommonData?.ProfileImage}}" alt="Profile Picture">
+        </div>
+
+        <div class="contact Panel">
+            <div class="Header">{{ languageService.getTranslation('Contact') }}</div>
+            <!-- example.component.html -->
+            <div class="contact-list">
+                <p>
+                    <span class="icon">
+                        <i class="bi-geo-alt"></i>
+                    </span>
+                    <span class="data" [innerHTML]="resumeData.Contact.Address.replaceAll(', ',',\<br\>')"></span>
+                </p>
+                <p>
+                    <span class="icon">
+                        <i class="bi-envelope"></i>
+                    </span>
+                    <span class="data">
+                        <a href="mailto:{{ commonDataService.CommonData?.Contact?.Email }}">{{ commonDataService.CommonData?.Contact?.Email }}</a>
+                    </span>
+                </p>
+                <p>
+                    <span class="icon">
+                        <i class="bi-telephone"></i>
+                    </span>
+                    <span class="data">{{ commonDataService.CommonData?.Contact?.Phone }}</span>
+                </p>
+                <p>
+                    <span class="icon">
+                        <i class="bi-globe"></i>
+                    </span>
+                    <span class="data">
+                        <a href="http://{{ commonDataService.CommonData?.Website }}">{{ commonDataService.CommonData?.Website }}</a>
+                    </span>
+                </p>
+                <p>
+                    <span class="icon">
+                        <i class="bi-linkedin"></i>
+                    </span>
+                    <span class="data">
+                        <a href="{{ commonDataService.CommonData?.LinkedIn_URL }}">{{ resumeData.Contact.LinkedIn_Preview }}</a>
+                    </span>
+                </p>
+                <p>
+                    <span class="icon">
+                        <i class="bi-person-vcard"></i>
+                    </span>
+                    <span class="data">{{ resumeData.Contact.Driverlicense }}</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="profile Panel">
+            <div class="Header">{{ languageService.getTranslation('Profile') }}</div>
+            <p class="ProfileText">{{ resumeData.Profile }}</p>
+        </div>
+        <div class="Panel">
+            <div class="Header">
+              <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
+              <div class="SubTitle">{{ languageService.getTranslation('ProgrammingLanguage') }}</div>
+            </div>
+          
+            <div class="SkillList">
+              @for (skill of resumeData.Skills.ProgrammingLanguages; track $index) {
+                <div class="skill">
+                  <div class="skill-name">{{ skill.Name }}</div>
+                  
+                  <div class="skill-experience">
+                    @if(skill.Experience.School) {
+                      <div class="experience-item">
+                        <span class="badge school">School</span>
+                        <span>{{ skill.Experience.School }}</span>
+                      </div>
+                    }
+          
+                    @if(skill.Experience.Work) {
+                      <div class="experience-item">
+                        <span class="badge work">{{languageService.getTranslation('Work')}}</span>
+                        <span>{{ skill.Experience.Work }}</span>
+                      </div>
+                    }
+          
+                    @if(skill.Experience.Hobby) {
+                      <div class="experience-item">
+                        <span class="badge hobby">Hobby</span>
+                        <span>{{ skill.Experience.Hobby }}</span>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+          
+          <!-- Language Section -->
+          <div class="Panel">
+            <div class="Header">
+              <div class="Title">{{ languageService.getTranslation('Skills') }}</div>
+              <div class="SubTitle">{{ languageService.getTranslation('Language') }}</div>
+            </div>
+          
+            <div class="SkillList">
+              @for (language of resumeData.Skills.Languages; track $index) {
+                <div class="skill">
+                  <div class="skill-name">{{ language.Name }}</div>
+                  <div class="skill-proficiency">{{ language.Proficiency }}</div>
+                </div>
+              }
+            </div>
+          </div>
+          
+    </div>
+    <div class="MainPanel">
+        <div class="HeaderBlock Panel">
+            <h1 class="FirstName">{{ commonDataService.CommonData?.FirstName }}</h1>
+            <h1 class="Name">{{ commonDataService.CommonData?.Name }}</h1>
+            <h2 class="Title">{{ resumeData.Title }}</h2>
+        </div>
+        <div class="Panel">
+            <div class="Header">{{ languageService.getTranslation('Education') }}</div>
+            <div class="List">
+                @for (edu of resumeData.Education; track $index)
+                {
+                <div class="Entry">
+                    <div class="EntryHeader">
+                        <div class="LeftSide">
+                            <h4 class="Degree">{{ edu.Degree }}</h4>
+                            <div class="Year">({{ edu.Year }})</div>
+                        </div>
+                        <div class="RightSide">
+                            <div class="Company">{{ edu.School }}</div>
+                            <div class="Location">{{ edu.Location }}</div>
+                        </div>
+                    </div>
+                    <p class="Description">{{ edu.Description }}</p>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="Panel">
+            <div class="Header">{{ languageService.getTranslation('WorkExperience') }}</div>
+            <div class="List">
+                @for (exp of resumeData.Experience; track $index)
+                {
+                <div class="Entry">
+                    <div class="EntryHeader">
+                        <div class="LeftSide">
+                            <h4 class="Degree">{{ exp.Title }}</h4>
+                            <div class="Year">({{ exp.Dates }})</div>
+                        </div>
+                        <div class="RightSide">
+                            <div class="Company">{{ exp.Company }}</div>
+                            <div class="Location">{{ exp.Location }}</div>
+                        </div>
+                    </div>
+                    <p class="Description">{{ exp.Description }}</p>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="Panel">
+            <div class="Header">{{ languageService.getTranslation('References') }}</div>
+            <div class="References">
+                @for (ref of resumeData.References; track $index)
+                {
+                <div class="ReferenceEntry">
+                    <p class="Degree">{{ ref.Name }}</p>
+                    <p class="Company">{{ ref.Title }}</p>
+                    <div class="ContactInfo">
+                        <span class="icon">
+                            <i class="bi-telephone"></i>
+                        </span>
+                        <span class="Phone">{{ ref.Phone }}</span>
+                    </div>
+                    <div class="ContactInfo">
+                        <span class="icon">
+                            <i class="bi-envelope"></i>
+                        </span>
+                        <span class="Email">
+                            <a href="mailto:{{ ref.Email }}">{{ ref.Email }}</a>
+                        </span>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<button (click)="downloadResumePDF()">{{languageService.getTranslation('DownloadPDF')}}</button>
+}

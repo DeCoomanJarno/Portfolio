@@ -1,0 +1,33 @@
+[
+    {
+      "id": "GameOfLife",
+      "title": "Conway's Game of Life",
+      "description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
+      "technologies": ["C", "C++", "SDL2", "Visual Studio"],
+      "images": [
+        "Resources/Projects/GameOfLife/Images/GameOfLife_1.png"
+      ],
+      "link": {
+        "name": "Github Repository",
+        "icon": "Github",
+        "url": "https://github.com/DeCoomanJarno/Conway-GameOfLife"
+      }
+    },
+    {
+      "id": "Calculator",
+      "title": "Calculator",
+      "description": "A collection of three calculators: Simple Calculator, Science Calculator, and Programming Calculator.",
+      "technologies": ["TypeScript", "CSS", "Angular", "Visual Studio Code"],
+      "images": [
+        "Resources/Projects/Calculator/Images/Calculator_Programming.png",
+        "Resources/Projects/Calculator/Images/Calculator_Science.png",
+        "Resources/Projects/Calculator/Images/Calculator_Simple.png"
+      ],
+      "link": {
+        "name": "Try out",
+        "icon": "Export",
+        "url": "/Calculator"
+      }
+    }
+  ]
+  
