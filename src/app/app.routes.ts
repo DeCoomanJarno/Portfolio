@@ -8,7 +8,6 @@ import { CalculatorPageComponent } from './WebApplications/Calculator/Components
 import { ProjectItemPageComponent } from './Project/Components/project-item-page/project-item-page.component';
 
 export const routes: Routes = [
-    { path: '**', redirectTo: '/Home' },
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomePageComponent },
     { path: 'Projects', component: ProjectsPageComponent},

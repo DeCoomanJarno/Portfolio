@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import {  RouterModule } from '@angular/router';
 import { HeaderComponent } from './Core/Components/header/header.component';
 import { FooterComponent } from './Core/Components/Footer/footer.component';
@@ -8,11 +9,10 @@ import { FooterComponent } from './Core/Components/Footer/footer.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [HeaderComponent, RouterModule, FooterComponent],
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent{
+  styleUrls: ['./app.component.css'],
+  providers: []
 
-  constructor(
-  ) {}
+})
+export class AppComponent {
 
 }
