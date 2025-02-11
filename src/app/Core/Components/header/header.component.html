@@ -6,8 +6,7 @@
       </a>
     </div>
     <div class="AlignRight">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" (click)="closeNavbar()">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
@@ -15,21 +14,17 @@
     <!-- Navbar collapse section -->
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/Home"
-            routerLinkActive="active">{{languageService.getTranslation('Home')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Projects"
-            routerLinkActive="active">{{languageService.getTranslation('Projects')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Resume"
-            routerLinkActive="active">{{languageService.getTranslation('Resume')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Home" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Home')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Projects" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Projects')}}</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/Resume" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Resume')}}</a></li>
       </ul>
       <!-- Language Selector, aligned to the right -->
       <div class="ml-auto language-selector d-flex align-items-center">
         <select id="language" (change)="changeLanguage($event)" class="form-control">
           <option value="EN">{{ languageService.getTranslation('languageSelector')['EN'] }}</option>
-          <option value="NL">{{ languageService.getTranslation('languageSelector')['NL'] }}</option>
+         <!-- <option value="NL">{{ languageService.getTranslation('languageSelector')['NL'] }}</option>-->
         </select>
       </div>
-
     </div>
   </nav>
 </header>

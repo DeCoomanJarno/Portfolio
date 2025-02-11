@@ -87,18 +87,6 @@
   .AlignRight {
     margin-left: auto; /* Ensure right alignment */
   }
-  /* Navbar collapse styles */
-  .collapse {
-    position: relative;
-    background: #eaebec;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: -1;
-    opacity: 0; /* Start hidden */
-  }
-  
-  .collapse.show {
-    opacity: 1; /* Show the menu */
-  }
   .nav-item {
     width: 100%;
   }
