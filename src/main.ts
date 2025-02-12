@@ -10,6 +10,6 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
-    provideRouter(routes) // Enables hash-based routing
+    provideRouter(routes,withHashLocation()) // Enables hash-based routing
   ]
 }).catch(err => console.error(err));

@@ -5,17 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecting...</title>
   <script>
-    // Capture the current path the user tried to visit
+    // Capture the current path the user tried 
     var path = window.location.pathname;
-
-    // Redirect the user to the home page (index.html)
-    // Let Angular handle routing once the home page is loaded
-    window.location.replace('/');
-
-    // Wait until the home page is loaded, then use Angular's router to navigate to the original route
-    window.addEventListener('load', function() {
-      window.location.replace(path);
-    });
+    // Redirect to the home page but with a query parameter
+    window.location.replace('/?redirected=true#' + path);
   </script>
 </head>
 <body></body>
