@@ -5,6 +5,7 @@ import { LanguageService } from '../../../Core/Services/language.service';
 import * as jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { CommonDataService } from '../../../Core/Services/common-data.service';
+import domtoimage from 'dom-to-image';
 
 @Component({
   selector: 'app-resume-page',
@@ -39,29 +40,46 @@ export class ResumePageComponent implements OnInit {
   }
   @ViewChild('resumeContent', { static: false }) resumeContent!: ElementRef;
 
-  downloadResumePDF() {
+  downloadResumePDF() { 
+    if (!this.resumeData) {
+      console.warn('Resume data not loaded');
+      return;
+    }
+
     const resumeElement = this.resumeContent.nativeElement;
 
-    html2canvas(resumeElement).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF.jsPDF('p', 'mm', 'a4');
-      const imgWidth = 208;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    domtoimage
+    .toPng(resumeElement, {
+      quality: 1,
+      bgcolor: '#ffffff',
+      width: resumeElement.offsetWidth,
+      height: resumeElement.offsetHeight
+    }).then((dataUrl) => {
+      const pdf = new jsPDF.jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (resumeElement.offsetHeight * imgWidth) / resumeElement.offsetWidth;
       let heightLeft = imgHeight;
       let position = 0;
 
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.addImage(dataUrl, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
 
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save(`${this.commonDataService.CommonData?.FirstName}_${this.commonDataService.CommonData?.Name}_${this.languageService.getTranslation('Resume')}.pdf`);
-    });
-  }
+while (heightLeft > 0) {
+  pdf.addPage();
+  position = heightLeft - imgHeight;
+  pdf.addImage(dataUrl, 'PNG', 0, position, imgWidth, imgHeight);
+  heightLeft -= pageHeight;
+}
+pdf.save(
+        `${this.commonDataService.CommonData?.FirstName}_${this.commonDataService.CommonData?.Name}_${this.languageService.getTranslation('Resume')}.pdf`
+      );
+    })
+      .catch((error) => {
+        console.error('Error generating image:', error);
+      }); }
 }

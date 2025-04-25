@@ -1,5 +1,6 @@
 @if (resumeData) {
-<div class="resume" #resumeContent>
+<div  class="test">
+    <div class="resume" #resumeContent>
     <div class="SidePanel">
         <div class="ProfileImage">
             <img src="{{commonDataService.CommonData?.ProfileImage}}" alt="Profile Picture">
@@ -192,6 +193,6 @@
             </div>
         </div>
     </div>
-</div>
+</div></div>
 <button (click)="downloadResumePDF()">{{languageService.getTranslation('DownloadPDF')}}</button>
 }

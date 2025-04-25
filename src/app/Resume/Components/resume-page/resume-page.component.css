@@ -1,13 +1,18 @@
 .resume {
-  margin-top: 20px;
+  width: 100%; /* Ensure full width */
   font-family: Arial, sans-serif;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 20px;
+  display: flex; /* Use flexbox to align SidePanel and MainPanel */
+}
+.test
+{
+  margin-top: 20px;
+  width: 100%; /* Ensure full width */
   max-width: 1300px;
   min-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  display: flex; /* Use flexbox to align SidePanel and MainPanel */
 }
 .List{
   display: flex;

@@ -33,10 +33,12 @@ export class ProjectItemPageComponent implements OnInit, AfterViewInit, AfterVie
   ngAfterViewChecked(): void {
     if(!this.isHighlighted && this.project) 
       {
-        const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
-        tooltipElements.forEach(el => new bootstrap.Tooltip(el));
-        hljs.highlightAll();
-        this.isHighlighted = true;
+        setTimeout(() => {
+          const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
+          tooltipElements.forEach(el => new bootstrap.Tooltip(el));
+          hljs.highlightAll();
+          this.isHighlighted = true;
+        }, 0);
       } 
   }
 
