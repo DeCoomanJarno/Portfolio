@@ -4,11 +4,10 @@ import { ProjectPreviewModel } from '../../Models/project-model';
 import { ProjectItemComponent } from '../project-item/project-item.component';
 
 @Component({
-  selector: 'app-projects-page',
-  standalone: true,
-  imports: [ProjectItemComponent],
-  templateUrl: './projects-page.component.html',
-  styleUrl: './projects-page.component.css'
+    selector: 'app-projects-page',
+    imports: [ProjectItemComponent],
+    templateUrl: './projects-page.component.html',
+    styleUrl: './projects-page.component.css'
 })
 export class ProjectsPageComponent implements OnInit {
   projects: ProjectPreviewModel[] = [];

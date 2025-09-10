@@ -29,11 +29,10 @@ export function mergeDeep(target: any, source: any): any {
 }
 
 @Component({
-  selector: 'app-home-page',
-  standalone: true,
-  imports: [ProjectItemComponent, RouterLink],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+    selector: 'app-home-page',
+    imports: [ProjectItemComponent, RouterLink],
+    templateUrl: './home-page.component.html',
+    styleUrl: './home-page.component.css'
 })
 export class HomePageComponent implements OnInit {
   homeData:HomeModel | undefined;

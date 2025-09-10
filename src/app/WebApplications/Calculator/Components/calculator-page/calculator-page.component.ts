@@ -9,11 +9,10 @@ enum ECalculatorType
 }
 
 @Component({
-  selector: 'app-calculator-page',
-  standalone: true,
-  imports: [SimpleCalculatorComponent, ScienceCalculatorComponent, ProgrammingCalculatorComponent],
-  templateUrl: './calculator-page.component.html',
-  styleUrl: './calculator-page.component.css'
+    selector: 'app-calculator-page',
+    imports: [SimpleCalculatorComponent, ScienceCalculatorComponent, ProgrammingCalculatorComponent],
+    templateUrl: './calculator-page.component.html',
+    styleUrl: './calculator-page.component.css'
 })
 export class CalculatorPageComponent {
   ECalculatorType = ECalculatorType;

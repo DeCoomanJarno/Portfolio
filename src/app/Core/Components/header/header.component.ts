@@ -5,11 +5,10 @@ import { LanguageService } from '../../Services/language.service';
 import { CommonDataService } from '../../Services/common-data.service';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+    selector: 'app-header',
+    imports: [RouterModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   constructor(public languageService: LanguageService, public commonDataService: CommonDataService) {}

@@ -3,11 +3,10 @@ import { Calculation } from '../base-calculator/base-calculator.component';
 import { ProgrammingCalculation } from '../programming-calculator/programming-calculator.component';
 
 @Component({
-  selector: 'app-history-tab',
-  standalone: true,
-  imports: [],
-  templateUrl: './history-tab.component.html',
-  styleUrls: ['./history-tab.component.css'] // Fixed the property name from styleUrl to styleUrls
+    selector: 'app-history-tab',
+    imports: [],
+    templateUrl: './history-tab.component.html',
+    styleUrls: ['./history-tab.component.css'] // Fixed the property name from styleUrl to styleUrls
 })
 export class HistoryTabComponent {
   history: (Calculation|ProgrammingCalculation)[] = [];

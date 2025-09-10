@@ -6,11 +6,10 @@ import { CommonDataService } from '../../../Core/Services/common-data.service';
 import html2pdf from 'html2pdf.js';
 
 @Component({
-  selector: 'app-resume-page',
-  standalone: true,
-  imports: [],
-  templateUrl: './resume-page.component.html',
-  styleUrls: ['./resume-page.component.css']
+    selector: 'app-resume-page',
+    imports: [],
+    templateUrl: './resume-page.component.html',
+    styleUrls: ['./resume-page.component.css']
 })
 export class ResumePageComponent implements OnInit {
   resumeData: ResumeData | undefined;

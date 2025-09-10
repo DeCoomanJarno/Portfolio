@@ -6,11 +6,10 @@ import { GameConfigComponent } from '../../../../Core/Components/game-config/gam
 import { LoadingComponent } from '../../../../Core/Components/loading/loading.component';
 
 @Component({
-  selector: 'app-langtons-ant-page',
-  standalone: true,
-  imports: [CommonModule, GameConfigComponent, LoadingComponent],
-  templateUrl: './langtons-ant-page.component.html',
-  styleUrl: './langtons-ant-page.component.css'
+    selector: 'app-langtons-ant-page',
+    imports: [CommonModule, GameConfigComponent, LoadingComponent],
+    templateUrl: './langtons-ant-page.component.html',
+    styleUrl: './langtons-ant-page.component.css'
 })
 export class LangtonsAntPageComponent implements OnInit {
 

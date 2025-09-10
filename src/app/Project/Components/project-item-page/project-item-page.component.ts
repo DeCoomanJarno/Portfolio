@@ -10,11 +10,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 declare var bootstrap: any; // Ensure Bootstrap JS is recognized
 
 @Component({
-  selector: 'app-project-item-page',
-  standalone: true,
-  imports: [IconPipe],
-  templateUrl: './project-item-page.component.html',
-  styleUrl: './project-item-page.component.css'
+    selector: 'app-project-item-page',
+    imports: [IconPipe],
+    templateUrl: './project-item-page.component.html',
+    styleUrl: './project-item-page.component.css'
 })
 export class ProjectItemPageComponent implements OnInit, AfterViewInit, AfterViewChecked {
   project: ProjectModel | undefined;

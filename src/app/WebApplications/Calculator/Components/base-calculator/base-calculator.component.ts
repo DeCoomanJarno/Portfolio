@@ -9,11 +9,10 @@ export interface Calculation {
 }
 
 @Component({
-  selector: 'app-base-calculator',
-  standalone: true,
-  imports: [ReactiveFormsModule, HistoryTabComponent],
-  templateUrl: './base-calculator.component.html',
-  styleUrls: ['./base-calculator.component.css'],
+    selector: 'app-base-calculator',
+    imports: [ReactiveFormsModule, HistoryTabComponent],
+    templateUrl: './base-calculator.component.html',
+    styleUrls: ['./base-calculator.component.css']
 })
 export class BaseCalculatorComponent {
   @ViewChild('expressionInput') expressionInput!: ElementRef<HTMLInputElement>;

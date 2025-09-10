@@ -6,12 +6,10 @@ import { fab } from '@fortawesome/free-brands-svg-icons'; // For brand icons
 
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [FontAwesomeModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css' ,
-
+    selector: 'app-footer',
+    imports: [FontAwesomeModule],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.css'
 })
 export class FooterComponent {
   currentYear: number = new Date().getFullYear();

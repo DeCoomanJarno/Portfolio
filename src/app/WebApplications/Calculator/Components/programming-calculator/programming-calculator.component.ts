@@ -27,14 +27,13 @@ export class ProgrammingModeValue {
 }
 
 @Component({
-  selector: 'app-programming-calculator',
-  standalone: true,
-  imports: [FormsModule, NgClass, ReactiveFormsModule, HistoryTabComponent],
-  templateUrl: './programming-calculator.component.html',
-  styleUrls: [
-    './programming-calculator.component.css',
-    '../base-calculator/base-calculator.component.css',
-  ],
+    selector: 'app-programming-calculator',
+    imports: [FormsModule, NgClass, ReactiveFormsModule, HistoryTabComponent],
+    templateUrl: './programming-calculator.component.html',
+    styleUrls: [
+        './programming-calculator.component.css',
+        '../base-calculator/base-calculator.component.css',
+    ]
 })
 export class ProgrammingCalculatorComponent {
   operators = /([-+×÷()*/])/;

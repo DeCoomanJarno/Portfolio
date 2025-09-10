@@ -6,11 +6,10 @@ import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 declare var bootstrap: any; // Ensure Bootstrap JS is recognized
 
 @Component({
-  selector: 'app-project-item',
-  standalone: true,
-  imports: [RouterLink, IconPipe, NgClass],
-  templateUrl: './project-item.component.html',
-  styleUrl: './project-item.component.css'
+    selector: 'app-project-item',
+    imports: [RouterLink, IconPipe, NgClass],
+    templateUrl: './project-item.component.html',
+    styleUrl: './project-item.component.css'
 })
 export class ProjectItemComponent implements OnInit, AfterViewInit {
   @Input() project!: ProjectPreviewModel;

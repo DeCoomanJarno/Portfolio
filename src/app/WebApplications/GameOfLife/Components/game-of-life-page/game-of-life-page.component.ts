@@ -6,11 +6,10 @@ import { LoadingComponent } from "../../../../Core/Components/loading/loading.co
 import { Cell } from '../../../../Core/Models/Cell.Model';
 
 @Component({
-  selector: 'app-game-of-life-page',
-  standalone: true,
-  imports: [CommonModule, GameConfigComponent, LoadingComponent],
-  templateUrl: './game-of-life-page.component.html',
-  styleUrls: ['./game-of-life-page.component.css'],
+    selector: 'app-game-of-life-page',
+    imports: [CommonModule, GameConfigComponent, LoadingComponent],
+    templateUrl: './game-of-life-page.component.html',
+    styleUrls: ['./game-of-life-page.component.css']
 })
 export class GameOfLifePageComponent implements OnInit {
 
