@@ -11,7 +11,6 @@
         { "Name": "C++", "Experience": { "School": "3 years", "Hobby": "4 years" } },
         { "Name": "C#", "Experience": { "Work": "1 year", "School": "1 year", "Hobby": "2 years" } },
         { "Name": "Angular", "Experience": { "Work": "< 1 year", "Hobby": "< 1 year" } },
-        { "Name": "Typescript", "Experience": { "Work": "< 1 year", "Hobby": "< 1 year" } },
         { "Name": "Git / Perforce / TFS / Azure DevOps", "Experience": { "School": "3 years", "Work": "1 year" } }
       ],
       "Languages": [
