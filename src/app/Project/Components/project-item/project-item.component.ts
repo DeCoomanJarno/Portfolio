@@ -3,11 +3,12 @@ import { ProjectPreviewModel } from '../../Models/project-model';
 import { RouterLink } from '@angular/router';
 import { isPlatformBrowser, NgClass, NgStyle } from '@angular/common';
 import { IconPipe } from '../../../Core/Pipes/icon.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 declare var bootstrap: any; // Ensure Bootstrap JS is recognized
 
 @Component({
     selector: 'app-project-item',
-    imports: [RouterLink, IconPipe, NgClass],
+    imports: [RouterLink, IconPipe, NgClass, TranslatePipe],
     templateUrl: './project-item.component.html',
     styleUrl: './project-item.component.css'
 })

@@ -1,0 +1,46 @@
+{
+    "languages": {
+        "en": "Engels",
+        "nl": "Nederlands"
+    },
+    "titles": {
+        "home": "Startpagina",
+        "resume": "CV",
+        "about": "Over mij",
+        "projects": "Projecten",
+        "contact": "Contact",
+        "certificates": "Certificaten"
+    },
+    "home": {
+        "title": "Software Engineer",
+        "shortBio": "Ervaren in C#, C++, .NET en Angular.",
+        "aboutMe": "Ik ben een gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Ik blink uit in samenwerkingsgerichte omgevingen en vind het leuk om innovatieve, geoptimaliseerde oplossingen te creëren.",
+        "contactMessage": "Neem gerust contact op voor samenwerkingen of carrièremogelijkheden."
+    },
+    "skill": {
+        "names": {
+            "frontend": "Frontend-ontwikkeling",
+            "backend": "Backend-ontwikkeling",
+            "gameDev": "Gameontwikkeling",
+            "3dDesign": "3D & Design",
+            "devops": "DevOps & Tools",
+            "embedded": "Embedded & Hardware"
+        },
+        "level": {
+            "advanced": "Gevorderd",
+            "intermediate": "Halfgevorderd",
+            "basic": "Basis"
+        }
+    },
+    "certificate": {
+        "titles": {
+            "ba4": "BA4 - Elektrische Veiligheidskennis",
+            "vca": "VCA - Veiligheid voor Operationeel Medewerkers",
+            "cra": "Inzicht in de EU Cyber Resilience Act (CRA) (LFEL1001)",
+            "sololearn": {
+                "c#Intermediate": "C# Halfgevorderd",
+                "genAIinPractice": "Generatieve AI in de praktijk"
+            }
+        }
+    }
+}

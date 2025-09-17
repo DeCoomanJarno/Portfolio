@@ -1,0 +1,88 @@
+{
+    "resume": {
+        "profile": "Gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Blink uit in samenwerkingsgerichte omgevingen en geniet van het creëren van innovatieve, geoptimaliseerde oplossingen.",
+        "download": "Print PDF",
+        "driverLicense": "Rijbewijs",
+        "languageProficiency": {
+            "Native": "Moedertaal",
+            "Fluent": "Vloeiend",
+            "Basic": "Basis"
+        },
+        "titles": {
+            "contact": "Contact",
+            "profile": "Profiel",
+            "skills": "Vaardigheden",
+            "programmingLanguage": "Programmeertalen",
+            "language": "Talen",
+            "education": "Opleiding",
+            "workExperience": "Werkervaring",
+            "references": "Referenties",
+            "download": "Downloaden"
+        },
+        "skillNames": {
+            "school": "School",
+            "work": "Werk",
+            "hobby": "Hobby"
+        },
+        "monthShort": "mnd",
+        "yearShort": "jr",
+        "now": "Heden",
+        "Native": "Moedertaal",
+        "Fluent": "Vloeiend",
+        "Basic": "Basis",
+        "title": "Software Engineer",
+        "contact": {
+            "address": "9260 Schellebelle, België"
+        },
+        "education": {
+            "dae": {
+                "degree": "Gameontwikkeling",
+                "level": "Bachelor",
+                "location": "Kortrijk, België",
+                "description": "Intensief programma met training in C++, C#, game design, 3D-modellering en animatie."
+            },
+            "scheppers": {
+                "degree": "Industriële Wetenschappen",
+                "level": "Middelbare school",
+                "location": "Wetteren, België",
+                "description": "Brede opleiding in fysica, chemie, wiskunde en ingenieurswetenschappen."
+            }
+        },
+        "experience": {
+            "kion": {
+                "title": "Software Engineer",
+                "badge": "Voltijds medewerker",
+                "location": "Antwerpen, België",
+                "description": "Ontwikkel software voor de automatisering van AGV’s en zorg voor een naadloze integratie van deze systemen in de toeleveringsketen."
+            },
+            "onebonsai": {
+                "title": "Stage",
+                "badge": "Stagiair",
+                "location": "Leuven, België",
+                "description": "Praktijkervaring opgedaan met het ontwikkelen van VR-toepassingen met Unreal Engine."
+            },
+            "studycouncil": {
+                "title": "Opleidingsraad",
+                "badge": "Student",
+                "location": "Kortrijk, België",
+                "description": "Meegewerkt aan de ontwikkeling van de opleiding Game Development door feedback te geven over docenten, vakken en examens."
+            },
+            "deplaetse": {
+                "title": "Ober/Barman",
+                "badge": "Studentenjob",
+                "location": "Schellebelle, België",
+                "description": "Geholpen als ober en af en toe ook in de keuken of achter de bar."
+            }
+        },
+        "references": {
+            "everest": {
+                "title": "CEO",
+                "relationship": "Voormalig stagebegeleider"
+            },
+            "robin": {
+                "title": "Teamleider",
+                "relationship": "Directe leidinggevende"
+            }
+        }
+    }
+}

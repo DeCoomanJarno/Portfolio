@@ -1,4 +1,10 @@
 {
+    "home": {
+        "projects": [
+            "GameOfLife",
+            "Calculator"
+        ]
+    },
     "Name": "De Cooman",
     "FirstName": "Jarno",
     "ProfileImage": "Resources/Jarno-image.png",
@@ -9,5 +15,160 @@
     },
     "Website": "decoomanjarno.github.io",
     "LinkedIn_URL": "http://www.linkedin.com/in/jarno-de-cooman-223515243",
-    "Github_URL": "https://github.com/DeCoomanJarno"
+    "Github_URL": "https://github.com/DeCoomanJarno",
+    "SkillCategories": [
+        {
+            "Name": "skill.names.frontend",
+            "Icon": "code",
+            "Skills": [
+                {
+                    "Name": "HTML",
+                    "Level": "skill.level.advanced"
+                },
+                {
+                    "Name": "CSS / SCSS",
+                    "Level": "skill.level.advanced"
+                },
+                {
+                    "Name": "Angular",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "TypeScript",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "C# WPF",
+                    "Level": "skill.level.intermediate"
+                }
+            ]
+        },
+        {
+            "Name": "skill.names.backend",
+            "Icon": "dns",
+            "Skills": [
+                {
+                    "Name": "C# .NET",
+                    "Level": "skill.level.advanced"
+                },
+                {
+                    "Name": "SQL",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "Node.js",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "C",
+                    "Level": "skill.level.basic"
+                }
+            ]
+        },
+        {
+            "Name": "skill.names.gameDev",
+            "Icon": "sports_esports",
+            "Skills": [
+                {
+                    "Name": "Unity",
+                    "Level": "skill.level.advanced"
+                },
+                {
+                    "Name": "Unreal Engine",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "C++",
+                    "Level": "skill.level.advanced"
+                },
+                {
+                    "Name": "C#",
+                    "Level": "skill.level.advanced"
+                }
+            ]
+        },
+        {
+            "Name": "skill.names.3dDesign",
+            "Icon": "view_in_ar",
+            "Skills": [
+                {
+                    "Name": "Adobe Photoshop",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "Houdini",
+                    "Level": "skill.level.basic"
+                },
+                {
+                    "Name": "Autodesk Maya",
+                    "Level": "skill.level.basic"
+                },
+                {
+                    "Name": "Blender",
+                    "Level": "skill.level.basic"
+                }
+            ]
+        },
+        {
+            "Name": "skill.names.devops",
+            "Icon": "build",
+            "Skills": [
+                {
+                    "Name": "Azure DevOps",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "Git",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "TFS",
+                    "Level": "skill.level.basic"
+                },
+                {
+                    "Name": "Perforce",
+                    "Level": "skill.level.basic"
+                }
+            ]
+        },
+        {
+            "Name": "skill.names.embedded",
+            "Icon": "memory",
+            "Skills": [
+                {
+                    "Name": "Arduino",
+                    "Level": "skill.level.basic"
+                },
+                {
+                    "Name": "Raspberry Pi",
+                    "Level": "skill.level.basic"
+                }
+            ]
+        }
+    ],
+    "Certificates": [
+        {
+            "Title" : "certificate.titles.sololearn.c#Intermediate",
+            "Issuer" : "SoloLearn",
+            "Date": "14-09-2025",
+            "Url": "https://www.sololearn.com/certificates/CC-L8YME3NH"
+        },
+        {
+            "Title" : "certificate.titles.sololearn.genAIinPractice",
+            "Issuer" : "SoloLearn",
+            "Date": "14-09-2025",
+            "Url": "https://www.sololearn.com/certificates/CC-MXCOK5MR"
+        },
+        {
+            "Title" : "certificate.titles.cra",
+            "Issuer" : "The Linux Foundation",
+            "Date": "27-06-2025"
+        },
+        {
+            "Title": "certificate.titles.vca",
+            "Issuer": "Constructiv",
+            "Date": "07-02-2019",
+            "Url": "https://csm-examen.be/cdr"
+        }
+    ]
 }

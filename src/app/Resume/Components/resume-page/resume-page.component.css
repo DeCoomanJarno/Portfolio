@@ -1,337 +1,331 @@
-.resume {
-  width:  300mm;
-  font-family: Arial, sans-serif;
-  border-radius: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 16px;
-  display: flex; /* Use flexbox to align SidePanel and MainPanel */
-}
-.test
-{
-  margin-top: 20px;
-  width: 100%; /* Ensure full width */
-
-  margin: 0 auto;
-}
-.List{
+/* Main resume wrapper */
+.resume-wrapper {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
-  gap: 10px; /* Adds space between the items */
+  flex-direction: column;
+  align-items: center;
 }
-/* ProfileImage with fixed height */
+
+/* Resume container: responsive on screen, fixed for print */
+.resume {
+  width: 100%; /* Responsive for screens */
+  max-width: 300mm; /* Keep A4 size for large screens & print */
+  display: flex;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border-radius: var(--border-radius);
+  margin: 0 auto;
+  background: var(--color-background);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* Allows side + main panels to wrap on small screens */
+}
+
+.resume a:hover{
+  color: var(--color-secondary);
+}
+
+/* SIDE PANEL */
+.SidePanel {
+  width: 35%;
+  min-width: 200px; /* prevent being too narrow */
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: 8px 0 0 8px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Profile Image */
 .ProfileImage {
-  height: 20ch; /* Adjust the height as needed */
+  text-align: center;
+  height: 20ch;
 }
+
 .ProfileImage img {
   display: block;
   margin: 12px auto;
-  border: white 3px solid;
-  border-radius: 5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--color-on-primary);
+  border-radius: var(--border-radius);
   width: 20ch;
 }
 
-/* SidePanel and MainPanel */
-.SidePanel {
-  top: 0;
-  background-color: #006680;
-  width: 35%;
-  color: white;
-  border-radius: 8px 0 0 8px;
+/* Contact section */
+.contact-list a {
+  color: var(--color-on-primary);
 }
-
-.MainPanel {
-  width: 65%;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
-  background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius:0 8px 8px 0;
-}
-
-/* HeaderBlock with the same height as ProfileImage */
-.MainPanel .HeaderBlock {
-  margin-top: 20px;
-  height: 20ch; /* Match this height with ProfileImage */
-  align-items: center;
-  justify-content: center;
-  text-wrap: nowrap;
-}
-
-.MainPanel .FirstName {
-  font: 400 3.562rem / 2rem Roboto, sans-serif;
-  padding: 17px 0;
-  margin: 0;
-  color: #4d4d4f;
-  font-weight: bold;
-  font-size: 55px;
-  letter-spacing: 1vw;
-}
-.MainPanel .Name {
-  font: 400 3.562rem / 4rem Roboto, sans-serif;
-  padding: 0;
-  margin: 0;
-  color: #4d4d4f;
-  font-size: 45px;
-  letter-spacing: 1vw;
-}
-
-.MainPanel .Title {
-  letter-spacing: 2px;
-  font: 400 2rem / 1.25rem Roboto, sans-serif;
-  font-size: 20px;
-  color: #666;
-}
-
-/* Panels inside the MainPanel */
-.Panel {
-  margin: 0px 10%;
-}
-
-/* Header styles */
-.Header {
-  text-align: center;
-  font-size: xx-large;
-  color: white;
-  background-color: black;
-  padding: 10px;
-  margin: 20px 0 10px 0;
-}
-
-.Header .SubTitle {
-  font-size: medium;
-  margin: 0;
-  padding: 0;
-}
-
-/* Flexbox layout for contact-list */
 .contact-list p {
   display: flex;
   align-items: center;
+  margin: 8px 0;
+  font-size: 14px;
 }
 
-/* Styling for icons in the contact list */
-.icon {
-  margin-right: 15px;
-  display: flex;
-  align-items: center;
+.contact-list .icon {
+  margin-right: 10px;
   font-size: 18px;
-}
-
-/* Ensure long text in .data elements wraps */
-.data {
-  width: 100%;
+  flex-shrink: 0;
 }
 
 .data a {
-  color: white;
-  word-wrap: break-word;
-  word-break: break-all;
-  overflow-wrap: anywhere;
+  color: var(--color-on-primary);
+  word-break: break-word;
+  text-decoration: none;
 }
+
 .data a:hover {
   text-decoration: underline;
 }
 
-/* Profile text alignment */
+/* Profile section */
 .ProfileText {
   text-align: justify;
+  font-size: 14px;
 }
-.skill-list {
+
+/* Skills sections */
+.SkillList {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Space between skills */
-  margin-top: 15px;
+  gap: 10px;
 }
 
 .skill {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align the items vertically */
-  padding: 10px;
-  border-radius: 8px;
+  align-items: center;
   transition: transform 0.2s;
+  padding: .5rem;
 }
 
 .skill:hover {
-  transform: translateY(-5px); /* Slight hover effect */  
+  transform: translateY(-5px);
+  /* Slight hover effect */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .skill-name {
-  font-size: 1.25rem;
   font-weight: bold;
-  flex: 1; /* Take all available space */
+  font-size: 14px;
+  flex: 1;
 }
 
 .skill-experience {
-  flex-wrap: wrap; /* Allow the badges to wrap */
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 5px;
   text-align: right;
 }
 
-.experience-item {
-  margin-bottom: 8px;
-}
-
 .badge {
-  display: inline-block;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 15px;
-  margin-right: 5px;
+  margin-right: 10px;
+  border-radius: 12px;
+  color: var(--color-on-primary);
 }
 
 .badge.school {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--color-secondary);
 }
 
 .badge.work {
-  background-color: #2196F3;
-  color: white;
+  background-color: var(--color-accent);
 }
 
 .badge.hobby {
-  background-color: #FF9800;
-  color: white;
+  background-color: var(--color-warn);
 }
 
 .skill-proficiency {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
+/* MAIN PANEL */
+.MainPanel {
+  width: 65%;
+  min-width: 250px;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-.Entry
-{
+/* Header Block */
+.HeaderBlock {
+  text-align: center;
+}
+
+.HeaderBlock .FirstName,
+.HeaderBlock .Name {
+  font: 400 3.562rem / 2rem Roboto, sans-serif;
+  margin: 0;
+}
+
+.HeaderBlock .FirstName {
+  padding: 17px 0;
+  font-weight: bold;
+  font-size: 55px;
+  letter-spacing: 4px;
+  color: var(--color-primary);
+}
+
+.HeaderBlock .Name {
+  padding: 0;
+  padding-bottom: 5px;
+  font-size: 45px;
+  letter-spacing: 3px;
+  color: var(--color-primary-hover);
+}
+
+.HeaderBlock .Title {
+  font-size: 20px;
+  margin: 0;
+  color: var(--color-on-surface);
+}
+
+/* Panel sections */
+.Panel {
+  margin-bottom: 20px;
+}
+
+.Header {
+  text-align: center;
+  font-size: 20px;
+  background-color: var(--color-header);
+  color: var(--color-on-header);
+  padding: 5px 0;
+  margin-bottom: 10px;
+  border-radius: var(--border-radius);
+}
+
+.Entry {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--border-radius);
   padding: 10px;
-  border: 2px solid #c1c1f2;
-  border-radius: 8px;
-  background-color: white;
-  width: 100%;
+  margin-bottom: 10px;
 }
-/* Style for each education entry */
+
 .EntryHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 5px;
 }
 
-/* Style for the right side (School, Location, Year) */
+.Degree {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+}
+
+.References .Company{
+  font-size: 14px;
+}
 .RightSide {
   text-align: right;
 }
 
-/* Degree (larger, bolded title) */
- .Degree {
-  font-size: 22px;
+.RightSide .Company {
   font-weight: bold;
-  margin: 0;
-  color: #333;
-}
-
-/* School and Location */
- .Company {
-  font-weight: bold;
-  margin: 5px 0 0 0;
-  color: #666;
-}
-
-/* Location */
- .Location {
   font-size: 14px;
-  margin: 0;
-  color: #999;
 }
 
-/* Year (dates) */
- .Year {
+.RightSide .Location {
+  font-size: 12px;
+  color: var(--color-on-surface-hover);
+}
+
+.Year {
   font-weight: bold;
-  color: #333;
-  margin: 0;
-  line-height: 1;
+  color: var(--color-on-surface-hover);
+  font-size: 13px;
 }
 
-/* Description */
- .Description {
-  font-size: 16px;
-  color: #555;
-  margin: 10px 0;
+.Description {
+  font-size: 14px;
   text-align: justify;
+  margin-top: 5px;
 }
-.References
-{
+
+/* References */
+.References {
   display: flex;
-  flex-wrap: wrap; /* Allows the references to wrap onto the next line */
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.ReferenceEntry
-{
+
+.ReferenceEntry {
+  color: var(--color-on-surface);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--border-radius);
   padding: 10px;
-  border: 2px solid #c1c1f2;
-  border-radius: 8px;
-  background-color: white;
-  font-size: 16px;
-  color: #333;
+  background-color: var(--color-surface);
 }
-/* Contact info styling */
+
+.References a {
+  color: var(--color-on-surface);
+}
+
 .ContactInfo {
   display: flex;
   align-items: center;
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 5px;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
-/* Icon styling */
 .ContactInfo .icon {
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: #666;
+  margin-right: 8px;
 }
 
-/* Email styling */
-.ContactInfo a {
-  text-decoration: none;
-  color: #333;
-}
-
-.ContactInfo a:hover {
-  text-decoration: underline;
-}
-/* Button styling */
-button {
-  background-color: #006680; /* Matches the SidePanel color */
-  color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: bold;
+/* Download button */
+button.download-btn {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  margin: 20px auto; /* Center the button */
-  display: block; /* Center the button in block layout */
+  margin: 10px auto;
+  display: block;
 }
 
-/* Button hover effect */
-button:hover {
-  background-color: #005266;
-  transform: scale(1.05); /* Slight enlarge on hover */
+button.download-btn:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(1.05);
 }
 
-/* Button focus effect */
-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Button active effect (when clicked) */
-button:active {
-  background-color: #004552;
+button.download-btn:active {
   transform: scale(0.98);
+}
+
+/* Responsive for PDF scaling */
+@media print {
+  .resume {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  button.download-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .resume {
+    flex-direction: column;
+  }
+
+  .SidePanel,
+  .MainPanel {
+    width: 100%;
+    border-radius: 8px;
+  }
 }

@@ -2,22 +2,158 @@
 @import 'bootstrap';
 @import 'highlight.js/styles/github.css';
 
+/* styles.css */
+:root {
+  /* Brand and primary UI colors */
+  --color-primary: #006680;
+  --color-on-primary: #fff;
+  --color-on-primary-hover: #bbbbbb;
+  --color-primary-hover: #005266;
+  --color-primary-active: #004552;
+
+  --color-secondary: #00b7c2;
+  --color-on-secondary: #fff;
+  --color-secondary-hover: #028899;
+  --color-secondary-active: #026672;
+
+  /* Surface colors */
+  --color-surface: #fff;
+  --color-on-surface: #181818;
+  --color-surface-hover: #f3f3f3;
+  --color-surface-active: #ebebeb;
+
+  /* header colors */
+  --color-header: #181818;
+  --color-on-header: #fff;
+
+  /* project item colors */
+  --color-project: #e1e1e1;
+  --color-on-project: #181818;
+
+  /* Background colors */
+  --color-background: #f9f9f9;
+  --color-on-background: #181818;
+
+  /* Accent & warn */
+  --color-accent: #e5aa35;
+  --color-on-accent: #111;
+  --color-accent-hover: #ffd166;
+  --color-accent-active: #ffa600;
+
+  --color-warn: rgb(234, 42, 38);
+  --color-on-warn: #fff;
+  --color-warn-hover: #ffbdbd;
+
+  /* Disabled state */
+  --color-disabled-bg: #e0e0e0;
+  --color-on-disabled: #a8a8a8;
+
+  /* Borders, shadows */
+  --color-outline: #bdbdbd;
+  --color-boxShadow: rgba(0, 0, 0, 0.08);
+  --color-boxShadow-hover: rgba(0, 0, 0, 0.15);
+
+  /* default values */
+  --border-radius: 8px;
+  --transition-duration: 0.3s;
+  --transition-ease: ease-in-out;
+  --transform-duration: .3s;
+  --transform-ease: ease-in-out;
+  --card-padding: 1.5rem;
+}
+
+body.dark-mode {
+  --color-primary: #56b3c0;
+  --color-on-primary: #181818;
+  --color-on-primary-hover: #757575;
+  --color-primary-hover: #33899a;
+  --color-primary-active: #236679;
+
+  --color-secondary: #00eee6;
+  --color-on-secondary: #181818;
+  --color-secondary-hover: #33f4e2;
+  --color-secondary-active: #25c8bc;
+
+  --color-surface: #232323;
+  --color-on-surface: #fafafa;
+  --color-surface-hover: #292929;
+  --color-surface-active: #313131;
+
+  /* header colors */
+  --color-header: #44474a;
+  --color-on-header: #fff;
+
+  /* project item colors */
+  --color-project: #44474a;
+  --color-on-project: #fff;
+
+  --color-background: #181818;
+  --color-on-background: #fafafa;
+
+  --color-accent: #ffd166;
+  --color-on-accent: #222;
+  --color-accent-hover: #ffe599;
+  --color-accent-active: #ffd166;
+
+  --color-warn: #ff8a80;
+  --color-on-warn: #222;
+  --color-warn-hover: #ffbdbd;
+
+  --color-disabled-bg: #44474a;
+  --color-on-disabled: #949494;
+
+  --color-boxShadow: rgba(255, 255, 255, 0.08);
+  --color-boxShadow-hover: rgba(255, 255, 255, 0.15);
+
+  --color-outline: #33383b;
+}
+
+
+/* Apply variables to app */
+body {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+/* apply to everything */
+*,
+*::before,
+*::after {
+  transition:
+    transform var(--transform-duration) var(--transform-ease),
+    background-color var(--transition-duration) var(--transition-ease),
+    color var(--transition-duration) var(--transition-ease),
+    box-shadow var(--transition-duration) var(--transition-ease);
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
-  a {
-    color: #3498db;
-    text-decoration: none;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  

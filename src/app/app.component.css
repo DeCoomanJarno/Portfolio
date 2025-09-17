@@ -6,4 +6,6 @@
   
 .Content {
   flex-grow: 1; /* Pushes the footer to the bottom */
+  background: var(--color-surface);
+  color: var(--color-on-surface);
 }

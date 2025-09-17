@@ -1,85 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageService } from '../../../Core/Services/language.service';
 import { ProjectItemComponent } from '../../../Project/Components/project-item/project-item.component';
 import { ProjectPreviewModel } from '../../../Project/Models/project-model';
 import { ProjectService } from '../../../Project/Services/project-service';
+import { CommonData, CommonDataService } from '../../../Core/Services/common-data.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
-import { HomeModel } from '../../Models/home-model';
-import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
-import { CommonDataService } from '../../../Core/Services/common-data.service';
-
-export function mergeDeep(target: any, source: any): any {
-  const isObject = (obj: any) => obj && typeof obj === 'object';
-
-  Object.keys(source).forEach(key => {
-    const targetValue = target[key];
-    const sourceValue = source[key];
-
-    if (Array.isArray(sourceValue)) {
-      target[key] = sourceValue;
-    } else if (isObject(targetValue) && isObject(sourceValue)) {
-      target[key] = mergeDeep({ ...targetValue }, sourceValue);
-    } else {
-      target[key] = sourceValue;
-    }
-  });
-
-  return target;
-}
+import { ResumeService } from '../../../Resume/Services/resume.service';
+import { ResumeData } from '../../../Resume/Models/ResumeData.model';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-home-page',
-    imports: [ProjectItemComponent, RouterLink],
-    templateUrl: './home-page.component.html',
-    styleUrl: './home-page.component.css'
+  selector: 'app-home-page',
+  standalone: true,
+  imports: [ProjectItemComponent, TranslateModule, RouterLink, AsyncPipe],
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  homeData:HomeModel | undefined;
-  projects: ProjectPreviewModel[] = [];
+  public projects: ProjectPreviewModel[] = [];
+  public commonData!: CommonData;
+  public resumeData$  // <-- direct observable
 
   constructor(
-    public languageService: LanguageService,
     private projectService: ProjectService,
-    public commonDataService: CommonDataService,
-    private http: HttpClient // Injecting HttpClient for fetching JSON
-  ) {}
+    private commonDataService: CommonDataService,
+    private resumeService: ResumeService
+  ) {
+    this.resumeData$ = this.resumeService.resumeData$;
+  }
 
   ngOnInit(): void {
-    this.LoadHomeData();
-    // Fetch projects from the service
-    this.projectService.getProjects().subscribe((data: ProjectPreviewModel[]) => {
-      // Filter projects based on the IDs in homeData.Projects
-      this.projects = data.filter(pr => 
-        this.homeData?.Projects.some(project => project === pr.id)
-      );
+    this.commonDataService.commonData$.subscribe(data => {
+      if (data) {
+        this.commonData = data;
+        this.loadProjects(data.home.projects);
+      }
     });
   }
 
-  navigateToResume() {
-    window.location.href = '/resume';
-  }
-
-  // Load home data for the current language, with fallback to English
-  LoadHomeData() {
-    this.languageService.currentLanguage$.subscribe(lang => {
-      const enUrl = `Resources/Json/${this.languageService.defaultLang}/Home_${this.languageService.defaultLang}.json`;
-      const localizedUrl = `Resources/Json/${lang}/Home_${lang}.json`;
-
-      // Load both English and localized JSON files
-      forkJoin({
-        en: this.http.get<HomeModel>(enUrl),
-        localized: this.http.get<HomeModel>(localizedUrl)
-      }).subscribe(({ en, localized }) => {
-        // Merge localized data with English fallback
-        this.homeData = mergeDeep(en, localized);
-        this.projectService.getProjects().subscribe((data: ProjectPreviewModel[]) => {
-          // Filter projects based on the IDs in homeData.Projects
-          this.projects = data.filter(pr => 
-            this.homeData?.Projects.some(project => project === pr.id)
-          );
-        });
-      });
+  private loadProjects(projectIds: string[]) {
+    this.projectService.getProjects().subscribe(data => {
+      this.projects = data.filter(pr => projectIds.includes(pr.id));
     });
   }
+
 }

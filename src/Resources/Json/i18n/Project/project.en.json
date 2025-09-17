@@ -1,0 +1,68 @@
+{
+    "Project": {
+        "Description": "Description",
+        "FuturePlans": "Future Plans",
+        "TechUsed": "Technologies Used",
+        "Links": "Links",
+        "Copy": "Copy",
+        "Copied": "Copied!",
+        "NotFound": "Project not found.",
+        "ImageAlt": "Project image {{index}}",
+        "GameOfLife": {
+            "Title": "Conway's Game of Life",
+            "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
+            "Content": [
+                "Conway's Game of Life is a cellular automaton devised by mathematician John Conway. It consists of a grid of cells that evolve based on specific rules. This project implements the game using C++ and SDL2, allowing for visualization of the cellular evolution.",
+                "The game operates on a simple set of rules that determine the fate of each cell in the grid based on its neighbors. Each cell can either be alive or dead, and the state of the grid changes with each iteration, creating fascinating patterns and behaviors.",
+                "<h4> Rules of Conway's Game of Life</h4><ol><li>Any live cell with fewer than two live neighbors dies (underpopulation).</li><li>Any live cell with two or three live neighbors lives on to the next generation.</li><li>Any live cell with more than three live neighbors dies (overpopulation).</li><li>Any dead cell with exactly three live neighbors becomes a live cell (reproduction).</li></ol>",
+                "The GameOfLife class handles the core mechanics, including grid initialization, event handling, updating the grid, and rendering cells. The game starts with a random distribution of live and dead cells and follows Conway's rules to update the grid at each step.",
+                "The Update method processes each cell and determines whether it should be alive or dead in the next generation based on the number of neighboring live cells. The game maintains a buffer to prevent modifying the grid while it is being updated.",
+                "The TMatrix class is a custom template matrix implementation used to store the game grid. It supports dynamic memory allocation and ensures efficient access to cell states."
+            ],
+            "Features": [
+                "Cellular Automation",
+                "Object Oriented Programming",
+                "Real-time rendering with SDL2",
+                "Dynamic memory allocation"
+            ],
+            "Future": [
+                "Options can be added for user interaction, allowing manual cell placement and modifications to the grid.",
+                "Rendering performance can be improved to ensure smoother visuals and better efficiency, especially for larger grids.",
+                "UI settings can be introduced for adjusting grid scale, colors, and other visual aspects to enhance customization.",
+                "Start and stop options can be implemented, giving users more control over when the simulation runs or pauses."
+            ],
+            "Links": {
+                "Wikipedia": "Wikipedia: Conway's Game of Life",
+                "Github": "Github Repository"
+            }
+        },
+        "Calculator": {
+            "Title": "Calculator Project",
+            "Description": "A collection of three calculators: Simple Calculator, Scientific Calculator, and Programming Calculator.",
+            "Content": [
+                "This project is a feature-rich calculator built using Angular. It supports three different modes: Simple Calculator, Scientific Calculator, and Programming Calculator. The simple and scientific calculators share a common BaseCalculatorComponent, while the programming calculator includes custom logic to handle numeral system conversions and logical operations.",
+                "The Simple Calculator enables fundamental arithmetic operations such as addition, subtraction, multiplication, and division. It provides a user-friendly interface with keyboard support and real-time result evaluation.",
+                "The Scientific Calculator expands on the Simple Calculator by introducing trigonometric functions (sin, cos, tan), exponentiation, and mathematical constants like Pi (π) and Euler's number (e). It offers enhanced functionality for more advanced calculations.",
+                "The Programming Calculator is designed for software developers and engineers. It enables conversions between hexadecimal, decimal, octal, and binary number systems. Additionally, it supports bitwise operations such as AND, OR, XOR, NOT, left shift, and right shift. This makes it a powerful tool for low-level programming and hardware interaction.",
+                "Key Features include basic arithmetic operations (+, -, *, /), scientific functions (sin, cos, tan, sqrt, exponentiation), programming mode with number system conversions, bitwise operations (AND, OR, XOR, NOT, shifts), keyboard input support, real-time evaluation, and history tracking of calculations.",
+                "The calculator operates with a shared base component that provides common functionalities such as result evaluation and input handling. Below is the TypeScript class for the BaseCalculatorComponent, which serves as the foundation for all three calculator modes.",
+                "The Programming Calculator extends the BaseCalculatorComponent and introduces numeral system handling. It allows users to switch between binary, octal, decimal, and hexadecimal modes seamlessly.",
+                "The calculator also includes a history component that stores previous calculations. This feature enhances usability by allowing users to recall and reuse past equations.",
+                "The Programming Calculator supports direct keyboard input for operations. It validates input based on the selected mode, ensuring that users can only enter valid characters. The getAllowedCharacters method restricts input based on the current numeral system."
+            ],
+            "Features": [
+                "User-friendly interface",
+                "Supports multiple calculation types",
+                "Real-time updates"
+            ],
+            "Future": [
+                "Add graphing capabilities for scientific functions.",
+                "Implement a history feature to track previous calculations.",
+                "Enhance UI with themes and customization options."
+            ],
+            "Links": {
+                "TryOut": "Try out"
+            }
+        }
+    }
+}

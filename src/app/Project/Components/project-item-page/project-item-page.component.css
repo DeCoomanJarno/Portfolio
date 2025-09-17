@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  list-style-type: none;
   justify-content: space-evenly;
 }
 
@@ -20,7 +21,7 @@
 
 /* Tooltip Styling */
 .tech-item img[title] {
-  color: red;
+  color: var(--color-warn);
 }
 
 .project-header {
@@ -34,7 +35,7 @@
 
 .project-description {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--color-on-surface);
   line-height: 1.8;
   margin-bottom: 30px;
 }
@@ -45,7 +46,7 @@
 .project-future-plans h3,
 .project-links h3,
 .project-content h3 {
-  border-bottom: 2px solid #006680;
+  border-bottom: 2px solid var(--color-primary);
   /* Horizontal line effect */
   font-size: 1.6rem;
   margin-top: 30px;
@@ -53,7 +54,7 @@
 }
 
 .feature-item {
-  background-color: #006680;
+  background-color: var(--color-primary);
   color: #fff;
   padding: 10px;
   border-radius: 20px;
@@ -76,13 +77,13 @@
 
 .project-link {
   font-size: 1.1rem;
-  color: #006680;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .project-link:hover {
-  color: #004552;
+  color: var(--color-primary-hover);
 }
 
 .text-block {
@@ -99,7 +100,8 @@
   height: auto;
   max-width: 250px;
 }
-.image-block img{
+
+.image-block img {
   border-radius: 10px;
 }
 
@@ -115,8 +117,8 @@
 
 .code-block {
   position: relative;
-  background: #1e1e1e;
-  color: #fff;
+  background: var(--color-background);
+  color: var(--color-on-background);
   padding: 0px;
   border-radius: 5px;
   margin: 10px 0px;
@@ -137,8 +139,8 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  background: #444;
-  color: white;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -146,5 +148,5 @@
 }
 
 .copy-button:hover {
-  background: #666;
+  background: var(--color-surface-hover);
 }

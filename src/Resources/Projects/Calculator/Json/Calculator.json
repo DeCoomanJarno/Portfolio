@@ -1,0 +1,90 @@
+{
+  "title": "Project.Calculator.Title",
+  "description": "Project.Calculator.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "Calculator_Simple.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.1"
+    },
+    {
+      "type": "image",
+      "value": "Calculator_Science.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.2"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.3"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.4"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.5"
+    },
+    {
+      "type": "code",
+      "value": "export class BaseCalculatorComponent {\n  displayControl = new FormControl('');\n  temporaryResult: string = '';\n  error: string = '';\n\n  constructor() {\n    this.displayControl.valueChanges.subscribe(value => {\n      this.updateTemporaryResult(value || '');\n    });\n  }\n\n  updateTemporaryResult(value: string) {\n    try {\n      this.temporaryResult = eval(value).toString();\n      this.error = '';\n    } catch (error) { }\n  }\n}",
+      "codeLanguage": "typescript"
+    },
+    {
+      "type": "image",
+      "value": "Calculator_Programming.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.6"
+    },
+    {
+      "type": "code",
+      "value": "/** Enum representing different programming modes */\nexport enum EProgrammingMode {\n  Binary = 2,\n  Octal = 8,\n  Dec = 10,\n  Hex = 16,\n}",
+      "codeLanguage": "typescript"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.7"
+    },
+    {
+      "type": "code",
+      "value": "AddCalculation(calculation: Calculation | ProgrammingCalculation) {\n    if (!this.HasCalculation(calculation)) {\n      this.history.push(calculation);\n    }\n  }",
+      "codeLanguage": "typescript"
+    },
+    {
+      "type": "text",
+      "value": "Project.Calculator.Content.8"
+    },
+    {
+      "type": "code",
+      "value": "/** Returns the allowed characters for the current mode */\nprivate getAllowedCharacters(): RegExp {\n  const operatorsPattern = this.escapeRegex(this.operators.source);\n\n  switch (this.currentMode) {\n    case EProgrammingMode.Binary:\n      return new RegExp(`^[01${operatorsPattern}]$`);\n    case EProgrammingMode.Octal:\n      return new RegExp(`^[0-7${operatorsPattern}]$`);\n    case EProgrammingMode.Dec:\n      return new RegExp(`^[0-9${operatorsPattern}]$`);\n    case EProgrammingMode.Hex:\n      return new RegExp(`^[0-9A-Fa-f${operatorsPattern}]$`);\n    default:\n      return new RegExp(`^[${operatorsPattern}]$`);\n  }\n}",
+      "codeLanguage": "typescript"
+    }
+  ],
+  "features": [
+    "Project.Calculator.Features.0",
+    "Project.Calculator.Features.1",
+    "Project.Calculator.Features.2"
+  ],
+  "futurePlans": [
+    "Project.Calculator.Future.0",
+    "Project.Calculator.Future.1",
+    "Project.Calculator.Future.2"
+  ],
+  "links": [
+  ],
+  "technologies": [
+    "Angular",
+    "TypeScript"
+  ]
+}

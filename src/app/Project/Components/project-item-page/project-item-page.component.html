@@ -1,93 +1,97 @@
 <div class="project-detail-page">
-  @if(project && projectPreviewModel) {
-  <!-- Project Header -->
-  <div class="project-header">
-    <h1>{{ project.title }}</h1>
-    <p class="project-description">{{ project.description }}</p>
+  @if (project && projectPreviewModel) {
 
-    <!-- Features Section -->
-    @if(project.features && project.features.length > 0) {
-    <div class="feature-list">
-      @for (feature of project.features; track $index) {
-      <div class="feature-item">
-        <a>{{ feature }}</a>
-      </div>
+    <!-- Project Header -->
+    <section class="project-header">
+      <h1>{{ project.title | translate }}</h1>
+      <p class="project-description">{{ project.description | translate }}</p>
+
+      @if (project.features.length > 0) {
+        <ul class="feature-list">
+          @for (feature of project.features; track $index) {
+            <li class="feature-item">{{ feature | translate }}</li>
+          }
+        </ul>
       }
-    </div>
-    }
-  </div>
+    </section>
 
-  <!-- Content Section -->
-  <div class="content-section">
-    <h3>Description</h3>
-    @for (item of project.content; track $index) {
-    @if(item.type === 'text') {
-    <div class="text-block">
-      <p>{{ item.value }}</p>
-    </div>
-    }
-    @else if(item.type === 'image') {
-    <div class="image-block" [class]="$index % 2 === 0 ? 'right' : 'left'">
-      <img [src]="item.value" alt="Project Image">
-    </div>
-    }
-    @else if(item.type === 'code') {
-    <div class="code-block">
-      <pre>
-            <code [class]="item.codeLanguage ?? 'c'" class="code-block">{{ item.value }}</code>
-          </pre>
-      <button class="copy-button bi-copy" (click)="copyCode(item.value, $event.target)"></button>
-    </div>
-    }
-    @else if (item.type === 'other') {
-    <div class="text-block other" [innerHTML]="ConvertToHTML(item.value)">
-    </div>
-    }
-    }
-  </div>
+    <!-- Content Section -->
+    @if (project.content.length > 0) {
+      <section class="content-section">
+        <h3>{{ 'Project.Description' | translate }}</h3>
 
+        @for (item of project.content; track $index) {
+          @if (item.type === 'text') {
+            <div class="text-block">
+              <p>{{ item.value | translate }}</p>
+            </div>
+          }
+          @else if (item.type === 'image') {
+            <div class="image-block" [class.right]="$index % 2 === 0" [class.left]="$index % 2 !== 0">
+              <img [src]="'Resources/Projects/' + projectPreviewModel.id + '/Images/' + item.value" [alt]="'Project.ImageAlt' | translate:{ index: $index+1 }">
+            </div>
+          }
+          @else if (item.type === 'code') {
+            <div class="code-block">
+              <pre><code [class]="item.codeLanguage ?? 'c'">{{ item.value }}</code></pre>
+              <button class="copy-button bi-copy" (click)="copyCode(item.value, $event.target)">
+                {{ 'Project.Copy' | translate }}
+              </button>
+            </div>
+          }
+          @else if (item.type === 'other') {
+            <div class="text-block other" [innerHTML]="ConvertToHTML(item.value | translate)"></div>
+          }
+        }
+      </section>
+    }
 
-  <!-- Future Plans Section -->
-  @if(project.futurePlans && project.futurePlans.length > 0) {
-  <div class="project-future-plans">
-    <h3>Future Plans</h3>
-    <ul class="future-plans-list">
-      @for (plan of project.futurePlans; track $index) {
-      <p class="future-plan-item">{{ plan }}</p>
-      }
-    </ul>
-  </div>
-  }
-  <!-- Technologies Used -->
-  <div class="project-tech">
-    <h3>Technologies Used</h3>
-    <ul class="tech-list">
-      @for (item of projectPreviewModel.technologies; track $index) {
-      <div class="tech-item">
-        <img [src]="item | icon" [alt]="item" data-toggle="tooltip" data-bs-placement="top" [title]="item">
-      </div>
-      }
-    </ul>
-  </div>
+    <!-- Future Plans -->
+    @if (project.futurePlans.length > 0) {
+      <section class="project-future-plans">
+        <h3>{{ 'Project.FuturePlans' | translate }}</h3>
+        <ul class="future-plans-list">
+          @for (plan of project.futurePlans; track $index) {
+            <li class="future-plan-item">{{ plan | translate }}</li>
+          }
+        </ul>
+      </section>
+    }
 
-  <!-- Links Section (GitHub, Web Link, etc.) -->
-  @if(project.links && (projectPreviewModel.link || project.links.length > 0)) {
-  <div class="project-links">
-    <h3>Links</h3>
-    <ul class="link-list">
-      <li class="link-item">
-        <a [href]="projectPreviewModel.link.url" target="_blank" class="project-link">{{projectPreviewModel.link.name}}</a>
-      </li>
-      @for (link of project.links; track $index) {
-      <li class="link-item">
-        <a [href]="link.url" target="_blank" class="project-link">{{ link.name }}</a>
-      </li>
-      }
-    </ul>
-  </div>
-  }
+    <!-- Technologies Used -->
+    @if (projectPreviewModel.technologies.length > 0) {
+      <section class="project-tech">
+        <h3>{{ 'Project.TechUsed' | translate }}</h3>
+        <ul class="tech-list">
+          @for (tech of projectPreviewModel.technologies; track $index) {
+            <li class="tech-item">
+              <img [src]="tech | icon" [alt]="tech" data-toggle="tooltip" data-bs-placement="top" [title]="tech">
+            </li>
+          }
+        </ul>
+      </section>
+    }
+
+    <!-- Links -->
+    @if (project.links.length > 0 || projectPreviewModel.link) {
+      <section class="project-links">
+        <h3>{{ 'Project.Links' | translate }}</h3>
+        <ul class="link-list">
+          @if (projectPreviewModel.link) {
+            <li class="link-item">
+              <a [href]="projectPreviewModel.link.url" target="_blank" class="project-link">{{ projectPreviewModel.link.name | translate }}</a>
+            </li>
+          }
+          @for (link of project.links; track $index) {
+            <li class="link-item">
+              <a [href]="link.url" target="_blank" class="project-link">{{ link.name | translate}}</a>
+            </li>
+          }
+        </ul>
+      </section>
+    }
 
   } @else {
-  <p>Project not found.</p>
+    <p>{{ 'Project.NotFound' | translate }}</p>
   }
 </div>

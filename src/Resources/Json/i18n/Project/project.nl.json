@@ -1,0 +1,68 @@
+{
+    "Project": {
+        "Description": "Beschrijving",
+        "FuturePlans": "Toekomstplannen",
+        "TechUsed": "Gebruikte technologieën",
+        "Links": "Links",
+        "Copy": "Kopiëren",
+        "Copied": "Gekopieerd!",
+        "NotFound": "Project niet gevonden.",
+        "ImageAlt": "Projectafbeelding {{index}}",
+        "GameOfLife": {
+            "Title": "Conway's Game of Life",
+            "Description": "Een implementatie van Conway's Game of Life met C++ en SDL2, met dynamische celupdates en rendering.",
+            "Content": [
+                "Conway's Game of Life is een cellulair automaton bedacht door wiskundige John Conway. Het bestaat uit een raster van cellen die evolueren op basis van specifieke regels. Dit project implementeert het spel met C++ en SDL2, waardoor de cel-evolutie gevisualiseerd kan worden.",
+                "Het spel werkt op een eenvoudige set regels die het lot van elke cel in het raster bepalen op basis van zijn buren. Elke cel kan levend of dood zijn, en de toestand van het raster verandert bij elke iteratie, wat fascinerende patronen en gedragingen oplevert.",
+                "<h4> Regels van Conway's Game of Life</h4><ol><li>Elke levende cel met minder dan twee levende buren sterft (onderbevolking).</li><li>Elke levende cel met twee of drie levende buren blijft leven in de volgende generatie.</li><li>Elke levende cel met meer dan drie levende buren sterft (overbevolking).</li><li>Elke dode cel met precies drie levende buren wordt een levende cel (voortplanting).</li></ol>",
+                "De GameOfLife-klasse beheert de kernmechanismen, waaronder rasterinitialisatie, eventafhandeling, het bijwerken van het raster en het renderen van cellen. Het spel start met een willekeurige verdeling van levende en dode cellen en volgt de regels van Conway om het raster bij elke stap bij te werken.",
+                "De Update-methode verwerkt elke cel en bepaalt of deze in de volgende generatie levend of dood moet zijn, op basis van het aantal levende buurcellen. Het spel gebruikt een buffer om te voorkomen dat het raster wordt aangepast terwijl het wordt bijgewerkt.",
+                "De TMatrix-klasse is een aangepaste template-matriximplementatie die wordt gebruikt om het spelraster op te slaan. Deze ondersteunt dynamische geheugenallocatie en zorgt voor efficiënte toegang tot de celtoestanden."
+            ],
+            "Features": [
+                "Cellulaire automatisering",
+                "Objectgeoriënteerd programmeren",
+                "Realtime rendering met SDL2",
+                "Dynamische geheugenallocatie"
+            ],
+            "Future": [
+                "Er kunnen opties worden toegevoegd voor gebruikersinteractie, zodat handmatige celplaatsing en aanpassingen aan het raster mogelijk worden.",
+                "De renderprestaties kunnen worden verbeterd om soepelere visuals en betere efficiëntie te garanderen, vooral bij grotere rasters.",
+                "Er kunnen UI-instellingen worden toegevoegd om het rasterformaat, de kleuren en andere visuele aspecten aan te passen voor meer personalisatie.",
+                "Start- en stopopties kunnen worden toegevoegd, zodat gebruikers meer controle hebben over wanneer de simulatie draait of pauzeert."
+            ],
+            "Links": {
+                "Wikipedia": "Wikipedia: Conway's Game of Life",
+                "Github": "Github-repository"
+            }
+        },
+        "Calculator": {
+            "Title": "Rekenmachineproject",
+            "Description": "Een verzameling van drie rekenmachines: eenvoudige rekenmachine, wetenschappelijke rekenmachine en programmeerrekenmachine.",
+            "Content": [
+                "Dit project is een uitgebreide rekenmachine gebouwd met Angular. Het ondersteunt drie verschillende modi: eenvoudige rekenmachine, wetenschappelijke rekenmachine en programmeerrekenmachine. De eenvoudige en wetenschappelijke rekenmachines delen een gemeenschappelijke BaseCalculatorComponent, terwijl de programmeerrekenmachine aangepaste logica bevat voor omzettingen tussen talstelsels en logische bewerkingen.",
+                "De eenvoudige rekenmachine ondersteunt basisbewerkingen zoals optellen, aftrekken, vermenigvuldigen en delen. Het biedt een gebruiksvriendelijke interface met toetsenbordondersteuning en realtime resultaatberekening.",
+                "De wetenschappelijke rekenmachine breidt de eenvoudige rekenmachine uit met trigonometrische functies (sin, cos, tan), machtsverheffingen en wiskundige constanten zoals Pi (π) en het getal van Euler (e). Dit biedt uitgebreide functionaliteit voor meer geavanceerde berekeningen.",
+                "De programmeerrekenmachine is ontworpen voor softwareontwikkelaars en engineers. Deze ondersteunt omzettingen tussen hexadecimale, decimale, octale en binaire talstelsels. Daarnaast ondersteunt deze bitbewerkingen zoals AND, OR, XOR, NOT, links schuiven en rechts schuiven. Dit maakt het een krachtig hulpmiddel voor low-level programmeren en hardware-interactie.",
+                "Belangrijke functies zijn onder andere: basisbewerkingen (+, -, *, /), wetenschappelijke functies (sin, cos, tan, sqrt, machtsverheffingen), programmeermodus met talstelselomzettingen, bitbewerkingen (AND, OR, XOR, NOT, verschuivingen), toetsenbordinvoerondersteuning, realtime evaluatie en het bijhouden van een geschiedenis van berekeningen.",
+                "De rekenmachine werkt met een gedeelde basiscomponent die gemeenschappelijke functionaliteiten biedt zoals resultaatevaluatie en invoerverwerking. Hieronder staat de TypeScript-klasse voor de BaseCalculatorComponent, die dient als basis voor alle drie de rekenmachinemodi.",
+                "De programmeerrekenmachine breidt de BaseCalculatorComponent uit en introduceert ondersteuning voor talstelsels. Hiermee kunnen gebruikers eenvoudig schakelen tussen binaire, octale, decimale en hexadecimale modi.",
+                "De rekenmachine bevat ook een geschiedeniscomponent die eerdere berekeningen opslaat. Deze functie verhoogt de gebruiksvriendelijkheid door gebruikers toe te staan eerdere vergelijkingen opnieuw te gebruiken.",
+                "De programmeerrekenmachine ondersteunt directe toetsenbordinvoer voor bewerkingen. Deze valideert de invoer op basis van de geselecteerde modus, zodat gebruikers alleen geldige tekens kunnen invoeren. De methode getAllowedCharacters beperkt de invoer op basis van het huidige talstelsel."
+            ],
+            "Features": [
+                "Gebruiksvriendelijke interface",
+                "Ondersteunt meerdere soorten berekeningen",
+                "Realtime updates"
+            ],
+            "Future": [
+                "Grafieken toevoegen voor wetenschappelijke functies.",
+                "Een geschiedenisfunctie implementeren om eerdere berekeningen bij te houden.",
+                "De UI verbeteren met thema's en aanpassingsopties."
+            ],
+            "Links": {
+                "TryOut": "Probeer het uit"
+            }
+        }
+    }
+}

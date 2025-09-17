@@ -1,0 +1,46 @@
+{
+    "languages": {
+        "en": "English",
+        "nl": "Dutch"
+    },
+    "titles": {
+        "home": "Home",
+        "resume": "Resume",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact",
+        "certificates": "Certificates"
+    },
+    "home": {
+        "title": "Software Engineer",
+        "shortBio": "Experienced in C#, C++, .NET and Angular.",
+        "aboutMe": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
+        "contactMessage": "Feel free to get in touch for any collaboration or job opportunities."
+    },
+    "skill": {
+        "names": {
+            "frontend": "Frontend Development",
+            "backend": "Backend Development",
+            "gameDev": "Game Development",
+            "3dDesign": "3D & Design",
+            "devops": "DevOps & Tools",
+            "embedded": "Embedded & Hardware"
+        },
+        "level": {
+            "advanced": "Advanced",
+            "intermediate": "Intermediate",
+            "basic": "Basic"
+        }
+    },
+    "certificate":{
+        "titles": {
+            "ba4": "BA4 - Electrical Safety Awareness",
+            "vca": "VCA - Safety for Operational Staff",
+            "cra": "Understanding the EU Cyber Resilience Act (CRA) (LFEL1001)",
+            "sololearn": {
+                "c#Intermediate": "C# Intermediate",
+                "genAIinPractice": "Generative AI in Practice"
+            }
+        }
+    }
+}

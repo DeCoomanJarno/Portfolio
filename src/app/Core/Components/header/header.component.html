@@ -1,29 +1,68 @@
 <header class="header">
-  <nav class="navbar navbar-expand-custom fixed-top navbar-light bg-light">
+  <nav class="navbar navbar-expand-custom fixed-top navbar-light">
     <div class="logo-container">
       <a routerLink="/Home">
-        <img class="nav-item" src="{{commonDataService.CommonData?.Logo}}" alt="Logo" />
+        <img [src]="commonDataService.CommonData?.Logo" alt="Logo" />
       </a>
     </div>
-    <div class="AlignRight">
-      <button class="navbar-toggler" type="button" (click)="closeNavbar()">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
 
-    <!-- Navbar collapse section -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bi bi-list navbar-icon "></span>
+    </button>
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/Home" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Home')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Projects" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Projects')}}</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Resume" routerLinkActive="active" (click)="closeNavbar()">{{languageService.getTranslation('Resume')}}</a></li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Home" routerLinkActive="active">
+            {{ 'titles.home' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Projects" routerLinkActive="active" >
+            {{ 'titles.projects' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Resume" routerLinkActive="active">
+            {{ 'titles.resume' | translate }}
+          </a>
+        </li>
       </ul>
-      <!-- Language Selector, aligned to the right -->
+
       <div class="ml-auto language-selector d-flex align-items-center">
-        <select id="language" (change)="changeLanguage($event)" class="form-control">
-          <option value="EN">{{ languageService.getTranslation('languageSelector')['EN'] }}</option>
-         <!-- <option value="NL">{{ languageService.getTranslation('languageSelector')['NL'] }}</option>-->
-        </select>
+<div class="dropdown language-dropdown">
+  <button
+    class="btn btn-outline-secondary dropdown-toggle"
+    type="button"
+    id="languageDropdown"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    {{ 'languages.' + currentLang | translate }}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+    @for (language of languages; track $index) {
+      <li>
+        <a class="dropdown-item" href="#" (click)="setLanguage(language)">
+          {{ 'languages.' + language | translate }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>
+
+
+        <!-- Theme toggle button -->
+        <label class="theme-toggle">
+          <input type="checkbox" id="theme-checkbox" [checked]="isDarkMode" (change)="toggleTheme()">
+          <div class="toggle-track">
+            <div class="toggle-thumb">
+              <span class="bi bi-sun-fill"></span>
+              <span class="bi bi-moon-fill"></span>
+            </div>
+          </div>
+        </label>
+
       </div>
     </div>
   </nav>

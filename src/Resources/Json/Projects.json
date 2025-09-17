@@ -1,0 +1,33 @@
+[
+    {
+      "id": "GameOfLife",
+      "title": "Project.GameOfLife.Title",
+      "description": "Project.GameOfLife.Description",
+      "technologies": ["C", "C++", "SDL2", "Visual Studio"],
+      "images": [
+        "GameOfLife_1.png"
+      ],
+      "link": {
+        "name": "Project.GameOfLife.Links.Github",
+        "icon": "Github",
+        "url": "https://github.com/DeCoomanJarno/Conway-GameOfLife"
+      }
+    },
+    {
+      "id": "Calculator",
+      "title": "Project.Calculator.Title",
+      "description": "Project.Calculator.Description",
+      "technologies": ["TypeScript", "CSS", "Angular", "Visual Studio Code"],
+      "images": [
+        "Calculator_Programming.png",
+        "Calculator_Science.png",
+        "Calculator_Simple.png"
+      ],
+      "link": {
+        "name": "Project.Calculator.Links.TryOut",
+        "icon": "Export",
+        "url": "/Calculator"
+      }
+    }
+  ]
+  

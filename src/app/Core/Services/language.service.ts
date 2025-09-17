@@ -10,7 +10,7 @@ export interface Translations {
   providedIn: 'root'
 })
 export class LanguageService {
-  public defaultLang = 'EN'; // Default to English
+  public defaultLang = 'en'; // Default to English
   private currentLangSubject = new BehaviorSubject<string>(this.defaultLang); // Create a BehaviorSubject to hold the current language
   currentLanguage$ = this.currentLangSubject.asObservable(); // Expose the observable
 
@@ -23,21 +23,8 @@ export class LanguageService {
   }
 
   private loadTranslations(lang: string): void {
-    const currentLangPath = `Resources/Json/${lang}/ResourceFile_${lang}.json`;
-    const defaultLangPath = `Resources/Json/${this.defaultLang}/ResourceFile_${this.defaultLang}.json`;
   
-    forkJoin({
-      currentLang: this.http.get<Translations>(currentLangPath).pipe(catchError(() => of({}))),
-      defaultLang: this.http.get<Translations>(defaultLangPath).pipe(catchError(() => of({})))
-    }).subscribe(({ currentLang, defaultLang }) => {
-      // Merge current language translations with default translations
-      this.translations = { ...defaultLang, ...currentLang };
-  
-      // If loading default translations, cache them separately
-      if (lang === this.defaultLang) {
-        this.defaultTranslations = defaultLang;
-      }
-    });
+ 
   }
   
 

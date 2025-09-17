@@ -1,33 +1,90 @@
 /* Basic header styles */
 .header {
   height: 60px;
-  background: #eaebec;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   width: 100%;
-  position: sticky; /* Make the header sticky */
+  position: sticky;
+  /* Make the header sticky */
   top: 5px;
-  z-index: 1000; /* Added z-index to ensure header stays above other elements */
+  z-index: 1000;
+  /* Added z-index to ensure header stays above other elements */
+}
+
+.language-selector select,
+.navbar {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  border-color: var(--color-on-background);
+}
+
+.nav-link {
+  color: var(--color-on-background);
+}
+
+.nav-link.active {
+  color: var(--color-on-background);
+}
+
+.language-dropdown .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  height: 35px;
+  line-height: 1.2;
+  border-radius: 8px;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-on-surface);
+}
+
+.language-dropdown .btn:hover {
+  background-color: var(--color-secondary-hover);
+  color: var(--color-on-secondary);
+}
+
+.language-dropdown .dropdown-menu {
+  background-color: var(--color-surface);
+  border-radius: 8px;
+  min-width: auto;
+  padding: 0.25rem 0;
+}
+
+.language-dropdown .dropdown-item {
+  font-size: 0.9rem;
+  padding: 0.25rem 1rem;
+  color: var(--color-on-surface);
+}
+
+.language-dropdown .dropdown-item:hover {
+  background-color: var(--color-secondary-hover);
+  color: var(--color-on-secondary);
 }
 
 /* Logo container styles */
 .logo-container {
-  display: flex; /* Keep logo flexible */
-  align-items: center; /* Center the logo vertically */
-  position: relative; /* Change from absolute to relative */
+  display: flex;
+  /* Keep logo flexible */
+  align-items: center;
+  /* Center the logo vertically */
+  position: relative;
+  /* Change from absolute to relative */
   left: 1rem;
-  transition: all 0.6s ease;
 }
-.logo-container img{
+
+.logo-container img {
   max-height: 40px;
 }
+
 /* Separate class for logo on scroll */
 .logo-left {
-  left: 20px; /* Adjust based on padding */
-  transform: translateX(0); /* Reset transform */
-  transition: all 0.6s ease;
+  left: 20px;
+  /* Adjust based on padding */
+  transform: translateX(0);
+  /* Reset transform */
 }
 
 /* Navbar collapse styles */
@@ -37,75 +94,219 @@
 
 /* Navbar toggler styles */
 .navbar-toggler {
-  position: relative; /* Removed absolute positioning */
-  margin-left: auto; /* Align the toggler to the right */
-  transform: translateY(0); /* Ensure it's not offset */
-  z-index: 1010; /* Make sure it stays on top */
-}
-
-/* Adjustments for navbar-toggler to vertically align in the center */
-.navbar-toggler-icon {
-  background-color: #fff;
+  box-shadow: none;
+  position: relative;
+  /* Removed absolute positioning */
+  margin-left: auto;
+  /* Align the toggler to the right */
+  margin-right: 8px;
+  margin-bottom: .5rem;
+  border-color: var(--color-on-background);
 }
 
 .active {
   font-weight: bold;
 }
+
 .nav-link:hover {
-  color: cadetblue ;
+  color: var(--color-primary);
 }
+
+.navbar-icon {
+  font-size: 1.5rem;
+  color: var(--color-on-background);
+  border-color: var(--color-background);
+}
+
+/* Hide default checkbox */
+.theme-toggle input {
+  display: none;
+}
+
+/* Track */
+.toggle-track {
+  margin-left: 1rem;
+  margin-right: .5rem;
+  width: 60px;
+  height: 30px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-on-background);
+  border-radius: 50px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Thumb */
+.toggle-thumb {
+  height: 26px;
+  width: 26px;
+  margin: 1px;
+  background-color: var(--color-on-background);
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-background);
+  font-size: 0.9rem;
+}
+
+/* Move thumb when checked */
+.theme-toggle input:checked+.toggle-track .toggle-thumb {
+  transform: translateX(30px);
+  color: var(--color-background);
+}
+
+/* Icons inside thumb */
+.toggle-thumb .bi-sun-fill {
+  display: inline-block;
+}
+
+.toggle-thumb .bi-moon-fill {
+  display: none;
+}
+
+/* Show moon icon when checked */
+.theme-toggle input:checked+.toggle-track .toggle-thumb .bi-sun-fill {
+  display: none;
+}
+
+.theme-toggle input:checked+.toggle-track .toggle-thumb .bi-moon-fill {
+  display: inline-block;
+}
+
 /* Media Queries */
 @media (min-width: 1300px) {
+
   /* AlignRight container to hold the toggler and nav items */
   .AlignRight {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex: 1;
-   }
+  }
+
   .navbar-expand-custom {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
   }
+
   .navbar-expand-custom .navbar-nav {
     flex-direction: row;
   }
+
   .navbar-expand-custom .navbar-collapse {
     display: flex !important;
   }
+
   .navbar-expand-custom .navbar-toggler {
-    display: none; /* This hides the toggler on large screens */
+    display: none;
+    /* This hides the toggler on large screens */
   }
+
   .nav-link {
     margin-right: 15px;
   }
 }
 
 @media (max-width: 1300px) {
-  /* AlignRight container to hold the toggler and nav items */
-  .AlignRight {
-    margin-left: auto; /* Ensure right alignment */
+
+  /* Make the collapse take full width and slide down nicely */
+  .navbar-collapse {
+    background-color: var(--color-surface);
+    padding: 1.5rem 2rem;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
-  .nav-item {
-    width: 100%;
+
+  .navbar-icon {
+    font-size: 2rem;
+    color: var(--color-on-background);
   }
-  .nav-link {
-    padding: 1% 5%;
-    margin-right: 15px;
-  }
+
+  /* Stack nav items vertically, full width */
   .navbar-nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0.75rem;
     width: 100%;
   }
-  .active {
-    background-color: lightblue;
+
+  .nav-item {
+    width: 100%;
   }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    color: var(--color-on-background);
+  }
+
+  .nav-link:hover {
+    background-color: var(--color-secondary-hover);
+    color: var(--color-on-secondary);
+  }
+
+  .nav-link.active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary) !important;
+    font-weight: 600;
+  }
+
+  /* Language selector and theme toggle horizontally aligned at the bottom */
+  .language-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 0;
+    width: 100%;
+  }
+
+  .language-selector select {
+    flex: 1;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
+  }
+  /* Make the language dropdown smaller and fit nicely on mobile */
+.language-dropdown {
+  width: 100%;
+  margin: 0;
 }
 
-.language-selector {
-  margin-right: 20px; 
-  margin-left: 10px; 
+/* Align text left and arrow right in dropdown button */
+.language-dropdown .btn {
+  display: flex;
+  justify-content: space-between; /* Text left, arrow right */
+  align-items: center;
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+  text-align: left; /* ensures text stays left */
+}
+
+/* Optional: adjust the arrow icon if needed */
+.language-dropdown .btn::after {
+  margin-left: auto; /* keeps arrow on the right */
+}
+
+.language-dropdown .dropdown-menu {
+  width: 100%;
+  min-width: auto;
+  border-radius: 8px;
+}
+
+.language-dropdown .dropdown-item {
+  font-size: 0.85rem;
+  padding: 0.3rem 1rem;
+}
+
 }

@@ -30,6 +30,7 @@
               "src/404.html"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
@@ -47,8 +48,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "6kb",
+                  "maximumError": "12kb"
                 }
               ],
               "outputHashing": "all"
@@ -94,7 +95,9 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         },
         "lint": {
@@ -104,6 +107,46 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "JarnoLib": {
+      "projectType": "library",
+      "root": "projects/jarno-lib",
+      "sourceRoot": "projects/jarno-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/jarno-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/jarno-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/jarno-lib/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/jarno-lib/**/*.ts",
+              "projects/jarno-lib/**/*.html"
+            ],
+            "eslintConfig": "projects/jarno-lib/eslint.config.js"
           }
         }
       }

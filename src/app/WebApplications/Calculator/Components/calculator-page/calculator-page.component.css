@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #c4c4c4; /* Light gray for contrast */
+  background-color: var(--color-surface);
 }
 
 /* Button Container */
@@ -23,21 +23,21 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background-color: #006680;
-  color: white;
+  background-color: var(--color-primary);
+  background-color: var(--color-on-primary);
   transition: all 0.3s ease-in-out;
 }
 
 /* Hover Effect */
 .calculator-switch button:hover {
-  background-color: #0088a0;
+  background-color: var(--color-primary-hover);
   box-shadow: 0 4px 8px rgba(0, 136, 160, 0.4);
   transform: translateY(-2px);
 }
 
 /* Active/Selected Button */
 .calculator-switch button.active {
-  background-color: #004552;
+  background-color: var(--color-primary-active);
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 69, 82, 0.5);
 }

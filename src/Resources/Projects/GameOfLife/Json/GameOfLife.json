@@ -1,0 +1,74 @@
+{
+  "title": "Project.GameOfLife.Title",
+  "description": "Project.GameOfLife.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "GameOfLife.gif"
+    },
+    {
+      "type": "text",
+      "value": "Project.GameOfLife.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.GameOfLife.Content.1"
+    },
+    {
+      "type": "other",
+      "value": "Project.GameOfLife.Content.2"
+    },
+    {
+      "type": "other",
+      "value": "Project.GameOfLife.Content.3"
+    },
+    {
+      "type": "code",
+      "value": "class GameOfLife final: public GameTemplate\n{\npublic:\n\tGameOfLife(const int scale = 3);\n\t~GameOfLife() override;\n\n\tGameOfLife(const GameOfLife& other) = delete;\n\tGameOfLife(GameOfLife&& other) noexcept = delete;\n\tGameOfLife& operator=(const GameOfLife& other) = delete;\n\tGameOfLife& operator=(GameOfLife&& other) noexcept = delete;\n\n\tvoid HandleEvents(const SDL_Event& event) override;\n\tvoid Update() override;\n\tvoid Resize(int new_width, int new_height);\n\tvoid Render() override;\nprivate:\n\tstatic void RenderPixel(int x, int y);\n\tbool IsAlive(int x, int y) const;\n\tTMatrix<bool>* m_pGrid;\n\tTMatrix<bool>* m_pBuffer;\n\tconst int m_Scale = 1;\n};",
+      "codeLanguage": "cpp"
+    },
+    {
+      "type": "image",
+      "value": "GameOfLife_1.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.GameOfLife.Content.4"
+    },
+    {
+      "type": "code",
+      "value": "void GameOfLife::Update() {\n  const int width = m_pGrid->Rows(), height = m_pGrid->Cols();\n  for (int x = 0; x < width; x++) {\n    for (int y = 0; y < height; y++) {\n      m_pBuffer->Get(x, y) = IsAlive(x, y);\n    }\n  }\n  for (int x = 0; x < width; x++) {\n    for (int y = 0; y < height; y++) {\n      m_pGrid->Get(x, y) = m_pBuffer->Get(x, y);\n    }\n  }\n}",
+      "codeLanguage": "cpp"
+    },
+    {
+      "type": "text",
+      "value": "Project.GameOfLife.Content.5"
+    },
+    {
+      "type": "code",
+      "value": "template<typename T>\nclass TMatrix final {\n  public:\n    TMatrix(int rows, int cols);\n    ~TMatrix();\n    T& Get(int x, int y) { return m_pGrid[x][y]; }\n    int Rows() const { return m_Rows; }\n    int Cols() const { return m_Cols; }\n  private:\n    T** m_pGrid;\n    int m_Rows, m_Cols;\n};",
+      "codeLanguage": "cpp"
+    }
+  ],
+  "features": [
+    "Project.GameOfLife.Features.0",
+    "Project.GameOfLife.Features.1",
+    "Project.GameOfLife.Features.2"
+  ],
+  "futurePlans": [
+    "Project.GameOfLife.Future.0",
+    "Project.GameOfLife.Future.1",
+    "Project.GameOfLife.Future.2",
+    "Project.GameOfLife.Future.3"
+  ],
+  "links": [
+    {
+      "name": "Project.GameOfLife.Links.Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+    }
+  ],
+  "technologies": [
+    "C++",
+    "SDL2"
+  ]
+}

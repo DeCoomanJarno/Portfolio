@@ -1,0 +1,88 @@
+{
+    "resume": {
+        "profile": "Driven software engineer with experience in game development, VR, and automation. Excels in collaborative environments and enjoys creating innovative, optimized solutions.",
+        "download": "Print PDF",
+        "driverLicense": "Driver License",
+        "languageProficiency": {
+            "Native": "Native",
+            "Fluent": "Fluent",
+            "Basic": "Basic"
+        },
+        "titles": {
+            "contact": "Contact",
+            "profile": "Profile",
+            "skills": "Skills",
+            "programmingLanguage": "Programming Languages",
+            "language": "Languages",
+            "education": "Education",
+            "workExperience": "Work Experience",
+            "references": "References",
+            "download": "Download"
+        },
+        "skillNames": {
+            "school": "School",
+            "work": "Work",
+            "hobby": "Hobby"
+        },
+        "monthShort": "mo",
+        "yearShort": "yr",
+        "now": "Present",
+        "Native": "Native",
+        "Fluent": "Fluent",
+        "Basic": "Basic",
+        "title": "Software Engineer",
+        "contact": {
+            "address": "9260 Schellebelle, Belgium"
+        },
+        "education": {
+            "dae": {
+                "degree": "Game Development",
+                "level": "Bachelor",
+                "location": "Kortrijk, Belgium",
+                "description": "Immersive program with training in C++, C#, game design, 3D modeling, and animation."
+            },
+            "scheppers": {
+                "degree": "Industrial Sciences",
+                "level": "High School",
+                "location": "Wetteren, Belgium",
+                "description": "Comprehensive curriculum in physics, chemistry, mathematics, and engineering."
+            }
+        },
+        "experience": {
+            "kion": {
+                "title": "Software Engineer",
+                "badge": "Full time employee",
+                "location": "Antwerp, Belgium",
+                "description": "Develop software for the automation of AGVs and ensure the seamless integration of these systems in the supply chain."
+            },
+            "onebonsai": {
+                "title": "Internship",
+                "badge": "Intern",
+                "location": "Leuven, Belgium",
+                "description": "Gained hands-on experience developing VR applications using Unreal Engine."
+            },
+            "studycouncil": {
+                "title": "Study Council",
+                "badge": "Student",
+                "location": "Kortrijk, Belgium",
+                "description": "Helped develop the Game Development study by providing feedback on teachers, subjects, and exams."
+            },
+            "deplaetse": {
+                "title": "Waiter/Bartender",
+                "badge": "Student Job",
+                "location": "Schellebelle, Belgium",
+                "description": "Worked as a waiter, and occasionally helped in the kitchen or behind the bar."
+            }
+        },
+        "references": {
+            "everest": {
+                "title": "CEO",
+                "relationship": "Former internship supervisor"
+            },
+            "robin": {
+                "title": "Team Lead",
+                "relationship": "Direct supervisor"
+            }
+        }
+    }
+}
