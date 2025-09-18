@@ -1,6 +1,7 @@
 {
     "home": {
         "projects": [
+            "Appointments",
             "GameOfLife",
             "Calculator"
         ]

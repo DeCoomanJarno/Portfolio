@@ -1,0 +1,65 @@
+{
+  "title": "Project.Appointments.Title",
+  "description": "Project.Appointments.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "Appointments_Login.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.1"
+    },
+    {
+      "type": "image",
+      "value": "Appointments_Booking.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.2"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.3"
+    },
+    {
+      "type": "image",
+      "value": "Appointments_Admin.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.4"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.5"
+    },
+    {
+      "type": "text",
+      "value": "Project.Appointments.Content.6"
+    }
+  ],
+  "features": [
+    "Project.Appointments.Features.0",
+    "Project.Appointments.Features.1",
+    "Project.Appointments.Features.2",
+    "Project.Appointments.Features.3",
+    "Project.Appointments.Features.4"
+  ],
+  "futurePlans": [
+    "Project.Appointments.Future.0",
+    "Project.Appointments.Future.1",
+    "Project.Appointments.Future.2",
+    "Project.Appointments.Future.3"
+  ],
+  "technologies": [
+    "Angular",
+    "TypeScript",
+    "Material Design"
+  ],
+  "links": []
+}

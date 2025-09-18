@@ -1,0 +1,60 @@
+{
+  "Appointment": {
+    "BookAppointment": {
+      "Title": "Afspraak maken",
+      "Name": "Naam",
+      "Fullname": "Volledige naam",
+      "Email": "E-mail",
+      "Service": "Dienst",
+      "Date": "Datum",
+      "Time": "Tijd",
+      "Submit": "Boeken",
+      "Success": "Afspraak succesvol geboekt!",
+      "YourAppointments": "Jouw afspraken",
+      "Status": "Status",
+      "Cancel": "Annuleren",
+      "CancelRequest": "Annulering aangevraagd",
+      "RequestCancel": "Annulering aangevraagd",
+      "Cancelled": "Geannuleerd",
+      "NamePlaceholder": "Naam",
+      "FullnamePlaceholder": "Volledige naam",
+      "EmailPlaceholder": "Jouw e-mail"
+    },
+    "Services": {
+      "Installation": "Installatie",
+      "Consultation": "Consultatie",
+      "Maintenance": "Onderhoud",
+      "Support": "Ondersteuning"
+    },
+    "Login": {
+      "Login": "Inloggen",
+      "Logout": "Uitloggen",
+      "Title": "Inloggen",
+      "Email": "E-mail",
+      "Username": "Gebruikersnaam",
+      "Password": "Wachtwoord",
+      "Submit": "Inloggen",
+      "Register": "Registreren"
+    },
+    "Admin": {
+      "Title": "Beheerdersdashboard",
+      "Name": "Naam",
+      "Email": "E-mail",
+      "Service": "Dienst",
+      "Date": "Datum",
+      "Time": "Tijd",
+      "Status": "Status",
+      "Actions": "Acties",
+      "Confirm": "Bevestigen",
+      "Done": "Afgerond",
+      "Cancel": "Annuleren",
+      "Delete": "Verwijderen",
+      "StatusUpdated": "Status bijgewerkt",
+      "Deleted": "Afspraak verwijderd",
+      "ApproveCancel": "Annulering goedkeuren"
+    },
+    "Calendar": {
+      "Title": "Afsprakenkalender"
+    }
+  }
+}

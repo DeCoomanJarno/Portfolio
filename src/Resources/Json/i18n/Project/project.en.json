@@ -63,6 +63,35 @@
             "Links": {
                 "TryOut": "Try out"
             }
+        },
+        "Appointments": {
+            "Title": "Appointments Booking Platform",
+            "Description": "A web-based appointment booking platform with user and admin roles, built using Angular and Material Design.",
+            "Content": [
+                "This project is an appointment booking platform built using Angular. It allows clients to book appointments for various services, while administrators can manage and approve or deny those appointments.",
+                "Users can register or log in to the platform. Once logged in, they are either redirected to the booking interface (if they are clients) or to the admin dashboard (if they are administrators).",
+                "Clients can book new appointments by selecting a service, date, and time. The form automatically fills in their name, email, and full name once logged in, while still allowing them to change these details if needed.",
+                "Booked appointments start with a 'Pending' status. Admins can change the status to 'Confirmed', 'Done', or approve a 'CancelRequest'.",
+                "Clients can cancel their own appointments: if the appointment is still 'Pending', it is removed immediately; if it is 'Confirmed' or 'Done', a cancel request is sent for admin approval.",
+                "Admins can view all appointments in a Material table, update their status, or delete them entirely. They can also approve cancellation requests submitted by clients.",
+                "The application uses a shared AppointmentService with an observable-based store, and AuthService to handle the current user and login state. The header component dynamically shows the current user and allows login/logout from anywhere in the app."
+            ],
+            "Features": [
+                "User authentication and role-based routing",
+                "Appointment booking with form validation",
+                "Real-time status management by admins",
+                "Client-side appointment cancellation with approval system",
+                "Dynamic header showing login/logout state"
+            ],
+            "Future": [
+                "Implement email notifications for appointment status updates",
+                "Add calendar view for both admins and clients",
+                "Introduce service duration and availability time slots",
+                "Store data on a backend API or database"
+            ],
+            "Links": {
+                "TryOut": "Try out"
+            }
         }
     }
 }

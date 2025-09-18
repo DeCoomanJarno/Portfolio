@@ -1,0 +1,16 @@
+<div class="header-right">
+  @if((auth.currentUser$ | async); as user)
+  {
+    <ng-container>
+      <button mat-button [matMenuTriggerFor]="menu">{{ user.name }}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">{{ 'Appointment.Login.Logout' | translate }}</button>
+      </mat-menu>
+    </ng-container>
+  }
+@else{
+  <div>
+    <a mat-button color="accent" routerLink="/Appointments/login">{{ 'Appointment.Login.Login' | translate }}</a>
+  </div>
+}
+</div>

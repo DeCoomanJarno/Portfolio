@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <mat-card class="p-4 shadow-sm">
+        <h2 class="mb-4">{{ 'Appointment.Calendar.Title' | translate }}</h2>
+
+        @for (date of getDates(); track $index)
+        {
+
+        <div>
+            <h4>{{ date }}</h4>
+            <ul>
+                @for (app of groupedAppointments[date]; track $index)
+                {
+                <li>{{ app.time }} - {{ app.name }} ({{ app.service }}) [{{ app.status }}]</li>
+                }
+            </ul>
+        </div>
+        }
+
+    </mat-card>
+</div>

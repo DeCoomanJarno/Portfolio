@@ -1,0 +1,63 @@
+{
+    "Appointment": {
+        "BookAppointment": {
+        "Pending": "Pending",
+        "Confirmed": "Confirmed",
+        "Done": "Done",
+            "Title": "Book an Appointment",
+            "Name": "Name",
+            "Fullname": "Full Name",
+            "Email": "Email",
+            "Service": "Service",
+            "Date": "Date",
+            "Time": "Time",
+            "Submit": "Book",
+            "Success": "Appointment booked successfully!",
+            "YourAppointments": "Your Appointments",
+            "Status": "Status",
+            "Cancel": "Cancel",
+            "CancelRequest": "Cancel Requested",
+            "RequestCancel": "Requested Cancel",
+            "Cancelled": "Cancelled",
+            "NamePlaceholder": "Name",
+            "FullnamePlaceholder": "Full Name",
+            "EmailPlaceholder": "Your Email"
+        },
+        "Services": {
+            "Installation": "Installation",
+            "Consultation": "Consultation",
+            "Maintenance": "Maintenance",
+            "Support": "Support"
+        },
+        "Login": {
+            "Login": "Login",
+            "Logout": "Logout",
+            "Title": "Login",
+            "Email": "Email",
+            "Username": "Username",
+            "Password": "Password",
+            "Submit": "Login",
+            "Register": "Register"
+        },
+        "Admin": {
+            "Title": "Admin Dashboard",
+            "Name": "Name",
+            "Email": "Email",
+            "Service": "Service",
+            "Date": "Date",
+            "Time": "Time",
+            "Status": "Status",
+            "Actions": "Actions",
+            "Confirm": "Confirm",
+            "Done": "Done",
+            "Cancel": "Cancel",
+            "Delete": "Delete",
+            "StatusUpdated": "Status updated",
+            "Deleted": "Appointment deleted",
+            "ApproveCancel": "Approve Cancel"
+        },
+        "Calendar": {
+            "Title": "Appointments Calendar"
+        }
+    }
+}

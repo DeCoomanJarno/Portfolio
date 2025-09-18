@@ -4,11 +4,12 @@ import {  RouterModule } from '@angular/router';
 import { HeaderComponent } from './Core/Components/header/header.component';
 import { FooterComponent } from './Core/Components/Footer/footer.component';
 import { TranslateService } from '@ngx-translate/core';
+import { AppointmentModule } from './WebApplications/appointment/appointment-module';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    imports: [HeaderComponent, RouterModule, FooterComponent],
+    imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule],
     styleUrls: ['./app.component.css'],
     providers: []
 })

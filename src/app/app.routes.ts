@@ -16,4 +16,9 @@ export const routes: Routes = [
     { path: 'GameOfLife', component: GameOfLifePageComponent },
     { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
     { path: 'Calculator', component: CalculatorPageComponent },
+        {
+        path: 'Appointments',
+        loadChildren: () =>
+            import('./WebApplications/appointment/appointment-module').then(m => m.AppointmentModule)
+    }
 ];

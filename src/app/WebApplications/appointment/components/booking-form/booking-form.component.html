@@ -1,0 +1,86 @@
+<div class="booking-container container mt-5">
+  <mat-card class="p-4 shadow-sm">
+    <h2 class="mb-4 text-center">{{'Appointment.BookAppointment.Title' | translate }}</h2>
+
+    <form [formGroup]="bookingForm" (ngSubmit)="submit()">
+      <mat-form-field class="w-100 mb-3">
+        <mat-label>{{'Appointment.BookAppointment.Name' | translate}}</mat-label>
+        <input matInput formControlName="name"
+          [placeholder]="'Appointment.BookAppointment.NamePlaceholder' | translate">
+      </mat-form-field>
+
+      <mat-form-field class="w-100 mb-3">
+        <mat-label>{{'Appointment.BookAppointment.Fullname' | translate}}</mat-label>
+        <input matInput formControlName="fullname"
+          [placeholder]="'Appointment.BookAppointment.FullnamePlaceholder' | translate">
+      </mat-form-field>
+
+      <mat-form-field class="w-100 mb-3">
+        <mat-label>{{'Appointment.BookAppointment.Email' | translate}}</mat-label>
+        <input matInput formControlName="email"
+          [placeholder]="'Appointment.BookAppointment.EmailPlaceholder' | translate">
+      </mat-form-field>
+
+      <mat-form-field class="w-100 mb-3">
+        <mat-label>{{'Appointment.BookAppointment.Service' | translate}}</mat-label>
+        <mat-select formControlName="service">
+          @for (s of services; track $index) {
+          <mat-option [value]="s">{{('Appointment.Services.' + s) | translate}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <mat-form-field class="w-100">
+            <mat-label>{{'Appointment.BookAppointment.Date' | translate}}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100">
+            <mat-label>{{'Appointment.BookAppointment.Time' | translate}}</mat-label>
+            <input matInput type="time" formControlName="time">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="bookingForm.invalid">
+        {{'Appointment.BookAppointment.Submit' | translate}}
+      </button>
+    </form>
+
+    <!-- Show user's appointments -->
+    @if(userAppointments.length > 0)
+    {
+    <div class="mt-5">
+      <h4>{{'Appointment.BookAppointment.YourAppointments' | translate}}</h4>
+      @for (app of userAppointments; track $index) {
+      <mat-card class="p-3 mb-2 d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ app.service }}</strong> — {{ app.date }} {{ app.time }}
+          [{{ 'Appointment.BookAppointment.' + app.status | translate }}]
+        </div>
+        <div>
+          @if(app.status === 'Pending')
+          {
+          <button mat-button color="warn" (click)="cancelAppointment(app)">
+            {{ ('Appointment.BookAppointment.Cancel' | translate) }}
+          </button>
+          }
+          @else if(app.status === 'Confirmed')
+          {
+          <button mat-button color="warn" (click)="cancelAppointment(app)">
+            {{ ('Appointment.BookAppointment.RequestCancel' | translate) }}
+          </button>
+          }
+        </div>
+      </mat-card>
+      }
+    </div>
+    }
+
+  </mat-card>
+</div>
