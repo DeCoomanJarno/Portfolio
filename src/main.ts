@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app/app';
 import { provideHttpClient, withInterceptorsFromDi, HttpClient, HttpBackend } from '@angular/common/http';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { routes } from './app/app.routes';

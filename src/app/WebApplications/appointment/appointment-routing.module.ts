@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingFormComponent } from './components/booking-form/booking-form.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
-import { LoginComponent } from './components/login/login.component';
-import { AppointmentPageComponent } from './components/appointment-page/appointment-page.component';
+import { BookingFormComponent } from './components/booking-form/booking-form';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard';
+import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar';
+import { LoginComponent } from './components/login/login';
+import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
 
 const routes: Routes = [
   {

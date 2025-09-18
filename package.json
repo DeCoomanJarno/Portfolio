@@ -64,10 +64,10 @@
     "@types/html2pdf.js": "^0.10.0",
     "@types/jasmine": "~5.1.9",
     "@types/node": "^24.3.1",
-    "angular-eslint": "20.2.0",
-    "eslint": "^9.33.0",
+    "angular-eslint": "20.3.0",
+    "eslint": "^9.35.0",
     "ng-packagr": "^20.3.0",
     "typescript": "~5.9.2",
-    "typescript-eslint": "8.40.0"
+    "typescript-eslint": "8.44.0"
   }
 }

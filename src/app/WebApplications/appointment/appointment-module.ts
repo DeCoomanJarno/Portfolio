@@ -13,14 +13,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BookingFormComponent } from './components/booking-form/booking-form.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
-import { LoginComponent } from './components/login/login.component';
+import { BookingFormComponent } from './components/booking-form/booking-form';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard';
+import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar';
+import { LoginComponent } from './components/login/login';
 import { AppointmentRoutingModule } from './appointment-routing.module';
 import { TranslatePipe } from '@ngx-translate/core';
-import { HeaderComponent } from './components/header/header.component';
-import { AppointmentPageComponent } from './components/appointment-page/appointment-page.component';
+import { HeaderComponent } from './components/header/header';
+import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
 
 
 @NgModule({
