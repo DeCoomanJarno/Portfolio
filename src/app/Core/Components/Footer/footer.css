@@ -4,6 +4,7 @@
   text-align: center;
   color: var(--color-on-primary);
   border-radius: 8px 8px 0 0;
+  height: 7rem;
 }
 
 .footer-content {

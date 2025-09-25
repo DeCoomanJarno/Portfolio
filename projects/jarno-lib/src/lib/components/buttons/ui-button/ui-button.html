@@ -1,0 +1,15 @@
+
+    <div [matTooltip]="tooltip" [matTooltipDisabled]="tooltipDisabled">
+      <button
+        mat-stroked-button
+        [color]="color"
+        class="icon_left"
+        (click)="!disabled && clicked.emit($event)"
+        [disabled]="disabled"
+        >
+        @if (!!icon) {
+          <mat-icon [svgIcon]="icon"></mat-icon>
+        }
+        <ng-content></ng-content>
+      </button>
+    </div>

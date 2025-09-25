@@ -1,0 +1,40 @@
+@use '../../core/styles/variables' as var;
+
+:host {
+  display: flex;
+  .icon {
+    margin: .5rem;
+  }
+
+  .state-container {
+    border-radius: var.$radius-s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+
+    &.circle {
+      width: var.$size-m;
+      height: var.$size-m;
+      border-radius: 50%;
+      border: none;
+
+      @media only screen and (max-width: 600px) {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    /* States mapped to tokens */
+    &.success { background-color: var(--state-success); color: var(--state-on-success); }
+    &.warning { background-color: var(--state-warning); color: var(--state-on-warning); }
+    &.error { background-color: var(--state-error); color: var(--state-on-error); }
+    &.info { background-color: var(--state-info); color: var(--state-on-info); }
+    &.unavailable { background-color: var(--state-unavailable); color: var(--state-on-unavailable); }
+    &.removed { background-color: var(--state-removed); color: var(--state-on-removed); }
+    &.accent { background-color: var(--state-accent); color: var(--state-on-accent); }
+    &.primary { background-color: var(--state-primary); color: var(--state-on-primary); }
+    &.bodytext { background-color: var(--state-bodytext); color: var(--state-on-bodytext); }
+    &.idle { background-color: var(--state-idle); color: var(--state-on-idle); }
+  }
+}

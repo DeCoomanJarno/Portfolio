@@ -5,11 +5,12 @@ import { HeaderComponent } from './Core/Components/header/header';
 import { FooterComponent } from './Core/Components/Footer/footer';
 import { TranslateService } from '@ngx-translate/core';
 import { AppointmentModule } from './WebApplications/appointment/appointment-module';
+import { InventoryModule } from './WebApplications/inventory/inventory-module';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.html',
-    imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule],
+    imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule, InventoryModule],
     styleUrls: ['./app.css'],
     providers: []
 })

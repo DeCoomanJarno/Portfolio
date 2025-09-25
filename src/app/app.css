@@ -1,11 +1,18 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Makes the wrapper take the full viewport height */
-  }
-  
-.Content {
-  flex-grow: 1; /* Pushes the footer to the bottom */
-  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  /* Makes the wrapper take the full viewport height */
+  background-color: var(--color-surface);
   color: var(--color-on-surface);
+}
+
+/* Content between header and footer */
+.Content {
+  flex: 1;
+  /* fills remaining space */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  /* important for scrolling inside children */
 }

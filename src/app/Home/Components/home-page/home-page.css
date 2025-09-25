@@ -178,12 +178,10 @@
 
 .experience .timeline-content {
   background: var(--color-surface);
-  box-shadow: 0 2px 6px var(--color-boxShadow);
 }
 
 .education .timeline-content {
   background: var(--color-background);
-  box-shadow: 0 2px 6px var(--color-boxShadow);
 }
 
 .timeline-header {

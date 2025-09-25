@@ -1,8 +1,8 @@
 <div class="header-right">
-  @if((auth.currentUser$ | async); as user)
+  @if((auth.getCurrentUser()); as user)
   {
     <ng-container>
-      <button mat-button [matMenuTriggerFor]="menu">{{ user.name }}</button>
+      <button mat-button [matMenuTriggerFor]="menu">{{ user.username }}</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">{{ 'Appointment.Login.Logout' | translate }}</button>
       </mat-menu>

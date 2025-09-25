@@ -1,0 +1,21 @@
+
+    <div
+      class="icon-button size-{{ size }} theme-{{ theme }}"
+      [class.active]="active"
+      [class.disabled]="disabled"
+      [class.focused]="focused"
+    >
+      @if (badge) {
+        <span
+          matBadge="&#8203;"
+          [matBadgeColor]="GetBadgeSeverity()"
+          [ngClass]="badgeSeverity"
+          class="dot standalone"
+        ></span>
+      }
+      <ui-icon
+        [size]="size"
+        [icon]="icon"
+        [customIcon]="svgIcon"
+      ></ui-icon>
+    </div>

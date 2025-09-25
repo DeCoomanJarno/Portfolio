@@ -1,0 +1,34 @@
+ <div class="ui-title-container {{ subtitle ? 'withSubtitle' : '' }}">
+      @if (state) {
+        <ui-state
+          [size]="stateSize"
+          [iconOnly]="iconOnly"
+          [svgIcon]="svgIcon"
+          data-testid="state"
+          [icon]="icon"
+          [state]="state"
+          [matTooltip]="iconTooltip!"
+          [matTooltipDisabled]="!iconTooltip"
+        >
+        </ui-state>
+      }
+      <div class="title-container {{ size }}">
+        <div
+          class="title"
+          data-testid="title"
+          [class.compact-title]="compactTitle"
+          [class.iconOnly]="iconOnly"
+          uiHighlight
+        >
+  {{ title }}</div>
+        @if (subtitle) {
+          <div class="subtitle-container">
+            <div
+              class="subtitle"
+              data-testid="subtitle"
+              uiHighlight
+            ></div>
+          </div>
+        }
+      </div>
+    </div>

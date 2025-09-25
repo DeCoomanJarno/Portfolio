@@ -10,15 +10,20 @@ import { ProjectItemPageComponent } from './Project/Components/project-item-page
 export const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomePageComponent },
-    { path: 'Projects', component: ProjectsPageComponent},
+    { path: 'Projects', component: ProjectsPageComponent },
     { path: 'Projects/:id', component: ProjectItemPageComponent },
     { path: 'Resume', component: ResumePageComponent },
     { path: 'GameOfLife', component: GameOfLifePageComponent },
     { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
     { path: 'Calculator', component: CalculatorPageComponent },
-        {
+    {
         path: 'Appointments',
         loadChildren: () =>
             import('./WebApplications/appointment/appointment-module').then(m => m.AppointmentModule)
+    }, 
+    {
+        path: 'Inventory',
+        loadChildren: () =>
+            import('./WebApplications/inventory/inventory-module').then(m => m.InventoryModule)
     }
 ];

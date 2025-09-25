@@ -130,15 +130,15 @@
 }
 
 .badge.school {
-  background-color: var(--color-secondary);
+  background-color: var(--state-success);
 }
 
 .badge.work {
-  background-color: var(--color-accent);
+  background-color: var(--state-warning);
 }
 
 .badge.hobby {
-  background-color: var(--color-warn);
+  background-color: var(--state-error);
 }
 
 .skill-proficiency {

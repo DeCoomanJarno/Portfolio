@@ -1,0 +1,89 @@
+@if(item$ | async; as item)
+{
+<ng-container >
+  <div class="inventory-detail">
+    <ui-thumbnail (close)="close()">
+      <ui-title size="large" [title]="item.name" class="title" [subtitle]="item.description" [icon]="categoryIconService.getIconName(item.category) ?? ''" [svgIcon]="true" [state]="GetConvertedItemState(item)"></ui-title>
+    </ui-thumbnail>
+
+    <ui-card class="detail-card">
+      <div class="media-row">
+        @if(item.imageUrl)
+        {
+            <img class="detail-image" [src]="item.imageUrl" [alt]="item.name" />
+        }
+        @else {
+          <div class="detail-image placeholder">
+            <div class="placeholder-inner">
+              <div class="sku">{{ item.sku }}</div>
+              <div class="category">{{ 'inventory.detail.category.' + item.category | translate}}</div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.sku' | translate}}</span>
+          <span class="value">{{ item.sku }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.location' | translate}}</span>
+          <span class="value">
+            {{ item.location.warehouseId }} · {{'inventory.detail.aisle' | translate}} {{ item.location.aisle }} · {{'inventory.detail.bay' | translate}} {{ item.location.bay }} · {{'inventory.detail.shelf' | translate}} {{ item.location.shelf }}
+            <span *ngIf="item.location.bin"> · {{'inventory.detail.bin' | translate}} {{ item.location.bin }}</span>
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.quantity' | translate}}</span>
+          <span class="value quantity">{{ item.quantity }}</span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.weight' | translate}}</span>
+          <span class="value">{{ item.weightKg ? (item.weightKg + ' kg') : '—' }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.dimensions' | translate}}</span>
+          <span class="value">
+            <ng-container *ngIf="item.dimensions">
+              {{ item.dimensions.lengthMm }} × {{ item.dimensions.widthMm }} × {{ item.dimensions.heightMm }} mm
+            </ng-container>
+            <ng-container *ngIf="!item.dimensions">—</ng-container>
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.supplier' | translate}}</span>
+          <span class="value">{{ item.supplier || '—' }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'inventory.detail.received' | translate}}</span>
+          <span class="value">{{ item.receivedDate | date:'mediumDate' }}</span>
+        </div>
+        @if(item.lotNumber)
+        {
+          <div class="detail-row">
+            <span class="label">{{'inventory.detail.lotNumber' | translate}}</span>
+            <span class="value">{{ item.lotNumber }}</span>
+          </div>
+        }
+        </div>
+    </ui-card>
+  </div>
+</ng-container>
+}
+@else {
+<ng-template>
+  <div class="inventory-detail empty">
+    <ui-title size="large">{{'inventory.detail.itemNotFound' | translate}}</ui-title>
+  </div>
+</ng-template>
+
+}

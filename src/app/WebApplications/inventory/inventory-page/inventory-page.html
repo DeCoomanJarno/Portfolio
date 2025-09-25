@@ -1,0 +1,36 @@
+<web-page>
+  <!-- 📌 Page Title -->
+  <ui-title>{{ 'Inventory.Title' | translate }}</ui-title>
+
+  <!-- 📊 Data Table -->
+  @if (item$ | async; as items) {
+<ui-table
+  [structure]="columns"
+  [elements]="items"
+  key="id"
+  selectionMode="Clickable"
+  (selectedElementsChanges)="openDetail($event[0].id)"
+>
+  <!-- 🔍 Hotpicks (auto-slotted into ui-filter) -->
+  <ui-hotpick label="Active" (clicked)="filterActive()">
+    {{ 12 }}
+  </ui-hotpick>
+  <ui-hotpick label="Archived" (clicked)="filterArchived()">
+    1212211
+  </ui-hotpick>
+
+  <!-- ⚙️ Row actions -->
+  <ng-template UiActions let-row>
+    <button mat-menu-item (click)="openDetail(row.id)">
+      <ui-icon icon="visibility"></ui-icon>
+      {{ 'Inventory.Detail.Title' | translate }}
+    </button>
+    <button mat-menu-item (click)="deleteItem(row.id)">
+      <ui-icon icon="delete"></ui-icon>
+      {{ 'Inventory.Delete' | translate }}
+    </button>
+  </ng-template>
+</ui-table>
+
+  }
+</web-page>

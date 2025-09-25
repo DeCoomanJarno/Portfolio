@@ -1,0 +1,73 @@
+/* Dark theme overrides */
+body.dark-mode {
+  /* Brand colors */
+  --color-primary: #56b3c0;
+  --color-on-primary: #181818;
+  --color-primary-hover: #33899a;
+  --color-primary-active: #236679;
+
+  --color-secondary: #00eee6;
+  --color-on-secondary: #181818;
+  --color-secondary-hover: #33f4e2;
+  --color-secondary-active: #25c8bc;
+
+  /* Surface and background */
+  --color-surface: #232323;
+  --color-on-surface: #fafafa;
+  --color-background: #181818;
+  --color-on-background: #fafafa;
+
+  /* Header colors */
+  --color-header: #fff;
+  --color-on-header: #232323;
+
+  /* Project item colors */
+  --color-project: #44474a;
+  --color-on-project: #fff;
+
+  /* Accent */
+  --color-accent: #ffd166;
+  --color-on-accent: #222;
+
+
+  /* --- State colors (dark) --- */
+  --state-success: #4caf50;   /* stays vivid green */
+  --state-on-success: #fff;
+
+  --state-warning: #ffc947;   /* aligns with dark warning */
+  --state-on-warning: #222;
+
+  --state-error: #ff8a80;
+  --state-on-error: #222;
+
+  --state-info: #64b5f6;      /* lighter blue for dark bg */
+  --state-on-info: #181818;
+
+  --state-unavailable: #44474a;
+  --state-on-unavailable: #949494;
+
+  --state-removed: #ff5252;   /* more visible red */
+  --state-on-removed: #fff;
+
+  --state-accent: #ffd166;
+  --state-on-accent: #222;
+
+  --state-primary: #56b3c0;
+  --state-on-primary: #181818;
+
+  --state-bodytext: #181818;  /* dark bg fallback */
+  --state-on-bodytext: #fafafa;
+
+  --state-idle: #232323;      /* neutral idle */
+  --state-on-idle: #fafafa;
+  
+  /* Disabled */
+  --color-disabled-bg: #44474a;
+  --color-on-disabled: #949494;
+
+  /* Borders, shadows, radius */
+  --color-outline: #33383b;
+  --color-boxShadow: rgba(255, 255, 255, 0.08);
+  --color-boxShadow-hover: rgba(255, 255, 255, 0.15);
+
+}

@@ -16,11 +16,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookingFormComponent } from './components/booking-form/booking-form';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard';
 import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar';
-import { LoginComponent } from './components/login/login';
 import { AppointmentRoutingModule } from './appointment-routing.module';
 import { TranslatePipe } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header';
 import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
+import { AuthModule } from 'JarnoLib';
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { AppointmentPageComponent } from './components/appointment-page/appointm
     BookingFormComponent,
     AdminDashboardComponent,
     AppointmentCalendarComponent,
-    LoginComponent,
     HeaderComponent,
     AppointmentPageComponent
   ],
@@ -51,6 +50,7 @@ import { AppointmentPageComponent } from './components/appointment-page/appointm
     AsyncPipe,
     MatRadioModule,
     MatMenuModule,
+    AuthModule
   ]
 })
 export class AppointmentModule { }

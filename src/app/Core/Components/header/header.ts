@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { ButtonModule } from 'JarnoLib';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, TranslateModule, MatIconModule, FormsModule, MatFormFieldModule, MatSelectModule],
+  imports: [RouterModule, TranslateModule, MatIconModule, FormsModule, MatFormFieldModule, MatSelectModule,ButtonModule],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })

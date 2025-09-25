@@ -4,8 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment, AppointmentStatus } from '../../Models/appointment.model';
 import { AppointmentService } from '../../services/appointment.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../Models/user.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, User } from 'JarnoLib';
 
 @Component({
   selector: 'app-booking-form',
@@ -18,7 +17,7 @@ export class BookingFormComponent {
   bookingForm: FormGroup;
   user: User | null = null;
   userAppointments: Appointment[] = [];
-  services = ['Consultation', 'Installation', 'Maintenance', 'Support']; // example services
+  services = ['Consultation', 'Installation', 'Maintenance', 'Support'];
 
   constructor(
     private fb: FormBuilder,
@@ -40,15 +39,16 @@ export class BookingFormComponent {
   ngOnInit(): void {
     this.user = this.auth.getCurrentUser();
 
-    if (this.user?.role === 'client') {
-      // pre-fill client info
+    if (this.user) {
+      // Prefill user info
       this.bookingForm.patchValue({
-        name: this.user.name,
-        email: this.user.email,
-        fullname: this.user.fullname
+        name: this.user.username,
+        fullname: this.user.fullname,
+        email: this.user.email
       });
-      this.loadUserAppointments();
     }
+
+    this.loadUserAppointments();
   }
 
   submit() {
@@ -61,7 +61,7 @@ export class BookingFormComponent {
       service: formValue.service,
       date: formValue.date,
       time: formValue.time,
-      status:  AppointmentStatus.Pending
+      status: AppointmentStatus.Pending
     };
 
     this.appointmentService.addAppointment(newAppointment);
@@ -73,16 +73,9 @@ export class BookingFormComponent {
     );
 
     this.bookingForm.patchValue({ service: '', date: '', time: '' });
-    // reload appointments
     this.loadUserAppointments();
   }
 
-  private loadUserAppointments() {
-    const allAppointments = this.appointmentService.getAppointmentsSnapshot();
-    if (this.user) {
-      this.userAppointments = allAppointments.filter(a => a.email === this.user!.email);
-    }
-  }
   cancelAppointment(app: Appointment) {
   if (app.status === AppointmentStatus.Pending) {
     this.appointmentService.deleteAppointment(app.id);
@@ -100,6 +93,13 @@ export class BookingFormComponent {
       { duration: 3000 }
     );
   }
-  this.loadUserAppointments();
 }
+  loadUserAppointments() {
+    const allAppointments = this.appointmentService.getAppointmentsSnapshot();
+    if (this.user) {
+      this.userAppointments = allAppointments.filter(a => a.email === this.user!.email);
+    } else {
+      this.userAppointments = [];
+    }
+  }
 }

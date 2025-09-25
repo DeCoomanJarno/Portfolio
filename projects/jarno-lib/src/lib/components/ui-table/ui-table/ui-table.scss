@@ -1,0 +1,78 @@
+@use '../../../core/styles/variables' as var;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+
+  .mat-mdc-table {
+    flex-grow: 2;
+    overflow-y: auto;
+
+    .mat-mdc-row {
+      position: relative;
+      &.not-selectable {
+        cursor: default;
+      }
+
+      &:last-child {
+        border-radius: 0 0 0 var.$radius-s;
+      }
+    }
+    .mat-mdc-row,
+    .mat-mdc-footer-row,
+    tr.mat-mdc-row,
+    tr.mat-mdc-footer-row {
+      height: auto;
+      min-height: 37px;
+      box-sizing: border-box;
+      transition: background-color 220ms ease-in-out;
+      .mat-mdc-cell {
+        padding-top: 6px;
+        padding-bottom: 6px;
+      }
+    }
+    .mat-mdc-row.detail-row,
+    tr.detail-row {
+      display: none;
+      &.is-visible {
+        display: table-row;
+      }
+    }
+    .mat-mdc-checkbox {
+      span.mat-ripple {
+        display: none;
+      }
+    }
+    &.selectableRow {
+      .mat-mdc-cell.mat-column-select {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .under-table {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &.state .mat-mdc-table {
+    .mat-mdc-row .mat-mdc-cell,
+    .mat-mdc-header-cell {
+      &:nth-child(2) {
+        order: -1;
+        width: 7px;
+        flex: 0 7px;
+        padding: 0;
+      }
+    }
+  }
+
+  .mat-mdc-cell:first-of-type,
+  .mat-mdc-header-cell:first-of-type {
+    &.mat-column-select {
+      padding: 0 0 0 var.$spacing-xs;
+      flex: 0 0 48px;
+    }
+  }
+}

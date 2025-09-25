@@ -1,0 +1,27 @@
+/* File: src/lib/components/ui-table/ui-filter/ui-filter.scss */
+.jl-filter {
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+
+  &__row { display:flex; gap: 12px; align-items:center; }
+  &__label { width: 120px; font-size: 13px; color:#333; }
+  &__control { flex:1; }
+
+  input, select {
+    width:100%;
+    padding: 8px 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .jl-filter__actions {
+    display:flex; justify-content:flex-end; gap:8px; padding-top:6px;
+  }
+
+  .btn { padding: 8px 12px; border-radius:6px; border: none; cursor:pointer; }
+  .btn-muted { background:#f5f5f5; color:#333; }
+  .btn-primary { background:#0078d4; color:#fff; }
+}

@@ -1,0 +1,63 @@
+mat-card {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+}
+mat-form-field.mat-focused .mat-label {
+  color: var(--color-primary);
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-surface);
+}
+
+h2 {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.card {
+  max-width:400px; 
+  margin:auto;
+  background-color: var(--color-background);
+}
+.mat-mdc-button {
+  color: var(--color-secundary) !important;
+}
+
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+}
+::ng-deep .mat-mdc-raised-button.mat-primary:disabled {
+  background-color: var(--color-disabled-bg) !important;
+  color: var(--color-on-disabled) !important;
+}
+
+::ng-deep .mat-mdc-raised-button.mat-primary:hover {
+  background-color: var(--color-primary-hover) !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--color-on-surface) !important;
+  caret-color: var(--color-on-surface) !important;
+}
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: var(--color-surface) !important;
+  color: var(--color-on-surface) !important;
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 2px var(--color-boxShadow);
+}
+::ng-deep .mat-mdc-input-element {
+  color: var(--color-on-surface) !important;
+}
+
+::ng-deep .mat-mdc-select-trigger {
+  color: var(--color-on-surface) !important;
+}
+::ng-deep .mdc-floating-label{
+  color: var(--color-on-surface) !important;
+  opacity: 0.5; /* optional, to make them a bit lighter */
+}

@@ -3,6 +3,25 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "jarno-lib": {
+      "projectType": "library",
+      "root": "projects/jarno-lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "sourceRoot": "projects/jarno-lib/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/jarno-lib/tsconfig.lib.json",
+            "project": "projects/jarno-lib/ng-package.json"
+          }
+        }
+      }
+    },
     "Portfolio": {
       "projectType": "application",
       "schematics": {},
@@ -29,9 +48,14 @@
               "src/Resources",
               "src/404.html"
             ],
+          "stylePreprocessorOptions": {
+            "includePaths": [
+              "projects/jarno-lib/src/lib/core/styles"
+            ]
+          },
             "styles": [
               "src/custom-theme.scss",
-              "src/styles.css",
+              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
@@ -154,6 +178,8 @@
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": ["angular-eslint"]
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }

@@ -1,0 +1,16 @@
+
+    <div
+      class="state-container {{ state }} {{ size }}"
+      [class.circle]="circle && stateOnly"
+      [class.iconOnly]="iconOnly"
+      [class.stateOnly]="stateOnly"
+    >
+      @if (!stateOnly) {
+        <ui-icon
+          [size]="size"
+          [icon]="icon"
+          [customIcon]="svgIcon"
+          class="icon"
+        ></ui-icon>
+      }
+    </div>

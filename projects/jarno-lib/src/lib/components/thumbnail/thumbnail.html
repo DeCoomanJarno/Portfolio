@@ -1,0 +1,38 @@
+<div class="thumbnail-container">
+
+  <!-- Left slot: back button -->
+  @if (showBack) {
+    <ui-icon-button
+      svgIcon
+      icon="icon_arrow-line"
+      theme="basic"
+      aria-label="Back"
+      class="back"
+      size="small"
+      [matTooltip]="backTooltip"
+      (click)="backClicked($event)"
+    >
+    </ui-icon-button>
+  }
+
+  <!-- Center slot: projected title or fallback -->
+  <div class="thumbnail-title">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Right slot: close button -->
+  @if (allowClose) {
+    <span class="sidepanel-action" [matTooltip]="closeTooltip">
+      <ui-icon-button
+        icon="close"
+        theme="basic"
+        aria-label="Close"
+        data-testid="close"
+        size="small"
+        (click)="closeClicked($event)"
+      >
+      </ui-icon-button>
+    </span>
+  }
+</div>
+<mat-divider></mat-divider>

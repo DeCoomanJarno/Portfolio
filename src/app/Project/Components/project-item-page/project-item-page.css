@@ -21,7 +21,7 @@
 
 /* Tooltip Styling */
 .tech-item img[title] {
-  color: var(--color-warn);
+  color: var(--color-warning);
 }
 
 .project-header {

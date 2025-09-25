@@ -1,20 +1,13 @@
 /* Basic header styles */
 .header {
-  height: 60px;
+  height: 56px;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
   width: 100%;
-  position: sticky;
   /* Make the header sticky */
-  top: 5px;
   z-index: 1000;
   /* Added z-index to ensure header stays above other elements */
 }
-
 .language-selector select,
 .navbar {
   background-color: var(--color-background);
@@ -95,12 +88,9 @@
 /* Navbar toggler styles */
 .navbar-toggler {
   box-shadow: none;
-  position: relative;
   /* Removed absolute positioning */
-  margin-left: auto;
   /* Align the toggler to the right */
   margin-right: 8px;
-  margin-bottom: .5rem;
   border-color: var(--color-on-background);
 }
 
@@ -307,6 +297,17 @@
 .language-dropdown .dropdown-item {
   font-size: 0.85rem;
   padding: 0.3rem 1rem;
+}
+.logo-container img {
+  max-height: 32px;
+}
+
+.navbar-collapse{
+margin-top: .5rem;
+}
+
+.navbar {
+  height: 56px;
 }
 
 }
