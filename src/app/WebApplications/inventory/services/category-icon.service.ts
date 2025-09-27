@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { InventoryService } from './inventory.service';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 import { IconService } from 'JarnoLib';
+import { Item } from '../models/item.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryIconService {
   private categoryToIconMap: Record<string, string> = {
@@ -18,32 +19,41 @@ export class CategoryIconService {
     Materials: 'chain',
     'Power Transmission': 'sprocket',
     Seals: 'o-ring',
-    Lifting: 'hoist'
+    Lifting: 'hoist',
   };
 
-  constructor(
-    private inventory: InventoryService,
-    private iconService: IconService
-  ) {
-    this.loadCategoryIcons();
-  }
-
-  async loadCategoryIcons(): Promise<void> {
-    // Get all items
-    const items = await firstValueFrom(this.inventory.getAll());
-
-    // Extract unique categories
-    const categories = Array.from(new Set(items.map(i => i.category)));
-
-    // Map categories to icon names (only those we have)
+constructor(
+  private inventory: InventoryService,
+  private iconService: IconService
+) {
+  this.inventory.getAll().subscribe(items => {
+    const categories = Array.from(new Set(items.map(i => i?.category).filter(Boolean)));
     const iconNames = categories
       .map(c => this.categoryToIconMap[c])
-      .filter(Boolean) as string[];
+      .filter((name): name is string => !!name);
 
-    this.iconService.registerIcons('Resources/Projects/Inventory/Icons', iconNames);
-  }
+    if (iconNames.length) {
+      this.iconService.registerIcons('Resources/Projects/Inventory/Icons', iconNames);
+    }
+  });
+}
 
+  /**
+   * Returns the icon name for a given category
+   */
   getIconName(category: string): string | undefined {
     return this.categoryToIconMap[category];
+  }
+
+  /**
+   * Returns an observable of all unique categories
+   */
+  getAllCategories(): Observable<string[]> {
+    return this.inventory.getAll().pipe(
+      map((items: Item[]) => {
+        const categories = items.map((item) => item.category).filter(Boolean);
+        return Array.from(new Set(categories));
+      })
+    );
   }
 }

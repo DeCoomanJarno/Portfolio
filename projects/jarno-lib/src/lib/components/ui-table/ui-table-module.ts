@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HighlightDirectiveModule } from './ui-highlight.directive';
 import { IconModule } from '../ui-icon';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { IconModule } from '../ui-icon';
     IconModule,
     MatMenuModule,
     FormsModule,
+    MatCardModule
   ],
   exports: [
     UiTable,

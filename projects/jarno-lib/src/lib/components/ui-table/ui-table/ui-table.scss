@@ -1,25 +1,114 @@
 @use '../../../core/styles/variables' as var;
 
+::ng-deep .mat-sort-header-arrow svg {
+  fill: var(--color-on-background) !important;
+}
+::ng-deep .mat-mdc-paginator {
+  background-color: inherit !important;
+  color: var(--color-on-background) !important;
+
+ .mat-mdc-paginator-page-size-select {
+    .mat-mdc-select-value-text {
+      color: var(--color-on-background) !important; // text color
+    }
+
+    .mat-mdc-select-arrow svg {
+      fill: var(--color-on-background) !important; // arrow icon
+    }
+
+    .mdc-notched-outline {
+      border-color: var(--color-on-background) !important;
+    }
+  }
+
+  // Buttons again (for completeness)
+  button.mat-mdc-icon-button {
+    color: var(--color-on-background) !important;
+
+    svg.mat-mdc-paginator-icon {
+      fill: var(--color-on-background) !important;
+    }
+  }
+
+  // Optional: disabled button icons
+  button.mat-mdc-icon-button.mat-mdc-button-disabled svg.mat-mdc-paginator-icon {
+    fill: var(--color-on-background) !important;
+    opacity: 0.5;
+  }
+
+  // Range label color
+  .mat-mdc-paginator-range-label {
+    color: var(--color-on-background) !important;
+  }
+}
+
+   // Page-size select panel (overlay)
+  ::ng-deep .mat-mdc-select-panel {
+    background-color: var(--color-background) !important;
+    color: var(--color-on-background) !important;
+
+    .mat-mdc-option {
+      color: var(--color-on-background) !important;
+
+      &:hover {
+        background-color: var(--color-background-hover) !important;
+      }
+
+      .mdc-list-item__primary-text {
+        color: var(--color-on-background) !important;
+      }
+    }
+  }
+      ::ng-deep .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple)
+      {
+       background-color: var(--color-surface) !important;
+      }
+
+      ::ng-deep .mat-mdc-menu-panel {
+       background-color: var(--color-background) !important;
+       border: 1px solid var(--color-on-background) ;
+
+      }
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: hidden;
 
+  .actions-icon {
+    color: var(--color-on-background);
+  }
+
   .mat-mdc-table {
-    flex-grow: 2;
     overflow-y: auto;
+   background-color: inherit;
+    color: var(--color-on-background);
+
+    .mat-mdc-header-row {
+      color: var(--color-on-background);
+    }
+
+    .mat-mdc-row:not(.not-selectable):hover {
+      background-color: var(--color-background-hover);
+    }
 
     .mat-mdc-row {
+      color: var(--color-on-background);
       position: relative;
+
       &.not-selectable {
         cursor: default;
+      }
+
+      :not(.not-selectable) {
+        cursor: pointer;
       }
 
       &:last-child {
         border-radius: 0 0 0 var.$radius-s;
       }
     }
+
     .mat-mdc-row,
     .mat-mdc-footer-row,
     tr.mat-mdc-row,
@@ -27,28 +116,38 @@
       height: auto;
       min-height: 37px;
       box-sizing: border-box;
-      transition: background-color 220ms ease-in-out;
+
       .mat-mdc-cell {
-        padding-top: 6px;
-        padding-bottom: 6px;
+        padding: 5px;
       }
     }
+
     .mat-mdc-row.detail-row,
     tr.detail-row {
       display: none;
+
       &.is-visible {
         display: table-row;
       }
     }
+
     .mat-mdc-checkbox {
       span.mat-ripple {
         display: none;
       }
     }
+
     &.selectableRow {
       .mat-mdc-cell.mat-column-select {
         padding-left: 0;
       }
+    }
+
+    // Small "actions" column
+    .mat-mdc-cell.mat-column-actions,
+    .mat-mdc-header-cell.mat-column-actions {
+      max-width: 48px;
+      padding: 0;
     }
   }
 
@@ -56,17 +155,7 @@
     display: flex;
     justify-content: flex-end;
   }
-  &.state .mat-mdc-table {
-    .mat-mdc-row .mat-mdc-cell,
-    .mat-mdc-header-cell {
-      &:nth-child(2) {
-        order: -1;
-        width: 7px;
-        flex: 0 7px;
-        padding: 0;
-      }
-    }
-  }
+
 
   .mat-mdc-cell:first-of-type,
   .mat-mdc-header-cell:first-of-type {

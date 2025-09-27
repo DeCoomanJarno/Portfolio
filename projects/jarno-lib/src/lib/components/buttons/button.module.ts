@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiButton } from './ui-button/ui-button';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,6 +15,8 @@ import { IconModule } from '../ui-icon/ui-icon.module';
     CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, MatBadgeModule, IconModule
   ],
   exports: [UiButton, IconButton],
-  providers: []  
+  providers: [
+    { provide: MatButton, useExisting: UiButton } // ⬅️ makes this act like MatButton
+  ]  
 })
 export class ButtonModule { }

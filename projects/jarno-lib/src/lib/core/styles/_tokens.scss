@@ -15,8 +15,10 @@
   /* Surface and background */
   --color-surface: #fff;
   --color-on-surface: #181818;
+  --color-surface-hover: #eeecec;
   --color-background: #f9f9f9;
   --color-on-background: #181818;
+  --color-background-hover: #dadada;
 
   /* header colors */
   --color-header: #181818;
@@ -46,7 +48,7 @@
   --state-unavailable: #e0e0e0;
   --state-on-unavailable: #a8a8a8;
 
-  --state-removed: #f44336;
+  --state-removed: #c94a40;
   --state-on-removed: #fff;
 
   --state-accent: #e5aa35;

@@ -10,5 +10,8 @@
         "Register": "Register",
         "GoToRegister": "Go To Register",
         "InvalidCredentials": "Invalid username or password"
+    },
+    "PlaceHolders": {
+        "Search": "Search"
     }
 }

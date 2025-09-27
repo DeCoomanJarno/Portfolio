@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, filter, map, Observable, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,17 +32,12 @@ export class IconService {
   /**
    * Returns an observable that emits true when a given icon is registered
    */
-  iconReady$(iconName: string): Observable<boolean> {
-    return new Observable<boolean>(observer => {
-      const check = () => {
-        if (this.registeredIcons.has(iconName)) {
-          observer.next(true);
-          observer.complete();
-        }
-      };
-      check();
-      const sub = this.iconStatus$.subscribe(() => check());
-      return () => sub.unsubscribe();
-    });
-  }
+iconReady$(iconName: string): Observable<boolean> {
+  return this.iconStatus$.pipe(
+    map(icons => icons.has(iconName)),
+    distinctUntilChanged(),
+    filter(isReady => isReady),
+    take(1) // complete after first `true`
+  );
+}
 }

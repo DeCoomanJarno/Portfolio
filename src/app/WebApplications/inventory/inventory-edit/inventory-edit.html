@@ -1,0 +1,121 @@
+<ui-card class="edit-card">
+  <ui-thumbnail (close)="close()">
+    <ui-title size="large" [title]="'Inventory.edit.title' | translate" class="title"
+      [subtitle]="'Inventory.edit.subtitle' | translate"></ui-title>
+  </ui-thumbnail>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <!-- Name -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.name' | translate }}</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          {{ 'Inventory.item.nameRequired' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Description -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.description' | translate }}</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <!-- SKU -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.sku' | translate }}</mat-label>
+        <input matInput formControlName="sku" />
+        <mat-error *ngIf="form.get('sku')?.hasError('required')">
+          {{ 'Inventory.item.skuRequired' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Quantity -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.quantity' | translate }}</mat-label>
+        <input matInput type="number" formControlName="quantity" />
+        <mat-error *ngIf="form.get('quantity')?.hasError('required')">
+          {{ 'Inventory.item.quantityRequired' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Category -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.category' | translate }}</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let cat of categoryIconService.getAllCategories() | async" [value]="cat">
+            {{ 'Inventory.Categories.' + cat | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('category')?.hasError('required')">
+          {{ 'Inventory.item.categoryRequired' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Location -->
+    <div class="detail-row location-group">
+      <mat-label class="label">{{ 'Inventory.item.location' | translate }}</mat-label>
+      <div class="location-row">
+        <mat-form-field appearance="outline" class="location-field warehouse">
+          <mat-label>{{ 'Inventory.item.warehouseId' | translate }}</mat-label>
+          <input matInput [formControl]="warehouseId" />
+          <mat-error *ngIf="warehouseId?.hasError('required')">
+            {{ 'Inventory.item.warehouseIdRequired' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="location-field small">
+          <mat-label>{{ 'Inventory.item.aisle' | translate }}</mat-label>
+          <input matInput [formControl]="aisle" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="location-field small">
+          <mat-label>{{ 'Inventory.item.bay' | translate }}</mat-label>
+          <input matInput [formControl]="bay" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="location-field small">
+          <mat-label>{{ 'Inventory.item.shelf' | translate }}</mat-label>
+          <input matInput [formControl]="shelf" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="location-field small">
+          <mat-label>{{ 'Inventory.item.bin' | translate }}</mat-label>
+          <input matInput [formControl]="bin" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="detail-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'Inventory.item.status' | translate }}</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of statuses" [value]="status">
+            {{ 'Inventory.Statuses.' + status | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('status')?.hasError('required')">
+          {{ 'Inventory.item.statusRequired' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Actions -->
+    <ui-card-footer>
+      <ui-button color="primary" mat-button type="submit" [disabled]="form.invalid">
+        {{ 'Inventory.edit.save' | translate }}
+      </ui-button>
+      <ui-button color="primary" matButton="filled" type="button" (click)="close()">
+        {{ 'Inventory.edit.cancel' | translate }}
+      </ui-button>
+
+    </ui-card-footer>
+  </form>
+</ui-card>

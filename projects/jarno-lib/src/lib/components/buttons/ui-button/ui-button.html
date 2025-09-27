@@ -1,15 +1,10 @@
-
-    <div [matTooltip]="tooltip" [matTooltipDisabled]="tooltipDisabled">
-      <button
-        mat-stroked-button
-        [color]="color"
-        class="icon_left"
-        (click)="!disabled && clicked.emit($event)"
-        [disabled]="disabled"
-        >
-        @if (!!icon) {
-          <mat-icon [svgIcon]="icon"></mat-icon>
-        }
-        <ng-content></ng-content>
-      </button>
-    </div>
+<div [matTooltip]="tooltip" [matTooltipDisabled]="tooltipDisabled" class="ui-button-wrapper">
+  <button class="ui-button"
+          mat-button
+          [disabled]="disabled"
+          [color]="color"
+          [ngClass]="size"
+          (click)="!disabled && clicked.emit($event)">
+    <ng-content></ng-content>
+  </button>
+</div>

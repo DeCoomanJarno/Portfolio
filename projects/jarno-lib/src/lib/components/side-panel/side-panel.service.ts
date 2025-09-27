@@ -14,6 +14,7 @@ export interface SidePanelState {
 export class SidePanelService {
   private _openSubject = new BehaviorSubject<boolean>(false);
   public open$ = this._openSubject.asObservable().pipe(distinctUntilChanged());
+  private _sidePanelParamKeys = new Set<string>();
 
   private _state$ = new BehaviorSubject<SidePanelState>({ id: null, params: {} });
   state$ = this._state$.asObservable();
@@ -43,14 +44,40 @@ export class SidePanelService {
     return id ? this.registry[id] ?? null : null;
   }
 
-  open(id: string, params?: Record<string, any>) {
-    const queryParams: Record<string, any> = { 'side-panel': id, ...params };
-    this.router.navigate([], { relativeTo: this.route, queryParams, queryParamsHandling: 'merge' });
+open(id: string, params?: Record<string, any>) {
+  const queryParams: Record<string, any> = { 'side-panel': id };
+  
+  if (params) {
+    for (const key of Object.keys(params)) {
+      queryParams[key] = params[key];
+      this._sidePanelParamKeys.add(key);
+    }
   }
 
-  close() {
-    this.router.navigate([], { relativeTo: this.route, queryParams: {} });
+  // Remove old side-panel params that are no longer in the new params
+  const currentParams = this.route.snapshot.queryParams;
+  for (const key of this._sidePanelParamKeys) {
+    if (!(key in queryParams)) {
+      queryParams[key] = null; // remove param via router
+      this._sidePanelParamKeys.delete(key);
+    }
   }
+
+  this.router.navigate([], { relativeTo: this.route, queryParams, queryParamsHandling: 'merge' });
+}
+
+close() {
+  const queryParams: Record<string, any> = {};
+
+  // Only remove params managed by the side panel
+  for (const key of this._sidePanelParamKeys) {
+    queryParams[key] = null;
+  }
+  queryParams['side-panel'] = null;
+
+  this._sidePanelParamKeys.clear();
+  this.router.navigate([], { relativeTo: this.route, queryParams, queryParamsHandling: 'merge' });
+}
 
   get current(): SidePanelState {
     return this._state$.getValue();

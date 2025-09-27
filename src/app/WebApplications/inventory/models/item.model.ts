@@ -13,7 +13,12 @@ export interface Location {
   bin?: string;
 }
 
-export type ItemStatus = 'available' | 'reserved' | 'damaged' | 'backordered';
+export enum ItemStatus {
+  Available = 'available',
+  Reserved = 'reserved',
+  Damaged = 'damaged',
+  Backordered = 'backordered'
+}
 
 export interface Item {
   id: string;               // unique id used in routes

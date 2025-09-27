@@ -1,0 +1,70 @@
+{
+  "Inventory": {
+    "Title": "Inventory",
+    "filter": {
+      "all": "All",
+      "available": "Available",
+      "reserved": "Reserved",
+      "damaged": "Damaged",
+      "backordered": "Backordered"
+    },
+    "actions": {
+      "delete": "Delete",
+      "create": "Create",
+      "edit": "Edit"
+    },
+    "create": {
+      "title": "Create",
+      "subtitle": "Fill in the details below to add a new item to the inventory",
+      "create": "Create"
+    },
+    "edit": {
+      "title": "Edit",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "item": {
+      "name": "Name",
+      "namePlaceholder": "Item Name",
+      "nameRequired": "Name is required",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional description",
+      "sku": "SKU",
+      "skuPlaceholder": "Stock Keeping Unit",
+      "skuRequired": "SKU is required",
+      "quantity": "Quantity",
+      "quantityRequired": "Quantity is required",
+      "category": "Category",
+      "selectCategory": "Select Category",
+      "categoryRequired": "Category is required",
+      "location": "Location",
+      "warehouseId": "Warehouse ID",
+      "warehouseIdRequired": "Warehouse ID is Required",
+      "aisle": "Aisle",
+      "bay": "Bay",
+      "shelf": "Shelf",
+      "bin": "Bin",
+      "status": "Status",
+      "statusRequired": "Status is required"
+    },
+    "Categories": {
+      "Bearings": "Bearings",
+      "Fasteners": "Fasteners",
+      "Filters": "Filters",
+      "Pallets": "Pallets",
+      "Packaging": "Packaging",
+      "Electronics": "Electronics",
+      "Safety": "Safety",
+      "Materials": "Materials",
+      "Power Transmission": "Power Transmission",
+      "Seals": "Seals",
+      "Lifting": "Lifting"
+    },
+    "Statuses": {
+      "available": "Available",
+      "reserved": "Reserved",
+      "backordered": "Backordered",
+      "damaged": "Damaged"
+    }
+  }
+}

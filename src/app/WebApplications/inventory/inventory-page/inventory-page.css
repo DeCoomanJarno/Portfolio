@@ -1,3 +1,15 @@
-ul { list-style: none; padding: 0; }
-li { margin-bottom: 0.5rem; }
-button { margin-left: 1rem; cursor: pointer; }
+.create-button { 
+  margin-right: 8px;
+ }
+ .row-actions{
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+
+ }
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* spacing between buttons */
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}

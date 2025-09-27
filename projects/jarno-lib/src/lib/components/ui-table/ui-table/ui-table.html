@@ -1,20 +1,25 @@
 @if (enableFilter) {
 <!-- 🔍 Unified Filter (search + hotpicks + actions) -->
-<ui-filter
-  *ngIf="searchFieldControl"
->
-  <!-- Pre hotpick slot -->
-  <ng-content select="[select='pre']"></ng-content>
+  <ui-filter
+    class="mb-m"
+    [filterExpand]="false"
+    [control]="searchFieldControl"
+    [hotpicks]="enableHotPick"
+    [placeholder]="filterPlaceholder"
+  >
+    <ng-container select="pre">
+      <ng-content select="ui-hotpick[select='pre']"></ng-content>
+    </ng-container>
 
-  <!-- Actions slot -->
-  <ng-content select="[select='action']"></ng-content>
+    <ng-container select="action">
+      <ng-content select="ui-hotpick[select='action']"></ng-content>
+    </ng-container>
 
-  <!-- Hotpicks slot -->
-  <ng-content select="ui-hotpick"></ng-content>
-
-  <!-- Advanced search slot -->
-  <ng-content select="[select='advanced']"></ng-content>
-</ui-filter>
+    <ng-content
+      select="ui-hotpick:not([select='action']):not([select='pre'])"
+      hotpicks
+    ></ng-content>
+  </ui-filter>
 
 }
 
@@ -93,19 +98,23 @@
         </mat-cell>
       </ng-container>
     }
-     <ng-container matColumnDef="actions" *ngIf="hasActions">
+    @if(hasActions)
+    {
+     <ng-container matColumnDef="actions" class="actions">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let row" >
       <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon class="actions-icon">more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <ng-container
+        <ng-container 
           *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
         ></ng-container>
       </mat-menu>
     </mat-cell>
   </ng-container>
+      
+    }
     @if (selectableColumnVisible) {
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef mat-sort-header>

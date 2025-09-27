@@ -3,34 +3,41 @@
   <ui-title>{{ 'Inventory.Title' | translate }}</ui-title>
 
   <!-- 📊 Data Table -->
-  @if (item$ | async; as items) {
-<ui-table
-  [structure]="columns"
-  [elements]="items"
-  key="id"
-  selectionMode="Clickable"
-  (selectedElementsChanges)="openDetail($event[0].id)"
->
-  <!-- 🔍 Hotpicks (auto-slotted into ui-filter) -->
-  <ui-hotpick label="Active" (clicked)="filterActive()">
-    {{ 12 }}
-  </ui-hotpick>
-  <ui-hotpick label="Archived" (clicked)="filterArchived()">
-    1212211
-  </ui-hotpick>
+  @if (filteredItem$ | async; as filteredItems) {
+  <ui-table [structure]="columns" [elements]="filteredItems" key="id" selectionMode="Clickable"
+    (selectedElementsChanges)="openDetail($event[0].id)" [enableHotPick]="true">
+    <!-- 🔍 Hotpicks (auto-slotted into ui-filter) -->
+    <ui-hotpick [active]="(selectedState$.asObservable() | async) === 'All'"
+      [label]="'Inventory.filter.all' | translate" (click)="filter('All')"> <ui-state [circle]="true" state="primary"
+        [stateOnly]="true" size="small" />
+      {{ getAmount('All') | async}}</ui-hotpick>
 
-  <!-- ⚙️ Row actions -->
-  <ng-template UiActions let-row>
-    <button mat-menu-item (click)="openDetail(row.id)">
-      <ui-icon icon="visibility"></ui-icon>
-      {{ 'Inventory.Detail.Title' | translate }}
-    </button>
-    <button mat-menu-item (click)="deleteItem(row.id)">
-      <ui-icon icon="delete"></ui-icon>
-      {{ 'Inventory.Delete' | translate }}
-    </button>
-  </ng-template>
-</ui-table>
+    @for (status of statuses; track $index) {
+    <ui-hotpick [active]="(selectedState$.asObservable() | async) === status"
+      [label]="'Inventory.filter.' + status | translate" (click)="filter(status)">
+      <ui-state [circle]="true" [state]="convertStatusToState(status)" [stateOnly]="true" size="small" />
+      {{ getAmount(status) | async }}
+    </ui-hotpick>
+    }
+
+    <ui-hotpick select="action" [hasLabel]="false">
+      <ui-button class="create-button" matButton="filled" (click)="Create()">{{'Inventory.actions.create' |
+        translate}}</ui-button>
+    </ui-hotpick>
+
+    <!-- ⚙️ Row actions -->
+    <ng-template UiActions let-item class="row-actions">
+      <div class="menu-buttons">
+        <ui-icon-button mat-menu-item (click)="Edit(item.id)" icon="edit">
+          {{ 'Inventory.actions.edit' | translate }}
+        </ui-icon-button>
+
+        <ui-icon-button mat-menu-item (click)="deleteItem(item.id)" icon="delete">
+          {{ 'Inventory.actions.delete' | translate }}
+        </ui-icon-button>
+      </div>
+    </ng-template>
+  </ui-table>
 
   }
 </web-page>

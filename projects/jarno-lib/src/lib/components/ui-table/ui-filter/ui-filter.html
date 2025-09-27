@@ -1,42 +1,43 @@
-<div class="filter-container">
-  <div class="search-container
+<mat-card class="search-container" appearance="outlined">
+  <div class="filter-container">
+    <div class="search-container
       {{ filterExpand ? 'filterExpand' : 'filterNoExpand' }}
       {{ hotpicks ? 'withHotpicks' : '' }}
       {{ preHotpick ? 'withPreHotpick' : '' }}
       {{ control ? 'withSearch' : 'noSearch' }}">
-    
-    <!-- Pre hotpick -->
-    <div class="preHotpick" *ngIf="preHotpick">
-      <ng-content select="[select='pre']"></ng-content>
-    </div>
+      @if (preHotpick) {
+      <div class="preHotpick">
+        <ng-content select="[select='pre']"></ng-content>
+      </div>
+      }
 
-    <!-- Search input (desktop or if no hotpicks) -->
-    <mat-form-field *ngIf="(isMobile$ | async) === false || !hotpicks"
-                    appearance="fill"
-                    class="large">
-      <ui-icon matPrefix icon="search"></ui-icon>
-      <input matInput
-             [formControl]="control"
-             [placeholder]="placeholder"
-             type="search"
-             autocapitalize="none"
-             data-testid="search-input" />
-    </mat-form-field>
+      @if (control) {
+        <mat-form-field class="search-field">
+          <input autocapitalize="none" type="search" [formControl]="control" matInput [placeholder]="placeholder"
+          data-testid="search-input" />
+        </mat-form-field>
+      }
 
-    <!-- Hotpicks -->
-    <div class="hotpicks" *ngIf="hotpicks">
-      <ng-content select="ui-hotpick:not([select='action']):not([select='pre'])"></ng-content>
-      <ng-content select="[hotpicks]"></ng-content>
-    </div>
+      @if (hotpicks) {
+      <div class="hotpicks">
+        <ng-content select="ui-hotpick:not([select='action']):not([select='pre'])" class="hotpick-filter">
+        </ng-content>
+        <ng-content select="[hotpicks]" class="hotpick-filter">
+        </ng-content>
+      </div>
+      }
 
-    <!-- Advanced search -->
-    <div class="advancedSearch" #advancedFilterRef *ngIf="filterExpand">
-      <ng-content select="[select='advanced']"></ng-content>
+      @if (filterExpand) {
+      <div class="advancedSearch" #advancedFilterRef>
+        <ng-content select="[select='advanced']"></ng-content>
+      </div>
+      }
     </div>
   </div>
+</mat-card>
 
-  <!-- Action buttons (desktop) -->
-  <div class="actions" >
+<mat-card appearance="outlined">
+  <div class="actions">
     <ng-content select="[select='action']"></ng-content>
   </div>
-</div>
+</mat-card>

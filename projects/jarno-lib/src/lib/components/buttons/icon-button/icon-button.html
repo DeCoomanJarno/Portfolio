@@ -1,21 +1,13 @@
-
-    <div
-      class="icon-button size-{{ size }} theme-{{ theme }}"
-      [class.active]="active"
-      [class.disabled]="disabled"
-      [class.focused]="focused"
-    >
+<div [matTooltip]="tooltip" [matTooltipDisabled]="tooltipDisabled" class="ui-button-wrapper">
+  <button mat-button [disabled]="disabled" [color]="color" [ngClass]="size" (click)="!disabled && clicked.emit($event)">
+    <div class="ui-button">
       @if (badge) {
-        <span
-          matBadge="&#8203;"
-          [matBadgeColor]="GetBadgeSeverity()"
-          [ngClass]="badgeSeverity"
-          class="dot standalone"
-        ></span>
+      <span matBadge="&#8203;" [matBadgeColor]="GetBadgeSeverity()" [ngClass]="badgeSeverity" class="dot"></span>
       }
-      <ui-icon
-        [size]="size"
-        [icon]="icon"
-        [customIcon]="svgIcon"
-      ></ui-icon>
+      <ui-icon [size]="size" [icon]="icon" [customIcon]="svgIcon"
+        [ngClass]="{ active: active, focused: focused }"></ui-icon>
+      <div><ng-content></ng-content></div>
+
     </div>
+  </button>
+</div>

@@ -3,7 +3,7 @@
 <ng-container >
   <div class="inventory-detail">
     <ui-thumbnail (close)="close()">
-      <ui-title size="large" [title]="item.name" class="title" [subtitle]="item.description" [icon]="categoryIconService.getIconName(item.category) ?? ''" [svgIcon]="true" [state]="GetConvertedItemState(item)"></ui-title>
+      <ui-title size="large" [title]="item.name" class="title" [subtitle]="item.description" [icon]="categoryIconService.getIconName(item.category) ?? ''" [svgIcon]="true"  [state]="GetConvertedItemState(item)"></ui-title>
     </ui-thumbnail>
 
     <ui-card class="detail-card">

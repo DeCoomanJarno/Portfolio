@@ -1,9 +1,7 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map } from 'rxjs/operators';
 import { OverlayRegisterService } from '../services/overlay-register.service';
-import { SetSizeWithIconButtonsComponent } from '../iconbuttons';
+import { TranslateService } from '@ngx-translate/core';
 
 export type UiFilterColumnType = 'text' | 'select' | 'number' | 'date' | 'boolean';
 
@@ -23,32 +21,22 @@ export interface UiFilterColumn {
   styleUrl: './ui-filter.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UiFilter extends SetSizeWithIconButtonsComponent implements OnInit {
-  @Input() public placeholder = 'Search';
-  @Input() public hotpicks = false;
+export class UiFilter {
+  @Input() public placeholder: string;
+  @Input() public hotpicks:boolean = false;
   @Input() public preHotpick = false;
   @Input() public filterExpand = false;
   @Input() public control!: FormControl<string>;
 
   @ViewChild('advancedFilterRef') public advancedFilterRef!: ElementRef;
 
-  public isMobile$!: any;
-
   constructor(
-    private _breakpointObserver: BreakpointObserver,
     private _overlayRegisterService: OverlayRegisterService,
-    public elementRef: ElementRef
+    public elementRef: ElementRef,
+    private _translateService: TranslateService
   ) {
-    super();
+    this.placeholder = _translateService.instant('PlaceHolders.Search')
   }
-
-  ngOnInit(): void {
-    // Initialize isMobile$ here after _breakpointObserver is available
-    this.isMobile$ = this._breakpointObserver
-      .observe(['(max-width: 768px)'])
-      .pipe(map(result => result.matches));
-  }
-
   public closeOverlays(): void {
     this._overlayRegisterService.closeAll();
   }

@@ -1,7 +1,12 @@
 @use '../../../core/styles/variables' as var;
 
+:host:not(:last-child) {
+  border-right: 1px solid var(--color-on-background);
+}
 :host {
   display: flex;
+  height: 100%;
+  width: 100%;
 
   .hotpick {
     display: flex;
@@ -9,13 +14,11 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    width: 100%;
     padding: 0 var.$spacing-s 0 var.$spacing-s;
-    transition: all 220ms ease-in-out;
     cursor: pointer;
 
-    @media only screen and (max-width: 999px) {
-      padding: var.$spacing-xs var.$spacing-s;
-    }
+
     .label-container {
       display: flex;
       justify-content: space-between;
@@ -29,13 +32,14 @@
         white-space: nowrap;
       }
 
-      mat-icon {
+      ui-icon {
         width: var.$size-m;
         height: var.$size-m;
         font-size: var.$font-size-m;
         padding-left: var.$spacing-m;
       }
     }
+
     .value-container {
       display: flex;
       align-items: center;
@@ -47,17 +51,29 @@
     }
   }
 
-  &[select="action"]{
+  &[select="action"] {
     &:first-of-type {
       border-left: 0;
-      .hotpick{
+
+      .hotpick {
         border-radius: var.$radius-s 0 0 var.$radius-s;
       }
     }
+
     &:last-of-type {
-      .hotpick{
-        border-radius:0 var.$radius-s  var.$radius-s 0;
+      .hotpick {
+        border-radius: 0 var.$radius-s var.$radius-s 0;
       }
+    }
+  }
+
+  :hover {
+    background-color: var(--color-background-hover);
+  }
+
+  &[select="action"] {
+    :hover {
+      background-color: transparent;
     }
   }
 }

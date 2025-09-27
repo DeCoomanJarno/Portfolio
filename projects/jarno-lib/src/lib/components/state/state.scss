@@ -2,27 +2,50 @@
 
 :host {
   display: flex;
-  .icon {
-    margin: .5rem;
-  }
-
   .state-container {
     border-radius: var.$radius-s;
     display: flex;
-    justify-content: center;
-    align-items: center;
     transition: none;
+  .icon {
+    margin: 5px;
+  }
 
-    &.circle {
-      width: var.$size-m;
-      height: var.$size-m;
-      border-radius: 50%;
-      border: none;
 
-      @media only screen and (max-width: 600px) {
+    &.x-small {
+      width: var.$size-xs;
+      height: var.$size-xs;
+      border-radius: var.$radius-xs;
+      ui-icon {
         width: 12px;
         height: 12px;
+        font-size: var.$font-size-xs;
       }
+    }
+
+    &.small {
+      width: var.$size-s;
+      height: var.$size-s;
+      border-radius: var.$radius-xs;
+      ui-icon {
+        width: 16px;
+        height: 16px;
+        font-size: var.$font-size-s;
+      }
+    }
+
+    &.medium {
+      width: var.$size-xxl;
+      height: var.$size-xxl;
+      border-radius: var.$radius-xs;
+      ui-icon {
+        width:  32px;
+        height: 32px;
+        font-size: var.$font-size-xl;
+      }
+    }
+
+    &.circle {
+      border-radius: 50%;
     }
 
     /* States mapped to tokens */
