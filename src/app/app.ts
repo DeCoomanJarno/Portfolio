@@ -12,7 +12,7 @@ import { InventoryModule } from './WebApplications/inventory/inventory-module';
     templateUrl: './app.html',
     imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule, InventoryModule],
     styleUrls: ['./app.css'],
-    providers: []
+    providers: [TranslateService]
 })
 export class AppComponent { 
     constructor(private translate: TranslateService) {

@@ -1,5 +1,69 @@
 {
     "Inventory": {
-        
+        "filter": {
+            "all": "Alle",
+            "available": "Beschikbaar",
+            "reserved": "Gereserveerd",
+            "damaged": "Beschadigd",
+            "backordered": "Nakomend"
+        },
+        "actions": {
+            "delete": "Verwijderen",
+            "create": "Aanmaken",
+            "edit": "Bewerken"
+        },
+        "create": {
+            "title": "Aanmaken",
+            "subtitle": "Vul de onderstaande gegevens in om een nieuw item toe te voegen aan de voorraad",
+            "create": "Aanmaken"
+        },
+        "edit": {
+            "title": "Bewerken",
+            "save": "Opslaan",
+            "cancel": "Annuleren"
+        },
+        "item": {
+            "name": "Naam",
+            "namePlaceholder": "Itemnaam",
+            "nameRequired": "Naam is verplicht",
+            "description": "Beschrijving",
+            "descriptionPlaceholder": "Optionele beschrijving",
+            "sku": "SKU",
+            "skuPlaceholder": "Stock Keeping Unit",
+            "skuRequired": "SKU is verplicht",
+            "quantity": "Hoeveelheid",
+            "quantityRequired": "Hoeveelheid is verplicht",
+            "category": "Categorie",
+            "selectCategory": "Selecteer Categorie",
+            "categoryRequired": "Categorie is verplicht",
+            "location": "Locatie",
+            "warehouseId": "Magazijn-ID",
+            "warehouseIdRequired": "Magazijn-ID is verplicht",
+            "aisle": "Gang",
+            "bay": "Vak",
+            "shelf": "Plank",
+            "bin": "Bak",
+            "status": "Status",
+            "statusRequired": "Status is verplicht"
+        },
+        "Categories": {
+            "Bearings": "Lagers",
+            "Fasteners": "Bevestigingsmiddelen",
+            "Filters": "Filters",
+            "Pallets": "Pallets",
+            "Packaging": "Verpakking",
+            "Electronics": "Elektronica",
+            "Safety": "Veiligheid",
+            "Materials": "Materialen",
+            "Power Transmission": "Krachtoverbrenging",
+            "Seals": "Seals",
+            "Lifting": "Heffen"
+        },
+        "Statuses": {
+            "available": "Beschikbaar",
+            "reserved": "Gereserveerd",
+            "backordered": "Nakomend",
+            "damaged": "Beschadigd"
+        }
     }
 }

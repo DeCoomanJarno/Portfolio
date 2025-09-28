@@ -63,6 +63,36 @@
             "Links": {
                 "TryOut": "Probeer het uit"
             }
+        },
+        "Inventory": {
+            "Title": "Voorraadbeheer Systeem",
+            "Description": "Een webgebaseerd voorraadbeheersysteem met lijst-, detail-, aanmaak- en bewerkfunctionaliteiten, gebouwd met Angular en Material Design.",
+            "Content": [
+                "Dit project is een voorraadbeheersysteem gebouwd met Angular. Gebruikers kunnen voorraaditems beheren, gedetailleerde informatie bekijken en naadloos nieuwe items aanmaken of bestaande items bewerken.",
+                "De voorraadlijst toont alle items in een Material-tabel met zoek-, filter- en sorteermogelijkheden. Het biedt snelle toegang tot belangrijke details zoals naam, categorie, hoeveelheid en ontvangstdatum.",
+                "Gebruikers kunnen op een item klikken om de detailweergave te openen. Deze weergave toont volledige informatie over het item, inclusief notities, categorie-iconen via een speciale service en realtime updates met observables.",
+                "Het aanmaken van een nieuw voorraaditem gebeurt via een reactief formulier met validatie, zodat alle verplichte velden correct worden ingevuld en ongeldige invoer wordt voorkomen.",
+                "Het bewerken van een bestaand item vult het formulier vooraf met de huidige gegevens. Wijzigingen worden onmiddellijk weergegeven in de voorraadlijst dankzij een observable-gebaseerd state management systeem.",
+                "De applicatie gebruikt gedeelde services voor voorraadbeheer en gecentraliseerd state management voor consistente updates in alle componenten.",
+                "Material Design-componenten zoals tabellen, formulieren, dialogen en knoppen worden gebruikt om een responsieve, overzichtelijke en gebruiksvriendelijke interface te creëren.",
+                "Toekomstige uitbreidingen kunnen bulk import/export opties, API-integratie voor automatische updates, verbeterde rapportages en rollen gebaseerde permissies omvatten."
+            ],
+            "Features": [
+                "Voorraadlijst met zoek-, filter- en sorteerfunctionaliteit",
+                "Detailweergave voor elk voorraaditem",
+                "Aanmaak- en bewerkformulieren met validatie",
+                "Observable-gebaseerd state management",
+                "Responsieve UI met Material Design"
+            ],
+            "Future": [
+                "Bulk import/export van voorraaditems toevoegen",
+                "Integratie met externe API's voor automatische updates",
+                "Verbeterde rapportage- en analysemogelijkheden",
+                "Implementatie van rollen gebaseerde permissies en audit logs"
+            ],
+            "Links": {
+                "TryOut": "Probeer het"
+            }
         }
     }
 }

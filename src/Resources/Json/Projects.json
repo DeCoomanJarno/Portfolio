@@ -1,5 +1,24 @@
 [
   {
+    "id": "Inventory",
+    "title": "Project.Inventory.Title",
+    "description": "Project.Inventory.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript"
+    ],
+    "images": [
+      "Inventory_List.png",
+      "Inventory_Detail.png",
+      "Inventory_Create.png"
+    ],
+    "link": {
+      "name": "Project.Inventory.Links.TryOut",
+      "icon": "Export",
+      "url": "/Inventory"
+    }
+  },
+  {
     "id": "Appointments",
     "title": "Project.Appointments.Title",
     "description": "Project.Appointments.Description",

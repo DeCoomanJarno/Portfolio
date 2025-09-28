@@ -92,6 +92,36 @@
             "Links": {
                 "TryOut": "Try out"
             }
+        },
+        "Inventory": {
+            "Title": "Inventory Management System",
+            "Description": "A web-based inventory management system with list, detail, create, and edit functionalities, built using Angular and Material Design.",
+            "Content": [
+                "This project is an inventory management system built using Angular. Users can manage inventory items, view detailed information, and perform create/edit operations seamlessly.",
+                "The inventory list displays all items in a Material table with search, filter, and sort functionalities. It provides quick access to key details like name, category, quantity, and received date.",
+                "Users can click an item to open the detail view. This view shows full information about the item, including notes, category icons via a dedicated service, and real-time updates using observables.",
+                "Creating a new inventory item is done via a reactive form with validation, ensuring all required fields are filled correctly and preventing invalid entries.",
+                "Editing an existing item pre-populates the form with current data. Updates are immediately reflected in the inventory list thanks to an observable-based state management system.",
+                "The application uses shared services for inventory operations and centralized state management for consistent updates across all components.",
+                "Material Design components such as tables, forms, dialogs, and buttons are used to create a responsive, clean, and user-friendly interface.",
+                "Future extensions may include bulk import/export options, API integration for automatic updates, enhanced reporting, and role-based permissions."
+            ],
+            "Features": [
+                "Inventory list with search, filter, and sort",
+                "Detail view for each inventory item",
+                "Create and edit forms with validation",
+                "Observable-based state management",
+                "Responsive UI with Material Design"
+            ],
+            "Future": [
+                "Add bulk import/export options for inventory items",
+                "Integrate with external APIs for automated updates",
+                "Enhance reporting and analytics features",
+                "Implement role-based permissions and audit logs"
+            ],
+            "Links": {
+                "TryOut": "Try out"
+            }
         }
     }
 }

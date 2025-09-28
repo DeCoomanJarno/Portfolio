@@ -25,6 +25,15 @@
         translate}}</ui-button>
     </ui-hotpick>
 
+    <!-- override -->
+    <div *UiOverrideColumn="'status'; let row">
+      {{'Inventory.Statuses.' + row.status | translate }}
+    </div>
+
+    <div *UiOverrideColumn="'category'; let row">
+      {{'Inventory.Categories.' + row.category | translate }}
+    </div>
+
     <!-- ⚙️ Row actions -->
     <ng-template UiActions let-item class="row-actions">
       <div class="menu-buttons">

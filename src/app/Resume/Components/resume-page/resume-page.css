@@ -318,7 +318,7 @@ button.download-btn:active {
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .resume {
     flex-direction: column;
   }

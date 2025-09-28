@@ -3,6 +3,7 @@ import { SidePanelService, TableElement } from 'JarnoLib';
 import { Item, ItemStatus } from '../models/item.model';
 import { InventoryService } from '../services/inventory.service';
 import { BehaviorSubject, combineLatest, map, Observable, take } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 export type FilterState = 'All' | ItemStatus;
 
@@ -15,14 +16,7 @@ export type FilterState = 'All' | ItemStatus;
 export class InventoryPage {
 
   // Table columns
-  public columns: TableElement<Item>[] = [
-    { field: 'id', header: 'ID', sortable: true, filterable: true, visible: false },
-    { field: 'name', header: 'Name', sortable: true, filterable: true, visible: true },
-    { field: 'sku', header: 'SKU', sortable: true, filterable: true },
-    { field: 'quantity', header: 'Quantity', sortable: true, filterable: true },
-    { field: 'status', header: 'Status', sortable: true, filterable: true },
-    { field: 'category', header: 'Category', sortable: true, filterable: true }
-  ];
+  public columns: TableElement<Item>[];
 
   public statuses: ItemStatus[] = Object.values(ItemStatus);
 
@@ -30,7 +24,7 @@ export class InventoryPage {
   public selectedState$ = new BehaviorSubject<FilterState>('All');
   public filteredItem$: Observable<Item[]>;
 
-  constructor(private sidePanel: SidePanelService, private inventoryService: InventoryService) {
+  constructor(private sidePanel: SidePanelService, private inventoryService: InventoryService, private _translateService: TranslateService) {
     this.allItem$ = this.inventoryService.getAll();
 
     this.filteredItem$ = combineLatest([
@@ -39,6 +33,15 @@ export class InventoryPage {
     ]).pipe(
       map(([items, state]) => state === 'All' ? items : items.filter(item => item.status === state))
     );
+
+    this.columns = [
+    { field: 'id', header: 'ID', sortable: true, filterable: true, visible: false },
+    { field: 'name', header: _translateService.instant('Inventory.item.name'), sortable: true, filterable: true, visible: true },
+    { field: 'sku', header: 'SKU', sortable: true, filterable: true },
+    { field: 'quantity', header: _translateService.instant('Inventory.item.quantity'), sortable: true, filterable: true },
+    { field: 'status', header: _translateService.instant('Inventory.item.status'), sortable: true, filterable: true },
+    { field: 'category', header: _translateService.instant('Inventory.item.category') , sortable: true, filterable: true }
+  ];
   }
 
   // Open side panels

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonDataService } from '../../Services/common-data.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,11 +7,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonModule } from 'JarnoLib';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, TranslateModule, MatIconModule, FormsModule, MatFormFieldModule, MatSelectModule,ButtonModule],
+  imports: [RouterModule, TranslateModule, MatIconModule, FormsModule, MatFormFieldModule, MatSelectModule, ButtonModule],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
@@ -31,7 +32,8 @@ export class HeaderComponent {
   }
   constructor(
     public commonDataService: CommonDataService,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private router: Router
   ) {
     this.languages = [...this.translateService.getLangs()];
 
@@ -58,7 +60,15 @@ export class HeaderComponent {
   }
 
   setLanguage(lang: string) {
+    if (lang === this.currentLang) return; // avoid re-setting same lang
+    const currentUrl = this.router.url;
     this.currentLang = lang;
-    // any additional logic for switching language
+
+    this.translateService.onLangChange
+      .pipe(take(1)) // only handle this change
+      .subscribe(() => {
+        this.router.navigateByUrl(currentUrl);
+      });
+    this.translateService.use(lang);
   }
 }

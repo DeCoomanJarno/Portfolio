@@ -51,32 +51,22 @@ downloadResumePDF() {
         // Ignore CORS errors for external stylesheets
       }
     }
-// Apply computed colors for dark/light mode
-const entries = clonedContent.querySelectorAll<HTMLElement>('.Entry');
-entries.forEach(entry => {
-  const color = getComputedStyle(entry).color;
-  entry.style.color = color;
-});
 
-const entrieheaders = clonedContent.querySelectorAll<HTMLElement>('.Degree');
-entries.forEach(entry => {
-  const color = getComputedStyle(entry).color;
-  entry.style.color = color;
-});
+    const elementsToCopy = ['.Entry', '.Degree', '.Company', '.Location', '.Description', '.badge'];
 
-const descriptions = clonedContent.querySelectorAll<HTMLElement>('.Description');
-descriptions.forEach(desc => {
-  const color = getComputedStyle(desc).color;
-  desc.style.color = color;
-});
+elementsToCopy.forEach(selector => {
+const originalEls = element.querySelectorAll(selector) as NodeListOf<HTMLElement>;
+  const clonedEls = clonedContent.querySelectorAll<HTMLElement>(selector);
 
-// Skill badges
-const badges = clonedContent.querySelectorAll<HTMLElement>('.badge');
-badges.forEach(badge => {
-  const color = getComputedStyle(badge).color;
-  badge.style.color = color;
+  clonedEls.forEach((clonedEl, i) => {
+  if (originalEls[i]) {
+    const color = getComputedStyle(originalEls[i]).color;
+    clonedEl.style.setProperty('color', color, 'important');
+    clonedEl.style.setProperty('-webkit-print-color-adjust', 'exact');
+    clonedEl.style.setProperty('print-color-adjust', 'exact');
+  }
+  });
 });
-
 
     const bodyClass = document.body.className;
     // Write the iframe document with styles and cloned content
@@ -119,11 +109,15 @@ badges.forEach(badge => {
   .Entry, .Description, .EntryHeader, .Degree {
     color: ${getComputedStyle(document.querySelector('.Entry') as HTMLElement)?.color || '#000'};
   }
-  .Degree {
-    color: ${getComputedStyle(document.querySelector('.Degree') as HTMLElement)?.color || '#000'};
+  .Company, .Location {
+    color: ${getComputedStyle(document.querySelector('.Company') as HTMLElement)?.color || '#000'};
   }
 
 
+  /* Optional: adjust headers if needed */
+  .Header, .RightSide, .RightSide, .Year {
+    color: ${getComputedStyle(document.querySelector('.Header') as HTMLElement)?.color || '#000'};
+  }
 
   /* Skill badges */
   .badge {
@@ -134,12 +128,6 @@ badges.forEach(badge => {
   a {
     color: ${getComputedStyle(document.body).color};
   }
-
-  /* Optional: adjust headers if needed */
-  .Header, .RightSide .Company, .RightSide .Location, .Year {
-    color: ${getComputedStyle(document.querySelector('.Header') as HTMLElement)?.color || '#000'};
-  }
-
   /* Force printing colors correctly */
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -167,8 +155,7 @@ badges.forEach(badge => {
     setTimeout(() => {
       iframe.contentWindow?.focus();
       setTimeout(() => {
-        document.body.removeChild(iframe);
-      }, 1000);
+      }, 1200);
     }, 1500);
   }
 }

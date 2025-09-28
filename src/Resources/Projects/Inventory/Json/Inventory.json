@@ -1,0 +1,73 @@
+{
+  "title": "Project.Inventory.Title",
+  "description": "Project.Inventory.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "Inventory_List.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Inventory.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.Inventory.Content.1"
+    },
+    {
+      "type": "image",
+      "value": "Inventory_Detail.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Inventory.Content.2"
+    },
+    {
+      "type": "code",
+      "value": "export class InventoryPage {\n  inventoryItems$ = this.state.select('inventory');\n\n  constructor(private state: StateService) {}\n\n  searchItems(query: string) {\n    this.state.update('inventory', items => items.filter(i => i.name.includes(query)));\n  }\n\n  openDetail(itemId: string) {\n    this.state.update('selectedItem', itemId);\n  }\n}"
+    },
+    {
+      "type": "text",
+      "value": "Project.Inventory.Content.3"
+    },
+    {
+      "type": "code",
+      "value": "export class InventoryDetail {\n  item$ = this.state.select('selectedItem');\n\n  constructor(private state: StateService, private categoryIcon: CategoryIconService) {}\n\n  getCategoryIcon(category: string) {\n    this.categoryIcon.getIcon(category).subscribe(icon => {\n      console.log('Category icon:', icon);\n    });\n  }\n}"
+    },
+    {
+      "type": "image",
+      "value": "Inventory_Create.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.Inventory.Content.4"
+    },
+    {
+      "type": "code",
+      "value": "export class InventoryCreate {\n  form = new FormGroup({\n    name: new FormControl('', Validators.required),\n    category: new FormControl('', Validators.required),\n    quantity: new FormControl(0, [Validators.required, Validators.min(0)])\n  });\n\n  constructor(private state: StateService) {}\n\n  submit() {\n    if (this.form.valid) {\n      this.state.update('inventory', items => [...items, this.form.value]);\n    }\n  }\n}"
+    },
+    {
+      "type": "code",
+      "value": "export class InventoryEdit {\n  form = new FormGroup({\n    name: new FormControl('', Validators.required),\n    category: new FormControl('', Validators.required),\n    quantity: new FormControl(0, [Validators.required, Validators.min(0)])\n  });\n\n  constructor(private state: StateService) {\n    this.state.select('selectedItem').subscribe(item => {\n      if (item) this.form.patchValue(item);\n    });\n  }\n\n  save() {\n    if (this.form.valid) {\n      this.state.update('inventory', items => items.map(i => i.id === this.form.value.id ? this.form.value : i));\n    }\n  }\n}"
+    }
+  ],
+  "features": [
+    "Project.Inventory.Features.0",
+    "Project.Inventory.Features.1",
+    "Project.Inventory.Features.2",
+    "Project.Inventory.Features.3",
+    "Project.Inventory.Features.4"
+  ],
+  "futurePlans": [
+    "Project.Inventory.Future.0",
+    "Project.Inventory.Future.1",
+    "Project.Inventory.Future.2",
+    "Project.Inventory.Future.3"
+  ],
+  "technologies": [
+    "Angular",
+    "TypeScript",
+    "Material Design"
+  ],
+  "links": []
+}
