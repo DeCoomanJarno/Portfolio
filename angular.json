@@ -3,25 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "jarno-lib": {
-      "projectType": "library",
-      "root": "projects/jarno-lib",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "sourceRoot": "projects/jarno-lib/src",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/jarno-lib/tsconfig.lib.json",
-            "project": "projects/jarno-lib/ng-package.json"
-          }
-        }
-      }
-    },
     "Portfolio": {
       "projectType": "application",
       "schematics": {},
@@ -50,7 +31,6 @@
             ],
           "stylePreprocessorOptions": {
             "includePaths": [
-              "projects/jarno-lib/src/lib/core/styles"
             ]
           },
             "styles": [
@@ -131,46 +111,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "JarnoLib": {
-      "projectType": "library",
-      "root": "projects/jarno-lib",
-      "sourceRoot": "projects/jarno-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/jarno-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/jarno-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/jarno-lib/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/jarno-lib/**/*.ts",
-              "projects/jarno-lib/**/*.html"
-            ],
-            "eslintConfig": "projects/jarno-lib/eslint.config.js"
           }
         }
       }
