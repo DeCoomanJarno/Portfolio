@@ -1,9 +1,0 @@
-@use '../../core/styles/variables' as var;
-
-:host {
-  .actions {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: var.$spacing-s;
-  }
-}
