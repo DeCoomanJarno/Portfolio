@@ -1,46 +1,9 @@
-/* Import your core library SCSS via relative path or includePaths */
-@use 'tokens' as *;
-@use 'themes' as *;
-@use 'mixins' as *;
+@use 'index' as *;         // resolves via includePaths
 
 /* External CSS */
 @import 'bootstrap';
 @import 'highlight.js/styles/github.css';
 
-/* Global element styles */
 html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-body {
   background-color: var(--color-background);
-  color: var(--color-primary);
-}
-
-a {
-  text-decoration: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Global transitions applied to all elements */
-*,
-*::before,
-*::after {
-  transition:
-    transform var(--transition-duration) var(--transition-ease),
-    background-color var(--transition-duration) var(--transition-ease),
-    color var(--transition-duration) var(--transition-ease),
-    box-shadow var(--transition-duration) var(--transition-ease);
 }

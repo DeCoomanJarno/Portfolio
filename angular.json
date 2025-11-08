@@ -31,6 +31,7 @@
             ],
           "stylePreprocessorOptions": {
             "includePaths": [
+              "node_modules/style-lib/src/lib"
             ]
           },
             "styles": [
