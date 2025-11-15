@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'JarnoLib';
+import { AuthService } from '@angularlibrary/core-lib';
 
 @Component({
   selector: 'app-header',

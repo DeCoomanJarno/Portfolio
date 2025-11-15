@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { SidePanelService, TableElement } from 'JarnoLib';
 import { Item, ItemStatus } from '../models/item.model';
 import { InventoryService } from '../services/inventory.service';
 import { BehaviorSubject, combineLatest, map, Observable, take } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { SidePanelService, TableElement } from '@angularlibrary/core-lib';
 
 export type FilterState = 'All' | ItemStatus;
 

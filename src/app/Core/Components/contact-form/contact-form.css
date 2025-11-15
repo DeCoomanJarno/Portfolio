@@ -1,0 +1,60 @@
+.contact-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: var(--border-radius-s);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-send-button {
+  align-self: flex-start;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--border-radius-s);
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-send-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.contact-send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-status.success {
+  color: var(--color-success, #3cb371);
+}
+
+.form-status.error {
+  color: var(--color-error, #e74c3c);
+}

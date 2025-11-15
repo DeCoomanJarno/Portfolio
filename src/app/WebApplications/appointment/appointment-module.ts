@@ -20,7 +20,6 @@ import { AppointmentRoutingModule } from './appointment-routing.module';
 import { TranslatePipe } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header';
 import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
-import { AuthModule } from 'JarnoLib';
 
 
 @NgModule({
@@ -50,7 +49,6 @@ import { AuthModule } from 'JarnoLib';
     AsyncPipe,
     MatRadioModule,
     MatMenuModule,
-    AuthModule
   ]
 })
 export class AppointmentModule { }

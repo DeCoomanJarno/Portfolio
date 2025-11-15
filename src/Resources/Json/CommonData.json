@@ -10,7 +10,7 @@
     "Name": "De Cooman",
     "FirstName": "Jarno",
     "ProfileImage": "Resources/Jarno-image.png",
-    "Logo": "Resources/Logo.png",
+    "Logo": "Resources/Logo",
     "Contact": {
         "Email": "decoomanjarno02@gmail.com",
         "Phone": "+32 472 73 27 82"
@@ -59,6 +59,10 @@
                 },
                 {
                     "Name": "Node.js",
+                    "Level": "skill.level.intermediate"
+                },
+                {
+                    "Name": "C++",
                     "Level": "skill.level.intermediate"
                 },
                 {

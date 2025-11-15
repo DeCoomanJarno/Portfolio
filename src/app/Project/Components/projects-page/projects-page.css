@@ -1,8 +1,58 @@
+/* Container for all projects */
 .project-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  background-color: var(--color-background-alt); /* slightly different than cards */
+  border-radius: var(--border-radius-m);
+}
+
+.project-card {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-s);
+  box-shadow: 0 8px 20px var(--color-box-shadow);; /* depth */
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px;
+  position: relative;
+}
+
+/* Hover animation */
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px var(--color-box-shadow-hover); /* depth */
+}
+
+/* Optional accent bar on left */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-s) 0 0 var(--border-radius-s);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .project-list {
+    justify-content: center;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+}

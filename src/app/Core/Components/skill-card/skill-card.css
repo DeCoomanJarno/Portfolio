@@ -1,0 +1,62 @@
+.skill-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-s);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  opacity: 0;
+  height: 100%;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.skill-header h4 {
+  margin: 0;
+}
+
+.skill-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.badge.advanced {
+  background-color: var(--color-primary);
+}
+
+.badge.intermediate {
+  background-color: var(--color-secondary);
+}
+
+.badge.basic {
+  background-color: var(--color-info);
+}

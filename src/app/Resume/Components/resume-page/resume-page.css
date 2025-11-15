@@ -15,7 +15,7 @@
   display: flex;
   font-family: Arial, sans-serif;
   font-size: 16px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
   margin: 0 auto;
   background: var(--color-background);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -51,7 +51,7 @@
   border-width: 3px;
   border-style: solid;
   border-color: var(--color-on-primary);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
   width: 20ch;
 }
 
@@ -130,15 +130,15 @@
 }
 
 .badge.school {
-  background-color: var(--state-success);
+  background-color: var(--color-success);
 }
 
 .badge.work {
-  background-color: var(--state-warning);
+  background-color: var(--color-warning);
 }
 
 .badge.hobby {
-  background-color: var(--state-error);
+  background-color: var(--color-error);
 }
 
 .skill-proficiency {
@@ -196,17 +196,17 @@
 .Header {
   text-align: center;
   font-size: 20px;
-  background-color: var(--color-header);
-  color: var(--color-on-header);
+  background-color: var(--color-on-surface);
+  color: var(--color-surface);
   padding: 5px 0;
   margin-bottom: 10px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
 }
 
 .Entry {
   background-color: var(--color-surface);
   border: 2px solid var(--color-outline);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -263,7 +263,7 @@
 .ReferenceEntry {
   color: var(--color-on-surface);
   border: 2px solid var(--color-outline);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
   padding: 10px;
   background-color: var(--color-surface);
 }
@@ -291,7 +291,7 @@ button.download-btn {
   padding: 10px 20px;
   font-weight: bold;
   font-size: 14px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-s);
   cursor: pointer;
   margin: 10px auto;
   display: block;

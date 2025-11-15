@@ -5,25 +5,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.feature-list,
-.tech-list {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  list-style-type: none;
-  justify-content: space-evenly;
-}
-
-.tech-item img {
-  width: 50px;
-  height: 50px;
-}
-
-/* Tooltip Styling */
-.tech-item img[title] {
-  color: var(--color-warning);
-}
-
+/* Project header */
 .project-header {
   text-align: center;
 }
@@ -40,65 +22,145 @@
   margin-bottom: 30px;
 }
 
+/* Section headings */
 .content-section h3,
 .project-tech h3,
-.project-features h3,
 .project-future-plans h3,
-.project-links h3,
-.project-content h3 {
+.project-links h3 {
   border-bottom: 2px solid var(--color-primary);
-  /* Horizontal line effect */
   font-size: 1.6rem;
   margin-top: 30px;
   margin-bottom: 15px;
 }
 
+/* Features */
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
 .feature-item {
   background-color: var(--color-primary);
   color: #fff;
-  padding: 10px;
+  padding: 8px 15px;
   border-radius: 20px;
   font-size: 1rem;
-  margin: 10px;
+  transition: transform 0.2s ease;
 }
 
-.project-links {
-  margin-top: 50px;
+.feature-item:hover {
+  transform: scale(1.05);
 }
 
+/* Images */
+.image-block {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-block:hover img {
+  transform: scale(1.05);
+}
+
+.image-block.right,
+.image-block.left {
+  float: none; /* remove float for modern layout */
+  margin: 0 auto; /* center images */
+}
+
+/* Responsive: smaller screens */
+@media (max-width: 768px) {
+  .image-block {
+    max-width: 90%;
+    margin: 0 auto 20px auto;
+  }
+}
+
+/* Code blocks */
+.code-block {
+  position: relative;
+  background: var(--color-background);
+  color: var(--color-on-background);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 15px 0;
+  overflow-x: auto;
+}
+
+.copy-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: transform 0.2s ease;
+}
+
+.copy-button:hover {
+  background: var(--color-surface-hover);
+  transform: scale(1.1);
+}
+
+/* Technologies */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 15px;
+  list-style: none;
+}
+
+.tech-item img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+/* Links */
 .link-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
-}
-
-.link-item {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .project-link {
   font-size: 1.1rem;
   color: var(--color-primary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .project-link:hover {
   color: var(--color-primary-hover);
-}
-
-.text-block {
-  height: auto;
-  margin-bottom: 15px;
-}
-
-.text-block.other {
-  clear: both;
+  transform: translateX(3px);
 }
 
 .image-block {
   margin-bottom: 15px;
   height: auto;
-  max-width: 250px;
+  max-width: 350px;
 }
 
 .image-block img {
@@ -113,40 +175,4 @@
 .image-block.left {
   margin-right: 20px;
   float: left;
-}
-
-.code-block {
-  position: relative;
-  background: var(--color-background);
-  color: var(--color-on-background);
-  padding: 0px;
-  border-radius: 5px;
-  margin: 10px 0px;
-  clear: both;
-}
-
-.code-block pre {
-  margin: 0;
-  height: auto;
-  top: 0;
-}
-
-.code-block code {
-  padding: 0px 20px;
-}
-
-.copy-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: var(--color-surface);
-  color: var(--color-on-surface);
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.copy-button:hover {
-  background: var(--color-surface-hover);
 }

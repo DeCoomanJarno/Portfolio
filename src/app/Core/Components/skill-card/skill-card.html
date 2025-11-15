@@ -1,0 +1,20 @@
+<div class="skill-card">
+    <div class="skill-header">
+        <span class="material-symbols-rounded">{{ category.Icon }}</span>
+        <h4>{{ category.Name | translate }}</h4>
+    </div>
+    <ul>
+        @for (skill of category.Skills; track $index) {
+        <li>
+            @if (skill.IconUrl) {
+            <img [src]="skill.IconUrl" [alt]="skill.Name" class="skill-icon" />
+            }
+            <span>{{ skill.Name }}</span>
+            @if (skill.Level) {
+                <span class="badge" [ngClass]="getSkillKey(skill.Level)">
+                {{ skill.Level | translate }}</span>
+        }
+        </li>
+        }
+    </ul>
+</div>

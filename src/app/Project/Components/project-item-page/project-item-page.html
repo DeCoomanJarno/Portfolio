@@ -64,8 +64,8 @@
         <h3>{{ 'Project.TechUsed' | translate }}</h3>
         <ul class="tech-list">
           @for (tech of projectPreviewModel.technologies; track $index) {
-            <li class="tech-item">
-              <img [src]="tech | icon" [alt]="tech" data-toggle="tooltip" data-bs-placement="top" [title]="tech">
+            <li class="tech-item"  >
+              <img [src]="tech | icon" [matTooltip]="tech" [matTooltipPosition]="'above'" [alt]="tech" >
             </li>
           }
         </ul>

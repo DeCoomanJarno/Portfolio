@@ -1,14 +1,15 @@
 <header class="header">
   <nav class="navbar navbar-expand-custom fixed-top navbar-light">
+    <section>
     <div class="logo-container">
       <a routerLink="/Home">
-        <img [src]="commonDataService.CommonData?.Logo" alt="Logo" />
+        <ui-logo/>
       </a>
     </div>
 
-    <ui-icon-button class="navbar-toggler" type="button" size="large" icon="menu" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    <ui-button class="navbar-toggler" type="button" size="Large" icon="menu" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    </ui-icon-button>
+    </ui-button>
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -64,5 +65,6 @@
 
       </div>
     </div>
+    </section>
   </nav>
 </header>

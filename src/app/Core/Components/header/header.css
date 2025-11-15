@@ -3,16 +3,25 @@
   height: 56px;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
-  width: 100%;
-  /* Make the header sticky */
   z-index: 1000;
-  /* Added z-index to ensure header stays above other elements */
+  position: sticky;
+  top: 0;
+  font-family: Arial, sans-serif;
 }
 .language-selector select,
 .navbar {
   background-color: var(--color-background);
-  color: var(--color-on-background);
-  border-color: var(--color-on-background);
+  font-family: Arial, sans-serif;
+}
+
+.navbar section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .nav-link {
@@ -40,10 +49,15 @@
 }
 
 .language-dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%; /* below the button */
+  left: 0;
+  z-index: 1050; /* higher than collapse but below header */
   background-color: var(--color-surface);
   border-radius: 8px;
-  min-width: auto;
-  padding: 0.25rem 0;
+  margin-top: 0.3rem;
+  min-width: 8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .language-dropdown .dropdown-item {
@@ -60,12 +74,6 @@
 /* Logo container styles */
 .logo-container {
   display: flex;
-  /* Keep logo flexible */
-  align-items: center;
-  /* Center the logo vertically */
-  position: relative;
-  /* Change from absolute to relative */
-  left: 1rem;
 }
 
 .logo-container img {
@@ -87,11 +95,10 @@
 
 /* Navbar toggler styles */
 .navbar-toggler {
-  box-shadow: none;
-  /* Removed absolute positioning */
-  /* Align the toggler to the right */
-  margin-right: 8px;
+  margin-left: auto;
   border-color: var(--color-on-background);
+  background: none;
+  box-shadow: none;
 }
 
 .active {
@@ -203,21 +210,59 @@
 }
 
 @media (max-width: 1300px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    backdrop-filter: blur(8px); /* subtle blur for readability */
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    padding: 0;
+  }
 
-  /* Make the collapse take full width and slide down nicely */
+  /* When scrolling down, hide navbar */
+  .navbar.hidden {
+    transform: translateY(-100%);
+  }
+
+  .navbar section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .navbar-toggler {
+    position: relative;
+    margin-left: auto;
+    z-index: 1002;
+    border-color: var(--color-on-background);
+    background: none;
+    box-shadow: none;
+  }
+
   .navbar-collapse {
+    position: fixed;
+    top: 56px; /* below navbar */
+    left: 0;
+    width: 100%;
     background-color: var(--color-surface);
-    padding: 1.5rem 2rem;
     border-radius: 0 0 1rem 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 2rem;
+    z-index: 999;
+    transition: all 0.3s ease;
   }
 
-  .navbar-icon {
-    font-size: 2rem;
-    color: var(--color-on-background);
-  }
-
-  /* Stack nav items vertically, full width */
   .navbar-nav {
     display: flex;
     flex-direction: column;
@@ -250,64 +295,44 @@
     font-weight: 600;
   }
 
-  /* Language selector and theme toggle horizontally aligned at the bottom */
   .language-selector {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin: 1rem 0 0;
+    margin-top: 1rem;
     width: 100%;
-  }
-
-  .language-selector select {
-    flex: 1;
   }
 
   .theme-toggle {
     margin-left: auto;
   }
-  /* Make the language dropdown smaller and fit nicely on mobile */
-.language-dropdown {
-  width: 100%;
-  margin: 0;
-}
 
-/* Align text left and arrow right in dropdown button */
-.language-dropdown .btn {
-  display: flex;
-  justify-content: space-between; /* Text left, arrow right */
-  align-items: center;
-  width: 100%;
-  padding: 0.35rem 0.5rem;
-  font-size: 0.85rem;
-  text-align: left; /* ensures text stays left */
-}
+  .language-dropdown {
+    width: 100%;
+    margin: 0;
+  }
 
-/* Optional: adjust the arrow icon if needed */
-.language-dropdown .btn::after {
-  margin-left: auto; /* keeps arrow on the right */
-}
+  .language-dropdown .btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
+  }
 
-.language-dropdown .dropdown-menu {
-  width: 100%;
-  min-width: auto;
-  border-radius: 8px;
-}
+  .language-dropdown .dropdown-menu {
+    width: 100%;
+    min-width: auto;
+    border-radius: 8px;
+  }
 
-.language-dropdown .dropdown-item {
-  font-size: 0.85rem;
-  padding: 0.3rem 1rem;
-}
-.logo-container img {
-  max-height: 32px;
-}
+  .language-dropdown .dropdown-item {
+    font-size: 0.85rem;
+    padding: 0.3rem 1rem;
+  }
 
-.navbar-collapse{
-margin-top: .5rem;
-}
-
-.navbar {
-  height: 56px;
-}
-
+  .logo-container img {
+    max-height: 32px;
+  }
 }

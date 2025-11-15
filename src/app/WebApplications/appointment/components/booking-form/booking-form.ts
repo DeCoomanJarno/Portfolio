@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment, AppointmentStatus } from '../../Models/appointment.model';
 import { AppointmentService } from '../../services/appointment.service';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService, User } from 'JarnoLib';
+import { AuthService, User } from '@angularlibrary/core-lib';
 
 @Component({
   selector: 'app-booking-form',

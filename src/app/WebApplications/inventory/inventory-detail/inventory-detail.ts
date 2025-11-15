@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SidePanelService } from 'JarnoLib';
 import { map, Observable, switchMap } from 'rxjs';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
 import { CategoryIconService } from '../services/category-icon.service';
+import { SidePanelService } from '@angularlibrary/core-lib';
 
 @Component({
   selector: 'app-inventory-detail',

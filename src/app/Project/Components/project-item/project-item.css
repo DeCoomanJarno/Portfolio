@@ -1,115 +1,209 @@
 .project-card {
-  width: 400px;
-  border-radius: 10px;
-  padding: 20px;
-  cursor: pointer;
-  background-color: var(--color-project);
-  color: var(--color-on-project);
-}
-
-.project-header {
-  background-color: transparent;
+  width: 350px;
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Pushes title left & icon right */
-  width: 100%;
-  border-bottom: 2px solid var(--color-primary); /* Horizontal line effect */
-  margin-top: 10px; 
-  padding-bottom: 10px;
-}
-
-.project-header h2 {
-  margin-bottom: 0;
-  font-size: 1.5em;
-}
-
-.github-icon {
-  width: 25px;
-  height: 25px;
-  transition: transform 0.3s ease;
-}
-
-.github-icon:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-s);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px; /* ensures consistent height */
 }
 
 .project-card:hover {
-  box-shadow: 0 2px 6px var(--color-boxShadow-hover);
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 }
 
-.project-card img {
-  transition: opacity 0.3s ease; /* Smooth transition for image */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.project-card p {
-  font-size: 1em;
-  margin-bottom: 15px;
-  flex-grow: 1; /* Allow this section to grow to fill space */
+.image-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-/* The project-info section is always visible unless overlay is added */
-.project-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-radius);
-  /* Common transition */
-  transition: transform var(--transition-duration) var(--transition-ease);
-  z-index: 1; /* Make sure it appears above other elements */
+.project-image {
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* When there are images, project info becomes an overlay */
-.project-info.overlay {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  color: #fff; /* Text color for better visibility */
-  transition: opacity 0.3s ease; /* Smooth transition */
+.project-image.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
-/* On hover, show the overlay */
-.project-card:hover .project-info.overlay {
-  opacity: 1; /* Make overlay visible */
-}
-
-/* Image container should have the images stacked on top of each other */
-.image-container {
-  position: relative; /* Ensure it acts as a parent for absolute positioning */
-  overflow: hidden;
-}
-.project-image {
-  max-height: 400px; /* Adjust height as needed */
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-/* Ensure images are shown in a loop with fading effect */
-.fade {
-  animation-name: fade;
-  animation-iteration-count: infinite;
-}
-.tech-list {
+.image-indicators {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  gap: 0.4rem;
+  z-index: 2;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-on-disabled);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator:hover {
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background-color: var(--color-primary);
+  transform: scale(1.2);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* ensure info fills remaining space */
+  background-color: rgba(255,255,255,0.03); /* subtle contrast */
+}
+
+.project-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  flex-shrink: 0;
+}
+
+.project-description {
+  flex-grow: 1; /* expand description to fill space */
+  font-size: 0.95rem;
+  margin: 0 0 1rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tech-list {
   align-items: center;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
   justify-content: space-evenly;
 }
 
-.tech-item img {
-  width: 40px;
-  height: 40px;
+.tech-icon {
+  width: 32px;
+  height: 32px;
 }
 
+.project-link img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
 
-/* Keyframes for fading images in and out */
+.project-link img:hover {
+  transform: scale(1.5);
+}
 
-@keyframes fade {
-  0% { opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { opacity: 0; }
+/* Animate on scroll */
+/* Animate on scroll - subtle */
+.project-card.animate {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.project-card.animate.visible {
+  opacity: 1;
+}
+.project-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  text-decoration: none;
+  width: 100%; /* take full width of card info */
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.project-external-link img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* The arrow hidden by default, slides in on hover */
+.link-arrow {
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+  color: var(--color-on-surface);
+}
+
+.project-external-link:hover {
+  transform: translateY(-3px);
+}
+
+.project-external-link:hover img {
+  transform: scale(1.1);
+}
+
+.project-external-link:hover .link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Optional: subtle background highlight sliding from left */
+.project-external-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  z-index: 0;
+  transition: left 0.3s ease;
+  border-radius: var(--border-radius-s);
+}
+
+.project-external-link:hover::before {
+  left: 0;
+}
+
+.project-external-link span {
+  position: relative;
+  z-index: 1; /* above background highlight */
 }

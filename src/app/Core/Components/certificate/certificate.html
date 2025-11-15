@@ -1,0 +1,25 @@
+@if (certificate.Url) {
+      <a [href]="certificate.Url" target="_blank" class="certificate-card-link" rel="noopener noreferrer">
+        <article class="certificate-card">
+          <div class="certificate-badge">
+            <span class="material-symbols-rounded">workspace_premium</span>
+          </div>
+          <h3 class="certificate-title">{{ certificate.Title | translate }}</h3>
+          <div class="certificate-info">
+            <span class="certificate-issuer">{{ certificate.Issuer }}</span>
+            <time class="certificate-date">{{ certificate.Date }}</time>
+          </div>
+        </article>
+      </a>
+      } @else {
+      <article class="certificate-card no-link">
+        <div class="certificate-badge">
+          <span class="material-symbols-rounded">workspace_premium</span>
+        </div>
+        <h3 class="certificate-title">{{ certificate.Title | translate }}</h3>
+        <div class="certificate-info">
+          <span class="certificate-issuer">{{ certificate.Issuer }}</span>
+          <time class="certificate-date">{{ certificate.Date }}</time>
+        </div>
+      </article>
+      }

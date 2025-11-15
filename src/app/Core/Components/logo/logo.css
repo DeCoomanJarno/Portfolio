@@ -1,0 +1,10 @@
+
+ path{
+  stroke-width: 1px;
+  fill: none;
+  stroke: var(--color-primary);
+}
+svg{
+  height: 50px;
+  width: 50px;
+}

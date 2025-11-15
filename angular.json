@@ -30,9 +30,9 @@
               "src/404.html"
             ],
           "stylePreprocessorOptions": {
-            "includePaths": [
-              "node_modules/style-lib/src/lib"
-            ]
+          "includePaths": [
+            "node_modules/@angularlibrary/style-lib/src/lib/styles"
+          ]
           },
             "styles": [
               "src/custom-theme.scss",

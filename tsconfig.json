@@ -4,9 +4,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "JarnoLib": [
-        "./dist/jarno-lib"
-      ]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -33,13 +30,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "references": [
-    {
-      "path": "./projects/jarno-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/jarno-lib/tsconfig.spec.json"
-    }
-  ]
+  }
 }

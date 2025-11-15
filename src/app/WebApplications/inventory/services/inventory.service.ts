@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, shareReplay, take, tap } from 'rxjs';
 import { Item } from '../models/item.model';
-import { IconService } from 'JarnoLib';
 
 @Injectable({
   providedIn: 'root'

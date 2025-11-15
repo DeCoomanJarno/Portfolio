@@ -4,10 +4,11 @@
   <!-- ✅ HERO - unchanged -->
   <section class="hero">
     <div class="hero-content">
-      <h1>{{ commonData.FullName }}</h1>
+      <h1 >{{ commonData.FullName }}</h1>
       <h2>{{ 'home.title' | translate }}</h2>
       <p>{{ 'home.shortBio' | translate }}</p>
-      <a routerLink="/Resume" class="cta-button">{{ 'titles.resume' | translate }}</a>
+      <ui-button variant="tertiary" class="resume-button" routerLink="/Resume">{{ 'titles.resume' | translate
+        }}</ui-button>
     </div>
     <div class="hero-image">
       <img [src]="commonData.ProfileImage" alt="Profile Picture">
@@ -16,206 +17,117 @@
 
   <!-- 🌟 ABOUT -->
   <section class="section about">
-    <h2 class="section-title">{{ 'titles.about' | translate }}</h2>
+    <ui-section-title [title]="'titles.about' | translate"></ui-section-title>
     <p>{{ 'home.aboutMe' | translate }}</p>
   </section>
 
   <!-- 💼 EXPERIENCE TIMELINE -->
   <section class="section experience">
-    <h2 class="section-title">{{ 'resume.titles.workExperience' | translate }}</h2>
+    <ui-section-title [title]="'resume.titles.workExperience' | translate"></ui-section-title>
     <div class="timeline">
       @for (exp of resumeData.Experience; track $index) {
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content surface">
-
-          <!-- Header: Company + Badge -->
-          <div class="timeline-header">
-            <div class="timeline-header-main">
-              <h5>{{ exp.Company | translate }}</h5>
-              <span class="role-badge">{{ exp.Badge | translate }}</span>
-            </div>
-
-            <!-- Sub-header: Dates + Location -->
-            <div class="timeline-sub">
-              <div class="dates">{{ exp.FormattedDates | translate }} ({{ exp.Duration | translate }})</div>
-              <div class="location">{{ exp.Location | translate }}</div>
-            </div>
-          </div>
-
-          <!-- Description -->
-          <p>{{ exp.Description | translate }}</p>
-        </div>
-      </div>
+      <ui-timeline-item class="timeline-item" [title]="exp.Company | translate" [badge]="exp.Badge | translate"
+        [dates]="(exp.FormattedDates | translate) + ' (' + (exp.Duration | translate) + ')'" [location]="exp.Location"
+        [description]="exp.Description | translate">
+      </ui-timeline-item>
       }
     </div>
   </section>
 
   <!-- 🎓 EDUCATION TIMELINE -->
   <section class="section education">
-    <h2 class="section-title">{{ 'resume.titles.education' | translate }}</h2>
+    <ui-section-title [title]="'resume.titles.education' | translate"></ui-section-title>
     <div class="timeline">
       @for (edu of resumeData.Education; track $index) {
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-
-        <div class="timeline-content surface">
-
-          <!-- Degree + Level Badge -->
-          <div class="education-header">
-            <h5>{{ edu.Degree | translate }}</h5>
-            <span class="level-badge">{{ edu.Level | translate }}</span>
-          </div>
-
-          <!-- School + Location -->
-          <div class="education-sub">
-            <div class="school-dates">
-              <div class="school">{{ edu.School | translate }}</div>
-              <!-- Dates -->
-              <div class="education-dates">
-                {{ edu.FormattedDates | translate }} ({{ edu.Duration | translate }})
-              </div>
-            </div>
-            <div class="location">{{ edu.Location | translate }}</div>
-          </div>
-
-          <!-- Description -->
-          <p>{{ edu.Description | translate }}</p>
-
-        </div>
-      </div>
+      <ui-timeline-item class="timeline-item" [title]="edu.Degree | translate" [badge]="edu.Level | translate"
+        [dates]="(edu.FormattedDates | translate) + ' (' + (edu.Duration | translate) + ')'" [location]="edu.Location"
+        [description]="edu.Description | translate">
+      </ui-timeline-item>
       }
     </div>
   </section>
 
   <!-- 🛠️ SKILLS -->
   <section class="section skills">
-    <h2 class="section-title">{{ 'resume.titles.skills' | translate }}</h2>
+    <ui-section-title [title]="'resume.titles.skills' | translate"></ui-section-title>
 
     <div class="skills-grid">
-      @for (category of commonData.SkillCategories; track $index) {
-      <div class="card surface">
-        <div class="card-body">
-          <div class="card-header">
-            <span class="material-symbols-rounded card-icon">{{ category.Icon }}</span>
-            <div class="card-title">{{ category.Name | translate }}</div>
-          </div>
-
-          <ul>
-            @for (skill of category.Skills; track $index) {
-            <li>
-              @if(skill.IconUrl) {
-              <img src="{{ skill.IconUrl }}" alt="{{ skill.Name }} logo" class="skill-icon" />
-              }
-              <span>{{ skill.Name }}</span>
-              @if(skill.Level) {
-              <span class="badge">{{ skill.Level | translate }}</span>
-              }
-            </li>
-            }
-          </ul>
-        </div>
-      </div>
-      }
+    @for (category of commonData.SkillCategories; track $index) {
+      <ui-skill-card [category]="category"></ui-skill-card>
+    }
     </div>
   </section>
 
   <!-- 💻 Certificates -->
-    <section class="certificates">
-      <h2 class="section-title">Certificates</h2>
-      <div class="certificates-gallery">
-        @for (cert of commonData.Certificates; track $index) {
-          @if (cert.Url) {
-            <a href="{{ cert.Url }}" target="_blank" class="certificate-card-link" rel="noopener noreferrer">
-              <article class="certificate-card">
-                <div class="certificate-badge">
-                  <span class="material-symbols-rounded">workspace_premium</span>
-                </div>
-                <h3 class="certificate-title">{{ cert.Title | translate }}</h3>
-                <div class="certificate-info">
-                  <span class="certificate-issuer">{{ cert.Issuer }}</span>
-                  <time class="certificate-date">{{ cert.Date }}</time>
-                </div>
-              </article>
-            </a>
-          } @else {
-            <article class="certificate-card no-link">
-              <div class="certificate-badge">
-                <span class="material-symbols-rounded">workspace_premium</span>
-              </div>
-              <h3 class="certificate-title">{{ cert.Title | translate }}</h3>
-              <div class="certificate-info">
-                <span class="certificate-issuer">{{ cert.Issuer }}</span>
-                <time class="certificate-date">{{ cert.Date }}</time>
-              </div>
-            </article>
-          }
-        }
-      </div>
-    </section>
-
-  <!-- 💻 PROJECTS -->
-  <section id="projects" class="section projects">
-    <h2 class="section-title">{{ 'titles.projects' | translate }}</h2>
-    <div class="project-list">
-      @for (project of projects; track $index) {
-      <app-project-item [project]="project"></app-project-item>
+  <section class="certificates">
+    <ui-section-title [title]="'Certificates'"></ui-section-title>
+    <div class="certificates-gallery">
+      @for (cert of commonData.Certificates; track $index) {
+        <ui-certificate [certificate]="cert"></ui-certificate>
       }
     </div>
   </section>
 
-  <!-- 📩 CONTACT -->
-<section class="section contact">
-  <h2 class="section-title">{{ 'titles.contact' | translate }}</h2>
-
-  <div class="contact-container">
-    <!-- Address -->
-    <a class="contact-card-item" [href]="resumeData.Contact.Address_Link" target="_blank">
-      <span class="material-symbols-rounded contact-icon">location_on</span>
-      <div class="contact-text">{{ resumeData.Contact.Address | translate }}</div>
-    </a>
-
-    <!-- Email -->
-    @if (commonData.Contact.Email) {
-    <a class="contact-card-item" href="mailto:{{ commonData.Contact.Email }}">
-      <span class="material-symbols-rounded contact-icon">email</span>
-      <div class="contact-text">{{ commonData.Contact.Email }}</div>
-    </a>
-    }
-
-    <!-- Phone -->
-    @if (commonData.Contact.Phone) {
-    <a class="contact-card-item" href="tel:{{ commonData.Contact.Phone }}">
-      <span class="material-symbols-rounded contact-icon">phone</span>
-      <div class="contact-text">{{ commonData.Contact.Phone }}</div>
-    </a>
-    }
-
-    <!-- Website -->
-    @if (commonData.Website) {
-    <a class="contact-card-item" [href]="commonData.Website" target="_blank">
-      <span class="material-symbols-rounded contact-icon">public</span>
-      <div class="contact-text">{{ commonData.Website }}</div>
-    </a>
-    }
-
-    <!-- LinkedIn -->
-    @if (resumeData.Contact.LinkedIn_Preview) {
-    <a class="contact-card-item" [href]="resumeData.Contact.LinkedIn_Preview" target="_blank">
-      <i class="bi bi-linkedin contact-icon"></i>
-      <div class="contact-text">{{ resumeData.Contact.LinkedIn_Preview }}</div>
-    </a>
-    }
-    
-    <!-- Github -->
-    @if (commonData.Github_URL) {
-    <a class="contact-card-item" [href]="commonData.Github_URL" target="_blank">
-      <span class="bi bi-github contact-icon"></span>
-      <div class="contact-text">{{ commonData.Github_URL }}</div>
-    </a>
+  <!-- 💻 PROJECTS -->
+<section id="projects" class="section projects">
+  <ui-section-title [title]="'titles.projects' | translate"></ui-section-title>
+  <div class="projects-grid">
+    @for (project of projects; track $index) {
+      <ui-project-item [project]="project"></ui-project-item>
     }
   </div>
 </section>
+<!-- 📬 CONTACT FORM -->
+<section class="section contact">
+  <ui-section-title [title]="'titles.contact' | translate"></ui-section-title>
+    <div class="contact-container">
+      <!-- Address -->
+      <a class="contact-card-item" [href]="resumeData.Contact.Address_Link" target="_blank">
+        <span class="material-symbols-rounded contact-icon">location_on</span>
+        <div class="contact-text">{{ resumeData.Contact.Address | translate }}</div>
+      </a>
+
+      <!-- Email -->
+      @if (commonData.Contact.Email) {
+      <a class="contact-card-item" href="mailto:{{ commonData.Contact.Email }}">
+        <span class="material-symbols-rounded contact-icon">email</span>
+        <div class="contact-text">{{ commonData.Contact.Email }}</div>
+      </a>
+      }
+
+      <!-- Phone -->
+      @if (commonData.Contact.Phone) {
+      <a class="contact-card-item" href="tel:{{ commonData.Contact.Phone }}">
+        <span class="material-symbols-rounded contact-icon">phone</span>
+        <div class="contact-text">{{ commonData.Contact.Phone }}</div>
+      </a>
+      }
+
+      <!-- Website -->
+      @if (commonData.Website) {
+      <a class="contact-card-item" [href]="commonData.Website" target="_blank">
+        <span class="material-symbols-rounded contact-icon">public</span>
+        <div class="contact-text">{{ commonData.Website }}</div>
+      </a>
+      }
+
+      <!-- LinkedIn -->
+      @if (resumeData.Contact.LinkedIn_Preview) {
+      <a class="contact-card-item" [href]="resumeData.Contact.LinkedIn_Preview" target="_blank">
+        <i class="bi bi-linkedin contact-icon"></i>
+        <div class="contact-text">{{ resumeData.Contact.LinkedIn_Preview }}</div>
+      </a>
+      }
+
+      <!-- Github -->
+      @if (commonData.Github_URL) {
+      <a class="contact-card-item" [href]="commonData.Github_URL" target="_blank">
+        <span class="bi bi-github contact-icon"></span>
+        <div class="contact-text">{{ commonData.Github_URL }}</div>
+      </a>
+      }
+    </div>
+  </section>
 
 </div>
 }

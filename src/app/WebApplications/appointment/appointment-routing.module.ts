@@ -4,7 +4,7 @@ import { BookingFormComponent } from './components/booking-form/booking-form';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard';
 import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar';
 import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
-import { Login } from 'JarnoLib';
+import { Login } from '@angularlibrary/core-lib';
 
 const routes: Routes = [
   {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { SidePanelService } from 'JarnoLib';
 import { ItemStatus, Item } from '../models/item.model';
 import { CategoryIconService } from '../services/category-icon.service';
 import { InventoryService } from '../services/inventory.service';
+import { SidePanelService } from '@angularlibrary/core-lib';
 
 @Component({
   selector: 'app-inventory-create',

@@ -42,5 +42,11 @@
                 "genAIinPractice": "Generative AI in Practice"
             }
         }
+    },
+    "contact": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "send": "Send"
     }
 }

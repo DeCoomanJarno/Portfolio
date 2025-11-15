@@ -42,5 +42,11 @@
                 "genAIinPractice": "Generatieve AI in de praktijk"
             }
         }
+    },
+    "contact": {
+        "name": "Naam",
+        "email": "Email",
+        "message": "Bericht",
+        "send": "Versturen"
     }
 }

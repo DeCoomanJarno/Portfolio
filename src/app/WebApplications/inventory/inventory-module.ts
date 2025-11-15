@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PANEL_REGISTRY, WebpageModule, CardModule, TitleModule, ButtonModule, ThumbnailModule, SidePanelModule, UiTableModule, IconModule, StateModule } from 'JarnoLib';
 import { RouterModule, Routes } from '@angular/router';
 import { InventoryDetail } from './inventory-detail/inventory-detail';
 import { InventoryPage } from './inventory-page/inventory-page';
@@ -14,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ButtonModule, IconModule, TitleModule } from '@angularlibrary/ui-lib';
+import { CardModule, PANEL_REGISTRY, SidePanelModule, ThumbnailModule, UiTableModule, WebpageModule, StateModule } from '@angularlibrary/core-lib';
 
 const routes: Routes = [
   { path: '', component: InventoryPage }

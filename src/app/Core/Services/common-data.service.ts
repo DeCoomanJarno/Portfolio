@@ -30,6 +30,8 @@ export interface CommonData {
   FirstName: string;
   ProfileImage: string;
   Logo: string;
+  LogoSvg: string;
+  LogoSvgOutlined: string;
   Contact: {
     Email: string;
     Phone: string;
@@ -61,6 +63,9 @@ export class CommonDataService {
       .pipe(
         map(data => {
           data.FullName = `${data.FirstName} ${data.Name}`;
+          data.LogoSvgOutlined = `${data.Logo}-Outlined.svg`;
+          data.LogoSvg = `${data.Logo}.svg`;
+          data.Logo = `${data.Logo}.png`;
           return data;
         }),
         tap(data => this.commonDataSubject.next(data))

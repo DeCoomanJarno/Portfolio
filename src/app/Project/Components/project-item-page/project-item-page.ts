@@ -9,13 +9,14 @@ import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-project-item-page',
   standalone: true,
-  imports: [IconPipe, TranslatePipe],
+  imports: [IconPipe, TranslatePipe, MatTooltipModule],
   templateUrl: './project-item-page.html',
   styleUrl: './project-item-page.css'
 })

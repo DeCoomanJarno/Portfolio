@@ -1,40 +1,51 @@
-<div class="project-card" [routerLink]="['/Projects', project.id]">
-  @if(project.images && project.images.length > 0)
-  {
-  <div class="image-container">
-    @if (hasMultipleImages) {
-      <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          @for (image of project.images; track $index) {
-          <div class="carousel-item" [ngClass]="{'active': $index === 0}" data-bs-interval="10000">
-            <img [src]="'Resources/Projects/' + project.id + '/Images/' + image" class="d-block w-100 project-image" [alt]="'Project image ' + ($index + 1)">
-          </div>
+<div class="project-card animate" [routerLink]="['/Projects', project.id]">
+  <div class="image-container" (click)="$event.stopPropagation()">
+    @if (project.images && project.images.length > 0) {
+      <div class="image-slider">
+        @for (image of project.images; track $index) {
+          <img
+            [src]="'Resources/Projects/' + project.id + '/Images/' + image"
+            [alt]="project.title"
+            class="project-image"
+            [class.active]="$index === currentImageIndex" />
         }
-        </div>
       </div>
-    }
-    @else {
-    <img [src]="'Resources/Projects/' + project.id + '/Images/' + project.images[0]" [alt]="'Project image'" class="project-image" />
 
+      @if (hasMultipleImages) {
+        <div class="image-indicators">
+@for (image of project.images; track $index) {
+            <span
+              class="indicator"
+              [class.active]="$index === currentImageIndex"
+              (click)="setCurrentImage($index); $event.stopPropagation()"></span>
+          }
+        </div>
+      }
     }
   </div>
-  }
+
   <div class="project-info">
-    <div class="project-header">
-      <h2>{{ project.title | translate }}</h2>
-      @if(project.link) {
-      <a [href]="project.link.url" (click)="$event.stopPropagation()">
-        <img [src]="project.link.icon | icon" [alt]="project.link.icon" class="github-icon">
-      </a>
-      }
-    </div>
-    <p>{{ project.description | translate }}</p>
+
     <div class="tech-list">
-      @for (item of this.project.technologies; track $index) {
-      <div class="tech-item">
-        <img [src]="item | icon" [alt]="item" data-toggle="tooltip" data-bs-placement="top" [title]="item">
-      </div>
+      @for (tech of project.technologies; track $index) {
+        <img [src]="tech | icon" [alt]="tech" [matTooltip]="tech" [matTooltipPosition]="'above'" class="tech-icon" />
       }
     </div>
+    <h3 class="project-title">{{ project.title | translate }}</h3>
+    <p class="project-description">{{ project.description | translate }}</p>
+
+    @if (project.link) {
+      <a
+        [href]="project.link.url"
+        target="_blank"
+        class="project-external-link"
+        (click)="$event.stopPropagation()"
+        title="{{ project.link.name || 'Visit' | translate }}">
+        <span class="link-text">{{ project.link.name || 'Visit' | translate }}</span>
+        <img [src]="project.link.icon | icon" [alt]="project.link.icon" />
+        <span class="link-arrow">→</span>
+        <span class="link-bg"></span>
+      </a>
+    }
   </div>
 </div>

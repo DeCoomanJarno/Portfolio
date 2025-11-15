@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { InventoryService } from './inventory.service';
 import { firstValueFrom, map, Observable } from 'rxjs';
-import { IconService } from 'JarnoLib';
 import { Item } from '../models/item.model';
+import { IconService } from '@angularlibrary/ui-lib';
 
 @Injectable({
   providedIn: 'root',

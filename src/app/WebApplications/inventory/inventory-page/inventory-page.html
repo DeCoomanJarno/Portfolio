@@ -9,13 +9,13 @@
     <!-- 🔍 Hotpicks (auto-slotted into ui-filter) -->
     <ui-hotpick [active]="(selectedState$.asObservable() | async) === 'All'"
       [label]="'Inventory.filter.all' | translate" (click)="filter('All')"> <ui-state [circle]="true" state="primary"
-        [stateOnly]="true" size="small" />
+        [stateOnly]="true" size="Small" />
       {{ getAmount('All') | async}}</ui-hotpick>
 
     @for (status of statuses; track $index) {
     <ui-hotpick [active]="(selectedState$.asObservable() | async) === status"
       [label]="'Inventory.filter.' + status | translate" (click)="filter(status)">
-      <ui-state [circle]="true" [state]="convertStatusToState(status)" [stateOnly]="true" size="small" />
+      <ui-state [circle]="true" [state]="convertStatusToState(status)" [stateOnly]="true" size="Small" />
       {{ getAmount(status) | async }}
     </ui-hotpick>
     }
@@ -37,13 +37,13 @@
     <!-- ⚙️ Row actions -->
     <ng-template UiActions let-item class="row-actions">
       <div class="menu-buttons">
-        <ui-icon-button mat-menu-item (click)="Edit(item.id)" icon="edit">
+        <ui-button mat-menu-item (click)="Edit(item.id)" icon="edit">
           {{ 'Inventory.actions.edit' | translate }}
-        </ui-icon-button>
+        </ui-button>
 
-        <ui-icon-button mat-menu-item (click)="deleteItem(item.id)" icon="delete">
+        <ui-button mat-menu-item (click)="deleteItem(item.id)" icon="delete">
           {{ 'Inventory.actions.delete' | translate }}
-        </ui-icon-button>
+        </ui-button>
       </div>
     </ng-template>
   </ui-table>
