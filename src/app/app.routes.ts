@@ -6,10 +6,14 @@ import { ResumePageComponent } from './Resume/Components/resume-page/resume-page
 import { ProjectsPageComponent } from './Project/Components/projects-page/projects-page';
 import { CalculatorPageComponent } from './WebApplications/Calculator/Components/calculator-page/calculator-page';
 import { ProjectItemPageComponent } from './Project/Components/project-item-page/project-item-page';
+import { FreelancePage } from './Freelance/Components/freelance-page/freelance-page';
+import { Calculator } from './Freelance/Components/calculator/calculator';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomePageComponent },
+    { path: 'Freelance', component: FreelancePage },
+    { path: 'Freelance-Calculator', component: Calculator },
     { path: 'Projects', component: ProjectsPageComponent },
     { path: 'Projects/:id', component: ProjectItemPageComponent },
     { path: 'Resume', component: ResumePageComponent },

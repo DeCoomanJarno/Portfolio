@@ -1,6 +1,6 @@
 /* Basic header styles */
 .header {
-  height: 56px;
+  height: 50px;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   z-index: 1000;
@@ -12,6 +12,7 @@
 .navbar {
   background-color: var(--color-background);
   font-family: Arial, sans-serif;
+  padding: 0;
 }
 
 .navbar section {
@@ -215,7 +216,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 56px;
+    height: 50px;
     backdrop-filter: blur(8px); /* subtle blur for readability */
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -252,7 +253,7 @@
 
   .navbar-collapse {
     position: fixed;
-    top: 56px; /* below navbar */
+    top: 50px; /* below navbar */
     left: 0;
     width: 100%;
     background-color: var(--color-surface);

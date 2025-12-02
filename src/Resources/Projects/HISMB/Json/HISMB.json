@@ -1,0 +1,65 @@
+{
+  "title": "Project.HISMB.Title",
+  "description": "Project.HISMB.Description",
+
+  "content": [
+    {
+      "type": "image",
+      "value": "hismb.jpg"
+    },
+    {
+      "type": "text",
+      "value": "Project.HISMB.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.HISMB.Content.1"
+    },
+    {
+      "type": "other",
+      "value": "Project.HISMB.Content.2"
+    },
+    {
+      "type": "other",
+      "value": "Project.HISMB.Content.3"
+    },
+    {
+      "type": "video",
+      "value": "https://www.youtube.com/embed/q4TwS20h2Hg"
+    }
+  ],
+
+  "features": [
+    "Project.HISMB.Features.0",
+    "Project.HISMB.Features.1",
+    "Project.HISMB.Features.2",
+    "Project.HISMB.Features.3",
+    "Project.HISMB.Features.4",
+    "Project.HISMB.Features.5"
+  ],
+
+  "futurePlans": [
+    "Project.HISMB.Future.0",
+    "Project.HISMB.Future.1",
+    "Project.HISMB.Future.2",
+    "Project.HISMB.Future.3"
+  ],
+
+  "links": [
+    {
+      "name": "Project.HISMB.Links.Video",
+      "url": "https://www.youtube.com/watch?v=q4TwS20h2Hg"
+    },
+    {
+      "name": "Project.HISMB.Links.Contractors",
+      "url": "https://tech4fun.be/vr-honey-i-shrunk-teambuilding/"
+    }
+  ],
+
+  "technologies": [
+    "Unity",
+    "C#",
+    "VR",
+    "Oculus Quest"
+  ]
+}

@@ -8,6 +8,13 @@
         "Copied": "Copied!",
         "NotFound": "Project not found.",
         "ImageAlt": "Project image {{index}}",
+        "Category": {
+            "web": "Web",
+            "vr/ar": "VR / AR",
+            "desktop": "Desktop",
+            "cpp": "C++",
+            "all": "All"
+        },
         "GameOfLife": {
             "Title": "Conway's Game of Life",
             "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
@@ -121,6 +128,34 @@
             ],
             "Links": {
                 "TryOut": "Try out"
+            }
+        },
+        "HISMB": {
+            "Title": "Honey, I Shrunk My Boss",
+            "Description": "A cooperative VR escape room adventure where players shrink to miniature scale and collaborate across five themed puzzle environments.",
+            "Content": [
+                "Honey, I Shrunk My Boss is a VR escape room game designed for Oculus Quest. Players shrink to a tiny size and must work together to solve puzzles scattered across five themed environments.",
+                "The game features asymmetric collaboration: one player enters the virtual world, while the other players assist using illustrated wizard manuals. These manuals contain unique clues that only external players can see, making communication essential.",
+                "Each mission places a new player inside VR. After completing the puzzle, the player grows back to normal size, passes the headset, and the next player shrinks to begin their challenge. This cycle continues through all missions, encouraging teamwork and coordination.",
+                "<h4>Experience Overview</h4><ul><li>Work together in teams of 4–5 players</li><li>Solve five mission-based puzzle challenges</li><li>One VR player shrinks while others consult illustrated manuals</li><li>Designed for accessibility and intuitive communication</li><li>Beautiful, stylized VR environments crafted for clarity and comfort</li></ul>"
+            ],
+            "Features": [
+                "Asymmetric VR gameplay",
+                "Team-based puzzle-solving",
+                "Five themed missions",
+                "Accessibility-focused design",
+                "Wordless communication system",
+                "Stylized miniature environments"
+            ],
+            "Future": [
+                "Optional multiplayer expansion modes",
+                "More puzzle themes and environments",
+                "Enhanced dynamic interactions within VR",
+                "Improved onboarding for first-time VR users"
+            ],
+            "Links": {
+                "Video": "Showcase Video",
+                "Contractors": "Explore the contractors"
             }
         }
     }

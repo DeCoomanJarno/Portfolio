@@ -1,0 +1,596 @@
+<section class="estimator-section" id="estimator">
+  <div class="content-container">
+
+    <div class="sec-header">
+      <!-- Changed from 'calc.badge' to 'freelance.calc.badge' -->
+      <div class="badge">{{ 'freelance.calc.badge' | translate }}</div>
+      <h2>{{ 'freelance.calc.title' | translate }}</h2>
+      <p class="sec-subtitle">{{ 'freelance.calc.subtitle' | translate }}</p>
+    </div>
+
+    <div class="estimator-wrap">
+
+      <!-- LEFT COLUMN: CONFIGURATION -->
+      <div class="est-body">
+
+        <div class="est-inputs">
+
+          <!-- STEP 1: TYPE & SCALE -->
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">category</span>
+              <div>
+                <!-- Changed from 'calc.step1Title' to 'freelance.calc.step1Title' -->
+                <h3>{{ 'freelance.calc.step1Title' | translate }}</h3>
+                <p>{{ 'freelance.calc.step1Desc' | translate }}</p>
+              </div>
+            </div>
+
+            <div class="type-grid">
+              @for (e of config.expertises; track e.id) {
+              <button class="type-card" [class.selected]="calcType() === e.id" (click)="calcType.set(e.id)"
+                type="button">
+                <div class="card-content-wrapper">
+                  <div class="type-icon" [style.background]="e.color + '20'" [style.color]="e.color">
+                    <span class="material-icons">{{ e.icon }}</span>
+                  </div>
+                  <div class="type-content">
+                    <h3>{{ `freelance.expertises.${e.id}.title` | translate }}</h3>
+                    <p>{{ `freelance.expertises.${e.id}.shortdesc` | translate }}</p>
+                  </div>
+                </div>
+                <div class="type-rate-wrapper">
+                  <div class="type-rate">€{{ e.baseRate }}/{{'freelance.calc.hour' | translate}}</div>
+                </div>
+              </button>
+              }
+            </div>
+
+            <div class="size-selector">
+              <!-- Changed from 'calc.projectScale' to 'freelance.calc.projectScale' -->
+              <label class="section-sublabel">{{ 'freelance.calc.projectScale' | translate }}</label>
+              <div class="size-cards">
+                @for (sizeKey of projectSizes; track sizeKey) {
+
+                @let sizeData = config.sizes[sizeKey];
+
+                <label class="size-card" [class.selected]="calcSize() === sizeKey">
+
+                  <input type="radio" name="size" [value]="sizeKey" [ngModel]="calcSize()"
+                    (ngModelChange)="setCalcSize($event)">
+                  <div class="size-content-wrapper">
+                    <div class="size-icon">
+                      <span class="material-icons">{{ sizeData.icon }}</span>
+                    </div>
+                    
+                    <div class="size-content">
+                      <h4>{{ ('freelance.calc.size.' + sizeKey + '.title') | translate }}</h4>
+                      <p>{{ ('freelance.calc.size.' + sizeKey + '.sub') | translate }}</p>
+                    </div>
+                  </div>
+
+                  <div class="size-hours-wrapper">
+                    <div class="size-hours">
+                      {{ getSetupHourRange(sizeKey)}}{{'freelance.calc.hour' | translate}} - ...
+                    </div>
+                  </div>
+
+                  @if(sizeData.discountPct > 0) {
+                  <span class="size-badge">-{{ sizeData.discountPct }}%</span>
+                  }
+
+                </label>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: COMMON FEATURES -->
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">tune</span>
+              <div>
+                <!-- Changed from 'calc.step2Title' to 'freelance.calc.step2Title' -->
+                <h3>{{ 'freelance.calc.step2Title' | translate }}</h3>
+                <p>{{ 'freelance.calc.step2Desc' | translate }}</p>
+              </div>
+            </div>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="feature-info">
+                  <div class="feature-icon">
+                    <span class="material-icons">palette</span>
+                  </div>
+                  <div class="feature-text">
+                    <!-- Changed from 'calc.hasDesign' to 'freelance.calc.hasDesign' -->
+                    <strong>{{ 'freelance.calc.hasDesign' | translate }}</strong>
+                    <small>{{ 'freelance.calc.hasDesignDesc' | translate }}</small>
+                  </div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" [ngModel]="hasDesign()" (ngModelChange)="hasDesign.set($event)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-info">
+                  <div class="feature-icon">
+                    <span class="material-icons">cloud</span>
+                  </div>
+                  <div class="feature-text">
+                    <!-- Changed from 'calc.hasBackend' to 'freelance.calc.hasBackend' -->
+                    <strong>{{ 'freelance.calc.hasBackend' | translate }}</strong>
+                    <small>{{ 'freelance.calc.hasBackendDesc' | translate }}</small>
+                  </div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" [ngModel]="hasBackend()" (ngModelChange)="hasBackend.set($event)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              @if(hasBackend()) {
+              <div class="feature-nested">
+                <select class="select-modern" [ngModel]="backendComplexity()"
+                  (ngModelChange)="backendComplexity.set($event)">
+                  <!-- Changed from 'calc.backend.' to 'freelance.calc.backend.' -->
+                  <option value="SIMPLE">{{ 'freelance.calc.backend.simple' | translate }}</option>
+                  <option value="MEDIUM">{{ 'freelance.calc.backend.medium' | translate }}</option>
+                  <option value="COMPLEX">{{ 'freelance.calc.backend.complex' | translate }}</option>
+                </select>
+
+                <div class="checkbox-list">
+                  <label class="checkbox-item">
+                    <input type="checkbox" [ngModel]="needsAuth()" (ngModelChange)="needsAuth.set($event)">
+                    <div class="checkbox-box"><span class="material-icons">check</span></div>
+                    <!-- Changed from 'calc.needsAuth' to 'freelance.calc.needsAuth' -->
+                    <span>{{ 'freelance.calc.needsAuth' | translate }}</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" [ngModel]="needsPayments()" (ngModelChange)="needsPayments.set($event)">
+                    <div class="checkbox-box"><span class="material-icons">check</span></div>
+                    <!-- Changed from 'calc.needsPayments' to 'freelance.calc.needsPayments' -->
+                    <span>{{ 'freelance.calc.needsPayments' | translate }}</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" [ngModel]="needsAnalytics()" (ngModelChange)="needsAnalytics.set($event)">
+                    <div class="checkbox-box"><span class="material-icons">check</span></div>
+                    <!-- Changed from 'calc.needsAnalytics' to 'freelance.calc.needsAnalytics' -->
+                    <span>{{ 'freelance.calc.needsAnalytics' | translate }}</span>
+                  </label>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+          @if(calcSize() !== 'PROTO')
+          {
+          <!-- STEP 3: TYPE SPECIFIC -->
+          @if(calcType() === 'VR') {
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">view_in_ar</span>
+              <div>
+                <!-- Changed from 'calc.step3vrTitle' to 'freelance.calc.step3vrTitle' -->
+                <h3>{{ 'freelance.calc.step3vrTitle' | translate }}</h3>
+                <p>{{ 'freelance.calc.step3vrDesc' | translate }}</p>
+              </div>
+            </div>
+            <div class="feature-group">
+              <!-- Changed from 'calc.vr.platforms' to 'freelance.calc.vr.platforms' -->
+              <label class="group-label">{{ 'freelance.calc.vr.platforms' | translate }}</label>
+              <div class="platform-grid">
+                @for(p of vrPlatformsList; track p) {
+                <label class="platform-chip" [class.selected]="vrPlatforms().includes(p)">
+                  <input type="checkbox" [checked]="vrPlatforms().includes(p)" (change)="toggleVRPlatform(p)">
+                  @if(vrPlatforms().includes(p)) { <span class="material-icons icon-checked">check</span> }
+                  <span>{{ p }}</span>
+                </label>
+                }
+              </div>
+            </div>
+
+            <div class="select-group">
+              <!-- Changed from 'calc.vr.interaction' to 'freelance.calc.vr.interaction' -->
+              <label>{{ 'freelance.calc.vr.interaction' | translate }}</label>
+              <select class="select-modern" [ngModel]="vrInteractionType()"
+                (ngModelChange)="vrInteractionType.set($event)">
+                <!-- Changed from 'calc.vr.' to 'freelance.calc.vr.' -->
+                <option value="BASIC">{{ 'freelance.calc.vr.interactionBasic' | translate }}</option>
+                <option value="ADVANCED">{{ 'freelance.calc.vr.interactionAdvanced' | translate }}</option>
+                <option value="PHYSICS">{{ 'freelance.calc.vr.interactionPhysics' | translate }}</option>
+              </select>
+            </div>
+
+            <div class="select-group">
+              <!-- Changed from 'calc.vr.graphics' to 'freelance.calc.vr.graphics' -->
+              <label>{{ 'freelance.calc.vr.graphics' | translate }}</label>
+              <select class="select-modern" [ngModel]="vrGraphicsQuality()"
+                (ngModelChange)="vrGraphicsQuality.set($event)">
+                <!-- Changed from 'calc.vr.' to 'freelance.calc.vr.' -->
+                <option value="LOW">{{ 'freelance.calc.vr.graphicsLow' | translate }}</option>
+                <option value="MEDIUM">{{ 'freelance.calc.vr.graphicsMedium' | translate }}</option>
+                <option value="HIGH">{{ 'freelance.calc.vr.graphicsHigh' | translate }}</option>
+                <option value="ULTRA">{{ 'freelance.calc.vr.graphicsUltra' | translate }}</option>
+              </select>
+            </div>
+
+            <div class="checkbox-list">
+              <label class="checkbox-item">
+                <input type="checkbox" [ngModel]="vrHasMultiplayer()" (ngModelChange)="vrHasMultiplayer.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.vr.multiplayer' to 'freelance.calc.vr.multiplayer' -->
+                <span>{{ 'freelance.calc.vr.multiplayer' | translate }}</span>
+              </label>
+              @if(vrHasMultiplayer()) {
+              <label class="checkbox-item nested">
+                <input type="checkbox" [ngModel]="vrHasVoiceChat()" (ngModelChange)="vrHasVoiceChat.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.vr.voiceChat' to 'freelance.calc.vr.voiceChat' -->
+                <span>{{ 'freelance.calc.vr.voiceChat' | translate }}</span>
+              </label>
+              }
+              <label class="checkbox-item">
+                <input type="checkbox" [ngModel]="vrNeedsCustomShaders()"
+                  (ngModelChange)="vrNeedsCustomShaders.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.vr.customShaders' to 'freelance.calc.vr.customShaders' -->
+                <span>{{ 'freelance.calc.vr.customShaders' | translate }}</span>
+              </label>
+            </div>
+          </div>
+          }
+
+          @if(calcType() === 'WEB') {
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">language</span>
+              <div>
+                <!-- Changed from 'calc.step3webTitle' to 'freelance.calc.step3webTitle' -->
+                <h3>{{ 'freelance.calc.step3webTitle' | translate }}</h3>
+                <p>{{ 'freelance.calc.step3webDesc' | translate }}</p>
+              </div>
+            </div>
+            <div class="select-group">
+              <!-- Changed from 'calc.web.uiComplexity' to 'freelance.calc.web.uiComplexity' -->
+              <label>{{ 'freelance.calc.web.uiComplexity' | translate }}</label>
+              <select class="select-modern" [ngModel]="webComplexUI()" (ngModelChange)="webComplexUI.set($event)">
+                <!-- Changed from 'calc.web.' to 'freelance.calc.web.' -->
+                <option value="SIMPLE">{{ 'freelance.calc.web.uiSimple' | translate }}</option>
+                <option value="MEDIUM">{{ 'freelance.calc.web.uiMedium' | translate }}</option>
+                <option value="COMPLEX">{{ 'freelance.calc.web.uiComplex' | translate }}</option>
+              </select>
+            </div>
+            <div class="checkbox-list">
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="webNeedsMobile()"
+                  (ngModelChange)="webNeedsMobile.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.web.mobile' to 'freelance.calc.web.mobile' -->
+                <span>{{ 'freelance.calc.web.mobile' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="webNeedsPWA()"
+                  (ngModelChange)="webNeedsPWA.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.web.pwa' to 'freelance.calc.web.pwa' -->
+                <span>{{ 'freelance.calc.web.pwa' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="webNeedsSSR()"
+                  (ngModelChange)="webNeedsSSR.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.web.ssr' to 'freelance.calc.web.ssr' -->
+                <span>{{ 'freelance.calc.web.ssr' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="webNeedsRealtime()"
+                  (ngModelChange)="webNeedsRealtime.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.web.realtime' to 'freelance.calc.web.realtime' -->
+                <span>{{ 'freelance.calc.web.realtime' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="webNeedsAdmin()"
+                  (ngModelChange)="webNeedsAdmin.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.web.admin' to 'freelance.calc.web.admin' -->
+                <span>{{ 'freelance.calc.web.admin' | translate }}</span>
+              </label>
+            </div>
+          </div>
+          }
+
+          @if(calcType() === 'DESK') {
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">monitor</span>
+              <div>
+                <!-- Changed from 'calc.step3deskTitle' to 'freelance.calc.step3deskTitle' -->
+                <h3>{{ 'freelance.calc.step3deskTitle' | translate }}</h3>
+                <p>{{ 'freelance.calc.step3deskDesc' | translate }}</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-info">
+                <div class="feature-icon"><span class="material-icons">cable</span></div>
+                <div class="feature-text">
+                  <!-- Changed from 'calc.desk.hardwareIO' to 'freelance.calc.desk.hardwareIO' -->
+                  <strong>{{ 'freelance.calc.desk.hardwareIO' | translate }}</strong>
+                </div>
+              </div>
+              <label class="switch"><input type="checkbox" [ngModel]="deskNeedsHardwareIO()"
+                  (ngModelChange)="deskNeedsHardwareIO.set($event)"><span class="slider"></span></label>
+            </div>
+            @if(deskNeedsHardwareIO()) {
+            <div class="feature-nested">
+              <select class="select-modern" [ngModel]="deskIOComplexity()"
+                (ngModelChange)="deskIOComplexity.set($event)">
+                <!-- Changed from 'calc.desk.' to 'freelance.calc.desk.' -->
+                <option value="SIMPLE">{{ 'freelance.calc.desk.ioSimple' | translate }}</option>
+                <option value="MEDIUM">{{ 'freelance.calc.desk.ioMedium' | translate }}</option>
+                <option value="COMPLEX">{{ 'freelance.calc.desk.ioComplex' | translate }}</option>
+              </select>
+            </div>
+            }
+            <div class="feature-item">
+              <div class="feature-info">
+                <div class="feature-icon"><span class="material-icons">storage</span></div>
+                <div class="feature-text">
+                  <!-- Changed from 'calc.desk.database' to 'freelance.calc.desk.database' -->
+                  <strong>{{ 'freelance.calc.desk.database' | translate }}</strong>
+                </div>
+              </div>
+              <label class="switch"><input type="checkbox" [ngModel]="deskNeedsDatabase()"
+                  (ngModelChange)="deskNeedsDatabase.set($event)"><span class="slider"></span></label>
+            </div>
+            @if(deskNeedsDatabase()) {
+            <div class="feature-nested">
+              <select class="select-modern" [ngModel]="deskDatabaseType()"
+                (ngModelChange)="deskDatabaseType.set($event)">
+                <!-- Changed from 'calc.desk.' to 'freelance.calc.desk.' -->
+                <option value="SQLITE">{{ 'freelance.calc.desk.dbSqlite' | translate }}</option>
+                <option value="SQLSERVER">{{ 'freelance.calc.desk.dbSqlServer' | translate }}</option>
+                <option value="POSTGRESQL">{{ 'freelance.calc.desk.dbPostgres' | translate }}</option>
+              </select>
+            </div>
+            }
+            <div class="checkbox-list">
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="deskNeedsReporting()"
+                  (ngModelChange)="deskNeedsReporting.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.desk.reporting' to 'freelance.calc.desk.reporting' -->
+                <span>{{ 'freelance.calc.desk.reporting' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="deskNeedsInstaller()"
+                  (ngModelChange)="deskNeedsInstaller.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.desk.installer' to 'freelance.calc.desk.installer' -->
+                <span>{{ 'freelance.calc.desk.installer' | translate }}</span>
+              </label>
+            </div>
+          </div>
+          }
+
+          @if(calcType() === 'CPP') {
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">memory</span>
+              <div>
+                <!-- Changed from 'calc.step3cppTitle' to 'freelance.calc.step3cppTitle' -->
+                <h3>{{ 'freelance.calc.step3cppTitle' | translate }}</h3>
+                <p>{{ 'freelance.calc.step3cppDesc' | translate }}</p>
+              </div>
+            </div>
+            <div class="feature-group">
+              <!-- Changed from 'calc.cpp.platforms' to 'freelance.calc.cpp.platforms' -->
+              <label class="group-label">{{ 'freelance.calc.cpp.platforms' | translate }}</label>
+              <div class="platform-grid">
+                @for(p of ['WINDOWS', 'LINUX', 'MACOS', 'EMBEDDED']; track p) {
+                <label class="platform-chip" [class.selected]="cppTargetPlatform().includes(p)">
+                  <input type="checkbox" [checked]="cppTargetPlatform().includes(p)" (change)="toggleCppPlatform(p)">
+                  @if(cppTargetPlatform().includes(p)) { <span class="material-icons icon-checked">check</span> }
+                  <span>{{ p }}</span>
+                </label>
+                }
+              </div>
+            </div>
+            <div class="select-group">
+              <!-- Changed from 'calc.cpp.optimization' to 'freelance.calc.cpp.optimization' -->
+              <label>{{ 'freelance.calc.cpp.optimization' | translate }}</label>
+              <select class="select-modern" [ngModel]="cppOptimizationLevel()"
+                (ngModelChange)="cppOptimizationLevel.set($event)">
+                <!-- Changed from 'calc.cpp.' to 'freelance.calc.cpp.' -->
+                <option value="STANDARD">{{ 'freelance.calc.cpp.optStandard' | translate }}</option>
+                <option value="HIGH">{{ 'freelance.calc.cpp.optHigh' | translate }}</option>
+                <option value="EXTREME">{{ 'freelance.calc.cpp.optExtreme' | translate }}</option>
+              </select>
+            </div>
+            <div class="checkbox-list">
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="cppNeedsDrivers()"
+                  (ngModelChange)="cppNeedsDrivers.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.cpp.drivers' to 'freelance.calc.cpp.drivers' -->
+                <span>{{ 'freelance.calc.cpp.drivers' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="cppNeedsRealtime()"
+                  (ngModelChange)="cppNeedsRealtime.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.cpp.realtime' to 'freelance.calc.cpp.realtime' -->
+                <span>{{ 'freelance.calc.cpp.realtime' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="cppNeedsThreading()"
+                  (ngModelChange)="cppNeedsThreading.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.cpp.threading' to 'freelance.calc.cpp.threading' -->
+                <span>{{ 'freelance.calc.cpp.threading' | translate }}</span>
+              </label>
+              <label class="checkbox-item"><input type="checkbox" [ngModel]="cppNeedsGUI()"
+                  (ngModelChange)="cppNeedsGUI.set($event)">
+                <div class="checkbox-box"><span class="material-icons">check</span></div>
+                <!-- Changed from 'calc.cpp.gui' to 'freelance.calc.cpp.gui' -->
+                <span>{{ 'freelance.calc.cpp.gui' | translate }}</span>
+              </label>
+            </div>
+          </div>
+          }
+          }
+
+          @if(availableHardware().length > 0) {
+          <div class="config-section">
+            <div class="section-header">
+              <span class="material-icons">devices</span>
+              <div>
+                <!-- Changed from 'calc.step4Title' to 'freelance.calc.step4Title' -->
+                <h3>{{ 'freelance.calc.step4Title' | translate }}</h3>
+                <p>{{ 'freelance.calc.step4Desc' | translate }}</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-info">
+                <div class="feature-text">
+                  <!-- Changed from 'calc.needsHardware' to 'freelance.calc.needsHardware' -->
+                  <strong>{{ 'freelance.calc.needsHardware' | translate }}</strong>
+                </div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" [ngModel]="needsHardware()" (ngModelChange)="needsHardware.set($event)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            @if(needsHardware()) {
+            <div class="feature-nested">
+              <select class="select-modern" [ngModel]="hardwareType()" (ngModelChange)="hardwareType.set($event)">
+                <option value="" disabled selected>Select Hardware</option>
+                @for (hw of availableHardware(); track hw.id) {
+                <option [value]="hw.id">{{ hw.name }} (€{{ hw.price }})</option>
+                }
+              </select>
+            </div>
+            }
+          </div>
+          }
+
+        </div>
+
+        <!-- RIGHT COLUMN: DESKTOP RESULTS (Hidden on Mobile) -->
+        <div class="est-result desktop-only">
+          <ng-container *ngTemplateOutlet="resultContent"></ng-container>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE FLOATING BAR -->
+<div class="mobile-summary">
+  <div class="summary-content" (click)="toggleMobileDetails()">
+    <div class="summary-labels">
+      <span class="label">{{'freelance.calc.totalEstimate' | translate}}</span>
+      <span class="value">€{{ estimate().totalMin | number:'1.0-0' }} - €{{ estimate().totalMax | number:'1.0-0'
+        }}</span>
+    </div>
+    <button class="details-toggle-btn">
+      <span class="material-icons">{{ showMobileDetails() ? 'expand_more' : 'expand_less' }}</span>
+    </button>
+  </div>
+</div>
+
+<!-- MOBILE DRAWER (Slide Up) -->
+@if(showMobileDetails()) {
+<div class="mobile-drawer-backdrop" (click)="toggleMobileDetails()"></div>
+<div class="mobile-drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-scroll">
+    <ng-container *ngTemplateOutlet="resultContent"></ng-container>
+    <button class="close-drawer-btn" (click)="toggleMobileDetails()">Close Details</button>
+  </div>
+</div>
+}
+
+<!-- REUSABLE RESULT CONTENT TEMPLATE -->
+<ng-template #resultContent>
+  <div class="result-header">
+    <span class="material-icons">calculate</span>
+    <!-- Changed from 'calc.resultTitle' to 'freelance.calc.resultTitle' -->
+    <h3>{{ 'freelance.calc.resultTitle' | translate }}</h3>
+  </div>
+
+  <div class="result-card">
+    <div class="hours-display">
+      <div class="hours-icon"><span class="material-icons">schedule</span></div>
+      <div class="hours-content">
+        <div class="hours-value">{{ estimate().hoursMin }}-{{ estimate().hoursMax }}u</div>
+        <!-- Changed from 'calc.totalHours' to 'freelance.calc.totalHours' -->
+        <div class="hours-label">{{ 'freelance.calc.totalHours' | translate }}</div>
+      </div>
+    </div>
+
+    <div class="timeline-display">
+      <span class="material-icons">event</span>
+      <!-- Changed from 'calc.weeks' to 'freelance.calc.weeks' -->
+      <span>{{ estimate().weeksMin }}-{{ estimate().weeksMax }} {{ 'freelance.calc.weeks' | translate }}</span>
+    </div>
+  </div>
+
+  <div class="breakdown-card">
+    <!-- Changed from 'calc.costBreakdown' to 'freelance.calc.costBreakdown' -->
+    <h4>{{ 'freelance.calc.costBreakdown' | translate }}</h4>
+
+    <div class="breakdown-item">
+      <div class="breakdown-label">
+        <!-- Changed from 'calc.development' to 'freelance.calc.development' -->
+        <span>{{ 'freelance.calc.development' | translate }}</span>
+        <small>{{ estimate().hoursMin }}-{{ estimate().hoursMax }}{{'freelance.calc.hour' | translate}} @ €{{
+          estimate().baseRate
+          }}/{{'freelance.calc.hour' | translate}}</small>
+      </div>
+      <div class="breakdown-value">
+        €{{ (estimate().hoursMin * estimate().baseRate) | number:'1.0-0' }}-{{ (estimate().hoursMax *
+        estimate().baseRate)
+        | number:'1.0-0' }}
+      </div>
+    </div>
+
+    @if(estimate().discountPct > 0) {
+    <div class="breakdown-item discount">
+      <!-- Changed from 'calc.discount' to 'freelance.calc.discount' -->
+      <div class="breakdown-label"><span>{{ 'freelance.calc.discount' | translate }} ({{ estimate().discountPct
+          }}%)</span></div>
+      <div class="breakdown-value">-€{{ estimate().discountMin | number:'1.0-0' }}-{{ estimate().discountMax |
+        number:'1.0-0' }}</div>
+    </div>
+    }
+
+    @if(estimate().hardwarePrice > 0) {
+    <div class="breakdown-item hardware">
+      <!-- Changed from 'calc.hardware' to 'freelance.calc.hardware' -->
+      <div class="breakdown-label"><span>{{ 'freelance.calc.hardware' | translate }}</span></div>
+      <div class="breakdown-value">€{{ estimate().hardwarePrice | number:'1.0-0' }}</div>
+    </div>
+    <div class="breakdown-item hardware">
+      <!-- Changed from 'calc.procurementFee' to 'freelance.calc.procurementFee' -->
+      <div class="breakdown-label"><span>{{ 'freelance.calc.procurementFee' | translate }}</span></div>
+      <div class="breakdown-value">€{{ estimate().procurementFee | number:'1.0-0' }}</div>
+    </div>
+    }
+  </div>
+
+  <div class="total-card">
+    <!-- Changed from 'calc.totalEstimate' to 'freelance.calc.totalEstimate' -->
+    <div class="total-label">{{ 'freelance.calc.totalEstimate' | translate }}</div>
+    <div class="total-value">
+      <span class="currency">€</span>
+      <span class="amount">{{ estimate().totalMin | number:'1.0-0' }}</span>
+      <span class="separator">-</span>
+      <span class="amount">{{ estimate().totalMax | number:'1.0-0' }}</span>
+    </div>
+    <!-- Changed from 'calc.excludingVat' to 'freelance.calc.excludingVat' -->
+    <div class="total-note">{{ 'freelance.calc.excludingVat' | translate }}</div>
+  </div>
+  <div class="disclaimer">
+    <span class="material-icons">info</span>
+    <!-- Changed from 'calc.disclaimer' to 'freelance.calc.disclaimer' -->
+    <p>{{ 'freelance.calc.disclaimer' | translate }}</p>
+  </div>
+</ng-template>

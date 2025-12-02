@@ -1,0 +1,246 @@
+<main class="wrapper">
+  
+  <section class="hero" id="home">
+    <canvas #canvas3d class="hero-bg-canvas"></canvas>
+    
+    <div class="content-container hero-grid">
+      <div class="hero-left">
+        <div class="status-badge reveal fade-down">
+          <span class="status-dot"></span>
+          <span class="status-text">{{ 'freelance.hero.status' | translate }}</span>
+        </div>
+
+        <h1 class="reveal fade-up stagger-1">
+          {{ 'freelance.hero.title1' | translate }} 
+          <br>
+          <span class="highlight text-gradient">{{ 'freelance.hero.title2' | translate }}</span>
+        </h1>
+
+        <p class="hero-sub reveal fade-up stagger-2">{{ 'freelance.hero.subtitle' | translate }}</p>
+        
+        <div class="cta-group reveal fade-up stagger-3">
+          <a class="btn-primary no-decor" routerLink="/Freelance-Calculator">
+            <span class="material-icons">calculate</span>
+            <span>{{'freelance.hero.calculator' | translate}}</span>
+          </a>
+          <button class="btn-outline" (click)="scrollTo('contact')">
+            <span class="material-icons">contact_mail</span>
+            <span>{{ 'freelance.hero.getintouch' | translate}}</span>
+          </button>
+        </div>
+        
+        <div class="hero-tech-tags reveal fade-in stagger-4">
+          <span class="tag-label">{{ 'freelance.hero.techStack' | translate}}</span>
+          <div class="tags-wrapper">
+            @for (item of techStack; track $index) {
+            <span>{{item}}</span>
+            }
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-right reveal fade-left">
+        <div class="profile-card">
+          <div class="profile-image-wrapper">
+            <img src="Resources/Jarno-image.png" alt="Jarno – Freelance Developer" />
+            <div class="glow-effect"></div>
+          </div>
+          
+          <div class="profile-badges desktop-only">
+            <div class="float-badge card-1 glass-panel">
+              <div class="icon-circle secondary-bg">
+                <span class="material-icons">view_in_ar</span>
+              </div>
+              <div>
+                <strong>{{ 'freelance.hero.badge1.title' | translate}}</strong>
+                <span class="profile-badge">{{ 'freelance.hero.badge1.sub' | translate }}</span>
+              </div>
+            </div>
+            <div class="float-badge card-2 glass-panel">
+              <div class="icon-circle primary-bg">
+                <span class="material-icons">code</span>
+              </div>
+              <div>
+                <strong>{{ 'freelance.hero.badge2.title' | translate}}</strong>
+                <span class="profile-badge">{{ 'freelance.hero.badge2.sub' | translate }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise" id="expertise">
+    <div class="content-container">
+      <div class="sec-header reveal fade-up">
+        <h2>{{ 'freelance.expertises.title' | translate }}</h2>
+        <div class="divider"></div>
+        <p class="sec-subtitle">{{ 'freelance.expertises.desc' | translate}}</p>
+      </div>
+      
+      <div class="grid-4">
+        @for (item of expertise; track item.id; let i = $index) {
+          <div class="tech-card glass-panel reveal fade-up" 
+               [style.--accent]="item.color" 
+     [style.--stagger-delay]="(i+1) * 0.1 + 's'">
+            <div class="card-content">
+              <div class="icon-box">
+                <span class="material-icons">{{ item.icon }}</span>
+              </div>
+
+              <h3>{{ `freelance.expertises.${item.id}.title` | translate }}</h3>
+              <p>{{ `freelance.expertises.${item.id}.desc` | translate }}</p>
+              
+              <div class="tags">
+                @for (t of item.tags; track t) {
+                  <span class="mini-tag">{{ t }}</span>
+                }
+              </div>
+            </div>
+            
+            <div class="pricing-info">
+              <div class="rate-group">
+                <span class="currency">€</span>
+                <span class="amount">{{ item.baseRate }}</span>
+                <span class="per">/{{'freelance.expertises.hour' | translate}}</span>
+              </div>
+              <div class="setup-fee">+ {{ item.setupHours }} {{'freelance.expertises.hour' | translate}}{{'freelance.expertises.setup' | translate}}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects">
+    <div class="content-container">
+      <div class="sec-header reveal fade-up">
+        <h2>{{ 'freelance.projects.title' | translate }}</h2>
+        <div class="divider"></div>
+        <p class="sec-subtitle">{{ 'freelance.projects.subtitle' | translate }}</p>
+      </div>
+      
+      <div class="filter-bar reveal fade-up">
+        @for (cat of categories; track cat) {
+          <button class="filter-pill"
+            [class.active]="selectedCategory() === cat"
+            (click)="setCategory(cat)">
+            <span>{{ ('freelance.Project.Category.' + cat) | translate }}</span>
+          </button>
+        }
+      </div>
+      
+      <div class="projects-grid">
+        @for (project of filteredProjects(); track project.id; let i = $index) {
+          <div class="reveal scale-in" [style.--delay]="(i * 0.05) + 's'">
+            <ui-project-item [project]="project" class="project-item-wrapper"></ui-project-item>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="engagement-section" id="models">
+    <div class="content-container">
+      <div class="sec-header reveal fade-up">
+        <h2>{{ 'freelance.pricing.modelsTitle' | translate }}</h2>
+        <div class="divider"></div>
+        <p class="sec-subtitle">{{ 'freelance.pricing.modelsSubtitle' | translate }}</p>
+      </div>
+
+      <div class="models-grid">
+        <div class="model-card glass-panel reveal fade-right">
+          <div class="model-head">
+            <span class="material-icons icon-lg">schedule</span>
+            <h3>{{ 'freelance.pricing.hourly.title' | translate }}</h3>
+          </div>
+          <p class="model-desc">{{ 'freelance.pricing.hourly.desc' | translate }}</p>
+          <ul class="benefits-list">
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.hourly.flexible' | translate}}</span></li>
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.hourly.perhour' | translate}}</span></li>
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.hourly.reports' | translate}}</span></li>
+          </ul>
+        </div>
+
+        <div class="model-card highlight glass-panel reveal fade-left">
+          <div class="rec-badge">{{'freelance.pricing.recommended' | translate}}</div>
+          <div class="model-head">
+            <span class="material-icons icon-lg">verified</span>
+            <h3>{{ 'freelance.pricing.fixed.title' | translate }}</h3>
+          </div>
+          <p class="model-desc">{{ 'freelance.pricing.fixed.desc' | translate }}</p>
+          <ul class="benefits-list">
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.fixed.fixed' | translate}}</span></li>
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.fixed.milestone' | translate}}</span></li>
+            <li><span class="material-icons">check</span><span>{{'freelance.pricing.fixed.warranty' | translate}}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="estimator-cta reveal scale-in">
+    <div class="content-container">
+      <div class="cta-box">
+        <div class="cta-visual-bg"></div>
+        <div class="cta-content">
+          <h2>{{'freelance.estimator.title' | translate}}</h2>
+          <p>{{'freelance.estimator.desc' | translate}}</p>
+        </div>
+        <div class="cta-action">
+          <a class="btn-inverse no-decor" routerLink="/Freelance-Calculator">
+            <span class="material-icons">calculate</span>
+            <span>{{'freelance.estimator.goToCalc' | translate}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="content-container">
+      <div class="sec-header reveal fade-up">
+        <h2>{{'freelance.contact.title' | translate}}</h2>
+        <div class="divider"></div>
+        <p class="sec-subtitle">{{'freelance.contact.desc' | translate}}</p>
+      </div>
+      @if(commonDataService.commonData$ | async; as commonData)
+      {
+        <div class="contact-cta-grid">
+          <a [href]="commonData.Calendly" target="_blank" class="contact-method glass-panel reveal fade-up stagger-1">
+            <div class="method-icon"><span class="material-icons">calendar_month</span></div>
+            <div class="content">
+              <h3>{{'freelance.contact.schedule.title' | translate}}</h3>
+              <p>{{'freelance.contact.schedule.desc' | translate}}</p>
+            </div>
+            <span class="link-text">{{'freelance.contact.schedule.link' | translate}} <span class="material-icons">arrow_forward</span></span>
+          </a>
+          
+          <a [href]="'mailto:' + commonData.Contact.Email" class="contact-method glass-panel reveal fade-up stagger-2">
+            <div class="method-icon"><span class="material-icons">email</span></div>
+            <div class="content">
+              <h3>{{'freelance.contact.email.title' | translate}}</h3>
+              <p>{{'freelance.contact.email.desc' | translate}}</p>
+            </div>
+            <span class="link-text">{{'freelance.contact.email.link' | translate}} <span class="material-icons">arrow_forward</span></span>
+          </a>
+          
+          <a [href]="commonData.LinkedIn_URL" target="_blank" class="contact-method glass-panel reveal fade-up stagger-3">
+            <div class="method-icon"><span class="material-icons">connect_without_contact</span></div>
+            <div class="content">
+              <h3>{{'freelance.contact.linkedIn.title' | translate}}</h3>
+              <p>{{'freelance.contact.linkedIn.desc' | translate}}</p>
+            </div>
+            <span class="link-text">{{'freelance.contact.linkedIn.link' | translate}} <span class="material-icons">arrow_forward</span></span>
+          </a>
+        </div>
+      }
+
+      <div class="contact-note reveal fade-in">
+        <p>{{'freelance.contact.note' | translate}}</p>
+      </div>
+    </div>
+  </section>
+
+</main>

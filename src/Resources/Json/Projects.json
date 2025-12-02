@@ -1,6 +1,7 @@
 [
   {
     "id": "Inventory",
+    "category": "web",
     "title": "Project.Inventory.Title",
     "description": "Project.Inventory.Description",
     "technologies": [
@@ -20,6 +21,7 @@
   },
   {
     "id": "Appointments",
+    "category": "web",
     "title": "Project.Appointments.Title",
     "description": "Project.Appointments.Description",
     "technologies": [
@@ -39,6 +41,7 @@
   },
   {
     "id": "GameOfLife",
+    "category": "cpp",
     "title": "Project.GameOfLife.Title",
     "description": "Project.GameOfLife.Description",
     "technologies": [
@@ -58,6 +61,7 @@
   },
   {
     "id": "Calculator",
+    "category": "web",
     "title": "Project.Calculator.Title",
     "description": "Project.Calculator.Description",
     "technologies": [
@@ -76,5 +80,25 @@
       "icon": "Export",
       "url": "/Calculator"
     }
+  },
+{
+  "id": "HISMB",
+  "category": "vr/ar",
+  "title": "Project.HISMB.Title",
+  "description": "Project.HISMB.Description",
+  "technologies": [
+    "Unity",
+    "C#",
+    "Oculus"
+  ],
+  "images": [
+    "hismb.jpg"
+  ],
+  "link": {
+    "name": "Project.HISMB.Links.Contractors",
+    "icon": "Export",
+    "url": "https://tech4fun.be/vr-honey-i-shrunk-teambuilding/"
   }
+}
+
 ]

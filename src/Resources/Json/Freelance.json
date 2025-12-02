@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "slug": "freelance",
+    "heroTitleKey": "freelance.hero.title",
+    "heroSubtitleKey": "freelance.hero.subtitle",
+    "heroLeadKey": "freelance.hero.lead"
+  },
+  "hero": {
+    "metrics": [
+      { "labelKey": "freelance.metrics.commits", "value": 120 },
+      { "labelKey": "freelance.metrics.projects", "value": 15 },
+      { "label": "Years (since start)", "value": 3 }
+    ]
+  },
+  "services": [
+    {
+      "id": "frontend",
+      "titleKey": "freelance.services.frontend.title",
+      "descriptionKey": "freelance.services.frontend.description",
+      "icon": "code"
+    },
+    {
+      "id": "backend",
+      "title": "Backend & APIs (C#)",
+      "descriptionKey": "freelance.services.backend.description",
+      "icon": "dns"
+    },
+    {
+      "id": "gamedev",
+      "titleKey": "freelance.services.gamedev.title",
+      "descriptionKey": "freelance.services.gamedev.description",
+      "icon": "sports_esports"
+    },
+    {
+      "id": "consulting",
+      "titleKey": "freelance.services.consulting.title",
+      "descriptionKey": "freelance.services.consulting.description",
+      "icon": "build"
+    }
+  ],
+  "pricing": [
+    {
+      "id": "starter",
+      "titleKey": "freelance.pricing.starter.title",
+      "price": "€700+",
+      "bulletsKey": [
+        "freelance.pricing.starter.b1",
+        "freelance.pricing.starter.b2",
+        "freelance.pricing.starter.b3"
+      ]
+    },
+    {
+      "id": "project",
+      "titleKey": "freelance.pricing.project.title",
+      "price": "€2,500+",
+      "bulletsKey": [
+        "freelance.pricing.project.b1",
+        "freelance.pricing.project.b2",
+        "freelance.pricing.project.b3"
+      ]
+    },
+    {
+      "id": "premium",
+      "title": "Premium",
+      "price": "€6,000+",
+      "bulletsKey": [
+        "freelance.pricing.premium.b1",
+        "freelance.pricing.premium.b2",
+        "freelance.pricing.premium.b3"
+      ],
+      "recommended": true
+    }
+  ],
+  "process": [
+    { "step": 1, "titleKey": "freelance.process.discover" },
+    { "step": 2, "titleKey": "freelance.process.plan" },
+    { "step": 3, "titleKey": "freelance.process.build" },
+    { "step": 4, "titleKey": "freelance.process.deliver" },
+    { "step": 5, "titleKey": "freelance.process.support" }
+  ],
+  "cases": {
+    "featured": ["Inventory", "Appointments", "GameOfLife"]
+  },
+  "cta": {
+    "titleKey": "freelance.cta.title",
+    "subKey": "freelance.cta.sub",
+    "buttonKey": "freelance.cta.button"
+  }
+}

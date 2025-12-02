@@ -37,6 +37,7 @@ export interface CommonData {
     Phone: string;
   };
   Website: string;
+  Calendly: string;
   LinkedIn_URL: string;
   Github_URL: string;
   SkillCategories: SkillCategorie[];

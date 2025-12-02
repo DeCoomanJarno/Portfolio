@@ -1,0 +1,226 @@
+{
+  "freelance": {
+    "hero": {
+      "status": "Available for new projects",
+      "title1": "Freelance Developer",
+      "title2": "Building future-ready digital solutions",
+      "subtitle": "Fast, reliable, and efficient",
+      "calculator": "Cost Calculator",
+      "getintouch": "Get in touch",
+      "techStack": "Tech Expertise",
+      "badge1": {
+        "title": "Immersive Tech",
+        "sub": "VR & 3D Development"
+      },
+      "badge2": {
+        "title": "Web Dev",
+        "sub": "C#, Angular"
+      }
+    },
+
+    "expertises": {
+      "title": "What I Do",
+      "desc": "A growing technical skillset with a strong foundation in real-world software development, focused on delivering reliable and professional digital solutions.",
+      "hour": "hr",
+      "setup": " setup",
+      "DESK": {
+        "title": "Desk Development",
+        "desc": "Building clean, scalable applications using .NET and modern software practices. Experience with real-world production code and team workflows.",
+        "shortdesc": "Configureer desktop applicatie features"
+      },
+      "CPP": {
+        "title": "C++ Development",
+        "desc": "High-performance and low-level development for systems, engines, simulations and technical applications.",
+        "shortdesc": "Configureer low-level ontwikkeling"
+      },
+      "WEB": {
+        "title": "Web Development",
+        "desc": "Responsive and maintainable UI development using TypeScript, Angular and modern web technology standards.",
+        "shortdesc": "Configureer web applicatie features"
+      },
+      "VR": {
+        "title": "Virtual Reality",
+        "desc": "Creating immersive VR experiences with focus on performance, interactions, and user comfort.",
+        "shortdesc": "Configureer VR-specifieke features"
+      }
+    },
+
+    "projects": {
+      "title": "Projects",
+      "subtitle": "A selection of work showcasing my technical growth, creativity, and problem-solving abilities."
+    },
+
+    "Project": {
+      "Category": {
+        "all": "All",
+        "web": "Web",
+        "cpp": "C++",
+        "desktop": "Desktop",
+        "vr/ar": "VR/AR"
+      }
+    },
+
+    "pricing": {
+      "modelsTitle": "Engagement Models",
+      "modelsSubtitle": "Transparent pricing designed for different project types.",
+
+      "hourly": {
+        "title": "Hourly Model",
+        "desc": "Flexible and ideal for small tasks, consulting, or iterative development.",
+        "flexible": "High flexibility – easy to scale",
+        "perhour": "Pay only for actual hours worked",
+        "reports": "Clear time tracking included"
+      },
+
+      "fixed": {
+        "title": "Fixed Price",
+        "desc": "Clear scope, clear expectations, clear delivery. Perfect for well-defined projects.",
+        "fixed": "Agreed fixed project price",
+        "milestone": "Delivered in structured milestones",
+        "warranty": "Includes a short warranty period"
+      },
+
+      "recommended": "Recommended"
+    },
+
+    "estimator": {
+      "title": "Curious About Project Costs?",
+      "desc": "Use the freelance cost estimator to get a quick and realistic idea of project pricing.",
+      "goToCalc": "Open Calculator"
+    },
+
+    "contact": {
+      "title": "Get in Touch",
+      "desc": "I’m available for freelance work, collaborations and interesting challenges. Let’s talk!",
+
+      "schedule": {
+        "title": "Schedule a Call",
+        "desc": "Plan a meeting to discuss your project and expectations.",
+        "link": "Book a timeslot"
+      },
+
+      "email": {
+        "title": "Email",
+        "desc": "Prefer writing? Send me a message anytime.",
+        "link": "Send Email"
+      },
+
+      "linkedIn": {
+        "title": "LinkedIn",
+        "desc": "Connect professionally and explore my background.",
+        "link": "View Profile"
+      },
+
+      "note": "You’ll get a friendly and honest conversation — no pressure, no fluff."
+    },
+   "calc": {
+      "badge": "Cost Calculator",
+      "title": "Project Cost Estimator",
+      "subtitle": "Select your project options to get an instant estimate",
+      "step1Title": "Type & Scale",
+      "step1Desc": "Choose your project type and size to start the calculation",
+      "projectScale": "Project Scale",
+      "hour": "h",
+      "size": {
+        "proto": {
+          "title": "Prototype",
+          "sub": "Proof of Concept"
+        },
+        "mvp": {
+          "title": "Medium",
+          "sub": "Minimum Viable Product"
+        },
+        "production": {
+          "title": "Large",
+          "sub": "Production-ready systeem"
+        }
+      },
+      "step2Title": "Common Features",
+      "step2Desc": "Select the additional features your project needs",
+      "hasDesign": "Design already available",
+      "hasDesignDesc": "Professional design for your project",
+      "hasBackend": "Backend Required",
+      "hasBackendDesc": "Server-side features and data handling",
+      "backend": {
+        "simple": "Simple",
+        "medium": "Medium",
+        "complex": "Complex"
+      },
+      "needsAuth": "User Authentication",
+      "needsPayments": "Payment Integration",
+      "needsAnalytics": "Analytics Setup",
+      "step3vrTitle": "VR Features",
+      "step3vrDesc": "Configure virtual reality specific options",
+      "vr": {
+        "platforms": "Target Platforms",
+        "interaction": "Interaction Type",
+        "interactionBasic": "Basic",
+        "interactionAdvanced": "Advanced",
+        "interactionPhysics": "Physics-based",
+        "graphics": "Graphics Quality",
+        "graphicsLow": "Low",
+        "graphicsMedium": "Medium",
+        "graphicsHigh": "High",
+        "graphicsUltra": "Ultra",
+        "multiplayer": "Multiplayer",
+        "voiceChat": "Voice Chat",
+        "customShaders": "Custom Shaders"
+      },
+      "step3webTitle": "Web Features",
+      "step3webDesc": "Configure your web project",
+      "web": {
+        "uiComplexity": "UI Complexity",
+        "uiSimple": "Simple",
+        "uiMedium": "Medium",
+        "uiComplex": "Complex",
+        "mobile": "Responsive / Mobile",
+        "pwa": "Progressive Web App",
+        "ssr": "Server-Side Rendering",
+        "realtime": "Realtime Features",
+        "admin": "Admin Panel"
+      },
+      "step3deskTitle": "Desktop Features",
+      "step3deskDesc": "Configure your desktop application",
+      "desk": {
+        "hardwareIO": "Hardware I/O",
+        "ioSimple": "Simple",
+        "ioMedium": "Medium",
+        "ioComplex": "Complex",
+        "database": "Database",
+        "dbSqlite": "SQLite",
+        "dbSqlServer": "SQL Server",
+        "dbPostgres": "PostgreSQL",
+        "reporting": "Reporting",
+        "installer": "Installer"
+      },
+      "step3cppTitle": "C++ Features",
+      "step3cppDesc": "Configure your C++ project",
+      "cpp": {
+        "platforms": "Target Platforms",
+        "optimization": "Optimization Level",
+        "optStandard": "Standard",
+        "optHigh": "High",
+        "optExtreme": "Extreme",
+        "drivers": "Requires Drivers",
+        "realtime": "Realtime Features",
+        "threading": "Multithreading",
+        "gui": "GUI Integration"
+      },
+      "step4Title": "Hardware Requirements",
+      "step4Desc": "Optional hardware and procurement details",
+      "needsHardware": "Requires Hardware",
+      "resultTitle": "Estimated Project",
+      "totalHours": "Total Hours",
+      "weeks": "weeks",
+      "costBreakdown": "Cost Breakdown",
+      "development": "Development",
+      "discount": "Discount",
+      "hardware": "Hardware",
+      "procurementFee": "Procurement Fee",
+      "totalEstimate": "Total Estimate",
+      "excludingVat": "Excl. VAT",
+      "requestQuote": "Request a Quote",
+      "disclaimer": "This estimate is indicative and may vary depending on project specifics."
+    }
+  }
+}

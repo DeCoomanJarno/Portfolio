@@ -1,0 +1,227 @@
+{
+  "freelance": {
+    "hero": {
+      "status": "Beschikbaar voor nieuwe projecten",
+      "title1": "Freelance Developer",
+      "title2": "Bouwt toekomstbestendige digitale oplossingen",
+      "subtitle": "Snel, betrouwbaar en efficiënt",
+      "calculator": "Kosten Calculator",
+      "getintouch": "Neem contact op",
+      "techStack": "Technische Expertise",
+      "badge1": {
+        "title": "Immersive Tech",
+        "sub": "VR & 3D Ontwikkeling"
+      },
+      "badge2": {
+        "title": "Web Dev",
+        "sub": "C#, Angular"
+      }
+    },
+
+    "expertises": {
+      "title": "Wat Ik Doe",
+      "desc": "Een groeiende technische skillset met een sterke basis in praktijkgerichte softwareontwikkeling, gericht op het leveren van betrouwbare en professionele digitale oplossingen.",
+      "hour": "u",
+      "setup": " setup",
+      "DESK": {
+        "title": "Desktop Ontwikkeling",
+        "desc": "Het bouwen van nette, schaalbare applicaties met .NET en moderne softwarepraktijken. Ervaring met productiecode en team workflows.",
+        "shortdesc": "Configureer desktopapplicatie features"
+      },
+      "CPP": {
+        "title": "C++ Ontwikkeling",
+        "desc": "High-performance en low-level ontwikkeling voor systemen, engines, simulaties en technische toepassingen.",
+        "shortdesc": "Configureer low-level ontwikkeling"
+      },
+      "WEB": {
+        "title": "Web Ontwikkeling",
+        "desc": "Responsieve en onderhoudbare UI-ontwikkeling met TypeScript, Angular en moderne webstandaarden.",
+        "shortdesc": "Configureer webapplicatie features"
+      },
+      "VR": {
+        "title": "Virtual Reality",
+        "desc": "Het creëren van meeslepende VR-ervaringen met focus op performance, interacties en gebruikerscomfort.",
+        "shortdesc": "Configureer VR-specifieke features"
+      }
+    },
+
+    "projects": {
+      "title": "Projecten",
+      "subtitle": "Een selectie van werk dat mijn technische groei, creativiteit en probleemoplossend vermogen toont."
+    },
+
+    "Project": {
+      "Category": {
+        "all": "Alle",
+        "web": "Web",
+        "cpp": "C++",
+        "desktop": "Desktop",
+        "vr/ar": "VR/AR"
+      }
+    },
+
+    "pricing": {
+      "modelsTitle": "Samenwerkingsmodellen",
+      "modelsSubtitle": "Transparante tarieven voor verschillende projecttypes.",
+
+      "hourly": {
+        "title": "Uurtarief",
+        "desc": "Flexibel en ideaal voor kleine taken, consultancy of iteratieve ontwikkeling.",
+        "flexible": "Hoge flexibiliteit – eenvoudig schaalbaar",
+        "perhour": "Betaal alleen voor daadwerkelijk gewerkte uren",
+        "reports": "Inclusief duidelijke tijdsregistratie"
+      },
+
+      "fixed": {
+        "title": "Vaste Prijs",
+        "desc": "Duidelijke scope, duidelijke verwachtingen, duidelijke oplevering. Perfect voor goed gedefinieerde projecten.",
+        "fixed": "Afgesproken vaste projectprijs",
+        "milestone": "Opgeleverd in gestructureerde mijlpalen",
+        "warranty": "Inclusief korte garantieperiode"
+      },
+
+      "recommended": "Aanbevolen"
+    },
+
+    "estimator": {
+      "title": "Nieuwsgierig naar projectkosten?",
+      "desc": "Gebruik de freelance kosten-inschatting om snel een realistisch beeld te krijgen van de prijs.",
+      "goToCalc": "Open Calculator"
+    },
+
+    "contact": {
+      "title": "Neem Contact Op",
+      "desc": "Ik ben beschikbaar voor freelance werk, samenwerkingen en interessante uitdagingen. Laten we praten!",
+
+      "schedule": {
+        "title": "Plan een Call",
+        "desc": "Plan een meeting om je project en verwachtingen te bespreken.",
+        "link": "Plan een tijdslot"
+      },
+
+      "email": {
+        "title": "E-mail",
+        "desc": "Schrijf je liever? Stuur me gerust een bericht.",
+        "link": "Stuur E-mail"
+      },
+
+      "linkedIn": {
+        "title": "LinkedIn",
+        "desc": "Verbind professioneel en bekijk mijn achtergrond.",
+        "link": "Bekijk Profiel"
+      },
+
+      "note": "Je krijgt een vriendelijk en eerlijk gesprek — zonder druk, zonder onzin."
+    },
+
+    "calc": {
+      "badge": "Kosten Calculator",
+      "title": "Projectkosten Schatter",
+      "subtitle": "Selecteer je projectopties voor een directe schatting",
+      "step1Title": "Type & Omvang",
+      "step1Desc": "Kies je projecttype en omvang om te beginnen",
+      "projectScale": "Projectgrootte",
+      "hour": "u",
+      "size": {
+        "proto": {
+          "title": "Prototype",
+          "sub": "Proof of Concept"
+        },
+        "mvp": {
+          "title": "Medium",
+          "sub": "Minimum Viable Product"
+        },
+        "production": {
+          "title": "Groot",
+          "sub": "Productieklaar systeem"
+        }
+      },
+      "step2Title": "Algemene Features",
+      "step2Desc": "Selecteer de extra features die je project nodig heeft",
+      "hasDesign": "Design is al beschikbaar",
+      "hasDesignDesc": "Professioneel ontwerp voor je project",
+      "hasBackend": "Backend Nodig",
+      "hasBackendDesc": "Server-side functionaliteit en data-afhandeling",
+      "backend": {
+        "simple": "Simpel",
+        "medium": "Gemiddeld",
+        "complex": "Complex"
+      },
+      "needsAuth": "Gebruikersauthenticatie",
+      "needsPayments": "Betaalintegratie",
+      "needsAnalytics": "Analytics Setup",
+      "step3vrTitle": "VR Features",
+      "step3vrDesc": "Configureer VR-specifieke opties",
+      "vr": {
+        "platforms": "Doelplatformen",
+        "interaction": "Interactie Type",
+        "interactionBasic": "Basis",
+        "interactionAdvanced": "Geavanceerd",
+        "interactionPhysics": "Fysiek-gebaseerd",
+        "graphics": "Grafische Kwaliteit",
+        "graphicsLow": "Laag",
+        "graphicsMedium": "Gemiddeld",
+        "graphicsHigh": "Hoog",
+        "graphicsUltra": "Ultra",
+        "multiplayer": "Multiplayer",
+        "voiceChat": "Voice Chat",
+        "customShaders": "Custom Shaders"
+      },
+      "step3webTitle": "Web Features",
+      "step3webDesc": "Configureer je webproject",
+      "web": {
+        "uiComplexity": "UI Complexiteit",
+        "uiSimple": "Simpel",
+        "uiMedium": "Gemiddeld",
+        "uiComplex": "Complex",
+        "mobile": "Responsief / Mobiel",
+        "pwa": "Progressive Web App",
+        "ssr": "Server-Side Rendering",
+        "realtime": "Realtime Features",
+        "admin": "Admin Panel"
+      },
+      "step3deskTitle": "Desktop Features",
+      "step3deskDesc": "Configureer je desktopapplicatie",
+      "desk": {
+        "hardwareIO": "Hardware I/O",
+        "ioSimple": "Simpel",
+        "ioMedium": "Gemiddeld",
+        "ioComplex": "Complex",
+        "database": "Database",
+        "dbSqlite": "SQLite",
+        "dbSqlServer": "SQL Server",
+        "dbPostgres": "PostgreSQL",
+        "reporting": "Rapportage",
+        "installer": "Installer"
+      },
+      "step3cppTitle": "C++ Features",
+      "step3cppDesc": "Configureer je C++ project",
+      "cpp": {
+        "platforms": "Doelplatformen",
+        "optimization": "Optimalisatieniveau",
+        "optStandard": "Standaard",
+        "optHigh": "Hoog",
+        "optExtreme": "Extreem",
+        "drivers": "Drivers Vereist",
+        "realtime": "Realtime Features",
+        "threading": "Multithreading",
+        "gui": "GUI-Integratie"
+      },
+      "step4Title": "Hardwarevereisten",
+      "step4Desc": "Optionele hardware en inkoopdetails",
+      "needsHardware": "Hardware Nodig",
+      "resultTitle": "Geschat Project",
+      "totalHours": "Totale Uren",
+      "weeks": "weken",
+      "costBreakdown": "Kostenoverzicht",
+      "development": "Ontwikkeling",
+      "discount": "Korting",
+      "hardware": "Hardware",
+      "procurementFee": "Inkoopkosten",
+      "totalEstimate": "Totale Schatting",
+      "excludingVat": "Excl. BTW",
+      "requestQuote": "Vraag een Offerte Aan",
+      "disclaimer": "Deze schatting is indicatief en kan variëren afhankelijk van projectspecificaties."
+    }
+  }
+}

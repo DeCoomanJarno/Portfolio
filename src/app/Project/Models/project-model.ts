@@ -8,10 +8,17 @@ export interface ProjectModel {
   }
   export interface ProjectPreviewModel {
     id: string;
+    category: ProjectCategory;
     title: string;
     link: { name:string; icon: string; url: string};
     description: string;
     images?: string[];
     technologies: string[];
   }
-  
+  export enum ProjectCategory {
+  All = "all",
+  Web = "web",
+  Desktop = "desktop",
+  VrAr = "vr/ar",
+  Cpp = "cpp"
+  }
