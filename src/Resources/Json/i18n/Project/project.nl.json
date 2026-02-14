@@ -1,162 +1,191 @@
 {
-    "Project": {
-        "Description": "Beschrijving",
-        "FuturePlans": "Toekomstplannen",
-        "TechUsed": "Gebruikte technologieën",
-        "Links": "Links",
-        "Copy": "Kopiëren",
-        "Copied": "Gekopieerd!",
-        "NotFound": "Project niet gevonden.",
-        "ImageAlt": "Projectafbeelding {{index}}",
-        "Category": {
-            "web": "Web",
-            "vr/ar": "VR / AR",
-            "desktop": "Desktop",
-            "cpp": "C++",
-            "all": "Alles"
-        },
-        "GameOfLife": {
-            "Title": "Conway's Game of Life",
-            "Description": "Een implementatie van Conway's Game of Life met C++ en SDL2, met dynamische celupdates en rendering.",
-            "Content": [
-                "Conway's Game of Life is een cellulair automaton bedacht door wiskundige John Conway. Het bestaat uit een raster van cellen die evolueren op basis van specifieke regels. Dit project implementeert het spel in C++ en SDL2, waardoor visualisatie van de cellulaire evolutie mogelijk is.",
-                "Het spel werkt met een eenvoudige set regels die het lot van elke cel in het raster bepalen op basis van zijn buren. Elke cel kan levend of dood zijn, en de staat van het raster verandert bij elke iteratie, wat fascinerende patronen en gedragingen oplevert.",
-                "<h4> Regels van Conway's Game of Life</h4><ol><li>Elke levende cel met minder dan twee levende buren sterft (onderbevolking).</li><li>Elke levende cel met twee of drie levende buren blijft leven in de volgende generatie.</li><li>Elke levende cel met meer dan drie levende buren sterft (overbevolking).</li><li>Elke dode cel met precies drie levende buren wordt een levende cel (reproductie).</li></ol>",
-                "De GameOfLife-klasse voert de kernfunctionaliteit uit, waaronder rasterinitialisatie, event-afhandeling, update-logica en het renderen van cellen. Het spel start met een willekeurige verdeling van levende en dode cellen en volgt Conway's regels om het raster bij elke stap bij te werken.",
-                "De Update-methode verwerkt elke cel en bepaalt of deze in de volgende generatie leeft of sterft op basis van het aantal levende buren. Het spel gebruikt een buffer om te voorkomen dat het raster wordt aangepast terwijl het wordt bijgewerkt.",
-                "De TMatrix-klasse is een aangepaste sjabloonmatrix-implementatie die wordt gebruikt om het spelraster op te slaan. Het ondersteunt dynamische geheugenallocatie en zorgt voor efficiënte toegang tot celstatussen."
-            ],
-            "Features": [
-                "Cellulaire automatisering",
-                "Objectgeoriënteerd programmeren",
-                "Realtime rendering met SDL2",
-                "Dynamische geheugenallocatie"
-            ],
-            "Future": [
-                "Opties toevoegen voor gebruikersinteractie, zoals handmatige celplaatsing en grid-aanpassingen.",
-                "Renderprestaties verbeteren voor soepelere visuals en hogere efficiëntie, vooral bij grote grids.",
-                "UI-instellingen toevoegen voor schaal, kleuren en visuele personalisatie.",
-                "Start- en pauze-opties implementeren zodat gebruikers de simulatie kunnen beheren."
-            ],
-            "Links": {
-                "Wikipedia": "Wikipedia: Conway's Game of Life",
-                "Github": "Github-repository"
-            }
-        },
-        "Calculator": {
-            "Title": "Rekenmachineproject",
-            "Description": "Een verzameling van drie rekenmachines: eenvoudige, wetenschappelijke en programmeerrekenmachine.",
-            "Content": [
-                "Dit project is een uitgebreide rekenmachine gebouwd met Angular. Het ondersteunt drie modi: eenvoudige rekenmachine, wetenschappelijke rekenmachine en programmeerrekenmachine. De eenvoudige en wetenschappelijke rekenmachines delen een gemeenschappelijke BaseCalculatorComponent, terwijl de programmeerrekenmachine aangepaste logica bevat voor conversies tussen talstelsels en logische operaties.",
-                "De eenvoudige rekenmachine biedt basisbewerkingen zoals optellen, aftrekken, vermenigvuldigen en delen. De interface ondersteunt toetsenbordinvoer en realtime evaluatie.",
-                "De wetenschappelijke rekenmachine breidt de mogelijkheden uit met trigonometrische functies (sin, cos, tan), exponenten en wiskundige constanten zoals Pi (π) en Euler’s getal (e).",
-                "De programmeerrekenmachine is gericht op softwareontwikkelaars en ingenieurs. Ze ondersteunt conversies tussen hexadecimale, decimale, octale en binaire systemen. Daarnaast zijn bitwise-operaties beschikbaar, zoals AND, OR, XOR, NOT, left shift en right shift.",
-                "Belangrijke functies zijn o.a. basisbewerkingen (+, -, *, /), wetenschappelijke functies (sin, cos, tan, sqrt, exponenten), programmeermodus met talstelselconversies, bitwise-operaties, toetsenbordondersteuning, realtime evaluatie en geschiedenis van berekeningen.",
-                "De rekenmachine werkt met een gedeelde basiscomponent die functies zoals resultaatberekening en invoerafhandeling uitvoert.",
-                "De programmeerrekenmachine breidt deze basiscomponent uit en introduceert talstelselbeheer, waardoor gebruikers eenvoudig kunnen schakelen tussen binaire, octale, decimale en hex-modi.",
-                "De rekenmachine beschikt ook over een geschiedeniscomponent die eerdere berekeningen bewaart.",
-                "De programmeerrekenmachine ondersteunt directe toetsenbordinvoer en valideert deze op basis van het gekozen talstelsel. De getAllowedCharacters-methode bepaalt welke tekens zijn toegestaan."
-            ],
-            "Features": [
-                "Gebruiksvriendelijke interface",
-                "Ondersteuning voor meerdere berekeningstypen",
-                "Realtime updates"
-            ],
-            "Future": [
-                "Grafieken ondersteunen voor wetenschappelijke functies.",
-                "Geschiedenisfunctie toevoegen.",
-                "UI uitbreiden met thema’s en personalisatieopties."
-            ],
-            "Links": {
-                "TryOut": "Probeer het uit"
-            }
-        },
-        "Appointments": {
-            "Title": "Afsprakenplatform",
-            "Description": "Een webgebaseerd platform voor het boeken van afspraken met gebruikers- en adminrollen, gebouwd met Angular en Material Design.",
-            "Content": [
-                "Dit project is een afsprakenplatform gebouwd met Angular. Klanten kunnen afspraken boeken voor verschillende diensten, terwijl admins deze kunnen beheren en goedkeuren.",
-                "Gebruikers kunnen zich registreren of inloggen. Na het inloggen worden ze doorgestuurd naar de boekingsinterface (voor klanten) of het admindashboard.",
-                "Klanten kunnen nieuwe afspraken boeken door een dienst, datum en tijd te kiezen. Het formulier vult automatisch hun gegevens in, maar deze kunnen indien gewenst worden aangepast.",
-                "Geboekte afspraken beginnen met de status 'In afwachting'. Admins kunnen deze wijzigen naar 'Bevestigd', 'Voltooid' of een 'Annuleringsverzoek' goedkeuren.",
-                "Klanten kunnen hun afspraken annuleren. Bij 'In afwachting' wordt de afspraak direct verwijderd; bij 'Bevestigd' of 'Voltooid' wordt een annulatieverzoek naar de admin gestuurd.",
-                "Admins kunnen alle afspraken bekijken, de status aanpassen of afspraken verwijderen. Annuleringsverzoeken van klanten kunnen worden goedgekeurd.",
-                "De app gebruikt een gedeelde AppointmentService met een observable-based store en een AuthService voor gebruikersbeheer. De header toont dynamisch de huidige gebruiker en biedt login/logout."
-            ],
-            "Features": [
-                "Authenticatie en rollenbeheer",
-                "Afspraken boeken met formuliercontrole",
-                "Realtime statusbeheer door admins",
-                "Annulatiesysteem met goedkeuring",
-                "Dynamische header met loginstatus"
-            ],
-            "Future": [
-                "E-mailnotificaties voor statusupdates",
-                "Kalenderweergave voor admins en klanten",
-                "Duur van diensten en beschikbaarheidsschema’s toevoegen",
-                "Gegevens opslaan via backend-API of database"
-            ],
-            "Links": {
-                "TryOut": "Probeer het uit"
-            }
-        },
-        "Inventory": {
-            "Title": "Voorraadbeheersysteem",
-            "Description": "Een webgebaseerd systeem voor voorraadbeheer met lijst-, detail-, aanmaak- en bewerkingsfunctionaliteiten, gebouwd met Angular en Material Design.",
-            "Content": [
-                "Dit project is een voorraadbeheersysteem gebouwd met Angular. Gebruikers kunnen items beheren, details bekijken en nieuwe items aanmaken of bewerken.",
-                "De inventarislijst toont alle items in een Material-tabel met zoek-, filter- en sorteeropties. Belangrijke gegevens zoals naam, categorie, aantal en ontvangstdatum worden weergegeven.",
-                "Gebruikers kunnen een item openen voor een detailweergave, waar uitgebreidere informatie wordt getoond.",
-                "Nieuwe items worden aangemaakt via een reactief formulier met validatie.",
-                "Bewerkte items worden vooraf ingevuld en updates verschijnen direct in de lijst dankzij observable-state management.",
-                "Het systeem gebruikt gedeelde services en centrale state management.",
-                "Material-componenten zorgen voor een responsieve, overzichtelijke interface.",
-                "Toekomstige uitbreidingen omvatten bulkimport/export, API-integratie, uitgebreidere rapportage en rolgebaseerde permissies."
-            ],
-            "Features": [
-                "Voorraadlijst met zoeken, filteren en sorteren",
-                "Detailweergave per item",
-                "Aanmaken en bewerken met validatie",
-                "State management met observables",
-                "Responsieve UI met Material Design"
-            ],
-            "Future": [
-                "Bulkimport/export toevoegen",
-                "Integratie met externe API’s",
-                "Geavanceerde rapportage en analyses",
-                "Rolgebaseerde permissies en audit logs"
-            ],
-            "Links": {
-                "TryOut": "Probeer het uit"
-            }
-        },
-        "HISMB": {
-            "Title": "Honey, I Shrunk My Boss",
-            "Description": "Een coöperatieve VR-escape-room waarbij spelers krimpen tot miniatuurformaat en samenwerken in vijf thematische puzzelomgevingen.",
-            "Content": [
-                "Honey, I Shrunk My Boss is een VR-escape-roomspel voor Oculus Quest. Spelers krimpen tot een miniatuurformaat en moeten samenwerken om puzzels op te lossen in vijf thematische omgevingen.",
-                "Het spel bevat asymmetrische samenwerking: één speler bevindt zich in VR, terwijl de andere spelers helpen via geïllustreerde handleidingen met unieke aanwijzingen die alleen zij kunnen zien.",
-                "Elke missie betreedt een andere speler de VR-wereld. Na afronding groeit de speler terug naar normaal formaat, geeft de headset door, en begint de volgende speler.",
-                "<h4>Ervaringsoverzicht</h4><ul><li>Werk samen in teams van 4–5 spelers</li><li>Los vijf missie-gebaseerde puzzels op</li><li>Eén VR-speler krimpt, anderen helpen via handleidingen</li><li>Ontworpen voor toegankelijkheid en intuïtieve communicatie</li><li>Stijlvolle VR-omgevingen met duidelijke visuele aanwijzingen</li></ul>"
-            ],
-            "Features": [
-                "Asymmetrische VR-gameplay",
-                "Teamgebaseerde puzzeloplossing",
-                "Vijf themamissies",
-                "Toegankelijk ontwerp",
-                "Communicatie zonder tekst",
-                "Gestileerde miniatuurwerelden"
-            ],
-            "Future": [
-                "Optionele multiplayer-uitbreidingen",
-                "Meer puzzelthema’s en omgevingen",
-                "Verbeterde dynamische interacties in VR",
-                "Betere onboarding voor nieuwe VR-spelers"
-            ],
-            "Links": {
-                "Video": "Showcase-video",
-                "Contractors": "Bekijk de ontwikkelaars"
-            }
-        }
+  "Project": {
+    "Description": "Beschrijving",
+    "FuturePlans": "Toekomstplannen",
+    "TechUsed": "Gebruikte technologieën",
+    "Links": "Links",
+    "Copy": "Kopiëren",
+    "Copied": "Gekopieerd!",
+    "NotFound": "Project niet gevonden.",
+    "ImageAlt": "Projectafbeelding {{index}}",
+    "Category": {
+      "web": "Web",
+      "vr/ar": "VR / AR",
+      "desktop": "Desktop",
+      "cpp": "C++",
+      "all": "Alles"
+    },
+    "GameOfLife": {
+      "Title": "Conway's Game of Life",
+      "Description": "Een implementatie van Conway's Game of Life met C++ en SDL2, met dynamische celupdates en rendering.",
+      "Content": [
+        "Conway's Game of Life is een cellulair automaton bedacht door wiskundige John Conway. Het bestaat uit een raster van cellen die evolueren op basis van specifieke regels. Dit project implementeert het spel in C++ en SDL2, waardoor visualisatie van de cellulaire evolutie mogelijk is.",
+        "Het spel werkt met een eenvoudige set regels die het lot van elke cel in het raster bepalen op basis van zijn buren. Elke cel kan levend of dood zijn, en de staat van het raster verandert bij elke iteratie, wat fascinerende patronen en gedragingen oplevert.",
+        "<h4> Regels van Conway's Game of Life</h4><ol><li>Elke levende cel met minder dan twee levende buren sterft (onderbevolking).</li><li>Elke levende cel met twee of drie levende buren blijft leven in de volgende generatie.</li><li>Elke levende cel met meer dan drie levende buren sterft (overbevolking).</li><li>Elke dode cel met precies drie levende buren wordt een levende cel (reproductie).</li></ol>",
+        "De GameOfLife-klasse voert de kernfunctionaliteit uit, waaronder rasterinitialisatie, event-afhandeling, update-logica en het renderen van cellen. Het spel start met een willekeurige verdeling van levende en dode cellen en volgt Conway's regels om het raster bij elke stap bij te werken.",
+        "De Update-methode verwerkt elke cel en bepaalt of deze in de volgende generatie leeft of sterft op basis van het aantal levende buren. Het spel gebruikt een buffer om te voorkomen dat het raster wordt aangepast terwijl het wordt bijgewerkt.",
+        "De TMatrix-klasse is een aangepaste sjabloonmatrix-implementatie die wordt gebruikt om het spelraster op te slaan. Het ondersteunt dynamische geheugenallocatie en zorgt voor efficiënte toegang tot celstatussen."
+      ],
+      "Features": [
+        "Cellulaire automatisering",
+        "Objectgeoriënteerd programmeren",
+        "Realtime rendering met SDL2",
+        "Dynamische geheugenallocatie"
+      ],
+      "Future": [
+        "Opties toevoegen voor gebruikersinteractie, zoals handmatige celplaatsing en grid-aanpassingen.",
+        "Renderprestaties verbeteren voor soepelere visuals en hogere efficiëntie, vooral bij grote grids.",
+        "UI-instellingen toevoegen voor schaal, kleuren en visuele personalisatie.",
+        "Start- en pauze-opties implementeren zodat gebruikers de simulatie kunnen beheren."
+      ],
+      "Links": {
+        "Wikipedia": "Wikipedia: Conway's Game of Life",
+        "Github": "Github-repository"
+      }
+    },
+    "Calculator": {
+      "Title": "Rekenmachineproject",
+      "Description": "Een verzameling van drie rekenmachines: eenvoudige, wetenschappelijke en programmeerrekenmachine.",
+      "Content": [
+        "Dit project is een uitgebreide rekenmachine gebouwd met Angular. Het ondersteunt drie modi: eenvoudige rekenmachine, wetenschappelijke rekenmachine en programmeerrekenmachine. De eenvoudige en wetenschappelijke rekenmachines delen een gemeenschappelijke BaseCalculatorComponent, terwijl de programmeerrekenmachine aangepaste logica bevat voor conversies tussen talstelsels en logische operaties.",
+        "De eenvoudige rekenmachine biedt basisbewerkingen zoals optellen, aftrekken, vermenigvuldigen en delen. De interface ondersteunt toetsenbordinvoer en realtime evaluatie.",
+        "De wetenschappelijke rekenmachine breidt de mogelijkheden uit met trigonometrische functies (sin, cos, tan), exponenten en wiskundige constanten zoals Pi (π) en Euler’s getal (e).",
+        "De programmeerrekenmachine is gericht op softwareontwikkelaars en ingenieurs. Ze ondersteunt conversies tussen hexadecimale, decimale, octale en binaire systemen. Daarnaast zijn bitwise-operaties beschikbaar, zoals AND, OR, XOR, NOT, left shift en right shift.",
+        "Belangrijke functies zijn o.a. basisbewerkingen (+, -, *, /), wetenschappelijke functies (sin, cos, tan, sqrt, exponenten), programmeermodus met talstelselconversies, bitwise-operaties, toetsenbordondersteuning, realtime evaluatie en geschiedenis van berekeningen.",
+        "De rekenmachine werkt met een gedeelde basiscomponent die functies zoals resultaatberekening en invoerafhandeling uitvoert.",
+        "De programmeerrekenmachine breidt deze basiscomponent uit en introduceert talstelselbeheer, waardoor gebruikers eenvoudig kunnen schakelen tussen binaire, octale, decimale en hex-modi.",
+        "De rekenmachine beschikt ook over een geschiedeniscomponent die eerdere berekeningen bewaart.",
+        "De programmeerrekenmachine ondersteunt directe toetsenbordinvoer en valideert deze op basis van het gekozen talstelsel. De getAllowedCharacters-methode bepaalt welke tekens zijn toegestaan."
+      ],
+      "Features": [
+        "Gebruiksvriendelijke interface",
+        "Ondersteuning voor meerdere berekeningstypen",
+        "Realtime updates"
+      ],
+      "Future": [
+        "Grafieken ondersteunen voor wetenschappelijke functies.",
+        "Geschiedenisfunctie toevoegen.",
+        "UI uitbreiden met thema’s en personalisatieopties."
+      ],
+      "Links": {
+        "TryOut": "Probeer het uit"
+      }
+    },
+    "Appointments": {
+      "Title": "Afsprakenplatform",
+      "Description": "Een webgebaseerd platform voor het boeken van afspraken met gebruikers- en adminrollen, gebouwd met Angular en Material Design.",
+      "Content": [
+        "Dit project is een afsprakenplatform gebouwd met Angular. Klanten kunnen afspraken boeken voor verschillende diensten, terwijl admins deze kunnen beheren en goedkeuren.",
+        "Gebruikers kunnen zich registreren of inloggen. Na het inloggen worden ze doorgestuurd naar de boekingsinterface (voor klanten) of het admindashboard.",
+        "Klanten kunnen nieuwe afspraken boeken door een dienst, datum en tijd te kiezen. Het formulier vult automatisch hun gegevens in, maar deze kunnen indien gewenst worden aangepast.",
+        "Geboekte afspraken beginnen met de status 'In afwachting'. Admins kunnen deze wijzigen naar 'Bevestigd', 'Voltooid' of een 'Annuleringsverzoek' goedkeuren.",
+        "Klanten kunnen hun afspraken annuleren. Bij 'In afwachting' wordt de afspraak direct verwijderd; bij 'Bevestigd' of 'Voltooid' wordt een annulatieverzoek naar de admin gestuurd.",
+        "Admins kunnen alle afspraken bekijken, de status aanpassen of afspraken verwijderen. Annuleringsverzoeken van klanten kunnen worden goedgekeurd.",
+        "De app gebruikt een gedeelde AppointmentService met een observable-based store en een AuthService voor gebruikersbeheer. De header toont dynamisch de huidige gebruiker en biedt login/logout."
+      ],
+      "Features": [
+        "Authenticatie en rollenbeheer",
+        "Afspraken boeken met formuliercontrole",
+        "Realtime statusbeheer door admins",
+        "Annulatiesysteem met goedkeuring",
+        "Dynamische header met loginstatus"
+      ],
+      "Future": [
+        "E-mailnotificaties voor statusupdates",
+        "Kalenderweergave voor admins en klanten",
+        "Duur van diensten en beschikbaarheidsschema’s toevoegen",
+        "Gegevens opslaan via backend-API of database"
+      ],
+      "Links": {
+        "TryOut": "Probeer het uit"
+      }
+    },
+    "Inventory": {
+      "Title": "Voorraadbeheersysteem",
+      "Description": "Een webgebaseerd systeem voor voorraadbeheer met lijst-, detail-, aanmaak- en bewerkingsfunctionaliteiten, gebouwd met Angular en Material Design.",
+      "Content": [
+        "Dit project is een voorraadbeheersysteem gebouwd met Angular. Gebruikers kunnen items beheren, details bekijken en nieuwe items aanmaken of bewerken.",
+        "De inventarislijst toont alle items in een Material-tabel met zoek-, filter- en sorteeropties. Belangrijke gegevens zoals naam, categorie, aantal en ontvangstdatum worden weergegeven.",
+        "Gebruikers kunnen een item openen voor een detailweergave, waar uitgebreidere informatie wordt getoond.",
+        "Nieuwe items worden aangemaakt via een reactief formulier met validatie.",
+        "Bewerkte items worden vooraf ingevuld en updates verschijnen direct in de lijst dankzij observable-state management.",
+        "Het systeem gebruikt gedeelde services en centrale state management.",
+        "Material-componenten zorgen voor een responsieve, overzichtelijke interface.",
+        "Toekomstige uitbreidingen omvatten bulkimport/export, API-integratie, uitgebreidere rapportage en rolgebaseerde permissies."
+      ],
+      "Features": [
+        "Voorraadlijst met zoeken, filteren en sorteren",
+        "Detailweergave per item",
+        "Aanmaken en bewerken met validatie",
+        "State management met observables",
+        "Responsieve UI met Material Design"
+      ],
+      "Future": [
+        "Bulkimport/export toevoegen",
+        "Integratie met externe API’s",
+        "Geavanceerde rapportage en analyses",
+        "Rolgebaseerde permissies en audit logs"
+      ],
+      "Links": {
+        "TryOut": "Probeer het uit"
+      }
+    },
+    "HISMB": {
+      "Title": "Honey, I Shrunk My Boss",
+      "Description": "Een coöperatieve VR-escape-room waarbij spelers krimpen tot miniatuurformaat en samenwerken in vijf thematische puzzelomgevingen.",
+      "Content": [
+        "Honey, I Shrunk My Boss is een VR-escape-roomspel voor Oculus Quest. Spelers krimpen tot een miniatuurformaat en moeten samenwerken om puzzels op te lossen in vijf thematische omgevingen.",
+        "Het spel bevat asymmetrische samenwerking: één speler bevindt zich in VR, terwijl de andere spelers helpen via geïllustreerde handleidingen met unieke aanwijzingen die alleen zij kunnen zien.",
+        "Elke missie betreedt een andere speler de VR-wereld. Na afronding groeit de speler terug naar normaal formaat, geeft de headset door, en begint de volgende speler.",
+        "<h4>Ervaringsoverzicht</h4><ul><li>Werk samen in teams van 4–5 spelers</li><li>Los vijf missie-gebaseerde puzzels op</li><li>Eén VR-speler krimpt, anderen helpen via handleidingen</li><li>Ontworpen voor toegankelijkheid en intuïtieve communicatie</li><li>Stijlvolle VR-omgevingen met duidelijke visuele aanwijzingen</li></ul>"
+      ],
+      "Features": [
+        "Asymmetrische VR-gameplay",
+        "Teamgebaseerde puzzeloplossing",
+        "Vijf themamissies",
+        "Toegankelijk ontwerp",
+        "Communicatie zonder tekst",
+        "Gestileerde miniatuurwerelden"
+      ],
+      "Future": [
+        "Optionele multiplayer-uitbreidingen",
+        "Meer puzzelthema’s en omgevingen",
+        "Verbeterde dynamische interacties in VR",
+        "Betere onboarding voor nieuwe VR-spelers"
+      ],
+      "Links": {
+        "Video": "Showcase-video",
+        "Contractors": "Bekijk de ontwikkelaars"
+      }
+    },
+    "TaskFlow": {
+      "Title": "TaskFlow",
+      "Description": "Een full-stack taak- en projectbeheerplatform gebouwd met Angular 19 en ASP.NET Core Web API + EF Core (SQLite).",
+      "Content": [
+        "TaskFlow combineert projectplanning, categorie-organisatie, taakopvolging, opmerkingen, gebruikersbeheer en eenvoudige analytics in één applicatie.",
+        "De frontend gebruikt Angular 19 standalone componenten en Angular Material, terwijl de backend draait op ASP.NET Core Web API met Entity Framework Core en SQLite.",
+        "De architectuur volgt een duidelijke flow: Angular services roepen REST-endpoints onder /api/* aan, controllers sturen door naar domeinservices, en EF Core beheert databasebewerkingen via AppDbContext.",
+        "<h4>Highlights</h4><ul><li>Kanban-achtige taakflow met project- en categoriehiërarchie</li><li>Taakopmerkingen en gebruikersbeheer</li><li>Analytics- en instellingenpagina’s voor snel overzicht</li><li>Swagger-documentatie en eenvoudige lokale setup</li></ul>"
+      ],
+      "Features": [
+        "Project- en categorie-organisatie",
+        "Taken aanmaken, bijwerken, verplaatsen en verwijderen",
+        "Opmerkingen per taak voor samenwerking",
+        "Gebruikersbeheer (lijst, aanmaken, details, verwijderen)",
+        "Inlog-entryflow integratie",
+        "Analytics- en instellingenweergaven",
+        "REST API gedocumenteerd met Swagger/OpenAPI"
+      ],
+      "Future": [
+        "Rolgebaseerde toegangscontrole",
+        "Token-gebaseerde authenticatie met refresh flow",
+        "Geavanceerde analytics zoals throughput en lead time",
+        "CI-pipeline met lint/test/build gates",
+        "Docker Compose-opstart met één commando"
+      ],
+      "Links": {
+        "Github": "GitHub Repository"
+      }
     }
+  }
 }

@@ -1,0 +1,44 @@
+{
+  "title": "Project.TaskFlow.Title",
+  "description": "Project.TaskFlow.Description",
+  "content": [
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.1"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.2"
+    },
+    {
+      "type": "other",
+      "value": "Project.TaskFlow.Content.3"
+    }
+  ],
+  "features": [
+    "Project.TaskFlow.Features.0",
+    "Project.TaskFlow.Features.1",
+    "Project.TaskFlow.Features.2",
+    "Project.TaskFlow.Features.3",
+    "Project.TaskFlow.Features.4",
+    "Project.TaskFlow.Features.5",
+    "Project.TaskFlow.Features.6"
+  ],
+  "futurePlans": [
+    "Project.TaskFlow.Future.0",
+    "Project.TaskFlow.Future.1",
+    "Project.TaskFlow.Future.2",
+    "Project.TaskFlow.Future.3",
+    "Project.TaskFlow.Future.4"
+  ],
+  "links": [
+    {
+      "name": "Project.TaskFlow.Links.Github",
+      "url": "https://github.com/DeCoomanJarno/TaskFlow"
+    }
+  ]
+}

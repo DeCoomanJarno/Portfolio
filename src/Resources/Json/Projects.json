@@ -81,24 +81,40 @@
       "url": "/Calculator"
     }
   },
-{
-  "id": "HISMB",
-  "category": "vr/ar",
-  "title": "Project.HISMB.Title",
-  "description": "Project.HISMB.Description",
-  "technologies": [
-    "Unity",
-    "C#",
-    "Oculus"
-  ],
-  "images": [
-    "hismb.jpg"
-  ],
-  "link": {
-    "name": "Project.HISMB.Links.Contractors",
-    "icon": "Export",
-    "url": "https://tech4fun.be/vr-honey-i-shrunk-teambuilding/"
+  {
+    "id": "TaskFlow",
+    "category": "web",
+    "title": "Project.TaskFlow.Title",
+    "description": "Project.TaskFlow.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript",
+      "C#",
+      "Visual Studio Code"
+    ],
+    "link": {
+      "name": "Project.TaskFlow.Links.Github",
+      "icon": "Github",
+      "url": "https://github.com/DeCoomanJarno/TaskFlow"
+    }
+  },
+  {
+    "id": "HISMB",
+    "category": "vr/ar",
+    "title": "Project.HISMB.Title",
+    "description": "Project.HISMB.Description",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Oculus"
+    ],
+    "images": [
+      "hismb.jpg"
+    ],
+    "link": {
+      "name": "Project.HISMB.Links.Contractors",
+      "icon": "Export",
+      "url": "https://tech4fun.be/vr-honey-i-shrunk-teambuilding/"
+    }
   }
-}
-
 ]
