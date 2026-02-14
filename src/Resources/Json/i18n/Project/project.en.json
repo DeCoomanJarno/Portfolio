@@ -160,10 +160,10 @@
     },
     "TaskFlow": {
       "Title": "TaskFlow",
-      "Description": "A full-stack task and project management platform built with Angular 19 and ASP.NET Core Web API + EF Core (SQLite).",
+      "Description": "A full-stack task and project management platform that unifies planning, execution, collaboration, and operational insights using Angular 19 and ASP.NET Core Web API + EF Core (SQLite).",
       "Content": [
-        "TaskFlow combines project planning, category organization, task tracking, comments, user management, and lightweight analytics in one cohesive application.",
-        "The frontend is built with Angular 19 standalone components and Angular Material, while the backend uses ASP.NET Core Web API with Entity Framework Core and SQLite for persistence.",
+        "TaskFlow combines project planning, category organization, task tracking, comments, user management, and lightweight analytics in one cohesive platform tailored for team workflows.",
+        "The frontend uses Angular 19 standalone components with Angular Material for a responsive UI, while the backend relies on ASP.NET Core Web API and Entity Framework Core with SQLite for reliable persistence.",
         "Its architecture follows a clean flow where Angular services call REST endpoints under /api/*, controllers delegate to domain services, and EF Core manages database operations through AppDbContext.",
         "<h4>Highlights</h4><ul><li>Kanban-style task flow with project + category hierarchy</li><li>Task comments and user management workflows</li><li>Analytics and settings pages for quick operational visibility</li><li>Swagger-enabled backend API and simple local setup</li></ul>"
       ],

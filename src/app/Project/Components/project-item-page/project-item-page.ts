@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 declare var bootstrap: any;
 
@@ -23,6 +24,7 @@ declare var bootstrap: any;
 export class ProjectItemPageComponent implements OnInit, AfterViewInit {
   project: ProjectModel | undefined;
   projectPreviewModel: ProjectPreviewModel | undefined;
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -36,12 +38,15 @@ export class ProjectItemPageComponent implements OnInit, AfterViewInit {
 
     // Load static preview info
     this.projectService.getProjectById(projectId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(preview => this.projectPreviewModel = preview);
 
     // Load localized project data on language change
-    this.translate.onLangChange.subscribe(e => {
-      this.loadProject(projectId);
-    });
+    this.translate.onLangChange
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.loadProject(projectId);
+      });
 
     // Initial load
     this.loadProject(projectId);
@@ -49,6 +54,7 @@ export class ProjectItemPageComponent implements OnInit, AfterViewInit {
 
   private loadProject(projectId: string) {
     this.projectService.getProjectJsonById(projectId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(project => {
         this.project = project;
         setTimeout(() => this.initializeEnhancements());

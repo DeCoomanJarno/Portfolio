@@ -157,22 +157,3 @@
   transform: translateX(3px);
 }
 
-.image-block {
-  margin-bottom: 15px;
-  height: auto;
-  max-width: 350px;
-}
-
-.image-block img {
-  border-radius: 10px;
-}
-
-.image-block.right {
-  margin-left: 20px;
-  float: right;
-}
-
-.image-block.left {
-  margin-right: 20px;
-  float: left;
-}

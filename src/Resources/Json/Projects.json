@@ -92,6 +92,11 @@
       "C#",
       "Visual Studio Code"
     ],
+    "images": [
+      "https://github.com/user-attachments/assets/cbce7cdb-b919-42fb-94c0-62ccf29dadb4",
+      "https://github.com/user-attachments/assets/e11a6fe4-6505-4d68-a452-f4e9347ce62a",
+      "https://github.com/user-attachments/assets/6306384b-a51c-47b2-98a5-7d79fc684eb5"
+    ],
     "link": {
       "name": "Project.TaskFlow.Links.Github",
       "icon": "Github",
