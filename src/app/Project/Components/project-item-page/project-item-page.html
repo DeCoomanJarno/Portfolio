@@ -29,7 +29,7 @@
           }
           @else if (item.type === 'image') {
             <div class="image-block" [class.right]="$index % 2 === 0" [class.left]="$index % 2 !== 0">
-              <img [src]="'Resources/Projects/' + projectPreviewModel.id + '/Images/' + item.value" [alt]="'Project.ImageAlt' | translate:{ index: $index+1 }">
+              <img [src]="item.value.startsWith('http') ? item.value : 'Resources/Projects/' + projectPreviewModel.id + '/Images/' + item.value" [alt]="'Project.ImageAlt' | translate:{ index: $index+1 }">
             </div>
           }
           @else if (item.type === 'code') {

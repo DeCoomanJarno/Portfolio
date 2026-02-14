@@ -1,0 +1,79 @@
+{
+  "title": "Project.TaskFlow.Title",
+  "description": "Project.TaskFlow.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "https://github.com/user-attachments/assets/cbce7cdb-b919-42fb-94c0-62ccf29dadb4"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.0"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.1"
+    },
+    {
+      "type": "image",
+      "value": "https://github.com/user-attachments/assets/e11a6fe4-6505-4d68-a452-f4e9347ce62a"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.2"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.3"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.4"
+    },
+    {
+      "type": "image",
+      "value": "https://github.com/user-attachments/assets/6306384b-a51c-47b2-98a5-7d79fc684eb5"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.5"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.6"
+    },
+    {
+      "type": "text",
+      "value": "Project.TaskFlow.Content.7"
+    },
+    {
+      "type": "other",
+      "value": "Project.TaskFlow.Content.8"
+    }
+  ],
+  "features": [
+    "Project.TaskFlow.Features.0",
+    "Project.TaskFlow.Features.1",
+    "Project.TaskFlow.Features.2",
+    "Project.TaskFlow.Features.3",
+    "Project.TaskFlow.Features.4",
+    "Project.TaskFlow.Features.5",
+    "Project.TaskFlow.Features.6",
+    "Project.TaskFlow.Features.7",
+    "Project.TaskFlow.Features.8"
+  ],
+  "futurePlans": [
+    "Project.TaskFlow.Future.0",
+    "Project.TaskFlow.Future.1",
+    "Project.TaskFlow.Future.2",
+    "Project.TaskFlow.Future.3",
+    "Project.TaskFlow.Future.4",
+    "Project.TaskFlow.Future.5"
+  ],
+  "links": [
+    {
+      "name": "Project.TaskFlow.Links.Github",
+      "url": "https://github.com/DeCoomanJarno/TaskFlow"
+    }
+  ]
+}

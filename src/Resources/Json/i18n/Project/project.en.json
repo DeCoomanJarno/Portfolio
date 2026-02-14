@@ -1,162 +1,199 @@
 {
-    "Project": {
-        "Description": "Description",
-        "FuturePlans": "Future Plans",
-        "TechUsed": "Technologies Used",
-        "Links": "Links",
-        "Copy": "Copy",
-        "Copied": "Copied!",
-        "NotFound": "Project not found.",
-        "ImageAlt": "Project image {{index}}",
-        "Category": {
-            "web": "Web",
-            "vr/ar": "VR / AR",
-            "desktop": "Desktop",
-            "cpp": "C++",
-            "all": "All"
-        },
-        "GameOfLife": {
-            "Title": "Conway's Game of Life",
-            "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
-            "Content": [
-                "Conway's Game of Life is a cellular automaton devised by mathematician John Conway. It consists of a grid of cells that evolve based on specific rules. This project implements the game using C++ and SDL2, allowing for visualization of the cellular evolution.",
-                "The game operates on a simple set of rules that determine the fate of each cell in the grid based on its neighbors. Each cell can either be alive or dead, and the state of the grid changes with each iteration, creating fascinating patterns and behaviors.",
-                "<h4> Rules of Conway's Game of Life</h4><ol><li>Any live cell with fewer than two live neighbors dies (underpopulation).</li><li>Any live cell with two or three live neighbors lives on to the next generation.</li><li>Any live cell with more than three live neighbors dies (overpopulation).</li><li>Any dead cell with exactly three live neighbors becomes a live cell (reproduction).</li></ol>",
-                "The GameOfLife class handles the core mechanics, including grid initialization, event handling, updating the grid, and rendering cells. The game starts with a random distribution of live and dead cells and follows Conway's rules to update the grid at each step.",
-                "The Update method processes each cell and determines whether it should be alive or dead in the next generation based on the number of neighboring live cells. The game maintains a buffer to prevent modifying the grid while it is being updated.",
-                "The TMatrix class is a custom template matrix implementation used to store the game grid. It supports dynamic memory allocation and ensures efficient access to cell states."
-            ],
-            "Features": [
-                "Cellular Automation",
-                "Object Oriented Programming",
-                "Real-time rendering with SDL2",
-                "Dynamic memory allocation"
-            ],
-            "Future": [
-                "Options can be added for user interaction, allowing manual cell placement and modifications to the grid.",
-                "Rendering performance can be improved to ensure smoother visuals and better efficiency, especially for larger grids.",
-                "UI settings can be introduced for adjusting grid scale, colors, and other visual aspects to enhance customization.",
-                "Start and stop options can be implemented, giving users more control over when the simulation runs or pauses."
-            ],
-            "Links": {
-                "Wikipedia": "Wikipedia: Conway's Game of Life",
-                "Github": "Github Repository"
-            }
-        },
-        "Calculator": {
-            "Title": "Calculator Project",
-            "Description": "A collection of three calculators: Simple Calculator, Scientific Calculator, and Programming Calculator.",
-            "Content": [
-                "This project is a feature-rich calculator built using Angular. It supports three different modes: Simple Calculator, Scientific Calculator, and Programming Calculator. The simple and scientific calculators share a common BaseCalculatorComponent, while the programming calculator includes custom logic to handle numeral system conversions and logical operations.",
-                "The Simple Calculator enables fundamental arithmetic operations such as addition, subtraction, multiplication, and division. It provides a user-friendly interface with keyboard support and real-time result evaluation.",
-                "The Scientific Calculator expands on the Simple Calculator by introducing trigonometric functions (sin, cos, tan), exponentiation, and mathematical constants like Pi (π) and Euler's number (e). It offers enhanced functionality for more advanced calculations.",
-                "The Programming Calculator is designed for software developers and engineers. It enables conversions between hexadecimal, decimal, octal, and binary number systems. Additionally, it supports bitwise operations such as AND, OR, XOR, NOT, left shift, and right shift. This makes it a powerful tool for low-level programming and hardware interaction.",
-                "Key Features include basic arithmetic operations (+, -, *, /), scientific functions (sin, cos, tan, sqrt, exponentiation), programming mode with number system conversions, bitwise operations (AND, OR, XOR, NOT, shifts), keyboard input support, real-time evaluation, and history tracking of calculations.",
-                "The calculator operates with a shared base component that provides common functionalities such as result evaluation and input handling. Below is the TypeScript class for the BaseCalculatorComponent, which serves as the foundation for all three calculator modes.",
-                "The Programming Calculator extends the BaseCalculatorComponent and introduces numeral system handling. It allows users to switch between binary, octal, decimal, and hexadecimal modes seamlessly.",
-                "The calculator also includes a history component that stores previous calculations. This feature enhances usability by allowing users to recall and reuse past equations.",
-                "The Programming Calculator supports direct keyboard input for operations. It validates input based on the selected mode, ensuring that users can only enter valid characters. The getAllowedCharacters method restricts input based on the current numeral system."
-            ],
-            "Features": [
-                "User-friendly interface",
-                "Supports multiple calculation types",
-                "Real-time updates"
-            ],
-            "Future": [
-                "Add graphing capabilities for scientific functions.",
-                "Implement a history feature to track previous calculations.",
-                "Enhance UI with themes and customization options."
-            ],
-            "Links": {
-                "TryOut": "Try out"
-            }
-        },
-        "Appointments": {
-            "Title": "Appointments Booking Platform",
-            "Description": "A web-based appointment booking platform with user and admin roles, built using Angular and Material Design.",
-            "Content": [
-                "This project is an appointment booking platform built using Angular. It allows clients to book appointments for various services, while administrators can manage and approve or deny those appointments.",
-                "Users can register or log in to the platform. Once logged in, they are either redirected to the booking interface (if they are clients) or to the admin dashboard (if they are administrators).",
-                "Clients can book new appointments by selecting a service, date, and time. The form automatically fills in their name, email, and full name once logged in, while still allowing them to change these details if needed.",
-                "Booked appointments start with a 'Pending' status. Admins can change the status to 'Confirmed', 'Done', or approve a 'CancelRequest'.",
-                "Clients can cancel their own appointments: if the appointment is still 'Pending', it is removed immediately; if it is 'Confirmed' or 'Done', a cancel request is sent for admin approval.",
-                "Admins can view all appointments in a Material table, update their status, or delete them entirely. They can also approve cancellation requests submitted by clients.",
-                "The application uses a shared AppointmentService with an observable-based store, and AuthService to handle the current user and login state. The header component dynamically shows the current user and allows login/logout from anywhere in the app."
-            ],
-            "Features": [
-                "User authentication and role-based routing",
-                "Appointment booking with form validation",
-                "Real-time status management by admins",
-                "Client-side appointment cancellation with approval system",
-                "Dynamic header showing login/logout state"
-            ],
-            "Future": [
-                "Implement email notifications for appointment status updates",
-                "Add calendar view for both admins and clients",
-                "Introduce service duration and availability time slots",
-                "Store data on a backend API or database"
-            ],
-            "Links": {
-                "TryOut": "Try out"
-            }
-        },
-        "Inventory": {
-            "Title": "Inventory Management System",
-            "Description": "A web-based inventory management system with list, detail, create, and edit functionalities, built using Angular and Material Design.",
-            "Content": [
-                "This project is an inventory management system built using Angular. Users can manage inventory items, view detailed information, and perform create/edit operations seamlessly.",
-                "The inventory list displays all items in a Material table with search, filter, and sort functionalities. It provides quick access to key details like name, category, quantity, and received date.",
-                "Users can click an item to open the detail view. This view shows full information about the item, including notes, category icons via a dedicated service, and real-time updates using observables.",
-                "Creating a new inventory item is done via a reactive form with validation, ensuring all required fields are filled correctly and preventing invalid entries.",
-                "Editing an existing item pre-populates the form with current data. Updates are immediately reflected in the inventory list thanks to an observable-based state management system.",
-                "The application uses shared services for inventory operations and centralized state management for consistent updates across all components.",
-                "Material Design components such as tables, forms, dialogs, and buttons are used to create a responsive, clean, and user-friendly interface.",
-                "Future extensions may include bulk import/export options, API integration for automatic updates, enhanced reporting, and role-based permissions."
-            ],
-            "Features": [
-                "Inventory list with search, filter, and sort",
-                "Detail view for each inventory item",
-                "Create and edit forms with validation",
-                "Observable-based state management",
-                "Responsive UI with Material Design"
-            ],
-            "Future": [
-                "Add bulk import/export options for inventory items",
-                "Integrate with external APIs for automated updates",
-                "Enhance reporting and analytics features",
-                "Implement role-based permissions and audit logs"
-            ],
-            "Links": {
-                "TryOut": "Try out"
-            }
-        },
-        "HISMB": {
-            "Title": "Honey, I Shrunk My Boss",
-            "Description": "A cooperative VR escape room adventure where players shrink to miniature scale and collaborate across five themed puzzle environments.",
-            "Content": [
-                "Honey, I Shrunk My Boss is a VR escape room game designed for Oculus Quest. Players shrink to a tiny size and must work together to solve puzzles scattered across five themed environments.",
-                "The game features asymmetric collaboration: one player enters the virtual world, while the other players assist using illustrated wizard manuals. These manuals contain unique clues that only external players can see, making communication essential.",
-                "Each mission places a new player inside VR. After completing the puzzle, the player grows back to normal size, passes the headset, and the next player shrinks to begin their challenge. This cycle continues through all missions, encouraging teamwork and coordination.",
-                "<h4>Experience Overview</h4><ul><li>Work together in teams of 4–5 players</li><li>Solve five mission-based puzzle challenges</li><li>One VR player shrinks while others consult illustrated manuals</li><li>Designed for accessibility and intuitive communication</li><li>Beautiful, stylized VR environments crafted for clarity and comfort</li></ul>"
-            ],
-            "Features": [
-                "Asymmetric VR gameplay",
-                "Team-based puzzle-solving",
-                "Five themed missions",
-                "Accessibility-focused design",
-                "Wordless communication system",
-                "Stylized miniature environments"
-            ],
-            "Future": [
-                "Optional multiplayer expansion modes",
-                "More puzzle themes and environments",
-                "Enhanced dynamic interactions within VR",
-                "Improved onboarding for first-time VR users"
-            ],
-            "Links": {
-                "Video": "Showcase Video",
-                "Contractors": "Explore the contractors"
-            }
-        }
+  "Project": {
+    "Description": "Description",
+    "FuturePlans": "Future Plans",
+    "TechUsed": "Technologies Used",
+    "Links": "Links",
+    "Copy": "Copy",
+    "Copied": "Copied!",
+    "NotFound": "Project not found.",
+    "ImageAlt": "Project image {{index}}",
+    "Category": {
+      "web": "Web",
+      "vr/ar": "VR / AR",
+      "desktop": "Desktop",
+      "cpp": "C++",
+      "all": "All"
+    },
+    "GameOfLife": {
+      "Title": "Conway's Game of Life",
+      "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",
+      "Content": [
+        "Conway's Game of Life is a cellular automaton devised by mathematician John Conway. It consists of a grid of cells that evolve based on specific rules. This project implements the game using C++ and SDL2, allowing for visualization of the cellular evolution.",
+        "The game operates on a simple set of rules that determine the fate of each cell in the grid based on its neighbors. Each cell can either be alive or dead, and the state of the grid changes with each iteration, creating fascinating patterns and behaviors.",
+        "<h4> Rules of Conway's Game of Life</h4><ol><li>Any live cell with fewer than two live neighbors dies (underpopulation).</li><li>Any live cell with two or three live neighbors lives on to the next generation.</li><li>Any live cell with more than three live neighbors dies (overpopulation).</li><li>Any dead cell with exactly three live neighbors becomes a live cell (reproduction).</li></ol>",
+        "The GameOfLife class handles the core mechanics, including grid initialization, event handling, updating the grid, and rendering cells. The game starts with a random distribution of live and dead cells and follows Conway's rules to update the grid at each step.",
+        "The Update method processes each cell and determines whether it should be alive or dead in the next generation based on the number of neighboring live cells. The game maintains a buffer to prevent modifying the grid while it is being updated.",
+        "The TMatrix class is a custom template matrix implementation used to store the game grid. It supports dynamic memory allocation and ensures efficient access to cell states."
+      ],
+      "Features": [
+        "Cellular Automation",
+        "Object Oriented Programming",
+        "Real-time rendering with SDL2",
+        "Dynamic memory allocation"
+      ],
+      "Future": [
+        "Options can be added for user interaction, allowing manual cell placement and modifications to the grid.",
+        "Rendering performance can be improved to ensure smoother visuals and better efficiency, especially for larger grids.",
+        "UI settings can be introduced for adjusting grid scale, colors, and other visual aspects to enhance customization.",
+        "Start and stop options can be implemented, giving users more control over when the simulation runs or pauses."
+      ],
+      "Links": {
+        "Wikipedia": "Wikipedia: Conway's Game of Life",
+        "Github": "Github Repository"
+      }
+    },
+    "Calculator": {
+      "Title": "Calculator Project",
+      "Description": "A collection of three calculators: Simple Calculator, Scientific Calculator, and Programming Calculator.",
+      "Content": [
+        "This project is a feature-rich calculator built using Angular. It supports three different modes: Simple Calculator, Scientific Calculator, and Programming Calculator. The simple and scientific calculators share a common BaseCalculatorComponent, while the programming calculator includes custom logic to handle numeral system conversions and logical operations.",
+        "The Simple Calculator enables fundamental arithmetic operations such as addition, subtraction, multiplication, and division. It provides a user-friendly interface with keyboard support and real-time result evaluation.",
+        "The Scientific Calculator expands on the Simple Calculator by introducing trigonometric functions (sin, cos, tan), exponentiation, and mathematical constants like Pi (π) and Euler's number (e). It offers enhanced functionality for more advanced calculations.",
+        "The Programming Calculator is designed for software developers and engineers. It enables conversions between hexadecimal, decimal, octal, and binary number systems. Additionally, it supports bitwise operations such as AND, OR, XOR, NOT, left shift, and right shift. This makes it a powerful tool for low-level programming and hardware interaction.",
+        "Key Features include basic arithmetic operations (+, -, *, /), scientific functions (sin, cos, tan, sqrt, exponentiation), programming mode with number system conversions, bitwise operations (AND, OR, XOR, NOT, shifts), keyboard input support, real-time evaluation, and history tracking of calculations.",
+        "The calculator operates with a shared base component that provides common functionalities such as result evaluation and input handling. Below is the TypeScript class for the BaseCalculatorComponent, which serves as the foundation for all three calculator modes.",
+        "The Programming Calculator extends the BaseCalculatorComponent and introduces numeral system handling. It allows users to switch between binary, octal, decimal, and hexadecimal modes seamlessly.",
+        "The calculator also includes a history component that stores previous calculations. This feature enhances usability by allowing users to recall and reuse past equations.",
+        "The Programming Calculator supports direct keyboard input for operations. It validates input based on the selected mode, ensuring that users can only enter valid characters. The getAllowedCharacters method restricts input based on the current numeral system."
+      ],
+      "Features": [
+        "User-friendly interface",
+        "Supports multiple calculation types",
+        "Real-time updates"
+      ],
+      "Future": [
+        "Add graphing capabilities for scientific functions.",
+        "Implement a history feature to track previous calculations.",
+        "Enhance UI with themes and customization options."
+      ],
+      "Links": {
+        "TryOut": "Try out"
+      }
+    },
+    "Appointments": {
+      "Title": "Appointments Booking Platform",
+      "Description": "A web-based appointment booking platform with user and admin roles, built using Angular and Material Design.",
+      "Content": [
+        "This project is an appointment booking platform built using Angular. It allows clients to book appointments for various services, while administrators can manage and approve or deny those appointments.",
+        "Users can register or log in to the platform. Once logged in, they are either redirected to the booking interface (if they are clients) or to the admin dashboard (if they are administrators).",
+        "Clients can book new appointments by selecting a service, date, and time. The form automatically fills in their name, email, and full name once logged in, while still allowing them to change these details if needed.",
+        "Booked appointments start with a 'Pending' status. Admins can change the status to 'Confirmed', 'Done', or approve a 'CancelRequest'.",
+        "Clients can cancel their own appointments: if the appointment is still 'Pending', it is removed immediately; if it is 'Confirmed' or 'Done', a cancel request is sent for admin approval.",
+        "Admins can view all appointments in a Material table, update their status, or delete them entirely. They can also approve cancellation requests submitted by clients.",
+        "The application uses a shared AppointmentService with an observable-based store, and AuthService to handle the current user and login state. The header component dynamically shows the current user and allows login/logout from anywhere in the app."
+      ],
+      "Features": [
+        "User authentication and role-based routing",
+        "Appointment booking with form validation",
+        "Real-time status management by admins",
+        "Client-side appointment cancellation with approval system",
+        "Dynamic header showing login/logout state"
+      ],
+      "Future": [
+        "Implement email notifications for appointment status updates",
+        "Add calendar view for both admins and clients",
+        "Introduce service duration and availability time slots",
+        "Store data on a backend API or database"
+      ],
+      "Links": {
+        "TryOut": "Try out"
+      }
+    },
+    "Inventory": {
+      "Title": "Inventory Management System",
+      "Description": "A web-based inventory management system with list, detail, create, and edit functionalities, built using Angular and Material Design.",
+      "Content": [
+        "This project is an inventory management system built using Angular. Users can manage inventory items, view detailed information, and perform create/edit operations seamlessly.",
+        "The inventory list displays all items in a Material table with search, filter, and sort functionalities. It provides quick access to key details like name, category, quantity, and received date.",
+        "Users can click an item to open the detail view. This view shows full information about the item, including notes, category icons via a dedicated service, and real-time updates using observables.",
+        "Creating a new inventory item is done via a reactive form with validation, ensuring all required fields are filled correctly and preventing invalid entries.",
+        "Editing an existing item pre-populates the form with current data. Updates are immediately reflected in the inventory list thanks to an observable-based state management system.",
+        "The application uses shared services for inventory operations and centralized state management for consistent updates across all components.",
+        "Material Design components such as tables, forms, dialogs, and buttons are used to create a responsive, clean, and user-friendly interface.",
+        "Future extensions may include bulk import/export options, API integration for automatic updates, enhanced reporting, and role-based permissions."
+      ],
+      "Features": [
+        "Inventory list with search, filter, and sort",
+        "Detail view for each inventory item",
+        "Create and edit forms with validation",
+        "Observable-based state management",
+        "Responsive UI with Material Design"
+      ],
+      "Future": [
+        "Add bulk import/export options for inventory items",
+        "Integrate with external APIs for automated updates",
+        "Enhance reporting and analytics features",
+        "Implement role-based permissions and audit logs"
+      ],
+      "Links": {
+        "TryOut": "Try out"
+      }
+    },
+    "HISMB": {
+      "Title": "Honey, I Shrunk My Boss",
+      "Description": "A cooperative VR escape room adventure where players shrink to miniature scale and collaborate across five themed puzzle environments.",
+      "Content": [
+        "Honey, I Shrunk My Boss is a VR escape room game designed for Oculus Quest. Players shrink to a tiny size and must work together to solve puzzles scattered across five themed environments.",
+        "The game features asymmetric collaboration: one player enters the virtual world, while the other players assist using illustrated wizard manuals. These manuals contain unique clues that only external players can see, making communication essential.",
+        "Each mission places a new player inside VR. After completing the puzzle, the player grows back to normal size, passes the headset, and the next player shrinks to begin their challenge. This cycle continues through all missions, encouraging teamwork and coordination.",
+        "<h4>Experience Overview</h4><ul><li>Work together in teams of 4–5 players</li><li>Solve five mission-based puzzle challenges</li><li>One VR player shrinks while others consult illustrated manuals</li><li>Designed for accessibility and intuitive communication</li><li>Beautiful, stylized VR environments crafted for clarity and comfort</li></ul>"
+      ],
+      "Features": [
+        "Asymmetric VR gameplay",
+        "Team-based puzzle-solving",
+        "Five themed missions",
+        "Accessibility-focused design",
+        "Wordless communication system",
+        "Stylized miniature environments"
+      ],
+      "Future": [
+        "Optional multiplayer expansion modes",
+        "More puzzle themes and environments",
+        "Enhanced dynamic interactions within VR",
+        "Improved onboarding for first-time VR users"
+      ],
+      "Links": {
+        "Video": "Showcase Video",
+        "Contractors": "Explore the contractors"
+      }
+    },
+    "TaskFlow": {
+      "Title": "TaskFlow",
+      "Description": "A full-stack task and project management platform that unifies planning, execution, collaboration, and operational insights using Angular 19 and ASP.NET Core Web API + EF Core (SQLite), with a structure designed for practical day-to-day team delivery.",
+      "Content": [
+        "TaskFlow is designed as a lightweight but complete team workspace. It combines project containers, category grouping, task cards, comments, user management, and visibility tooling into one flow so teams can plan and execute without jumping between multiple tools.",
+        "At the center of the app is a Kanban-style workflow where tasks can be created, updated, moved, and removed. Categories create an extra organizational layer inside projects, making it easier to keep large boards readable while preserving context for each work stream.",
+        "The frontend is built with Angular 19 standalone components and Angular Material. The UI uses reusable dialogs, reactive service patterns, and predictable state updates so user actions immediately reflect in the board and related screens.",
+        "On the backend, ASP.NET Core Web API exposes endpoints under /api/* and delegates operations through services. Entity Framework Core maps domain models to SQLite and handles persistence, while controllers stay focused on transport and validation.",
+        "A key value in this project is collaboration depth: task-level comments provide decision history, user management allows ownership clarity, and notifications/settings provide user-level customization for how the interface behaves.",
+        "TaskFlow also includes dedicated analytics and settings pages. These pages are intentionally simple but useful, offering quick operational snapshots and personalization controls that make the app feel production-oriented rather than a purely CRUD demo.",
+        "For developer experience, the project includes Swagger/OpenAPI exposure, migration-based schema evolution, and straightforward local startup. This keeps onboarding fast and makes API validation easy during iterative frontend-backend integration.",
+        "From an architecture perspective, the application follows a clean request flow: Angular component -> frontend service -> REST controller -> domain service -> EF Core/AppDbContext -> SQLite -> JSON response back to UI. This separation keeps the codebase maintainable as features grow.",
+        "<h4>In-Depth Highlights</h4><ul><li>Full task lifecycle with movement support for board-style execution</li><li>Project + category hierarchy for scalable organization</li><li>Comment threads and user ownership for team collaboration</li><li>Analytics/settings pages that improve operational visibility</li><li>Swagger-backed API surface and migration-friendly backend setup</li><li>Clear multi-layer architecture suited for incremental extension (RBAC, tokens, advanced metrics)</li></ul>"
+      ],
+      "Features": [
+        "Project and category organization",
+        "Task creation, update, move, and deletion",
+        "Task-level comments for collaboration",
+        "User management (list, create, inspect, remove)",
+        "Login entry flow integration",
+        "Analytics and settings views",
+        "REST API documented with Swagger/OpenAPI",
+        "SQLite persistence with EF Core migrations",
+        "Modular frontend structure with reusable UI dialogs"
+      ],
+      "Future": [
+        "Role-based access control",
+        "Token-based authentication with refresh flow",
+        "Advanced analytics such as throughput and lead time",
+        "CI pipeline with lint/test/build gates",
+        "Docker Compose-based one-command startup",
+        "Activity timeline and audit-focused event logging"
+      ],
+      "Links": {
+        "Github": "GitHub Repository"
+      }
     }
+  }
 }

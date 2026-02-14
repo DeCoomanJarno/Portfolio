@@ -5,7 +5,7 @@
       <div class="image-slider">
         @for (image of project.images; track $index) {
           <img
-            [src]="'Resources/Projects/' + project.id + '/Images/' + image"
+            [src]="image.startsWith('http') ? image : 'Resources/Projects/' + project.id + '/Images/' + image"
             [alt]="project.title"
             class="project-image"
             [class.active]="$index === currentImageIndex" />
