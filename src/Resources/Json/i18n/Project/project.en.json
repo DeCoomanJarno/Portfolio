@@ -160,12 +160,17 @@
     },
     "TaskFlow": {
       "Title": "TaskFlow",
-      "Description": "A full-stack task and project management platform that unifies planning, execution, collaboration, and operational insights using Angular 19 and ASP.NET Core Web API + EF Core (SQLite).",
+      "Description": "A full-stack task and project management platform that unifies planning, execution, collaboration, and operational insights using Angular 19 and ASP.NET Core Web API + EF Core (SQLite), with a structure designed for practical day-to-day team delivery.",
       "Content": [
-        "TaskFlow combines project planning, category organization, task tracking, comments, user management, and lightweight analytics in one cohesive platform tailored for team workflows.",
-        "The frontend uses Angular 19 standalone components with Angular Material for a responsive UI, while the backend relies on ASP.NET Core Web API and Entity Framework Core with SQLite for reliable persistence.",
-        "Its architecture follows a clean flow where Angular services call REST endpoints under /api/*, controllers delegate to domain services, and EF Core manages database operations through AppDbContext.",
-        "<h4>Highlights</h4><ul><li>Kanban-style task flow with project + category hierarchy</li><li>Task comments and user management workflows</li><li>Analytics and settings pages for quick operational visibility</li><li>Swagger-enabled backend API and simple local setup</li></ul>"
+        "TaskFlow is designed as a lightweight but complete team workspace. It combines project containers, category grouping, task cards, comments, user management, and visibility tooling into one flow so teams can plan and execute without jumping between multiple tools.",
+        "At the center of the app is a Kanban-style workflow where tasks can be created, updated, moved, and removed. Categories create an extra organizational layer inside projects, making it easier to keep large boards readable while preserving context for each work stream.",
+        "The frontend is built with Angular 19 standalone components and Angular Material. The UI uses reusable dialogs, reactive service patterns, and predictable state updates so user actions immediately reflect in the board and related screens.",
+        "On the backend, ASP.NET Core Web API exposes endpoints under /api/* and delegates operations through services. Entity Framework Core maps domain models to SQLite and handles persistence, while controllers stay focused on transport and validation.",
+        "A key value in this project is collaboration depth: task-level comments provide decision history, user management allows ownership clarity, and notifications/settings provide user-level customization for how the interface behaves.",
+        "TaskFlow also includes dedicated analytics and settings pages. These pages are intentionally simple but useful, offering quick operational snapshots and personalization controls that make the app feel production-oriented rather than a purely CRUD demo.",
+        "For developer experience, the project includes Swagger/OpenAPI exposure, migration-based schema evolution, and straightforward local startup. This keeps onboarding fast and makes API validation easy during iterative frontend-backend integration.",
+        "From an architecture perspective, the application follows a clean request flow: Angular component -> frontend service -> REST controller -> domain service -> EF Core/AppDbContext -> SQLite -> JSON response back to UI. This separation keeps the codebase maintainable as features grow.",
+        "<h4>In-Depth Highlights</h4><ul><li>Full task lifecycle with movement support for board-style execution</li><li>Project + category hierarchy for scalable organization</li><li>Comment threads and user ownership for team collaboration</li><li>Analytics/settings pages that improve operational visibility</li><li>Swagger-backed API surface and migration-friendly backend setup</li><li>Clear multi-layer architecture suited for incremental extension (RBAC, tokens, advanced metrics)</li></ul>"
       ],
       "Features": [
         "Project and category organization",
@@ -174,14 +179,17 @@
         "User management (list, create, inspect, remove)",
         "Login entry flow integration",
         "Analytics and settings views",
-        "REST API documented with Swagger/OpenAPI"
+        "REST API documented with Swagger/OpenAPI",
+        "SQLite persistence with EF Core migrations",
+        "Modular frontend structure with reusable UI dialogs"
       ],
       "Future": [
         "Role-based access control",
         "Token-based authentication with refresh flow",
         "Advanced analytics such as throughput and lead time",
         "CI pipeline with lint/test/build gates",
-        "Docker Compose-based one-command startup"
+        "Docker Compose-based one-command startup",
+        "Activity timeline and audit-focused event logging"
       ],
       "Links": {
         "Github": "GitHub Repository"

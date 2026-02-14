@@ -160,12 +160,17 @@
     },
     "TaskFlow": {
       "Title": "TaskFlow",
-      "Description": "Een full-stack taak- en projectbeheerplatform dat planning, uitvoering, samenwerking en operationeel inzicht combineert met Angular 19 en ASP.NET Core Web API + EF Core (SQLite).",
+      "Description": "Een full-stack taak- en projectbeheerplatform dat planning, uitvoering, samenwerking en operationeel inzicht combineert met Angular 19 en ASP.NET Core Web API + EF Core (SQLite), opgebouwd voor realistische dagelijkse teamwerking.",
       "Content": [
-        "TaskFlow combineert projectplanning, categorie-organisatie, taakopvolging, opmerkingen, gebruikersbeheer en lichte analytics in één samenhangend platform voor teamworkflows.",
-        "De frontend gebruikt Angular 19 standalone componenten met Angular Material voor een responsieve UI, terwijl de backend draait op ASP.NET Core Web API en Entity Framework Core met SQLite voor betrouwbare opslag.",
-        "De architectuur volgt een duidelijke flow: Angular services roepen REST-endpoints onder /api/* aan, controllers sturen door naar domeinservices, en EF Core beheert databasebewerkingen via AppDbContext.",
-        "<h4>Highlights</h4><ul><li>Kanban-achtige taakflow met project- en categoriehiërarchie</li><li>Taakopmerkingen en gebruikersbeheer</li><li>Analytics- en instellingenpagina’s voor snel overzicht</li><li>Swagger-documentatie en eenvoudige lokale setup</li></ul>"
+        "TaskFlow is ontworpen als een lichtgewicht maar complete teamwerkruimte. Het combineert projectcontainers, categorie-indeling, taakkaarten, opmerkingen, gebruikersbeheer en zichtbaarheidstools in één flow zodat teams niet tussen meerdere tools moeten wisselen.",
+        "Centraal staat een Kanban-achtige workflow waarin taken kunnen worden aangemaakt, bijgewerkt, verplaatst en verwijderd. Categorieën voegen binnen projecten een extra organisatielaag toe, zodat grotere borden overzichtelijk blijven met behoud van context.",
+        "De frontend is gebouwd met Angular 19 standalone componenten en Angular Material. De UI gebruikt herbruikbare dialogs, reactieve servicepatronen en voorspelbare state-updates zodat acties van gebruikers meteen zichtbaar zijn op het bord en gerelateerde schermen.",
+        "In de backend biedt ASP.NET Core Web API endpoints onder /api/* aan en stuurt bewerkingen door via services. Entity Framework Core koppelt domeinmodellen aan SQLite en beheert persistente opslag, terwijl controllers zich richten op transport en validatie.",
+        "Een belangrijke meerwaarde van dit project is samenwerkingsdiepte: taakopmerkingen bewaren beslissingshistoriek, gebruikersbeheer maakt ownership duidelijk, en notificaties/instellingen geven personalisatie op gebruikersniveau.",
+        "TaskFlow bevat ook aparte analytics- en instellingenpagina’s. Die pagina’s zijn bewust eenvoudig maar bruikbaar, met snelle operationele snapshots en personalisatie-opties waardoor de app productiegerichter aanvoelt dan een pure CRUD-demo.",
+        "Voor developer experience bevat het project Swagger/OpenAPI, migratiegebaseerde schema-evolutie en een eenvoudige lokale opstart. Dat versnelt onboarding en maakt API-validatie vlot tijdens iteratieve frontend-backend integratie.",
+        "Architecturaal volgt de applicatie een duidelijke requestflow: Angular component -> frontend service -> REST controller -> domeinservice -> EF Core/AppDbContext -> SQLite -> JSON-respons terug naar de UI. Die scheiding houdt de codebase onderhoudbaar naarmate features groeien.",
+        "<h4>In-Depth Highlights</h4><ul><li>Volledige taaklevenscyclus met verplaatsingen voor board-gedreven uitvoering</li><li>Project- en categoriehiërarchie voor schaalbare organisatie</li><li>Commentaarthreads en ownership voor teamsamenwerking</li><li>Analytics- en instellingenpagina’s voor beter operationeel inzicht</li><li>Swagger-gedocumenteerde API en migratievriendelijke backend</li><li>Duidelijke meerlagige architectuur klaar voor uitbreidingen (RBAC, tokens, geavanceerde metrics)</li></ul>"
       ],
       "Features": [
         "Project- en categorie-organisatie",
@@ -174,14 +179,17 @@
         "Gebruikersbeheer (lijst, aanmaken, details, verwijderen)",
         "Inlog-entryflow integratie",
         "Analytics- en instellingenweergaven",
-        "REST API gedocumenteerd met Swagger/OpenAPI"
+        "REST API gedocumenteerd met Swagger/OpenAPI",
+        "SQLite-opslag met EF Core migraties",
+        "Modulaire frontendopbouw met herbruikbare dialogs"
       ],
       "Future": [
         "Rolgebaseerde toegangscontrole",
         "Token-gebaseerde authenticatie met refresh flow",
         "Geavanceerde analytics zoals throughput en lead time",
         "CI-pipeline met lint/test/build gates",
-        "Docker Compose-opstart met één commando"
+        "Docker Compose-opstart met één commando",
+        "Activiteitstijdlijn en auditgerichte event logging"
       ],
       "Links": {
         "Github": "GitHub Repository"
