@@ -1,5 +1,6 @@
 <div class="project-detail-page">
   @if (project && projectPreviewModel) {
+    <title>{{project.title | translate }}</title>
 
     <!-- Project Header -->
     <section class="project-header">
@@ -92,6 +93,7 @@
     }
 
   } @else {
+    <title>{{ 'Project.NotFound' | translate }}</title>
     <p>{{ 'Project.NotFound' | translate }}</p>
   }
 </div>

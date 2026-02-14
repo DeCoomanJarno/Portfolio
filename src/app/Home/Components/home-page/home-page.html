@@ -1,4 +1,5 @@
 @if (commonData && (resumeData$ | async); as resumeData) {
+<title>{{commonData.FullName}}</title>
 <div class="home">
 
   <!-- ✅ HERO - unchanged -->
@@ -130,4 +131,7 @@
   </section>
 
 </div>
+}
+@else {
+<title>Home</title>
 }

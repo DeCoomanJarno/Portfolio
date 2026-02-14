@@ -7,7 +7,7 @@
       </a>
     </div>
 
-    <ui-button class="navbar-toggler" type="button" size="Large" icon="menu" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    <ui-button class="navbar-toggler" type="button" size="Large" icon="{{ isMenuOpen ? 'close' : 'menu' }}" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     </ui-button>
     <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
@@ -18,8 +18,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Freelance" routerLinkActive="active">
-            {{ 'titles.Freelance' | translate }}
+          <a class="nav-link" routerLink="/About" routerLinkActive="active">
+            {{ 'titles.about' | translate }}
           </a>
         </li>
         <li class="nav-item">

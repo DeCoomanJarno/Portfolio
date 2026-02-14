@@ -11,8 +11,8 @@ import { Calculator } from './Freelance/Components/calculator/calculator';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
-    { path: 'Home', component: HomePageComponent },
-    { path: 'Freelance', component: FreelancePage },
+    { path: 'Home', component: FreelancePage },
+    { path: 'About', component: HomePageComponent },
     { path: 'Freelance-Calculator', component: Calculator },
     { path: 'Projects', component: ProjectsPageComponent },
     { path: 'Projects/:id', component: ProjectItemPageComponent },

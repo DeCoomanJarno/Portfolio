@@ -57,13 +57,13 @@ export const CONFIG = {
       icon: 'view_in_ar',
       color: '#00b7c2',
       tags: ['Unity', 'Unreal Engine', 'OpenXR'],
-      setupHours: 20,
+      setupHours: 10,
       baseRate: 60,
       designHours: { min: 15, max: 40 },
       sizeMultipliers: {
-        proto: 20,
-        mvp: 80,
-        production: 200
+        proto: 10,
+        mvp: 30,
+        production: 150
       }
     },
     {
@@ -142,7 +142,7 @@ export const CONFIG = {
     // Off-diagonal = Extra cost to add Target if Base is selected.
     platformSupportMatrix: {
       quest: {
-        quest: { min: 10, max: 25 },          // Base
+        quest: { min: 0, max: 10 },          // Base
         pico: { min: 8, max: 18 },            // Add-on
         steamvr: { min: 12, max: 25 },        // Add-on
         appleVisionPro: { min: 30, max: 60 }  // Add-on
@@ -168,7 +168,7 @@ export const CONFIG = {
     } as Record<VRPlatform, Record<VRPlatform, Range>>,
 
     interaction: {
-      BASIC: { min: 10, max: 15 },
+      BASIC: { min: 2, max: 6 },
       ADVANCED: { min: 40, max: 90 },
       PHYSICS: { min: 70, max: 120 }
     },

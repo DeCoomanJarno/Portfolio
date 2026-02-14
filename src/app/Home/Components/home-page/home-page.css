@@ -49,7 +49,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
   gap: 1rem;
   padding: 0 20px;
 }
@@ -224,7 +224,7 @@
 .contact-card-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* center icon + text */
+  align-items: center;
   justify-content: center;
   padding: 1rem;
   background: var(--color-background);
@@ -234,8 +234,9 @@
   text-decoration: none;
   color: var(--color-on-surface);
   text-align: center;
-  flex: 1 1 calc(33.333% - 2rem); /* 3 kolommen, gelijke breedte */
-  max-width: calc(33.333% - 2rem);
+  flex: 1 1 calc(33.333% - 1.4rem);
+  max-width: calc(33.333% - 1.4rem);
+  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -258,7 +259,9 @@
 }
 .contact-text {
   font-weight: 500;
-  word-break: break-word; /* handle long URLs nicely */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -266,34 +269,114 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 768px) {
+  .home {
+    padding: 10px;
+    margin: 10px auto;
+  }
+  
+  .contact-container {
+    padding: 0 1rem;
+  }
+  
   .contact-card-item {
     flex: 1 1 100%;
     max-width: 100%;
   }
+  
   .skills-grid, .certificates-gallery {
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
+    margin: 1rem;
   }
+  
+  .projects-grid {
+    padding: 0 10px;
+  }
+  
+  .projects {
+    padding: 1rem 0.5rem;
+  }
+  
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 20px 15px;
   }
 
   .hero .hero-content {
     max-width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+    word-break: break-word;
+  }
+  
+  .hero h2 {
+    font-size: 1.2rem;
   }
 
   .hero .hero-image img {
     width: 150px;
     margin-top: 20px;
   }
+  
   .timeline {
     padding-left: 0.5rem;
   }
 
   .timeline-content {
     margin-left: 1rem;
+  }
+  
+  .section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .certificates {
+    padding: 2rem 0;
+  }
+  
+  .certificates-gallery {
+    gap: 1rem;
+  }
+}
+
+/* Extra small devices - for 420px and below */
+@media (max-width: 480px) {
+  .home {
+    padding: 5px;
+    margin: 5px auto;
+  }
+  
+  .hero {
+    padding: 15px 10px;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero h2 {
+    font-size: 1rem;
+  }
+  
+  .contact-container {
+    padding: 0 0.5rem;
+    gap: 1rem;
+  }
+  
+  .skills-grid {
+    margin: 0.5rem;
+  }
+  
+  .projects-grid {
+    padding: 0 5px;
+  }
+  
+  .section {
+    padding: 0.75rem 0.25rem;
   }
 }

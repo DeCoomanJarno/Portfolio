@@ -72,7 +72,7 @@ export class Calculator {
   vrInteractionType = signal<string>('BASIC');
   vrHasMultiplayer = signal<boolean>(false);
   vrHasVoiceChat = signal<boolean>(false);
-  vrGraphicsQuality = signal<string>('MEDIUM');
+  vrGraphicsQuality = signal<string>('LOW');
   vrNeedsCustomShaders = signal<boolean>(false);
 
   // Web Specific

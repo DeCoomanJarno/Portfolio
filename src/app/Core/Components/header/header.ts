@@ -18,11 +18,12 @@ import { take } from 'rxjs';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   public isDarkMode = false; 
   public languages: string[] = [];
   private _currentLang!: string;
   private lastScrollTop = 0;
+  public isMenuOpen = false;
 
   get currentLang() {
     return this._currentLang;
@@ -49,6 +50,19 @@ export class HeaderComponent {
     if (savedTheme) {
       this.isDarkMode = savedTheme === 'dark';
       this.applyThemeClass();
+    }
+  }
+
+  ngAfterViewInit() {
+    // Listen to Bootstrap collapse events
+    const collapseElement = document.getElementById('navbarSupportedContent');
+    if (collapseElement) {
+      collapseElement.addEventListener('show.bs.collapse', () => {
+        this.isMenuOpen = true;
+      });
+      collapseElement.addEventListener('hide.bs.collapse', () => {
+        this.isMenuOpen = false;
+      });
     }
   }
 
