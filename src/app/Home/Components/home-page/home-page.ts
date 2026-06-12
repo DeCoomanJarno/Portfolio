@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProjectItemComponent } from '../../../Project/Components/project-item/project-item';
 import { ProjectPreviewModel } from '../../../Project/Models/project-model';
 import { ProjectService } from '../../../Project/Services/project-service';
@@ -24,7 +25,9 @@ import { animate, stagger } from 'animejs';
 export class HomePageComponent implements OnInit, AfterViewInit {
   public projects: ProjectPreviewModel[] = [];
   public commonData!: CommonData;
-  public resumeData$  // <-- direct observable
+  public resumeData$;
+
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor(
     private projectService: ProjectService,
@@ -36,7 +39,9 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.commonDataService.commonData$.subscribe(data => {
+    this.commonDataService.commonData$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => {
       if (data) {
         this.commonData = data;
         this.loadProjects(data.home.projects);

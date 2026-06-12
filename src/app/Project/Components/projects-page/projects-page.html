@@ -1,7 +1,7 @@
 <title>{{ 'titles.projects' | translate }}</title>
 <div class="project-list">
 
-    @for (item of projects; track $index) {
+    @for (item of projects; track item.id) {
     <ui-project-item class="project-item" [project]="item"></ui-project-item>
     }
 </div>

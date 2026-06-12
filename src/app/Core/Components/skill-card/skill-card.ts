@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { animate, stagger } from 'animejs';
 
 @Component({
   selector: 'ui-skill-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslatePipe, NgClass],
   templateUrl: './skill-card.html',
   styleUrl: './skill-card.css'

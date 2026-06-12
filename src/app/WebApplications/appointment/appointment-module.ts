@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +46,6 @@ import { AppointmentPageComponent } from './components/appointment-page/appointm
     MatToolbarModule,
     MatSnackBarModule,
     TranslatePipe,
-    AsyncPipe,
     MatRadioModule,
     MatMenuModule,
   ]

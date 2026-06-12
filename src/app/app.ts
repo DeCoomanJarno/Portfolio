@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
-
-import {  RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './Core/Components/header/header';
 import { FooterComponent } from './Core/Components/Footer/footer';
 import { TranslateService } from '@ngx-translate/core';
-import { AppointmentModule } from './WebApplications/appointment/appointment-module';
-import { InventoryModule } from './WebApplications/inventory/inventory-module';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.html',
-    imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule, InventoryModule],
+    imports: [HeaderComponent, RouterModule, FooterComponent],
     styleUrls: ['./app.css'],
-    providers: [TranslateService]
 })
 export class AppComponent { 
     constructor(private translate: TranslateService) {

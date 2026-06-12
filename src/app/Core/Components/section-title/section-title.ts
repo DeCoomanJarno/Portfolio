@@ -1,9 +1,10 @@
-import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, ElementRef, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { animate, stagger } from 'animejs';
 
 @Component({
   selector: 'ui-section-title',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './section-title.html',
   styleUrls: ['./section-title.css']
 })

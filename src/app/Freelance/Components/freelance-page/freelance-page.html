@@ -1,383 +1,308 @@
-<title>{{ 'freelance.hero.title1' | translate }}</title>
-<main class="wrapper">
+<!-- ═══════════════════════════════════════════════════════════════════
+     HERO — Desktop: 3D console · Mobile: lightweight static hero
+═══════════════════════════════════════════════════════════════════ -->
+@if (!isMobile) {
+<section class="f-hero" id="home"
+         (pointerdown)="onHeroScenePointerDown($event)"
+         (pointerup)="onHeroScenePointerUp($event)"
+         (pointercancel)="onHeroScenePointerUp($event)"
+         (pointermove)="onHeroScenePointerMove($event)"
+         (pointerleave)="onHeroScenePointerLeave()">
+  <canvas id="hero-canvas" class="f-hero__canvas" aria-hidden="true"></canvas>
 
-  <section class="hero" id="home">
-    <canvas #canvas3d class="hero-bg-canvas"></canvas>
-
-    <div class="content-container hero-grid">
-      <div class="hero-left">
-        <div class="status-badge reveal fade-down">
-          <span class="status-dot"></span>
-          <span class="status-text">{{ 'freelance.hero.status' | translate }}</span>
-        </div>
-
-        <h1 class="reveal fade-up stagger-1">
-          {{ 'freelance.hero.title1' | translate }}
-          <br>
-          <span class="highlight text-gradient">{{ 'freelance.hero.title2' | translate }}</span>
-        </h1>
-
-        <p class="hero-sub reveal fade-up stagger-2">{{ 'freelance.hero.subtitle' | translate }}</p>
-
-        <div class="cta-group reveal fade-up stagger-3">
-          <button class="btn-primary" (click)="openQuoteModal()">
-            <span class="material-icons">assignment_add</span>
-            <span>{{ 'freelance.hero.getintouch' | translate }}</span>
-          </button>
-          <button class="btn-outline" (click)="scrollTo('projects')">
-            <span class="material-icons">work</span>
-            <span>{{ 'freelance.hero.viewwork' | translate }}</span>
-          </button>
-        </div>
-
-        <div class="hero-tech-tags reveal fade-in stagger-4">
-          <span class="tag-label">{{ 'freelance.hero.techStack' | translate }}</span>
-          <div class="tags-wrapper">
-            @for (item of techStack; track $index) {
-              <span>{{item}}</span>
-            }
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-right reveal fade-left">
-        <div class="profile-card">
-          <div class="profile-image-wrapper">
-            <img src="Resources/Jarno-image.png" alt="Freelance Developer Belgium" />
-          </div>
-
-          <div class="profile-badges desktop-only">
-            <div class="float-badge card-1 glass-panel">
-              <div class="icon-circle secondary-bg">
-                <span class="material-icons">view_in_ar</span>
-              </div>
-              <div>
-                <strong>{{ 'freelance.hero.badge1.title' | translate }}</strong>
-                <span class="profile-badge">{{ 'freelance.hero.badge1.sub' | translate }}</span>
-              </div>
-            </div>
-            <div class="float-badge card-2 glass-panel">
-              <div class="icon-circle primary-bg">
-                <span class="material-icons">code</span>
-              </div>
-              <div>
-                <strong>{{ 'freelance.hero.badge2.title' | translate }}</strong>
-                <span class="profile-badge">{{ 'freelance.hero.badge2.sub' | translate }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Model loading overlay -->
+  @if (!modelLoaded()) {
+  <div class="f-hero__loader">
+    <div class="f-hero__loader-icon">
+      <span class="material-icons">view_in_ar</span>
     </div>
-  </section>
-
-  <section class="process-section" id="process">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.process.title' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.process.subtitle' | translate }}</p>
-      </div>
-
-      <div class="process-steps">
-        <div class="step reveal fade-up stagger-1">
-          <div class="step-icon-wrapper">
-            <div class="step-number">01</div>
-          </div>
-          <h3>{{ 'freelance.process.step1.title' | translate }}</h3>
-          <p>{{ 'freelance.process.step1.desc' | translate }}</p>
-        </div>
-
-        <div class="step-connector reveal fade-in"></div>
-
-        <div class="step reveal fade-up stagger-2">
-          <div class="step-icon-wrapper">
-            <div class="step-number">02</div>
-          </div>
-          <h3>{{ 'freelance.process.step2.title' | translate }}</h3>
-          <p>{{ 'freelance.process.step2.desc' | translate }}</p>
-        </div>
-
-        <div class="step-connector reveal fade-in"></div>
-
-        <div class="step reveal fade-up stagger-3">
-          <div class="step-icon-wrapper">
-            <div class="step-number">03</div>
-          </div>
-          <h3>{{ 'freelance.process.step3.title' | translate }}</h3>
-          <p>{{ 'freelance.process.step3.desc' | translate }}</p>
-        </div>
-      </div>
+    <div class="f-hero__loader-bar">
+      <div class="f-hero__loader-fill" [style.width.%]="modelLoadProgress()"></div>
     </div>
-  </section>
+    <span class="f-hero__loader-text">{{ modelLoadProgress() }}%</span>
+  </div>
+  }
 
-  <section id="value">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.value.title' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.value.subtitle' | translate }}</p>
-      </div>
-
-      <div class="value-grid">
-        <div class="value-card glass-panel reveal fade-up stagger-1">
-          <div class="value-icon"><span class="material-icons">location_on</span></div>
-          <h3>{{ 'freelance.value.local.title' | translate }}</h3>
-          <p>{{ 'freelance.value.local.desc' | translate }}</p>
-        </div>
-
-        <div class="value-card glass-panel reveal fade-up stagger-2">
-          <div class="value-icon"><span class="material-icons">verified</span></div>
-          <h3>{{ 'freelance.value.quality.title' | translate }}</h3>
-          <p>{{ 'freelance.value.quality.desc' | translate }}</p>
-        </div>
-
-        <div class="value-card glass-panel reveal fade-up stagger-3">
-          <div class="value-icon"><span class="material-icons">visibility</span></div>
-          <h3>{{ 'freelance.value.transparent.title' | translate }}</h3>
-          <p>{{ 'freelance.value.transparent.desc' | translate }}</p>
-        </div>
-
-        <div class="value-card glass-panel reveal fade-up stagger-4">
-          <div class="value-icon"><span class="material-icons">autorenew</span></div>
-          <h3>{{ 'freelance.value.flexible.title' | translate }}</h3>
-          <p>{{ 'freelance.value.flexible.desc' | translate }}</p>
-        </div>
-      </div>
+  <div class="f-hero__xp-capture" aria-hidden="true">
+    <div class="f-hero__xp-capture-root" #xpCaptureRoot>
+      <app-xp-os
+        [apps]="xpApps()"
+        [openAppId]="xpOpenAppId()"
+        [captureMode]="true"
+        [expertise]="expertise"
+        [projects]="projects()"
+        [clockLabel]="heroClockLabel"
+        [contactNote]="('freelance.contact.note' | translate)"
+        (openApp)="openXPAppOnScreen($event)"
+        (closeApp)="closeXPAppOnScreen()"
+        (runAction)="runXPAction($event)">
+      </app-xp-os>
     </div>
-  </section>
+  </div>
 
-  <section class="expertise" id="expertise">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.expertises.title' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.expertises.desc' | translate }}</p>
-      </div>
+  <!-- Camera zoom buttons (HTML overlay, not part of the OS) -->
+  <div class="f-hero-zoom"
+       (pointerdown)="$event.stopPropagation()"
+       (pointerup)="$event.stopPropagation()">
+    <button class="f-hero-zoom__btn" (click)="nudgeHeroModel({ zoom: -0.5 })" aria-label="Zoom in">+</button>
+    <button class="f-hero-zoom__btn" (click)="nudgeHeroModel({ zoom: 0.5 })" aria-label="Zoom out">&minus;</button>
+    <button class="f-hero-zoom__btn f-hero-zoom__btn--reset" (click)="resetHeroModel()" aria-label="Reset">
+      <span class="material-icons">restart_alt</span>
+    </button>
+  </div>
 
-      <div class="grid-4">
-        @for (item of expertise; track item.id; let i = $index) {
-        <div class="tech-card glass-panel reveal fade-up" [style.--accent]="item.color"
-          [style.--stagger-delay]="(i+1) * 0.1 + 's'">
-          <div class="card-content">
-            <div class="icon-box">
-              <span class="material-icons">{{ item.icon }}</span>
-            </div>
-
-            <h3>{{ 'freelance.expertises.' + item.id + '.title' | translate }}</h3>
-            <p>{{ 'freelance.expertises.' + item.id + '.desc' | translate }}</p>
-
-            <div class="tags">
-              @for (t of item.tags; track t) {
-                <span class="mini-tag">{{ t }}</span>
-              }
-            </div>
-
-            <button class="card-action-link" (click)="openQuoteModal(item.id)">
-              <span>{{ 'freelance.ui.getOffer' | translate }}</span>
-              <span class="material-icons">arrow_forward</span>
-            </button>
-          </div>
-
-          <div class="pricing-info">
-            <div class="rate-group">
-              <span class="currency">€</span>
-              <span class="amount">{{ item.baseRate }}</span>
-              <span class="per">/{{ 'freelance.expertises.hour' | translate }}</span>
-            </div>
-            <div class="setup-fee">
-              + {{ item.setupHours }}{{ 'freelance.expertises.hour' | translate }}
-              {{ 'freelance.expertises.setup' | translate }}
-            </div>
-          </div>
-        </div>
-        }
-      </div>
+  <!-- Scroll indicator -->
+  <div class="f-hero__scroll-hint">
+    <div class="f-hero__mouse">
+      <div class="f-hero__mouse-wheel"></div>
     </div>
-  </section>
-
-  <section class="engagement-section" id="models">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.pricing.modelsTitle' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.pricing.modelsSubtitle' | translate }}</p>
-      </div>
-
-      <div class="models-grid">
-        <div class="model-card glass-panel reveal fade-right">
-          <div class="model-head">
-            <span class="material-icons icon-lg">schedule</span>
-            <h3>{{ 'freelance.pricing.hourly.title' | translate }}</h3>
-          </div>
-          <p class="model-desc">{{ 'freelance.pricing.hourly.desc' | translate }}</p>
-          <ul class="benefits-list">
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.hourly.flexible' | translate }}</span></li>
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.hourly.perhour' | translate }}</span></li>
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.hourly.reports' | translate }}</span></li>
-          </ul>
-
-          <div class="model-footer">
-            <button class="btn-outline w-100" (click)="openQuoteModal('', 'tbd')">
-              {{ 'freelance.pricing.hourly.cta' | translate }}
-            </button>
-          </div>
-        </div>
-
-        <div class="model-card highlight glass-panel reveal fade-left">
-          <div class="rec-badge">{{ 'freelance.pricing.recommended' | translate }}</div>
-          <div class="model-head">
-            <span class="material-icons icon-lg">verified</span>
-            <h3>{{ 'freelance.pricing.fixed.title' | translate }}</h3>
-          </div>
-          <p class="model-desc">{{ 'freelance.pricing.fixed.desc' | translate }}</p>
-          <ul class="benefits-list">
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.fixed.fixed' | translate }}</span></li>
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.fixed.milestone' | translate }}</span></li>
-            <li><span class="material-icons">check</span><span>{{ 'freelance.pricing.fixed.warranty' | translate }}</span></li>
-          </ul>
-
-          <div class="model-footer">
-            <button class="btn-primary w-100" (click)="openQuoteModal('', 'medium')">
-              {{ 'freelance.pricing.fixed.cta' | translate }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="projects-section" id="projects">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.projects.title' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.projects.subtitle' | translate }}</p>
-      </div>
-
-      <div class="filter-bar reveal fade-up">
-        @for (cat of categories; track cat) {
-        <button class="filter-pill" [class.active]="selectedCategory() === cat" (click)="setCategory(cat)">
-          <span>{{ 'freelance.projects.Category.' + cat | translate }}</span>
-        </button>
-        }
-      </div>
-
-      <div class="projects-grid">
-        @for (project of filteredProjects(); track project.id; let i = $index) {
-        <div class="reveal scale-in" [style.--stagger-delay]="(i * 0.05) + 's'">
-          <ui-project-item [project]="project" class="project-item-wrapper"></ui-project-item>
-        </div>
-        }
-      </div>
-    </div>
-  </section>
-  
-  <section class="contact-section" id="contact">
-    <div class="content-container">
-      <div class="sec-header reveal fade-up">
-        <h2>{{ 'freelance.contact.title' | translate }}</h2>
-        <div class="divider"></div>
-        <p class="sec-subtitle">{{ 'freelance.contact.desc' | translate }}</p>
-      </div>
-
-      @if(commonDataService.commonData$ | async; as commonData) {
-      <div class="contact-cta-grid">
-
-        <div class="contact-method glass-panel primary-contact reveal fade-up stagger-1" (click)="openQuoteModal()">
-          <div class="method-icon"><span class="material-icons">assignment_add</span></div>
-          <div class="content">
-            <h3>{{ 'freelance.contact.primary.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.primary.desc' | translate }}</p>
-          </div>
-          <span class="link-text">{{ 'freelance.contact.primary.link' | translate }} <span
-              class="material-icons">arrow_forward</span></span>
-        </div>
-
-        <a [href]="commonData.Calendly" target="_blank" class="contact-method glass-panel reveal fade-up stagger-2">
-          <div class="method-icon"><span class="material-icons">calendar_month</span></div>
-          <div class="content">
-            <h3>{{ 'freelance.contact.schedule.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.schedule.desc' | translate }}</p>
-          </div>
-          <span class="link-text">{{ 'freelance.contact.schedule.link' | translate }} <span
-              class="material-icons">arrow_forward</span></span>
-        </a>
-
-        <a [href]="commonData.LinkedIn_URL" target="_blank" class="contact-method glass-panel reveal fade-up stagger-3">
-          <div class="method-icon"><span class="material-icons">connect_without_contact</span></div>
-          <div class="content">
-            <h3>{{ 'freelance.contact.linkedIn.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.linkedIn.desc' | translate }}</p>
-          </div>
-          <span class="link-text">{{ 'freelance.contact.linkedIn.link' | translate }} <span
-              class="material-icons">arrow_forward</span></span>
-        </a>
-      </div>
-      }
-
-      <div class="contact-note reveal fade-in">
-        <p>{{ 'freelance.contact.note' | translate }}</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-@if (showFloatingCta()) {
-<button class="floating-cta reveal fade-up" (click)="openQuoteModal()">
-  <span class="material-icons">assignment_add</span>
-  <span class="text">{{ 'freelance.ui.getQuote' | translate }}</span></button>
+    <span class="f-hero__scroll-text">{{ 'freelance.ui.scroll' | translate }}</span>
+  </div>
+</section>
 }
 
+<!-- ═══════════════════════════════════════════════════════════════════
+     HERO MOBILE — Lightweight, no 3D, no canvas
+═══════════════════════════════════════════════════════════════════ -->
+@if (isMobile) {
+<section class="f-hero-mobile" id="home">
+  <div class="f-hero-mobile__bg" aria-hidden="true"></div>
+
+  <div class="f-hero-mobile__content">
+    <span class="f-hero-mobile__badge reveal fade-up">
+      <span class="material-icons">circle</span>
+      {{ 'freelance.hero.status' | translate }}
+    </span>
+    <h1 class="f-hero-mobile__title reveal fade-up">{{ 'freelance.hero.title1' | translate }}</h1>
+    <p class="f-hero-mobile__sub reveal fade-up">{{ 'freelance.hero.title2' | translate }}</p>
+    <p class="f-hero-mobile__desc reveal fade-up">{{ 'freelance.hero.subtitle' | translate }}</p>
+
+    <div class="f-hero-mobile__actions reveal fade-up">
+      <button class="f-btn f-btn--filled" (click)="openQuoteModal()">
+        {{ 'freelance.hero.getintouch' | translate }}
+        <span class="material-icons">north_east</span>
+      </button>
+      <a class="f-btn f-btn--outline" href="#work">
+        {{ 'freelance.hero.viewwork' | translate }}
+        <span class="material-icons">arrow_downward</span>
+      </a>
+    </div>
+
+    <div class="f-hero-mobile__chips reveal fade-up">
+      @for (tech of techStack; track tech) {
+        <span class="f-hero-mobile__chip">{{ tech }}</span>
+      }
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="f-hero__scroll-hint">
+    <div class="f-hero__mouse">
+      <div class="f-hero__mouse-wheel"></div>
+    </div>
+    <span class="f-hero__scroll-text">{{ 'freelance.ui.scroll' | translate }}</span>
+  </div>
+</section>
+}
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     WHY WORK WITH ME — clarity, speed, and partnership
+═══════════════════════════════════════════════════════════════════════════ -->
+<section class="f-why" id="why">
+  <div class="f-wrap">
+    <span class="f-label reveal fade-up">{{ 'freelance.why.label' | translate }}</span>
+    <h2 class="f-section-heading reveal fade-up">{{ 'freelance.why.heading' | translate }}</h2>
+
+    <div class="f-why__grid">
+      <article class="f-why__card reveal fade-up" style="--stagger-delay:.05s">
+        <span class="material-icons f-why__icon">flash_on</span>
+        <h3>{{ 'freelance.why.cards.rapid.title' | translate }}</h3>
+        <p>{{ 'freelance.why.cards.rapid.desc' | translate }}</p>
+      </article>
+      <article class="f-why__card reveal fade-up" style="--stagger-delay:.1s">
+        <span class="material-icons f-why__icon">shield_moon</span>
+        <h3>{{ 'freelance.why.cards.scale.title' | translate }}</h3>
+        <p>{{ 'freelance.why.cards.scale.desc' | translate }}</p>
+      </article>
+      <article class="f-why__card reveal fade-up" style="--stagger-delay:.15s">
+        <span class="material-icons f-why__icon">group_work</span>
+        <h3>{{ 'freelance.why.cards.partner.title' | translate }}</h3>
+        <p>{{ 'freelance.why.cards.partner.desc' | translate }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CAPABILITIES — Asymmetric bento grid
+═══════════════════════════════════════════════════════════════════ -->
+<section class="f-xp" id="expertise">
+  <div class="f-wrap">
+    <span class="f-label reveal fade-up">{{ 'freelance.capabilities.label' | translate }}</span>
+
+    <div class="f-xp__grid">
+      <div class="f-xp__cell reveal fade-up"
+           *ngFor="let item of expertise; let i = index"
+           [class.f-xp__cell--hero]="item.id === 'AI'"
+           [class.f-xp__cell--wide]="item.id === 'VR'"
+           [style.--accent]="item.color"
+           [style.--stagger-delay]="(i * 0.08) + 's'">
+        <span class="material-icons f-xp__icon">{{ item.icon }}</span>
+        <h3 class="f-xp__title">{{ 'freelance.expertises.' + item.id + '.title' | translate }}</h3>
+        <p class="f-xp__desc">{{ 'freelance.expertises.' + item.id + '.desc' | translate }}</p>
+        <div class="f-xp__tags">
+          <span *ngFor="let t of item.tags; trackBy: trackByTag">{{ t }}</span>
+        </div>
+        <button class="f-xp__link" (click)="openQuoteModal(item.id)">
+          {{ 'freelance.ui.getOffer' | translate }}
+          <span class="material-icons">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     WORK — Staggered offset 2-column project grid
+═══════════════════════════════════════════════════════════════════ -->
+<section class="f-work" id="work">
+  <div class="f-wrap">
+    <div class="f-work__top">
+      <div>
+        <span class="f-label reveal fade-up">{{ 'freelance.projects.title' | translate }}</span>
+        <h2 class="f-work__heading reveal fade-up">{{ 'freelance.projects.subtitle' | translate }}</h2>
+      </div>
+      <div class="f-work__filters reveal fade-up">
+        <button class="f-pill" *ngFor="let cat of categories; trackBy: trackByCat" [class.f-pill--on]="selectedCategory() === cat" (click)="setCategory(cat)">
+          {{ 'freelance.projects.Category.' + cat | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="f-work__grid">
+      <div class="f-work__cell reveal scale-in" *ngFor="let project of filteredProjects(); trackBy: trackByProject; let i = index" [style.--stagger-delay]="(i * 0.05) + 's'">
+        <ui-project-item [project]="project" ></ui-project-item>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     APPROACH — Three giant numbered steps · ultra minimal
+═══════════════════════════════════════════════════════════════════ -->
+<section class="f-approach" id="process">
+  <div class="f-wrap">
+    <span class="f-label reveal fade-up">{{ 'freelance.approach.label' | translate }}</span>
+
+    <div class="f-approach__row">
+      <div class="f-approach__step reveal fade-up">
+        <span class="f-approach__num">01</span>
+        <h3>{{ 'freelance.process.step1.title' | translate }}</h3>
+        <p>{{ 'freelance.process.step1.desc' | translate }}</p>
+      </div>
+      <div class="f-approach__step reveal fade-up" style="--stagger-delay:.1s">
+        <span class="f-approach__num">02</span>
+        <h3>{{ 'freelance.process.step2.title' | translate }}</h3>
+        <p>{{ 'freelance.process.step2.desc' | translate }}</p>
+      </div>
+      <div class="f-approach__step reveal fade-up" style="--stagger-delay:.2s">
+        <span class="f-approach__num">03</span>
+        <h3>{{ 'freelance.process.step3.title' | translate }}</h3>
+        <p>{{ 'freelance.process.step3.desc' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CTA — Full-width inverted closing section
+═══════════════════════════════════════════════════════════════════ -->
+<section class="f-cta" id="contact">
+  <div class="f-wrap f-cta__inner">
+    <h2 class="f-cta__heading reveal fade-up">
+      {{ 'freelance.contact.cta_heading' | translate }}
+    </h2>
+
+    <div class="f-cta__actions reveal fade-up">
+      <button class="f-btn f-btn--filled f-btn--lg" (click)="openQuoteModal()">
+        {{ 'freelance.contact.primary.link' | translate }}
+        <span class="material-icons">north_east</span>
+      </button>
+    </div>
+
+    <div class="f-cta__links reveal fade-up" *ngIf="commonDataService.commonData$ | async as commonData">
+      <a [href]="commonData.Calendly" target="_blank" rel="noopener" class="f-cta__link">
+        <span class="material-icons">calendar_month</span>
+        {{ 'freelance.contact.schedule.title' | translate }}
+      </a>
+      <span class="f-cta__dot">·</span>
+      <a [href]="commonData.LinkedIn_URL" target="_blank" rel="noopener" class="f-cta__link">
+        <span class="material-icons">connect_without_contact</span>
+        {{ 'freelance.contact.linkedIn.title' | translate }}
+      </a>
+    </div>
+
+    <p class="f-cta__note reveal fade-in">{{ 'freelance.contact.note' | translate }}</p>
+  </div>
+</section>
+
+
+<!-- ── Floating CTA ── -->
+@if (showFloatingCta()) {
+<button class="f-fab" (click)="openQuoteModal()">
+  <span class="material-icons">assignment_add</span>
+  <span class="f-fab__label">{{ 'freelance.ui.getQuote' | translate }}</span>
+</button>
+}
+
+
+<!-- ── Quote Modal ── -->
 @if (showQuoteModal()) {
-<div class="modal-backdrop fade-in" (mousedown)="onBackdropClick($event)">
-  <div class="modal-content glass-panel scale-in" (click)="$event.stopPropagation()">
+<div class="f-modal" (mousedown)="onBackdropClick($event)">
+  <div class="f-modal__box" (click)="$event.stopPropagation()">
 
     @if (submitSuccess()) {
-    <div class="modal-success">
-      <div class="success-icon scale-in">
-        <span class="material-icons">mark_email_read</span>
-      </div>
+    <div class="f-modal__ok">
+      <div class="f-modal__ok-icon"><span class="material-icons">mark_email_read</span></div>
       <h3>{{ 'freelance.modal.success.title' | translate }}</h3>
       <p [innerHTML]="'freelance.modal.success.desc' | translate"></p>
     </div>
     } @else {
-    <div class="modal-header">
+    <div class="f-modal__head">
       <h3>{{ 'freelance.quote.title' | translate }}</h3>
-      <button class="close-btn" (click)="closeQuoteModal()">
+      <button class="f-modal__x" (click)="closeQuoteModal()" [attr.aria-label]="'freelance.ui.close' | translate">
         <span class="material-icons">close</span>
       </button>
     </div>
 
     <form #f="ngForm" (submit)="submitQuote($event, f)">
-      <div class="form-group">
+      <div class="f-fg">
         <label>{{ 'freelance.quote.name' | translate }} *</label>
-        <input type="text" [(ngModel)]="quoteForm.name" name="name" required placeholder="John Doe">
+        <input type="text" [(ngModel)]="quoteForm.name" name="name" required [placeholder]="'freelance.quote.placeholders.name' | translate">
       </div>
-
-      <div class="form-group">
+      <div class="f-fg">
         <label>{{ 'freelance.quote.email' | translate }} *</label>
-        <input type="email" [(ngModel)]="quoteForm.email" name="email" required email placeholder="john@company.com"
-          #emailInput="ngModel" [class.error-border]="emailInput.invalid && emailInput.touched"
+        <input type="email" [(ngModel)]="quoteForm.email" name="email" required email
+          [placeholder]="'freelance.quote.placeholders.email' | translate" #emailInput="ngModel"
+          [class.f-fg--err]="emailInput.invalid && emailInput.touched"
           [attr.aria-invalid]="emailInput.invalid && emailInput.touched">
-
         @if (emailInput.invalid && emailInput.touched) {
-        <span class="error-msg">{{ 'freelance.quote.errors.email' | translate }}</span>
+          <span class="f-fg__error">{{ 'freelance.quote.errors.email' | translate }}</span>
         }
       </div>
-
-      <div class="form-row">
-        <div class="form-group">
+      <div class="f-fg-split">
+        <div class="f-fg">
           <label>{{ 'freelance.quote.service' | translate }}</label>
           <select [(ngModel)]="quoteForm.service" name="service">
-            @for (item of expertise; track item.id) {
-            <option [value]="item.id">{{ 'freelance.expertises.' + item.id + '.title' | translate }}</option>
-            }
+            <option *ngFor="let item of expertise; trackBy: trackById" [value]="item.id">{{ 'freelance.expertises.' + item.id + '.title' | translate }}</option>
             <option value="other">{{ 'freelance.ui.other' | translate }}</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="f-fg">
           <label>{{ 'freelance.quote.budget' | translate }}</label>
           <select [(ngModel)]="quoteForm.budget" name="budget">
             <option value="small">{{ 'freelance.quote.budgets.small' | translate }}</option>
@@ -387,24 +312,26 @@
           </select>
         </div>
       </div>
-
-      <div class="form-group">
+      <div class="f-fg">
         <label>{{ 'freelance.quote.details' | translate }} *</label>
-        <textarea [(ngModel)]="quoteForm.description" name="description" required rows="4"
-          placeholder="..."></textarea>
+        <textarea [(ngModel)]="quoteForm.description" name="description" required rows="4" [placeholder]="'freelance.quote.placeholders.details' | translate"></textarea>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn-outline" (click)="closeQuoteModal()">
-          {{ 'freelance.quote.cancel' | translate }}
-        </button>
-        <button type="submit" class="btn-primary" [disabled]="f.invalid || isSubmitting()">
-          @if(isSubmitting()) {
-          <span class="spinner"></span>
-          <span>{{ 'freelance.ui.sending' | translate }}</span>
+      @if (submitError()) {
+      <div class="f-alert">
+        <span class="material-icons">error</span>
+        <span>{{ submitError() }}</span>
+      </div>
+      }
+
+      <div class="f-modal__actions">
+        <button type="button" class="f-btn f-btn--outline" (click)="closeQuoteModal()">{{ 'freelance.quote.cancel' | translate }}</button>
+        <button type="submit" class="f-btn f-btn--filled" [disabled]="f.invalid || isSubmitting()">
+          @if (isSubmitting()) {
+            <span class="f-spin"></span><span>{{ 'freelance.ui.sending' | translate }}</span>
           } @else {
-          <span>{{ 'freelance.quote.submit' | translate }}</span>
-          <span class="material-icons">send</span>
+            <span>{{ 'freelance.quote.submit' | translate }}</span>
+            <span class="material-icons">send</span>
           }
         </button>
       </div>

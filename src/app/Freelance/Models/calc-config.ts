@@ -2,7 +2,7 @@
 // TYPES & INTERFACES
 // -------------------------------------------------------------------------
 
-export type ExpertiseID = 'VR' | 'WEB' | 'DESK' | 'CPP';
+export type ExpertiseID = 'VR' | 'WEB' | 'DESK' | 'CPP' | 'AI';
 export type Complexity = 'SIMPLE' | 'MEDIUM' | 'COMPLEX';
 export type DbType = 'SQLITE' | 'SQLSERVER' | 'POSTGRESQL';
 export type VRPlatform = 'quest' | 'pico' | 'steamvr' | 'appleVisionPro';
@@ -14,12 +14,15 @@ export interface Range {
 
 export interface ExpertiseItem {
   id: ExpertiseID;
+  title: string;
+  desc: string;
   icon: string;
   color: string;
   tags: string[]; // Moved from Component to here
   
-  // Rate & Time Calculations
-  baseRate: number;
+  // Project-Based Pricing (2026 Model)
+  minProjectPrice: number;  // Minimum starting price in EUR
+  baseRate: number;         // For reference/details only (EUR/hour)
   setupHours: number;
   designHours: Range;
   
@@ -53,24 +56,30 @@ export const CONFIG = {
   // -----------------------------------------------------
   expertises: [
     {
-      id: 'VR',
-      icon: 'view_in_ar',
-      color: '#00b7c2',
-      tags: ['Unity', 'Unreal Engine', 'OpenXR'],
-      setupHours: 10,
-      baseRate: 60,
-      designHours: { min: 15, max: 40 },
+      id: 'AI',
+      title: 'AI & Machine Learning',
+      desc: 'Intelligent systems with TensorFlow and Python',
+      icon: 'psychology',
+      color: '#9c27b0',
+      tags: ['ML/AI', 'TensorFlow', 'Python'],
+      minProjectPrice: 2000,
+      setupHours: 12,
+      baseRate: 70,
+      designHours: { min: 20, max: 50 },
       sizeMultipliers: {
-        proto: 10,
-        mvp: 30,
-        production: 150
+        proto: 20,
+        mvp: 60,
+        production: 200
       }
     },
     {
       id: 'WEB',
+      title: 'Web Applications',
+      desc: 'Full-stack Angular and .NET solutions',
       icon: 'language',
       color: '#006680',
-      tags: ['Angular', '.NET', 'Certificates'],
+      tags: ['Angular', '.NET', 'TypeScript'],
+      minProjectPrice: 1200,
       setupHours: 6,
       baseRate: 50,
       designHours: { min: 8, max: 20 },
@@ -82,9 +91,12 @@ export const CONFIG = {
     },
     {
       id: 'DESK',
+      title: 'Desktop Software',
+      desc: 'WPF and SQL-based business applications',
       icon: 'monitor',
       color: '#e5aa35',
       tags: ['WPF', 'SQL', 'C#'],
+      minProjectPrice: 1500,
       setupHours: 8,
       baseRate: 50,
       designHours: { min: 10, max: 25 },
@@ -95,10 +107,30 @@ export const CONFIG = {
       }
     },
     {
+      id: 'VR',
+      title: 'VR/AR Development',
+      desc: 'Immersive experiences with Unity, Unreal, and WebXR',
+      icon: 'view_in_ar',
+      color: '#00b7c2',
+      tags: ['Unity', 'Unreal Engine', 'OpenXR', 'WebXR'],
+      minProjectPrice: 2500,
+      setupHours: 10,
+      baseRate: 75,
+      designHours: { min: 15, max: 40 },
+      sizeMultipliers: {
+        proto: 10,
+        mvp: 30,
+        production: 150
+      }
+    },
+    {
       id: 'CPP',
+      title: 'C++ Systems',
+      desc: 'High-performance Qt and embedded software',
       icon: 'memory',
       color: '#f44336',
       tags: ['Qt', 'C++98', 'C++23'],
+      minProjectPrice: 1800,
       setupHours: 4,
       baseRate: 55,
       designHours: { min: 12, max: 28 },

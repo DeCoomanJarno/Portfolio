@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { animate, stagger } from 'animejs';
 
 @Component({
   selector: 'ui-timeline-item',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslatePipe],
   templateUrl: './timeline-item.html',
   styleUrls: ['./timeline-item.css']

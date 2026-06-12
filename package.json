@@ -9,7 +9,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "publish": "cd dist/portfolio/browser && git init && git add . && git commit -m \"Deploying Angular project to GitHub Pages\" && git push -f https://github.com/DeCoomanJarno/DeCoomanJarno.github.io.git master",
-    "install:libs": "npm install \"../AngularLibrary/Install Folder/angularlibrary-ui-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-style-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-composite-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-core-lib-0.0.2.tgz\" --force"
+    "install:libs": "npm install \"../AngularLibrary/Install Folder/angularlibrary-ui-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-style-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-composite-lib-0.0.2.tgz\" --force && npm install \"../AngularLibrary/Install Folder/angularlibrary-core-lib-0.0.2.tgz\" --force",
+    "optimize-models": "node scripts/optimize-models.js",
+    "profile-models": "node scripts/profile-models.js",
+    "analyze-performance": "npm run profile-models && npm run optimize-models"
   },
   "private": true,
   "dependencies": {

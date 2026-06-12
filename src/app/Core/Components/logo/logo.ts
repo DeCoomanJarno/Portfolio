@@ -1,5 +1,4 @@
-
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy } from '@angular/core';
 import { animate } from 'animejs';
 import * as svg from 'animejs/svg';
 import { stagger } from 'animejs/utils';
@@ -7,6 +6,7 @@ import { stagger } from 'animejs/utils';
 @Component({
   selector: 'ui-logo',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   templateUrl: './logo.html',
   styleUrls: ['./logo.css']

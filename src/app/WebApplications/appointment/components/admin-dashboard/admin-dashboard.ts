@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Appointment, AppointmentStatus } from '../../Models/appointment.model';
@@ -14,7 +15,9 @@ export class AdminDashboardComponent implements OnInit {
 
   appointments: Appointment[] = [];
   displayedColumns = ['name', 'email', 'service', 'date', 'time', 'status', 'actions'];
-  statusEnum = AppointmentStatus; // expose enum to template
+  statusEnum = AppointmentStatus;
+
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor(
     private appointmentService: AppointmentService,
@@ -23,7 +26,9 @@ export class AdminDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.appointmentService.getAppointmentsObservable().subscribe(data => this.appointments = data);
+    this.appointmentService.getAppointmentsObservable()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => this.appointments = data);
   }
 
   updateStatus(app: Appointment, status: AppointmentStatus) {

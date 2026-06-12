@@ -4,30 +4,100 @@
       "sending": "Sending Request...",
       "getQuote": "Get a Quote",
       "getOffer": "Request offer",
-      "other": "Other / Not Listed"
+      "other": "Other / Not Listed",
+      "scroll": "Scroll",
+      "close": "Close"
     },
     "hero": {
       "status": "Available for new projects",
       "title1": "Freelance Software Developer",
-      "title2": "Engineering Digital Reality",
-      "subtitle": "Specialized in high-performance VR/AR, complex web applications, and enterprise software for forward-thinking businesses.",
+      "title2": "VR, AI & Digital Innovation",
+      "subtitle": "Specialized in VR/AR development, AI-powered solutions, and cutting-edge technology to transform your business vision into reality. The future is immersive.",
       "getintouch": "Request Quote",
       "viewwork": "View Portfolio",
+      "apps": {
+        "terminal": "Terminal",
+        "services": "Apps",
+        "process": "Workflow",
+        "contact": "Contact"
+      },
+      "desktop": {
+        "windowTitle": "Freelance Workspace"
+      },
+      "terminal": {
+        "prompt": "jarno@portfolio:~$",
+        "boot": "boot freelance-os --locale active",
+        "services": "load services --profile full-stack",
+        "contact": "open contact --channel preferred",
+        "ready": "workspace ready"
+      },
+      "scene": {
+        "label": "3D Viewport",
+        "title": "Live Device Scene",
+        "hint": "Drag with your mouse to move the model in real time.",
+        "dragHint": "Drag with left mouse button to move and rotate the scene",
+        "wheelHint": "Use mouse wheel to zoom in or out",
+        "controls": {
+          "up": "Up",
+          "left": "Left",
+          "right": "Right",
+          "down": "Down",
+          "rotateLeft": "Rotate Left",
+          "rotateRight": "Rotate Right",
+          "zoomIn": "Zoom In",
+          "zoomOut": "Zoom Out",
+          "reset": "Reset"
+        }
+      },
       "techStack": "Core Technologies",
       "badge1": {
-        "title": "Immersive Tech",
-        "sub": "VR/AR & 3D"
+        "title": "Immersive Future",
+        "sub": "VR/AR Specialist"
       },
       "badge2": {
-        "title": "Full Stack",
-        "sub": "Web & Desktop"
+        "title": "AI-Ready",
+        "sub": "Smart Solutions"
       }
+    },
+    "why": {
+      "label": "Trusted by ambitious teams",
+      "heading": "Outcomes that land products, not slides",
+      "cards": {
+        "rapid": {
+          "title": "Rapid delivery",
+          "desc": "From brief to production in days, with agile alignment and instant feedback loops."
+        },
+        "scale": {
+          "title": "Built for scale",
+          "desc": "Architecture first, maintainability always — code that survives growth and audits."
+        },
+        "partner": {
+          "title": "Team partner",
+          "desc": "Smooth processes with existing teams — reliable communication, no ego."
+        }
+      }
+    },
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Delivered",
+      "technologies": "Core Technologies"
+    },
+    "intro": {
+      "statement": "Building immersive experiences and intelligent software that push boundaries."
+    },
+    "capabilities": {
+      "label": "What I Build"
+    },
+    "approach": {
+      "label": "How I Work"
     },
     "expertises": {
       "title": "Technical Expertise",
       "desc": "End-to-end development services tailored to your business goals.",
       "hour": "hr",
       "setup": " setup",
+      "starting": "Starting Price",
+      "projectBased": "Project-based pricing",
       "DESK": {
         "title": "Desktop Software",
         "desc": "Robust, offline-capable enterprise tools built with .NET/C#.",
@@ -47,6 +117,11 @@
         "title": "VR/AR Solutions",
         "desc": "Immersive experiences for training, visualization and interactive applications.",
         "shortdesc": "Configure VR/AR-specific features"
+      },
+      "AI": {
+        "title": "AI & Machine Learning",
+        "desc": "Smart, data-driven solutions using ML/AI. From recommendation engines to predictive analytics and intelligent automation.",
+        "shortdesc": "Configure AI/ML services"
       }
     },
     "projects": {
@@ -62,27 +137,28 @@
     },
     "pricing": {
       "modelsTitle": "Engagement Models",
-      "modelsSubtitle": "Transparent pricing structures designed for flexibility or predictability.",
-      "hourly": {
-        "title": "Time & Materials",
-        "desc": "Agile development for evolving requirements. You pay for the exact time spent delivering value.",
-        "cta": "Start Hourly",
-        "flexible": "Maximum flexibility",
-        "perhour": "Detailed time reporting",
-        "reports": "Weekly sprints"
-      },
-      "fixed": {
-        "title": "Fixed Price Scope",
-        "desc": "Defined deliverables at a guaranteed cost. Perfect for projects with clear specifications.",
-        "cta": "Get Fixed Quote",
-        "fixed": "Budget security",
+      "modelsSubtitle": "Choose the collaboration model that suits your project — fixed scope or flexible hourly support.",
+      "projectBased": {
+        "title": "Fixed-Price Project",
+        "desc": "Defined deliverables with guaranteed costs. Transparent pricing for projects starting at €1,000+.",
+        "cta": "Request Quote",
+        "fixed": "Budget certainty — no surprise invoices",
         "milestone": "Milestone-based payments",
-        "warranty": "Includes bug-fix warranty"
+        "warranty": "Includes 30-day bug-fix warranty"
       },
-      "recommended": "Most Popular"
+      "hourly": {
+        "title": "Hourly / Day Rate",
+        "desc": "Flexible support for evolving needs, consulting, code reviews, or ongoing development work.",
+        "cta": "Get Started",
+        "flexible": "No long-term commitment",
+        "consulting": "Ideal for consulting & code reviews",
+        "rate": "Transparent hourly rate"
+      },
+      "recommended": "Recommended"
     },
     "contact": {
       "title": "Let's Collaborate",
+      "cta_heading": "Ready to build something extraordinary?",
       "desc": "Available for work",
       "primary": {
         "title": "Request a Proposal",
@@ -130,6 +206,11 @@
       "details": "Project Context",
       "cancel": "Cancel",
       "submit": "Compose Email",
+      "placeholders": {
+        "name": "John Doe",
+        "email": "john@company.com",
+        "details": "Tell me about the problem, platform, deadline, and expected outcome."
+      },
       "budgets": {
         "small": "Micro / Prototype (< €2k)",
         "medium": "Standard Project (€2k - €5k)",
@@ -137,7 +218,8 @@
         "tbd": "Not sure yet / To be discussed"
       },
       "errors": {
-        "email": "Please enter a valid email address"
+        "email": "Please enter a valid email address",
+        "submit": "Failed to submit quote request. Please try again."
       }
     },
     "process": {

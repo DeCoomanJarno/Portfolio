@@ -1,11 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ResumeService } from '../../Services/resume.service';
 import { CommonDataService } from '../../../Core/Services/common-data.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-resume-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './resume-page.html',
   styleUrls: ['./resume-page.css'],
   imports: [TranslateModule, AsyncPipe]

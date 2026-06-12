@@ -26,6 +26,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
+              "src/assets",
               "src/Resources",
               "src/404.html"
             ],
@@ -37,7 +38,8 @@
             "styles": [
               "src/custom-theme.scss",
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -54,7 +56,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "15kb",
-                  "maximumError": "30kb"
+                  "maximumError": "40kb"
                 }
               ],
               "outputHashing": "all"

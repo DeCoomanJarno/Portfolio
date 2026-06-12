@@ -1,0 +1,40 @@
+.xp-app-services {
+  h4 {
+    margin: 0 0 12px;
+    color: #000080;
+    font-size: 16px;
+    font-weight: 700;
+    border-bottom: 2px solid #c0c0c0;
+    padding-bottom: 4px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  li {
+    padding: 8px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    border-radius: 0;
+  }
+
+  strong {
+    display: block;
+    color: #000;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  p {
+    margin: 0;
+    color: #000;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}

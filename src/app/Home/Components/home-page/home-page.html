@@ -53,7 +53,7 @@
     <ui-section-title [title]="'resume.titles.skills' | translate"></ui-section-title>
 
     <div class="skills-grid">
-    @for (category of commonData.SkillCategories; track $index) {
+    @for (category of commonData.SkillCategories; track category.Name) {
       <ui-skill-card [category]="category"></ui-skill-card>
     }
     </div>
@@ -63,7 +63,7 @@
   <section class="certificates">
     <ui-section-title [title]="'Certificates'"></ui-section-title>
     <div class="certificates-gallery">
-      @for (cert of commonData.Certificates; track $index) {
+      @for (cert of commonData.Certificates; track cert.Title) {
         <ui-certificate [certificate]="cert"></ui-certificate>
       }
     </div>
@@ -73,7 +73,7 @@
 <section id="projects" class="section projects">
   <ui-section-title [title]="'titles.projects' | translate"></ui-section-title>
   <div class="projects-grid">
-    @for (project of projects; track $index) {
+    @for (project of projects; track project.id) {
       <ui-project-item [project]="project"></ui-project-item>
     }
   </div>

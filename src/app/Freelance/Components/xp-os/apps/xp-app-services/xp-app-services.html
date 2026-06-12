@@ -1,0 +1,9 @@
+<div class="xp-app-services">
+  <h4>{{ 'freelance.hero.apps.services' | translate }}</h4>
+  <ul>
+    <li *ngFor="let item of expertise">
+      <strong>{{ ('freelance.expertises.' + item.id + '.title') | translate }}</strong>
+      <p>{{ ('freelance.expertises.' + item.id + '.desc') | translate }}</p>
+    </li>
+  </ul>
+</div>

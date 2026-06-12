@@ -4,30 +4,100 @@
       "sending": "Aanvraag verzenden...",
       "getQuote": "Offerte aanvragen",
       "getOffer": "Offerte aanvragen",
-      "other": "Overig / Niet vermeld"
+      "other": "Overig / Niet vermeld",
+      "scroll": "Scroll",
+      "close": "Sluiten"
     },
     "hero": {
       "status": "Beschikbaar voor nieuwe projecten",
       "title1": "Freelance Softwareontwikkelaar",
-      "title2": "Digitale Realiteit Ontwikkelen",
-      "subtitle": "Gespecialiseerd in high-performance VR/AR, complexe webapplicaties en enterprise software voor vooruitstrevende bedrijven.",
+      "title2": "VR, AI & Digitale Innovatie",
+      "subtitle": "Gespecialiseerd in VR/AR-ontwikkeling, AI-gestuurde oplossingen en geavanceerde technologie om uw visie in werkelijkheid om te zetten. De toekomst is immersief.",
       "getintouch": "Offerte aanvragen",
       "viewwork": "Bekijk portfolio",
+      "apps": {
+        "terminal": "Terminal",
+        "services": "Apps",
+        "process": "Werkwijze",
+        "contact": "Contact"
+      },
+      "desktop": {
+        "windowTitle": "Freelance Werkruimte"
+      },
+      "terminal": {
+        "prompt": "jarno@portfolio:~$",
+        "boot": "boot freelance-os --locale actief",
+        "services": "laad services --profiel full-stack",
+        "contact": "open contact --kanaal voorkeur",
+        "ready": "werkruimte klaar"
+      },
+      "scene": {
+        "label": "3D-weergave",
+        "title": "Live apparaatscène",
+        "hint": "Sleep met de muis om het model in realtime te bewegen.",
+        "dragHint": "Sleep met de linkermuisknop om de scène te verplaatsen en te roteren",
+        "wheelHint": "Gebruik het muiswiel om in of uit te zoomen",
+        "controls": {
+          "up": "Omhoog",
+          "left": "Links",
+          "right": "Rechts",
+          "down": "Omlaag",
+          "rotateLeft": "Draai links",
+          "rotateRight": "Draai rechts",
+          "zoomIn": "Zoom in",
+          "zoomOut": "Zoom uit",
+          "reset": "Reset"
+        }
+      },
       "techStack": "Kerntechnologieën",
       "badge1": {
-        "title": "Immersieve Technologie",
-        "sub": "VR/AR & 3D"
+        "title": "Immersieve Toekomst",
+        "sub": "VR/AR-specialist"
       },
       "badge2": {
-        "title": "Full Stack",
-        "sub": "Web & Desktop"
+        "title": "AI-Klaar",
+        "sub": "Slimme Oplossingen"
       }
+    },
+    "why": {
+      "label": "Vertrouwd door ambitieuze teams",
+      "heading": "Resultaten die producten opleveren, niet presentaties",
+      "cards": {
+        "rapid": {
+          "title": "Snelle levering",
+          "desc": "Van briefing tot productie in dagen, met agile afstemming en directe feedbackloops."
+        },
+        "scale": {
+          "title": "Gebouwd voor schaal",
+          "desc": "Architectuur eerst, onderhoudbaarheid altijd — code die groei en audits overleeft."
+        },
+        "partner": {
+          "title": "Team partner",
+          "desc": "Soepele processen met bestaande teams — betrouwbare communicatie, geen ego."
+        }
+      }
+    },
+    "stats": {
+      "years": "Jaar ervaring",
+      "projects": "Projecten opgeleverd",
+      "technologies": "Kerntechnologieën"
+    },
+    "intro": {
+      "statement": "Immersieve ervaringen en intelligente software bouwen die grenzen verleggen."
+    },
+    "capabilities": {
+      "label": "Wat ik bouw"
+    },
+    "approach": {
+      "label": "Hoe ik werk"
     },
     "expertises": {
       "title": "Technische Expertise",
       "desc": "End-to-end ontwikkelingsdiensten afgestemd op uw bedrijfsdoelstellingen.",
       "hour": "u",
       "setup": " setup",
+      "starting": "Startprijs",
+      "projectBased": "Op basis van projectprijs",
       "DESK": {
         "title": "Desktopsoftware",
         "desc": "Robuuste enterprise tools met offline ondersteuning, gebouwd met .NET/C#.",
@@ -40,13 +110,18 @@
       },
       "WEB": {
         "title": "Moderne Webapps",
-        "desc": "Moderne, responsieve applicaties met Angular en TypeScript. Van websites tot complexe SPA’s.",
+        "desc": "Moderne, responsieve applicaties met Angular en TypeScript. Van websites tot complexe SPA's.",
         "shortdesc": "Webapplicatiefunctionaliteiten configureren"
       },
       "VR": {
         "title": "VR/AR-oplossingen",
         "desc": "Immersieve ervaringen voor training, visualisatie en interactieve toepassingen.",
         "shortdesc": "VR/AR-specifieke functionaliteiten configureren"
+      },
+      "AI": {
+        "title": "AI & Machine Learning",
+        "desc": "Slimme, data-gestuurde oplossingen met ML/AI. Van aanbevelingen tot predictive analytics en intelligente automatisering.",
+        "shortdesc": "AI/ML-services configureren"
       }
     },
     "projects": {
@@ -62,27 +137,28 @@
     },
     "pricing": {
       "modelsTitle": "Samenwerkingsmodellen",
-      "modelsSubtitle": "Transparante prijsstructuren voor flexibiliteit of voorspelbaarheid.",
-      "hourly": {
-        "title": "Time & Materials",
-        "desc": "Agile ontwikkeling voor evoluerende vereisten. U betaalt enkel voor de effectief bestede tijd.",
-        "cta": "Start uurtarief",
-        "flexible": "Maximale flexibiliteit",
-        "perhour": "Gedetailleerde tijdsregistratie",
-        "reports": "Wekelijkse sprints"
-      },
-      "fixed": {
-        "title": "Vaste prijs",
-        "desc": "Duidelijk gedefinieerde opleveringen tegen een gegarandeerde prijs. Ideaal voor projecten met heldere specificaties.",
-        "cta": "Vaste offerte aanvragen",
-        "fixed": "Budgetzekerheid",
+      "modelsSubtitle": "Kies het model dat past bij uw project — vaste prijs of flexibele uurbasis.",
+      "projectBased": {
+        "title": "Vaste prijs project",
+        "desc": "Duidelijk gedefinieerde opleveringen met gegarandeerde kosten. Transparante prijzen voor projecten vanaf €1.000+.",
+        "cta": "Offerte aanvragen",
+        "fixed": "Budgetzekerheid — geen verrassingen",
         "milestone": "Betaling per mijlpaal",
-        "warranty": "Inclusief bugfix-garantie"
+        "warranty": "Inclusief 30-daagse bugfix-garantie"
       },
-      "recommended": "Meest gekozen"
+      "hourly": {
+        "title": "Uurtarief / Dagtarief",
+        "desc": "Flexibele ondersteuning voor veranderende behoeften, advies, code reviews of doorlopend ontwikkelwerk.",
+        "cta": "Aan de slag",
+        "flexible": "Geen langdurige verplichting",
+        "consulting": "Ideaal voor advies & code reviews",
+        "rate": "Transparant uurtarief"
+      },
+      "recommended": "Aanbevolen"
     },
     "contact": {
       "title": "Laten we samenwerken",
+      "cta_heading": "Klaar om iets buitengewoons te bouwen?",
       "desc": "Beschikbaar voor opdrachten",
       "primary": {
         "title": "Voorstel aanvragen",
@@ -130,6 +206,11 @@
       "details": "Projectcontext",
       "cancel": "Annuleren",
       "submit": "E-mail opstellen",
+      "placeholders": {
+        "name": "Jan Jansen",
+        "email": "jan@bedrijf.com",
+        "details": "Vertel me over het probleem, platform, timing en het gewenste resultaat."
+      },
       "budgets": {
         "small": "Micro / Prototype (< €2k)",
         "medium": "Standaardproject (€2k - €5k)",
@@ -137,7 +218,8 @@
         "tbd": "Nog niet zeker / Te bespreken"
       },
       "errors": {
-        "email": "Gelieve een geldig e-mailadres in te voeren"
+        "email": "Gelieve een geldig e-mailadres in te voeren",
+        "submit": "Het verzenden van de offerteaanvraag is mislukt. Probeer opnieuw."
       }
     },
     "process": {
