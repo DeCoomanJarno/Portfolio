@@ -13,7 +13,7 @@ export interface Calculation {
     selector: 'app-base-calculator',
     imports: [ReactiveFormsModule, HistoryTabComponent],
     templateUrl: './base-calculator.html',
-    styleUrls: ['./base-calculator.css']
+    styleUrls: ['./base-calculator.scss']
 })
 export class BaseCalculatorComponent {
   @ViewChild('expressionInput') expressionInput!: ElementRef<HTMLInputElement>;

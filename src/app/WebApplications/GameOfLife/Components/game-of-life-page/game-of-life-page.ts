@@ -9,7 +9,7 @@ import { Cell } from '../../../../Core/Models/Cell.Model';
     selector: 'app-game-of-life-page',
     imports: [CommonModule, GameConfigComponent, LoadingComponent],
     templateUrl: './game-of-life-page.html',
-    styleUrls: ['./game-of-life-page.css']
+    styleUrls: ['./game-of-life-page.scss']
 })
 export class GameOfLifePageComponent implements OnInit {
 

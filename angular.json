@@ -32,18 +32,15 @@
             ],
           "stylePreprocessorOptions": {
           "includePaths": [
+            "src",
             "node_modules/@angularlibrary/style-lib/src/lib/styles"
           ]
           },
             "styles": [
-              "src/custom-theme.scss",
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -92,6 +89,12 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src",
+                "node_modules/@angularlibrary/style-lib/src/lib/styles"
+              ]
+            },
             "assets": [
               {
                 "glob": "**/*",
@@ -99,12 +102,10 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.css"
+              "src/styles.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {

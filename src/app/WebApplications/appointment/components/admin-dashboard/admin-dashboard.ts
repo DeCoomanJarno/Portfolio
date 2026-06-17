@@ -9,7 +9,7 @@ import { AppointmentService } from '../../services/appointment.service';
   selector: 'app-admin-dashboard',
   standalone: false,
   templateUrl: './admin-dashboard.html',
-  styleUrl: './admin-dashboard.css'
+  styleUrl: './admin-dashboard.scss'
 })
 export class AdminDashboardComponent implements OnInit {
 

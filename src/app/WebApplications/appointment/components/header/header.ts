@@ -6,7 +6,7 @@ import { AuthService } from '@angularlibrary/core-lib';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrl: './header.scss'
 })
 export class HeaderComponent {
   constructor(public auth: AuthService, private router: Router) {}

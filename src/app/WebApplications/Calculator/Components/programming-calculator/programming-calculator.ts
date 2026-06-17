@@ -31,8 +31,8 @@ export class ProgrammingModeValue {
     imports: [FormsModule, NgClass, ReactiveFormsModule, HistoryTabComponent],
     templateUrl: './programming-calculator.html',
     styleUrls: [
-        './programming-calculator.css',
-        '../base-calculator/base-calculator.css',
+        './programming-calculator.scss',
+        '../base-calculator/base-calculator.scss',
     ]
 })
 export class ProgrammingCalculatorComponent {

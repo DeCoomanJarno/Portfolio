@@ -12,7 +12,7 @@ enum ECalculatorType
     selector: 'app-calculator-page',
     imports: [SimpleCalculatorComponent, ScienceCalculatorComponent, ProgrammingCalculatorComponent],
     templateUrl: './calculator-page.html',
-    styleUrl: './calculator-page.css'
+    styleUrl: './calculator-page.scss'
 })
 export class CalculatorPageComponent {
   ECalculatorType = ECalculatorType;

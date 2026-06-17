@@ -1,35 +1,16 @@
 {
     "resume": {
-        "profile": "Gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Blink uit in samenwerkingsgerichte omgevingen en geniet van het creëren van innovatieve, geoptimaliseerde oplossingen.",
-        "download": "Print PDF",
-        "driverLicense": "Rijbewijs",
-        "languageProficiency": {
-            "Native": "Moedertaal",
-            "Fluent": "Vloeiend",
-            "Basic": "Basis"
-        },
         "titles": {
-            "contact": "Contact",
-            "profile": "Profiel",
             "skills": "Vaardigheden",
-            "programmingLanguage": "Programmeertalen",
-            "language": "Talen",
             "education": "Opleiding",
             "workExperience": "Werkervaring",
-            "references": "Referenties",
-            "download": "Downloaden"
+            "languages": "Talen",
+            "references": "Referenties"
         },
-        "skillNames": {
-            "school": "School",
-            "work": "Werk",
-            "hobby": "Hobby"
-        },
+        "downloadPdf": "Download PDF",
         "monthShort": "mnd",
         "yearShort": "jr",
         "now": "Heden",
-        "Native": "Moedertaal",
-        "Fluent": "Vloeiend",
-        "Basic": "Basis",
         "title": "Software Engineer",
         "contact": {
             "address": "9260 Schellebelle, België"

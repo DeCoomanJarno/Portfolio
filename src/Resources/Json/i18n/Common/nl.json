@@ -1,21 +1,35 @@
 {
-    "languages": {
-        "en": "Engels",
-        "nl": "Nederlands"
-    },
     "titles": {
         "home": "Startpagina",
-        "resume": "CV",
         "about": "Over mij",
         "projects": "Projecten",
+        "resume": "CV",
         "contact": "Contact",
-        "certificates": "Certificaten"
+        "certificates": "Certificaten",
+        "demos": "Demo's"
+    },
+    "demos": {
+        "calculator": "Rekenmachine",
+        "gameOfLife": "Game of Life",
+        "langtonsAnt": "Langton's Ant",
+        "appointments": "Afsprakenplanner",
+        "inventory": "Voorraadbeheer",
+        "rateCalculator": "Tariefcalculator"
+    },
+    "theme": {
+        "switchToLight": "Schakel naar licht thema",
+        "switchToDark": "Schakel naar donker thema"
+    },
+    "footer": {
+        "tagline": "Freelance webontwikkelaar & software engineer die moderne, betrouwbare webapplicaties bouwt.",
+        "availability": "Beschikbaar voor freelance projecten",
+        "navigation": "Navigatie",
+        "connect": "Connect",
+        "rights": "Alle rechten voorbehouden."
     },
     "home": {
         "title": "Software Engineer",
-        "shortBio": "Ervaren in C#, C++, .NET en Angular.",
-        "aboutMe": "Ik ben een gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Ik blink uit in samenwerkingsgerichte omgevingen en vind het leuk om innovatieve, geoptimaliseerde oplossingen te creëren.",
-        "contactMessage": "Neem gerust contact op voor samenwerkingen of carrièremogelijkheden."
+        "aboutMe": "Ik ben een gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Ik blink uit in samenwerkingsgerichte omgevingen en vind het leuk om innovatieve, geoptimaliseerde oplossingen te creëren."
     },
     "skill": {
         "names": {
@@ -34,7 +48,6 @@
     },
     "certificate": {
         "titles": {
-            "ba4": "BA4 - Elektrische Veiligheidskennis",
             "vca": "VCA - Veiligheid voor Operationeel Medewerkers",
             "cra": "Inzicht in de EU Cyber Resilience Act (CRA) (LFEL1001)",
             "sololearn": {
@@ -44,9 +57,6 @@
         }
     },
     "contact": {
-        "name": "Naam",
-        "email": "Email",
-        "message": "Bericht",
-        "send": "Versturen"
+        "email": "Email"
     }
 }

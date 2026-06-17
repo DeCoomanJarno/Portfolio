@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     selector: 'app-game-config',
     imports: [FormsModule, ReactiveFormsModule],
     templateUrl: './game-config.html',
-    styleUrl: './game-config.css'
 })
 export class GameConfigComponent implements OnInit {
   @Input() config?: GameConfig = {rows: 20, cols: 20, cellSize: 20, updateTime: 100} // Default values -> can be override by the parent

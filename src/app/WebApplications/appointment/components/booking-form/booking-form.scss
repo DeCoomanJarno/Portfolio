@@ -1,0 +1,122 @@
+@use 'styles/index' as *;
+
+.booking-container {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+h2 {
+  font-weight: 600;
+}
+
+button {
+  font-size: var(--text-base);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--color-on-surface) !important;
+  caret-color: var(--color-on-surface) !important;
+}
+
+// Buttons
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+
+  &:hover {
+    background-color: var(--color-primary-hover) !important;
+  }
+
+  &:disabled {
+    background-color: var(--color-disabled-bg) !important;
+    color: var(--color-on-disabled) !important;
+  }
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: var(--color-surface) !important;
+  color: var(--color-on-surface) !important;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-1);
+}
+
+::ng-deep .mat-mdc-input-element {
+  color: var(--color-on-surface) !important;
+}
+
+::ng-deep .mat-mdc-select-trigger {
+  color: var(--color-on-surface) !important;
+}
+
+// ============ DATEPICKER PANEL ============
+::ng-deep .mat-datepicker-content {
+  background-color: var(--color-surface) !important;
+  color: var(--color-on-surface) !important;
+}
+
+::ng-deep .mat-calendar-body-cell-content {
+  color: var(--color-on-surface) !important;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+}
+
+::ng-deep .mat-calendar-body-today {
+  border-color: var(--color-primary) !important;
+}
+
+::ng-deep .mdc-floating-label {
+  color: var(--color-on-surface) !important;
+  opacity: 0.5; // optional, to make them a bit lighter
+}
+
+::ng-deep .mat-calendar-table-header th {
+  color: var(--color-on-surface) !important;
+  opacity: 0.8; // optional, to make them a bit lighter
+}
+
+::ng-deep .mat-calendar-body-label {
+  color: var(--color-primary) !important;
+}
+
+::ng-deep .mat-datepicker-toggle,
+::ng-deep .mat-calendar-previous-button,
+::ng-deep .mat-calendar-next-button,
+::ng-deep .mat-calendar-arrow,
+::ng-deep .mat-mdc-button {
+  color: var(--color-on-surface) !important;
+  fill: var(--color-on-surface) !important;
+}
+
+// ============ SELECT DROPDOWN PANEL ============
+::ng-deep .mat-mdc-select-panel {
+  background-color: var(--color-surface) !important;
+  color: var(--color-on-surface) !important;
+}
+
+::ng-deep .mat-mdc-option {
+  color: var(--color-on-surface) !important;
+
+  &.mdc-list-item--selected {
+    background-color: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
+  }
+
+  &:hover:not(.mdc-list-item--selected) {
+    background-color: var(--color-primary-hover) !important;
+  }
+}

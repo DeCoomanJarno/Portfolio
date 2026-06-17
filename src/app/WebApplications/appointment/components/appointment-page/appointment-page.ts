@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-appointment-page',
   standalone: false,
   templateUrl: './appointment-page.html',
-  styleUrl: './appointment-page.css'
 })
 export class AppointmentPageComponent {
 

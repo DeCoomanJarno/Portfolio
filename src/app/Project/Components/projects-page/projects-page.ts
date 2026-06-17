@@ -1,28 +1,36 @@
-import { Component, OnInit, inject, DestroyRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ProjectService } from '../../Services/project-service';
-import { ProjectPreviewModel } from '../../Models/project-model';
-import { ProjectItemComponent } from '../project-item/project-item';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { ProjectService } from '../../Services/project-service';
+import { ProjectCategory, ProjectPreviewModel } from '../../Models/project-model';
+import { ProjectItemComponent } from '../project-item/project-item';
+
 @Component({
-    selector: 'app-projects-page',
-    imports: [ProjectItemComponent, TranslatePipe],
-    templateUrl: './projects-page.html',
-    styleUrl: './projects-page.css'
+  selector: 'app-projects-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProjectItemComponent, TranslatePipe],
+  templateUrl: './projects-page.html',
+  styleUrl: './projects-page.scss'
 })
-export class ProjectsPageComponent implements OnInit {
-  projects: ProjectPreviewModel[] = [];
-
+export class ProjectsPageComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly allProjects = signal<ProjectPreviewModel[]>([]);
 
-  constructor(private projectService: ProjectService) {}
+  readonly categories = Object.values(ProjectCategory);
+  readonly selectedCategory = signal<ProjectCategory>(ProjectCategory.All);
 
-  ngOnInit(): void {
-    this.projectService.getProjects()
+  readonly projects = computed(() => {
+    const category = this.selectedCategory();
+    const projects = this.allProjects();
+    return category === ProjectCategory.All
+      ? projects
+      : projects.filter(project => project.category === category);
+  });
+
+  constructor(projectService: ProjectService) {
+    projectService.getProjects()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data: ProjectPreviewModel[]) => {
-      this.projects = data;
-    });
+      .subscribe(projects => this.allProjects.set(projects ?? []));
   }
 }

@@ -1,0 +1,137 @@
+@use 'styles/index' as *;
+
+.inventory-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  background-color: var(--color-background);
+}
+
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.media-row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.detail-image {
+  width: 100%;
+  min-height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  margin-bottom: var(--space-4);
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.placeholder-inner {
+  text-align: center;
+}
+
+.sku {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+.category {
+  font-size: var(--text-xs);
+}
+
+.summary {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+.desc {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.meta {
+  margin-top: var(--space-3);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.chip {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: var(--text-xs);
+}
+
+.status {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  font-size: var(--text-xs);
+  text-transform: capitalize;
+}
+
+.detail-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--color-outline) 40%, transparent);
+}
+
+.label {
+  font-weight: 600;
+}
+
+.value {
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.quantity {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--text-md);
+}
+
+// responsiveness
+@media (max-width: 720px) {
+  .media-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .value {
+    max-width: 100%;
+    text-align: left;
+  }
+}

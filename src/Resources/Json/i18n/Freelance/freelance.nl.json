@@ -1,357 +1,277 @@
 {
-  "freelance": {
-    "ui": {
-      "sending": "Aanvraag verzenden...",
-      "getQuote": "Offerte aanvragen",
-      "getOffer": "Offerte aanvragen",
-      "other": "Overig / Niet vermeld",
-      "scroll": "Scroll",
-      "close": "Sluiten"
-    },
-    "hero": {
-      "status": "Beschikbaar voor nieuwe projecten",
-      "title1": "Freelance Softwareontwikkelaar",
-      "title2": "VR, AI & Digitale Innovatie",
-      "subtitle": "Gespecialiseerd in VR/AR-ontwikkeling, AI-gestuurde oplossingen en geavanceerde technologie om uw visie in werkelijkheid om te zetten. De toekomst is immersief.",
-      "getintouch": "Offerte aanvragen",
-      "viewwork": "Bekijk portfolio",
-      "apps": {
-        "terminal": "Terminal",
-        "services": "Apps",
-        "process": "Werkwijze",
-        "contact": "Contact"
-      },
-      "desktop": {
-        "windowTitle": "Freelance Werkruimte"
-      },
-      "terminal": {
-        "prompt": "jarno@portfolio:~$",
-        "boot": "boot freelance-os --locale actief",
-        "services": "laad services --profiel full-stack",
-        "contact": "open contact --kanaal voorkeur",
-        "ready": "werkruimte klaar"
-      },
-      "scene": {
-        "label": "3D-weergave",
-        "title": "Live apparaatscène",
-        "hint": "Sleep met de muis om het model in realtime te bewegen.",
-        "dragHint": "Sleep met de linkermuisknop om de scène te verplaatsen en te roteren",
-        "wheelHint": "Gebruik het muiswiel om in of uit te zoomen",
-        "controls": {
-          "up": "Omhoog",
-          "left": "Links",
-          "right": "Rechts",
-          "down": "Omlaag",
-          "rotateLeft": "Draai links",
-          "rotateRight": "Draai rechts",
-          "zoomIn": "Zoom in",
-          "zoomOut": "Zoom uit",
-          "reset": "Reset"
+    "freelance": {
+        "ui": {
+            "sending": "Aanvraag verzenden...",
+            "getQuote": "Offerte aanvragen",
+            "other": "Overig / Niet vermeld",
+            "close": "Sluiten"
+        },
+        "hero": {
+            "status": "Beschikbaar voor remote projecten",
+            "eyebrow": "Remote-First Developer & Software Engineer",
+            "title1": "Webapplicaties die",
+            "titleHighlight": "uw bedrijf vooruithelpen",
+            "subtitle": "Ik ontwerp en bouw moderne webapps met Angular en .NET — van eerste idee tot productie. Remote-first, async-vriendelijk en resultaatgericht. Zuivere architectuur, betrouwbare oplevering en heldere communicatie.",
+            "getintouch": "Start een project",
+            "viewwork": "Bekijk mijn werk",
+            "basedIn": "Remote Wereldwijd · Geen reizen nodig",
+            "techStack": "Kerntechnologieën"
+        },
+        "services": {
+            "label": "Diensten",
+            "title": "Wat ik voor u kan bouwen",
+            "subtitle": "End-to-end ontwikkeling afgestemd op uw bedrijfsdoelen — van responsieve webapps tot gespecialiseerde native software."
+        },
+        "ai": {
+            "label": "Learning in public",
+            "title": "Actief bezig met AI engineering",
+            "desc": "Ik verdiep mij volop in AI engineering — bouwen met LLM API's, experimenteren met retrieval- en agent-workflows, en AI-ondersteunde tooling in mijn dagelijkse ontwikkelpraktijk. Ik verkoop mezelf (nog) niet als AI-expert; ik breng de discipline van een engineer naar een snel evoluerend vakgebied.",
+            "points": {
+                "workflow": {
+                    "title": "AI-ondersteunde workflow",
+                    "desc": "Ik gebruik dagelijks AI-tooling voor code review, refactoring en prototyping — sneller opleveren, dezelfde engineeringstandaarden."
+                },
+                "integrations": {
+                    "title": "Praktische integraties",
+                    "desc": "Hands-on experimenten met LLM API's, embeddings en automatisering — eerst toegepast op kleine, echte use-cases."
+                },
+                "honest": {
+                    "title": "Eerlijke scoping",
+                    "desc": "Is AI niet het juiste gereedschap voor uw probleem? Dan zeg ik dat — en stel ik iets voor dat wél werkt."
+                }
+            }
+        },
+        "work": {
+            "label": "Portfolio",
+            "title": "Geselecteerd werk",
+            "subtitle": "Echte projecten die technische diepgang en probleemoplossend vermogen aantonen.",
+            "viewAll": "Bekijk alle projecten"
+        },
+        "why": {
+            "cards": {
+                "rapid": {
+                    "title": "Snelle levering",
+                    "desc": "Van briefing tot productie in dagen, met agile afstemming en directe feedbackloops."
+                },
+                "scale": {
+                    "title": "Gebouwd voor schaal",
+                    "desc": "Architectuur eerst, onderhoudbaarheid altijd — code die groei en audits overleeft."
+                },
+                "partner": {
+                    "title": "Team partner",
+                    "desc": "Soepele processen met bestaande teams — betrouwbare communicatie, geen ego."
+                }
+            }
+        },
+        "expertises": {
+            "title": "Technische Expertise",
+            "desc": "End-to-end ontwikkelingsdiensten afgestemd op uw bedrijfsdoelstellingen.",
+            "hour": "u",
+            "setup": " setup",
+            "starting": "Startprijs",
+            "projectBased": "Op basis van projectprijs",
+            "DESK": {
+                "title": "Desktopsoftware",
+                "desc": "Robuuste enterprise tools met offline ondersteuning, gebouwd met .NET/C#.",
+                "shortdesc": "Desktopapplicatiefunctionaliteiten configureren"
+            },
+            "CPP": {
+                "title": "High-Performance C++",
+                "desc": "Native systemen en low-level optimalisatie voor veeleisende toepassingen.",
+                "shortdesc": "Low-level ontwikkeling configureren"
+            },
+            "WEB": {
+                "title": "Moderne Webapps",
+                "desc": "Moderne, responsieve applicaties met Angular en TypeScript. Van websites tot complexe SPA's.",
+                "shortdesc": "Webapplicatiefunctionaliteiten configureren"
+            },
+            "VR": {
+                "title": "VR/AR-oplossingen",
+                "desc": "Immersieve ervaringen voor training, visualisatie en interactieve toepassingen.",
+                "shortdesc": "VR/AR-specifieke functionaliteiten configureren"
+            },
+            "AI": {
+                "title": "AI & Machine Learning",
+                "desc": "Slimme, data-gestuurde oplossingen met ML/AI. Van aanbevelingen tot predictive analytics en intelligente automatisering.",
+                "shortdesc": "AI/ML-services configureren"
+            }
+        },
+        "projects": {
+            "subtitle": "Echte projecten die technische expertise en probleemoplossend vermogen tonen."
+        },
+        "contact": {
+            "title": "Laten we samenwerken",
+            "cta_heading": "Klaar om iets buitengewoons te bouwen?",
+            "primary": {
+                "title": "Voorstel aanvragen",
+                "desc": "Beschrijf uw idee en ontvang een eerste inschatting.",
+                "link": "Start nu"
+            },
+            "schedule": {
+                "title": "Plan een kennismakingsgesprek",
+                "desc": "Een introductie van 30 minuten om haalbaarheid te bespreken.",
+                "link": "Bekijk kalender"
+            },
+            "linkedIn": {
+                "title": "Connecteer op LinkedIn",
+                "desc": "Bekijk mijn achtergrond en netwerk.",
+                "link": "Bekijk profiel"
+            },
+            "note": "Rechtstreeks contact met de ontwikkelaar • Geen bureaukosten • Eerlijk technisch advies"
+        },
+        "quote": {
+            "title": "Projectaanvraag",
+            "name": "Volledige naam",
+            "email": "Zakelijk e-mailadres",
+            "service": "Interessegebied",
+            "budget": "Verwacht budget",
+            "details": "Projectcontext",
+            "cancel": "Annuleren",
+            "submit": "Aanvraag versturen",
+            "placeholders": {
+                "name": "Jan Jansen",
+                "email": "jan@bedrijf.com",
+                "details": "Vertel me over het probleem, platform, timing en het gewenste resultaat."
+            },
+            "budgets": {
+                "small": "Micro / Prototype (< €2k)",
+                "medium": "Standaardproject (€2k - €5k)",
+                "large": "Enterprise / Complex (€5k+)",
+                "tbd": "Nog niet zeker / Te bespreken"
+            },
+            "errors": {
+                "submit": "Het verzenden van de offerteaanvraag is mislukt. Probeer opnieuw."
+            }
+        },
+        "process": {
+            "title": "Ontwikkelproces",
+            "subtitle": "Een gestructureerde aanpak om projectsucces te garanderen.",
+            "step1": {
+                "title": "Analyse",
+                "desc": "We stemmen doelstellingen, technische randvoorwaarden en succescriteria af."
+            },
+            "step2": {
+                "title": "Bouwen & Itereren",
+                "desc": "Snelle ontwikkelsprints met regelmatige demo’s voor feedback."
+            },
+            "step3": {
+                "title": "Lancering & Ondersteuning",
+                "desc": "Vlotte oplevering, overdracht van documentatie en monitoring van stabiliteit."
+            }
+        },
+        "modal": {
+            "success": {
+                "title": "Aanvraag verzonden!",
+                "desc": "Bedankt voor uw aanvraag.<br>Ik neem <strong>binnen 24 uur</strong> contact met u op."
+            }
+        },
+        "calc": {
+            "badge": "Kostencalculator",
+            "title": "Projectkostenschatting",
+            "subtitle": "Ontvang meteen een indicatieve kostprijs voor uw project",
+            "step1Title": "Projecttype & schaal",
+            "step1Desc": "Kies uw projectcategorie en een geschatte omvang",
+            "projectScale": "Projectomvang",
+            "hour": "u",
+            "size": {
+                "proto": {
+                    "title": "Klein / Prototype",
+                    "sub": "Proof of concept of MVP"
+                },
+                "mvp": {
+                    "title": "Middelgroot",
+                    "sub": "Applicatie met volledige functionaliteit"
+                },
+                "production": {
+                    "title": "Groot / Enterprise",
+                    "sub": "Productieklaar systeem"
+                }
+            },
+            "step2Title": "Kernfunctionaliteiten",
+            "step2Desc": "Selecteer de functionaliteiten die uw project nodig heeft",
+            "hasDesign": "Ontwerp aangeleverd",
+            "hasDesignDesc": "U beschikt reeds over professionele designs",
+            "hasBackend": "Backend / Server vereist",
+            "hasBackendDesc": "Serverlogica en databank",
+            "backend": {
+                "simple": "Eenvoudige API",
+                "medium": "Standaard backend",
+                "complex": "Complexe architectuur"
+            },
+            "needsAuth": "Gebruikersauthenticatie",
+            "needsPayments": "Betaalintegratie",
+            "needsAnalytics": "Analytics & tracking",
+            "step3vrTitle": "VR/AR-functionaliteiten",
+            "step3vrDesc": "Configureer virtual/augmented reality-specificaties",
+            "vr": {
+                "platforms": "Doelplatformen",
+                "interaction": "Interactiecomplexiteit",
+                "interactionBasic": "Basis (kijken/klikken)",
+                "interactionAdvanced": "Geavanceerd (handtracking)",
+                "interactionPhysics": "Fysica-gebaseerde interacties",
+                "graphics": "Visuele kwaliteit",
+                "graphicsLow": "Laag (mobiele VR)",
+                "graphicsMedium": "Middelmatig",
+                "graphicsHigh": "Hoog (PC VR)",
+                "graphicsUltra": "Ultra (fotorealistisch)",
+                "multiplayer": "Multiplayer-ondersteuning",
+                "voiceChat": "Spraakcommunicatie",
+                "customShaders": "Aangepaste visuele effecten"
+            },
+            "step3webTitle": "Webapplicatiefunctionaliteiten",
+            "step3webDesc": "Configureer de vereisten van uw webproject",
+            "web": {
+                "uiComplexity": "Interfacecomplexiteit",
+                "uiSimple": "Eenvoudig (enkele pagina’s)",
+                "uiMedium": "Gemiddeld (standaard app)",
+                "uiComplex": "Complex (veel functionaliteiten)",
+                "mobile": "Mobiel responsief",
+                "pwa": "Progressive Web App",
+                "ssr": "Server-side rendering",
+                "realtime": "Realtime updates",
+                "admin": "Admin dashboard"
+            },
+            "step3deskTitle": "Desktopapplicatiefunctionaliteiten",
+            "step3deskDesc": "Configureer desktopsoftwarevereisten",
+            "desk": {
+                "hardwareIO": "Hardware-integratie",
+                "ioSimple": "Eenvoudig (bestanden/USB)",
+                "ioMedium": "Gemiddeld (serieel/apparaten)",
+                "ioComplex": "Complex (custom hardware)",
+                "database": "Databasetype",
+                "dbSqlite": "SQLite (embedded)",
+                "dbSqlServer": "SQL Server",
+                "dbPostgres": "PostgreSQL",
+                "reporting": "Rapporten & exports",
+                "installer": "Professionele installer"
+            },
+            "step3cppTitle": "C++-projectfunctionaliteiten",
+            "step3cppDesc": "Configureer native ontwikkelvereisten",
+            "cpp": {
+                "platforms": "Doelplatformen",
+                "optimization": "Prestatieniveau",
+                "optStandard": "Standaard",
+                "optHigh": "Geoptimaliseerd",
+                "optExtreme": "Maximale prestaties",
+                "drivers": "Aangepaste drivers vereist",
+                "realtime": "Realtime verwerking",
+                "threading": "Multithreading",
+                "gui": "Grafische interface"
+            },
+            "step4Title": "Hardware & apparatuur",
+            "step4Desc": "Is specifieke hardware vereist voor het project?",
+            "needsHardware": "Aankoop van hardware nodig",
+            "resultTitle": "Geschatte projectkost",
+            "totalHours": "Ontwikkeluren",
+            "weeks": "weken (ongeveer)",
+            "costBreakdown": "Kostenoverzicht",
+            "development": "Ontwikkeling",
+            "discount": "Volumekorting",
+            "hardware": "Hardware & apparatuur",
+            "procurementFee": "Servicekost voor aankoop",
+            "totalEstimate": "Totale schatting",
+            "excludingVat": "Excl. 21% btw",
+            "disclaimer": "Dit is een indicatieve schatting. De uiteindelijke prijs hangt af van de gedetailleerde vereisten en kan variëren. Contacteer mij voor een nauwkeurige offerte."
         }
-      },
-      "techStack": "Kerntechnologieën",
-      "badge1": {
-        "title": "Immersieve Toekomst",
-        "sub": "VR/AR-specialist"
-      },
-      "badge2": {
-        "title": "AI-Klaar",
-        "sub": "Slimme Oplossingen"
-      }
-    },
-    "why": {
-      "label": "Vertrouwd door ambitieuze teams",
-      "heading": "Resultaten die producten opleveren, niet presentaties",
-      "cards": {
-        "rapid": {
-          "title": "Snelle levering",
-          "desc": "Van briefing tot productie in dagen, met agile afstemming en directe feedbackloops."
-        },
-        "scale": {
-          "title": "Gebouwd voor schaal",
-          "desc": "Architectuur eerst, onderhoudbaarheid altijd — code die groei en audits overleeft."
-        },
-        "partner": {
-          "title": "Team partner",
-          "desc": "Soepele processen met bestaande teams — betrouwbare communicatie, geen ego."
-        }
-      }
-    },
-    "stats": {
-      "years": "Jaar ervaring",
-      "projects": "Projecten opgeleverd",
-      "technologies": "Kerntechnologieën"
-    },
-    "intro": {
-      "statement": "Immersieve ervaringen en intelligente software bouwen die grenzen verleggen."
-    },
-    "capabilities": {
-      "label": "Wat ik bouw"
-    },
-    "approach": {
-      "label": "Hoe ik werk"
-    },
-    "expertises": {
-      "title": "Technische Expertise",
-      "desc": "End-to-end ontwikkelingsdiensten afgestemd op uw bedrijfsdoelstellingen.",
-      "hour": "u",
-      "setup": " setup",
-      "starting": "Startprijs",
-      "projectBased": "Op basis van projectprijs",
-      "DESK": {
-        "title": "Desktopsoftware",
-        "desc": "Robuuste enterprise tools met offline ondersteuning, gebouwd met .NET/C#.",
-        "shortdesc": "Desktopapplicatiefunctionaliteiten configureren"
-      },
-      "CPP": {
-        "title": "High-Performance C++",
-        "desc": "Native systemen en low-level optimalisatie voor veeleisende toepassingen.",
-        "shortdesc": "Low-level ontwikkeling configureren"
-      },
-      "WEB": {
-        "title": "Moderne Webapps",
-        "desc": "Moderne, responsieve applicaties met Angular en TypeScript. Van websites tot complexe SPA's.",
-        "shortdesc": "Webapplicatiefunctionaliteiten configureren"
-      },
-      "VR": {
-        "title": "VR/AR-oplossingen",
-        "desc": "Immersieve ervaringen voor training, visualisatie en interactieve toepassingen.",
-        "shortdesc": "VR/AR-specifieke functionaliteiten configureren"
-      },
-      "AI": {
-        "title": "AI & Machine Learning",
-        "desc": "Slimme, data-gestuurde oplossingen met ML/AI. Van aanbevelingen tot predictive analytics en intelligente automatisering.",
-        "shortdesc": "AI/ML-services configureren"
-      }
-    },
-    "projects": {
-      "title": "Portfolio",
-      "subtitle": "Echte projecten die technische expertise en probleemoplossend vermogen tonen.",
-      "Category": {
-        "all": "Alle projecten",
-        "web": "Webapps",
-        "cpp": "C++ / Native",
-        "desktop": "Desktopapps",
-        "vr/ar": "VR/AR"
-      }
-    },
-    "pricing": {
-      "modelsTitle": "Samenwerkingsmodellen",
-      "modelsSubtitle": "Kies het model dat past bij uw project — vaste prijs of flexibele uurbasis.",
-      "projectBased": {
-        "title": "Vaste prijs project",
-        "desc": "Duidelijk gedefinieerde opleveringen met gegarandeerde kosten. Transparante prijzen voor projecten vanaf €1.000+.",
-        "cta": "Offerte aanvragen",
-        "fixed": "Budgetzekerheid — geen verrassingen",
-        "milestone": "Betaling per mijlpaal",
-        "warranty": "Inclusief 30-daagse bugfix-garantie"
-      },
-      "hourly": {
-        "title": "Uurtarief / Dagtarief",
-        "desc": "Flexibele ondersteuning voor veranderende behoeften, advies, code reviews of doorlopend ontwikkelwerk.",
-        "cta": "Aan de slag",
-        "flexible": "Geen langdurige verplichting",
-        "consulting": "Ideaal voor advies & code reviews",
-        "rate": "Transparant uurtarief"
-      },
-      "recommended": "Aanbevolen"
-    },
-    "contact": {
-      "title": "Laten we samenwerken",
-      "cta_heading": "Klaar om iets buitengewoons te bouwen?",
-      "desc": "Beschikbaar voor opdrachten",
-      "primary": {
-        "title": "Voorstel aanvragen",
-        "desc": "Beschrijf uw idee en ontvang een eerste inschatting.",
-        "link": "Start nu"
-      },
-      "schedule": {
-        "title": "Plan een kennismakingsgesprek",
-        "desc": "Een introductie van 30 minuten om haalbaarheid te bespreken.",
-        "link": "Bekijk kalender"
-      },
-      "linkedIn": {
-        "title": "Connecteer op LinkedIn",
-        "desc": "Bekijk mijn achtergrond en netwerk.",
-        "link": "Bekijk profiel"
-      },
-      "note": "Rechtstreeks contact met de ontwikkelaar • Geen bureaukosten • Eerlijk technisch advies"
-    },
-    "value": {
-      "title": "Het Freelance Voordeel",
-      "subtitle": "Wat klanten waarderen in onze samenwerking",
-      "local": {
-        "title": "Lokaal & bereikbaar",
-        "desc": "Gevestigd in België. Beschikbaar voor on-site workshops en vlotte communicatie."
-      },
-      "quality": {
-        "title": "Kwalitatieve code",
-        "desc": "Oplossingen die duurzaam zijn en meegroeien met uw bedrijf."
-      },
-      "transparent": {
-        "title": "Radicale transparantie",
-        "desc": "Heldere communicatie, realistische inschattingen en regelmatige voortgangsupdates."
-      },
-      "flexible": {
-        "title": "Agile mindset",
-        "desc": "Snel schakelen en aanpassen zonder bureaucratische vertraging."
-      }
-    },
-    "quote": {
-      "title": "Projectaanvraag",
-      "name": "Volledige naam",
-      "email": "Zakelijk e-mailadres",
-      "service": "Interessegebied",
-      "budget": "Verwacht budget",
-      "details": "Projectcontext",
-      "cancel": "Annuleren",
-      "submit": "E-mail opstellen",
-      "placeholders": {
-        "name": "Jan Jansen",
-        "email": "jan@bedrijf.com",
-        "details": "Vertel me over het probleem, platform, timing en het gewenste resultaat."
-      },
-      "budgets": {
-        "small": "Micro / Prototype (< €2k)",
-        "medium": "Standaardproject (€2k - €5k)",
-        "large": "Enterprise / Complex (€5k+)",
-        "tbd": "Nog niet zeker / Te bespreken"
-      },
-      "errors": {
-        "email": "Gelieve een geldig e-mailadres in te voeren",
-        "submit": "Het verzenden van de offerteaanvraag is mislukt. Probeer opnieuw."
-      }
-    },
-    "process": {
-      "title": "Ontwikkelproces",
-      "subtitle": "Een gestructureerde aanpak om projectsucces te garanderen.",
-      "step1": {
-        "title": "Analyse",
-        "desc": "We stemmen doelstellingen, technische randvoorwaarden en succescriteria af."
-      },
-      "step2": {
-        "title": "Bouwen & Itereren",
-        "desc": "Snelle ontwikkelsprints met regelmatige demo’s voor feedback."
-      },
-      "step3": {
-        "title": "Lancering & Ondersteuning",
-        "desc": "Vlotte oplevering, overdracht van documentatie en monitoring van stabiliteit."
-      }
-    },
-    "modal": {
-      "success": {
-        "title": "Aanvraag verzonden!",
-        "desc": "Ik heb een concept opgesteld in uw standaard e-mailprogramma.<br>Klik op <strong>Verzenden</strong> om de aanvraag te voltooien."
-      }
-    },
-    "calc": {
-      "badge": "Kostencalculator",
-      "title": "Projectkostenschatting",
-      "subtitle": "Ontvang meteen een indicatieve kostprijs voor uw project",
-      "step1Title": "Projecttype & schaal",
-      "step1Desc": "Kies uw projectcategorie en een geschatte omvang",
-      "projectScale": "Projectomvang",
-      "hour": "u",
-      "size": {
-        "proto": {
-          "title": "Klein / Prototype",
-          "sub": "Proof of concept of MVP"
-        },
-        "mvp": {
-          "title": "Middelgroot",
-          "sub": "Applicatie met volledige functionaliteit"
-        },
-        "production": {
-          "title": "Groot / Enterprise",
-          "sub": "Productieklaar systeem"
-        }
-      },
-      "step2Title": "Kernfunctionaliteiten",
-      "step2Desc": "Selecteer de functionaliteiten die uw project nodig heeft",
-      "hasDesign": "Ontwerp aangeleverd",
-      "hasDesignDesc": "U beschikt reeds over professionele designs",
-      "hasBackend": "Backend / Server vereist",
-      "hasBackendDesc": "Serverlogica en databank",
-      "backend": {
-        "simple": "Eenvoudige API",
-        "medium": "Standaard backend",
-        "complex": "Complexe architectuur"
-      },
-      "needsAuth": "Gebruikersauthenticatie",
-      "needsPayments": "Betaalintegratie",
-      "needsAnalytics": "Analytics & tracking",
-      "step3vrTitle": "VR/AR-functionaliteiten",
-      "step3vrDesc": "Configureer virtual/augmented reality-specificaties",
-      "vr": {
-        "platforms": "Doelplatformen",
-        "interaction": "Interactiecomplexiteit",
-        "interactionBasic": "Basis (kijken/klikken)",
-        "interactionAdvanced": "Geavanceerd (handtracking)",
-        "interactionPhysics": "Fysica-gebaseerde interacties",
-        "graphics": "Visuele kwaliteit",
-        "graphicsLow": "Laag (mobiele VR)",
-        "graphicsMedium": "Middelmatig",
-        "graphicsHigh": "Hoog (PC VR)",
-        "graphicsUltra": "Ultra (fotorealistisch)",
-        "multiplayer": "Multiplayer-ondersteuning",
-        "voiceChat": "Spraakcommunicatie",
-        "customShaders": "Aangepaste visuele effecten"
-      },
-      "step3webTitle": "Webapplicatiefunctionaliteiten",
-      "step3webDesc": "Configureer de vereisten van uw webproject",
-      "web": {
-        "uiComplexity": "Interfacecomplexiteit",
-        "uiSimple": "Eenvoudig (enkele pagina’s)",
-        "uiMedium": "Gemiddeld (standaard app)",
-        "uiComplex": "Complex (veel functionaliteiten)",
-        "mobile": "Mobiel responsief",
-        "pwa": "Progressive Web App",
-        "ssr": "Server-side rendering",
-        "realtime": "Realtime updates",
-        "admin": "Admin dashboard"
-      },
-      "step3deskTitle": "Desktopapplicatiefunctionaliteiten",
-      "step3deskDesc": "Configureer desktopsoftwarevereisten",
-      "desk": {
-        "hardwareIO": "Hardware-integratie",
-        "ioSimple": "Eenvoudig (bestanden/USB)",
-        "ioMedium": "Gemiddeld (serieel/apparaten)",
-        "ioComplex": "Complex (custom hardware)",
-        "database": "Databasetype",
-        "dbSqlite": "SQLite (embedded)",
-        "dbSqlServer": "SQL Server",
-        "dbPostgres": "PostgreSQL",
-        "reporting": "Rapporten & exports",
-        "installer": "Professionele installer"
-      },
-      "step3cppTitle": "C++-projectfunctionaliteiten",
-      "step3cppDesc": "Configureer native ontwikkelvereisten",
-      "cpp": {
-        "platforms": "Doelplatformen",
-        "optimization": "Prestatieniveau",
-        "optStandard": "Standaard",
-        "optHigh": "Geoptimaliseerd",
-        "optExtreme": "Maximale prestaties",
-        "drivers": "Aangepaste drivers vereist",
-        "realtime": "Realtime verwerking",
-        "threading": "Multithreading",
-        "gui": "Grafische interface"
-      },
-      "step4Title": "Hardware & apparatuur",
-      "step4Desc": "Is specifieke hardware vereist voor het project?",
-      "needsHardware": "Aankoop van hardware nodig",
-      "resultTitle": "Geschatte projectkost",
-      "totalHours": "Ontwikkeluren",
-      "weeks": "weken (ongeveer)",
-      "costBreakdown": "Kostenoverzicht",
-      "development": "Ontwikkeling",
-      "discount": "Volumekorting",
-      "hardware": "Hardware & apparatuur",
-      "procurementFee": "Servicekost voor aankoop",
-      "totalEstimate": "Totale schatting",
-      "excludingVat": "Excl. 21% btw",
-      "requestQuote": "Formele offerte aanvragen",
-      "disclaimer": "Dit is een indicatieve schatting. De uiteindelijke prijs hangt af van de gedetailleerde vereisten en kan variëren. Contacteer mij voor een nauwkeurige offerte."
     }
-  }
 }

@@ -1,0 +1,4 @@
+// Component entry point: `@use 'styles/index' as *;`
+// Exposes breakpoint mixins (mq/mq-down) for component SCSS.
+// Tokens are CSS custom properties — globally available, no import needed.
+@forward 'breakpoints';

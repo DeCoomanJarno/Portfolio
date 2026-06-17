@@ -1,9 +1,13 @@
-@use 'index' as *;
+// ============================================================
+// Global stylesheet — design-system entry point.
+// Order matters: theme (Material) → tokens → bootstrap layer →
+// typography → base → utilities.
+// ============================================================
+@use './styles/theme';
+@use './styles/tokens';
+@use './styles/bootstrap';
+@use './styles/typography';
+@use './styles/base';
+@use './styles/utilities';
 
-/* External CSS */
-@import 'bootstrap';
-@import 'highlight.js/styles/github.css';
-
-html, body {
-  background-color: var(--color-background);
-}
+@import 'highlight.js/styles/github-dark.css';

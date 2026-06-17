@@ -47,5 +47,6 @@ export const routes: Routes = [
         path: 'Inventory',
         loadChildren: () =>
             import('./WebApplications/inventory/inventory-module').then(m => m.InventoryModule)
-    }
+    },
+    { path: '**', redirectTo: 'Home' }
 ];

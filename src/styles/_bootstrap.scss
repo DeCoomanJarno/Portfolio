@@ -1,0 +1,49 @@
+// ============================================================
+// Bootstrap — layout layer only (grid, containers, utilities).
+// No Bootstrap components (.btn, .card, ...) — those come from
+// the design system.
+// ============================================================
+@use 'breakpoints' as bp;
+
+@import 'bootstrap/scss/functions';
+
+// Map Bootstrap onto the design-system breakpoints.
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1440px,
+  xxl: 1920px
+);
+
+$container-max-widths: (
+  sm: 460px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1320px
+);
+
+$enable-rfs: false;
+$enable-negative-margins: true;
+
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/utilities/api';
+
+// Bridge Bootstrap body vars to design tokens.
+:root {
+  --bs-body-bg: var(--color-background);
+  --bs-body-color: var(--color-on-background);
+  --bs-body-font-family: var(--font-family);
+  --bs-border-color: var(--color-outline);
+  --bs-border-radius: var(--radius-sm);
+  --bs-link-color: var(--color-primary);
+  --bs-link-hover-color: var(--color-primary-hover);
+}

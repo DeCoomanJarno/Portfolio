@@ -1,0 +1,22 @@
+.header-right {
+  position: absolute;
+  right: var(--space-4);
+}
+
+.mat-mdc-button {
+  color: var(--color-primary) !important;
+  background-color: var(--color-background) !important;
+  padding: var(--space-4);
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  color: var(--color-primary) !important;
+  background-color: var(--color-background) !important;
+  margin-top: var(--space-1);
+}
+
+.mat-mdc-menu-item {
+  color: var(--color-primary) !important;
+  background-color: var(--color-background) !important;
+  min-height: 2rem;
+}

@@ -6,7 +6,7 @@ import { ProgrammingCalculation } from '../programming-calculator/programming-ca
     selector: 'app-history-tab',
     imports: [],
     templateUrl: './history-tab.html',
-    styleUrls: ['./history-tab.css'] // Fixed the property name from styleUrl to styleUrls
+    styleUrls: ['./history-tab.scss'] // Fixed the property name from styleUrl to styleUrls
 })
 export class HistoryTabComponent {
   history: (Calculation|ProgrammingCalculation)[] = [];

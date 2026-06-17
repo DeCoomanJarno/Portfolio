@@ -10,7 +10,7 @@ import { AuthService, User } from '@angularlibrary/core-lib';
   selector: 'app-booking-form',
   standalone: false,
   templateUrl: './booking-form.html',
-  styleUrl: './booking-form.css'
+  styleUrl: './booking-form.scss'
 })
 export class BookingFormComponent {
 

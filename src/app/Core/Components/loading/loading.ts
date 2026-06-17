@@ -5,7 +5,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     templateUrl: './loading.html',
-    styleUrl: './loading.css'
+    styleUrls: ['./loading.scss']
 })
 export class LoadingComponent {
   @Input() isLoading = false

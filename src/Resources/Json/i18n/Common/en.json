@@ -1,22 +1,35 @@
 {
-    "languages": {
-        "en": "English",
-        "nl": "Dutch"
-    },
     "titles": {
         "home": "Home",
-        "Freelance": "Freelance",
-        "resume": "Resume",
         "about": "About",
         "projects": "Projects",
+        "resume": "Resume",
         "contact": "Contact",
-        "certificates": "Certificates"
+        "certificates": "Certificates",
+        "demos": "Demos"
+    },
+    "demos": {
+        "calculator": "Calculator",
+        "gameOfLife": "Game of Life",
+        "langtonsAnt": "Langton's Ant",
+        "appointments": "Appointment Scheduler",
+        "inventory": "Inventory Manager",
+        "rateCalculator": "Rate Calculator"
+    },
+    "theme": {
+        "switchToLight": "Switch to light mode",
+        "switchToDark": "Switch to dark mode"
+    },
+    "footer": {
+        "tagline": "Freelance web developer & software engineer building modern, reliable web applications.",
+        "availability": "Available for freelance projects",
+        "navigation": "Navigation",
+        "connect": "Connect",
+        "rights": "All rights reserved."
     },
     "home": {
         "title": "Software Engineer",
-        "shortBio": "Experienced in C#, C++, .NET and Angular.",
-        "aboutMe": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
-        "contactMessage": "Feel free to get in touch for any collaboration or job opportunities."
+        "aboutMe": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions."
     },
     "skill": {
         "names": {
@@ -33,9 +46,8 @@
             "basic": "Basic"
         }
     },
-    "certificate":{
+    "certificate": {
         "titles": {
-            "ba4": "BA4 - Electrical Safety Awareness",
             "vca": "VCA - Safety for Operational Staff",
             "cra": "Understanding the EU Cyber Resilience Act (CRA) (LFEL1001)",
             "sololearn": {
@@ -45,9 +57,6 @@
         }
     },
     "contact": {
-        "name": "Name",
-        "email": "Email",
-        "message": "Message",
-        "send": "Send"
+        "email": "Email"
     }
 }

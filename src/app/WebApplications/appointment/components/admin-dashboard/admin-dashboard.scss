@@ -1,0 +1,22 @@
+mat-card {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+.mat-mdc-table,
+.mat-mdc-header-row,
+.mat-mdc-row {
+  background-color: var(--color-background);
+  color: var(--color-on-background) !important;
+}
+
+h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+.mat-mdc-button {
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+  margin-right: var(--space-4);
+}

@@ -9,7 +9,7 @@ import { LoadingComponent } from '../../../../Core/Components/loading/loading';
     selector: 'app-langtons-ant-page',
     imports: [CommonModule, GameConfigComponent, LoadingComponent],
     templateUrl: './langtons-ant-page.html',
-    styleUrl: './langtons-ant-page.css'
+    styleUrl: './langtons-ant-page.scss'
 })
 export class LangtonsAntPageComponent implements OnInit {
 

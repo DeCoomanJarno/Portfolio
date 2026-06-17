@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     selector: 'app-simple-calculator',
     imports: [BaseCalculatorComponent, ReactiveFormsModule],
     templateUrl: './simple-calculator.html',
-    styleUrls: ['./simple-calculator.css', '../base-calculator/base-calculator.css']
+    styleUrls: ['./simple-calculator.scss', '../base-calculator/base-calculator.scss']
 })
 export class SimpleCalculatorComponent {
   @ViewChild(BaseCalculatorComponent) baseCalculator: BaseCalculatorComponent | undefined;

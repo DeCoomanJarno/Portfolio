@@ -1,75 +1,74 @@
-<header class="header">
-  <nav class="navbar navbar-expand-custom fixed-top navbar-light">
-    <section>
-    <div class="logo-container">
-      <a routerLink="/Home">
-        <ui-logo/>
-      </a>
-    </div>
+<header class="header" [class.header--scrolled]="isScrolled()">
+  <div class="header__inner page-container page-container--wide">
+    <a class="header__brand" routerLink="/Home" [attr.aria-label]="'titles.home' | translate">
+      <ui-logo />
+    </a>
 
-    <ui-button class="navbar-toggler" type="button" size="Large" icon="{{ isMenuOpen ? 'close' : 'menu' }}" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    </ui-button>
-    <div class="collapse navbar-collapse AlignRight" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Home" routerLinkActive="active">
+    <nav class="header__nav" [class.header__nav--open]="isMenuOpen()" aria-label="Main navigation">
+      <ul class="header__links">
+        <li>
+          <a class="header__link" routerLink="/Home" routerLinkActive="active" (click)="closeAll()">
             {{ 'titles.home' | translate }}
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/About" routerLinkActive="active">
-            {{ 'titles.about' | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Projects" routerLinkActive="active" >
+        <li>
+          <a class="header__link" routerLink="/Projects" routerLinkActive="active" (click)="closeAll()">
             {{ 'titles.projects' | translate }}
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Resume" routerLinkActive="active">
+        <li>
+          <a class="header__link" routerLink="/About" routerLinkActive="active" (click)="closeAll()">
+            {{ 'titles.about' | translate }}
+          </a>
+        </li>
+        <li>
+          <a class="header__link" routerLink="/Resume" routerLinkActive="active" (click)="closeAll()">
             {{ 'titles.resume' | translate }}
           </a>
         </li>
+        <li class="header__demos" [class.header__demos--open]="isDemosOpen()">
+          <button class="header__link header__demos-toggle" type="button" (click)="toggleDemos($event)"
+            [attr.aria-expanded]="isDemosOpen()">
+            {{ 'titles.demos' | translate }}
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul class="header__demos-menu">
+            @for (demo of demoLinks; track demo.route) {
+              <li>
+                <a class="header__demos-link" [routerLink]="demo.route" routerLinkActive="active" (click)="closeAll()">
+                  {{ demo.labelKey | translate }}
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
       </ul>
 
-      <div class="ml-auto language-selector d-flex align-items-center">
-<div class="dropdown language-dropdown">
-  <button
-    class="btn btn-outline-secondary dropdown-toggle"
-    type="button"
-    id="languageDropdown"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    {{ 'languages.' + currentLang | translate }}
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-    @for (language of languages; track $index) {
-      <li>
-        <a class="dropdown-item" href="#" (click)="setLanguage(language)">
-          {{ 'languages.' + language | translate }}
+      <div class="header__actions">
+        <div class="header__lang" role="group" aria-label="Language">
+          @for (lang of localeService.languages; track lang) {
+            <button class="header__lang-btn" type="button" [class.active]="localeService.current() === lang"
+              (click)="setLanguage(lang)">
+              {{ lang.toUpperCase() }}
+            </button>
+          }
+        </div>
+
+        <button class="header__theme" type="button" (click)="toggleTheme()"
+          [attr.aria-label]="(themeService.isDark() ? 'theme.switchToLight' : 'theme.switchToDark') | translate">
+          <i class="bi" [class.bi-sun-fill]="themeService.isDark()" [class.bi-moon-fill]="!themeService.isDark()"
+            aria-hidden="true"></i>
+        </button>
+
+        <a class="btn btn--primary btn--sm header__cta" routerLink="/Home" fragment="contact" (click)="closeAll()">
+          {{ 'titles.contact' | translate }}
         </a>
-      </li>
-    }
-  </ul>
-</div>
-
-
-        <!-- Theme toggle button -->
-        <label class="theme-toggle">
-          <input type="checkbox" id="theme-checkbox" [checked]="isDarkMode" (change)="toggleTheme()">
-          <div class="toggle-track">
-            <div class="toggle-thumb">
-              <span class="bi bi-sun-fill"></span>
-              <span class="bi bi-moon-fill"></span>
-            </div>
-          </div>
-        </label>
-
       </div>
-    </div>
-    </section>
-  </nav>
+    </nav>
+
+    <button class="header__burger" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()"
+      aria-label="Toggle navigation">
+      <i class="bi" [class.bi-list]="!isMenuOpen()" [class.bi-x-lg]="isMenuOpen()" aria-hidden="true"></i>
+    </button>
+  </div>
 </header>

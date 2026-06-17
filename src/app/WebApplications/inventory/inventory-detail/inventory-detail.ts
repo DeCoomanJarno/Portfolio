@@ -9,7 +9,7 @@ import { SidePanelService } from '@angularlibrary/core-lib';
   selector: 'app-inventory-detail',
   standalone: false,
   templateUrl: './inventory-detail.html',
-  styleUrl: './inventory-detail.css'
+  styleUrl: './inventory-detail.scss'
 })
 export class InventoryDetail implements OnInit {
   item$!: Observable<Item | undefined>;

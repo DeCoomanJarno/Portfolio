@@ -1,7 +1,30 @@
 <title>{{ 'titles.projects' | translate }}</title>
-<div class="project-list">
 
-    @for (item of projects; track item.id) {
-    <ui-project-item class="project-item" [project]="item"></ui-project-item>
-    }
+<div class="projects-page section">
+  <div class="page-container">
+    <header class="section-head">
+      <p class="eyebrow">{{ 'freelance.work.label' | translate }}</p>
+      <h1>{{ 'titles.projects' | translate }}</h1>
+      <p class="section-head__subtitle">{{ 'freelance.projects.subtitle' | translate }}</p>
+    </header>
+
+    <div class="projects-page__filters" role="group" [attr.aria-label]="'Project.Category.all' | translate">
+      @for (category of categories; track category) {
+        <button
+          type="button"
+          class="chip"
+          [class.chip--active]="selectedCategory() === category"
+          [attr.aria-pressed]="selectedCategory() === category"
+          (click)="selectedCategory.set(category)">
+          {{ 'Project.Category.' + category | translate }}
+        </button>
+      }
+    </div>
+
+    <div class="projects-page__grid">
+      @for (item of projects(); track item.id) {
+        <ui-project-item [project]="item" />
+      }
+    </div>
+  </div>
 </div>

@@ -7,7 +7,6 @@ import { AppointmentService } from '../../services/appointment.service';
   selector: 'app-appointment-calendar',
   standalone: false,
   templateUrl: './appointment-calendar.html',
-  styleUrl: './appointment-calendar.css'
 })
 export class AppointmentCalendarComponent implements OnInit {
   appointments: Appointment[] = [];

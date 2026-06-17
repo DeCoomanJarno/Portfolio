@@ -11,7 +11,7 @@ export type FilterState = 'All' | ItemStatus;
   selector: 'app-inventory-page',
   standalone: false,
   templateUrl: './inventory-page.html',
-  styleUrl: './inventory-page.css'
+  styleUrl: './inventory-page.scss'
 })
 export class InventoryPage {
 

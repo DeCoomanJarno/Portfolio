@@ -1,17 +1,38 @@
-<div class="footer">
-    <div class="footer-content">
-      <div class="social-icons">
-        <a href="{{commonDataService.CommonData?.Github_URL}}" target="_blank" aria-label="GitHub">
-          <i class="bi-github"></i>
-        </a>
-        <a href="{{commonDataService.CommonData?.LinkedIn_URL}}" target="_blank" aria-label="LinkedIn">
-          <i class="bi-linkedin"></i>
-        </a>
-        <a href="mailto:{{commonDataService.CommonData?.Contact?.Email}}" aria-label="Email">
-          <i class="bi-envelope"></i>
-        </a>
+<footer class="footer">
+  <div class="page-container page-container--wide">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="footer__name">{{ commonDataService.CommonData?.FullName }}</span>
+        <p class="footer__tagline">{{ 'footer.tagline' | translate }}</p>
       </div>
-      <p>© {{ currentYear }} {{ commonDataService.CommonData?.FullName }}. All rights reserved.</p>
+
+      <nav class="footer__nav" [attr.aria-label]="'footer.navigation' | translate">
+        <span class="footer__heading">{{ 'footer.navigation' | translate }}</span>
+        <a routerLink="/Home">{{ 'titles.home' | translate }}</a>
+        <a routerLink="/Projects">{{ 'titles.projects' | translate }}</a>
+        <a routerLink="/About">{{ 'titles.about' | translate }}</a>
+        <a routerLink="/Resume">{{ 'titles.resume' | translate }}</a>
+        <a routerLink="/Home" fragment="contact">{{ 'titles.contact' | translate }}</a>
+      </nav>
+
+      <div class="footer__connect">
+        <span class="footer__heading">{{ 'footer.connect' | translate }}</span>
+        <div class="footer__socials">
+          <a [href]="commonDataService.CommonData?.Github_URL" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="bi bi-github" aria-hidden="true"></i>
+          </a>
+          <a [href]="commonDataService.CommonData?.LinkedIn_URL" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:{{ commonDataService.CommonData?.Contact?.Email }}" aria-label="Email">
+            <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {{ currentYear }} {{ commonDataService.CommonData?.FullName }}. {{ 'footer.rights' | translate }}</p>
     </div>
   </div>
-  
+</footer>

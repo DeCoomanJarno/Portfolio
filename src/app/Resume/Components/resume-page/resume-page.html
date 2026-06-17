@@ -1,203 +1,159 @@
-<title>{{ 'titles.resume' | translate }}</title>
-@if ((resumeData$ | async); as resumeData) {
-<div class="resume-wrapper">
-    <div class="resume" #resumeContent>
+@if (commonDataService.commonData$ | async; as common) {
+  <div class="resume-page">
 
-        <!-- ===== LEFT SIDE ===== -->
-        <aside class="SidePanel">
+    <!-- RESUME HEADER WITH PHOTO -->
+    <section class="resume-hero">
+      <div class="resume-hero__photo">
+        <img [src]="common.ProfileImage" alt="Profile Picture" />
+      </div>
+      <div class="resume-hero__info">
+        <h1>{{ common.FullName }}</h1>
+        <h2 class="resume-hero__role">{{ 'home.title' | translate }}</h2>
 
-            <!-- Profile image -->
-            <div class="ProfileImage">
-                <img [src]="commonDataService.CommonData?.ProfileImage" alt="Profile Picture" />
+        <div class="resume-contact-grid">
+          @if (common.Contact?.Email) {
+            <div class="contact-item">
+              <span class="label">Email:</span>
+              <a [href]="'mailto:' + common.Contact.Email">{{ common.Contact.Email }}</a>
             </div>
+          }
+          @if (common.Contact?.Phone) {
+            <div class="contact-item">
+              <span class="label">Phone:</span>
+              <a [href]="'tel:' + common.Contact.Phone">{{ common.Contact.Phone }}</a>
+            </div>
+          }
+          @if ((resumeData$ | async)?.Contact?.Address) {
+            <div class="contact-item">
+              <span class="label">Location:</span>
+              <span>{{ (resumeData$ | async)?.Contact?.Address | translate }}</span>
+            </div>
+          }
+          @if (common.LinkedIn_URL) {
+            <div class="contact-item">
+              <span class="label">LinkedIn:</span>
+              <a [href]="common.LinkedIn_URL" target="_blank" rel="noopener">Profile</a>
+            </div>
+          }
+        </div>
 
-            <!-- CONTACT -->
-            <section class="Panel contact">
-                <div class="Header">{{ 'resume.titles.contact' | translate }}</div>
-                <div class="contact-list">
-                    <p>
-                        <i class="bi-geo-alt icon"></i>
-                        <a [href]="resumeData.Contact.Address_Link">
-                            <span class="data"
-                                [innerHTML]="(resumeData.Contact.Address| translate).replaceAll(', ', ',<br>')   "></span>
-                        </a>
-                    </p>
-                    <p>
-                        <i class="bi-envelope icon"></i>
-                        <a [href]="'mailto:' + commonDataService.CommonData?.Contact?.Email">
-                            {{ commonDataService.CommonData?.Contact?.Email }}
-                        </a>
-                    </p>
-                    <p>
-                        <i class="bi-telephone icon"></i>
-                        <span><a href="tel:{{ commonDataService.CommonData?.Contact?.Phone }}">
-                                {{ commonDataService.CommonData?.Contact?.Phone }}
-                            </a></span>
-                    </p>
-                    <p>
-                        <i class="bi-globe icon"></i>
-                        <a [href]="'http://' + commonDataService.CommonData?.Website" target="_blank" rel="noopener">
-                            {{ commonDataService.CommonData?.Website }}
-                        </a>
-                    </p>
-                    <p>
-                        <i class="bi-linkedin icon"></i>
-                        <a [href]="commonDataService.CommonData?.LinkedIn_URL" target="_blank" rel="noopener">
-                            {{ resumeData.Contact.LinkedIn_Preview }}
-                        </a>
-                    </p>
-                    <p>
-                        <i class="bi-person-vcard icon"></i>
-                        <span>{{ ('resume.driverLicense' | translate) + ' ' + resumeData.Contact.DriverLicense }}</span>
-                    </p>
-                </div>
-            </section>
+        <button type="button" class="btn btn--primary resume-hero__download no-print" (click)="downloadPdf()">
+          <i class="bi bi-download" aria-hidden="true"></i>
+          {{ 'resume.downloadPdf' | translate }}
+        </button>
+      </div>
+    </section>
 
-            <!-- PROFILE -->
-            <section class="Panel profile">
-                <div class="Header">{{ 'resume.titles.profile' | translate }}</div>
-                <p class="ProfileText">{{ 'resume.profile' | translate }}</p>
-            </section>
+    <!-- ABOUT / BIO -->
+    <section class="resume-section">
+      <h3 class="resume-section__title">About</h3>
+      <p class="resume-bio">{{ 'home.aboutMe' | translate }}</p>
+    </section>
 
-            <!-- SKILLS: Programming -->
-            <section class="Panel">
-                <div class="Header">
-                    <div class="Title">{{ 'resume.titles.skills' | translate }}</div>
-                    <div class="SubTitle">{{ 'resume.titles.programmingLanguage' | translate }}</div>
-                </div>
-                <div class="SkillList">
-                    @for (skill of resumeData.Skills.ProgrammingLanguages; track $index) {
-                    <div class="skill">
-                        <div class="skill-name">{{ skill.Name }}</div>
-                        <div class="skill-experience">
-                            @if(skill.Experience.FormattedSchool) {
-                            <div class="experience-item">
-                                <span class="badge school">{{ 'resume.skillNames.school' | translate }}</span>
-                                <span>{{ skill.Experience.FormattedSchool }}</span>
-                            </div>
-                            }
-                            @if(skill.Experience.FormattedWork) {
-                            <div class="experience-item">
-                                <span class="badge work">{{ 'resume.skillNames.work' | translate }}</span>
-                                <span>{{ skill.Experience.FormattedWork }}</span>
-                            </div>
-                            }
-                            @if(skill.Experience.FormattedHobby) {
-                            <div class="experience-item">
-                                <span class="badge hobby">{{ 'resume.skillNames.hobby' | translate }}</span>
-                                <span>{{ skill.Experience.FormattedHobby }}</span>
-                            </div>
-                            }
-                        </div>
-                    </div>
-                    }
-                </div>
-            </section>
+    @if (resumeData$ | async; as resumeData) {
 
-            <!-- SKILLS: Languages -->
-            <section class="Panel">
-                <div class="Header">
-                    <div class="Title">{{ 'resume.titles.skills' | translate }}</div>
-                    <div class="SubTitle">{{ 'resume.titles.language' | translate }}</div>
-                </div>
-                <div class="SkillList">
-                    @for (language of resumeData.Skills.Languages; track $index) {
-                    <div class="skill">
-                        <div class="skill-name">{{ language.Name }}</div>
-                        <div class="skill-proficiency">{{ 'resume.languageProficiency.' + language.Proficiency |
-                            translate }}</div>
-                    </div>
-                    }
-                </div>
-            </section>
+      <!-- EXPERIENCE -->
+      <section class="resume-section">
+        <h3 class="resume-section__title">{{ 'resume.titles.workExperience' | translate }}</h3>
+        <div class="resume-timeline">
+          @for (exp of resumeData.Experience; track $index) {
+            <div class="resume-timeline__item">
+              <div class="resume-timeline__header">
+                <h4>{{ exp.Company | translate }}</h4>
+                <span class="badge-small">{{ exp.Badge | translate }}</span>
+              </div>
+              <p class="resume-timeline__dates">{{ exp.FormattedDates | translate }} ({{ exp.Duration | translate }})</p>
+              @if (exp.Location) {
+                <p class="resume-timeline__location">{{ exp.Location }}</p>
+              }
+              <p class="resume-timeline__desc">{{ exp.Description | translate }}</p>
+            </div>
+          }
+        </div>
+      </section>
 
-        </aside>
+      <!-- EDUCATION -->
+      <section class="resume-section">
+        <h3 class="resume-section__title">{{ 'resume.titles.education' | translate }}</h3>
+        <div class="resume-timeline">
+          @for (edu of resumeData.Education; track $index) {
+            <div class="resume-timeline__item">
+              <div class="resume-timeline__header">
+                <h4>{{ edu.Degree | translate }}</h4>
+                <span class="badge-small">{{ edu.Level | translate }}</span>
+              </div>
+              <p class="resume-timeline__dates">{{ edu.FormattedDates | translate }} ({{ edu.Duration | translate }})</p>
+              @if (edu.Location) {
+                <p class="resume-timeline__location">{{ edu.Location }}</p>
+              }
+              <p class="resume-timeline__desc">{{ edu.Description | translate }}</p>
+            </div>
+          }
+        </div>
+      </section>
 
-        <!-- ===== RIGHT SIDE ===== -->
-        <main class="MainPanel">
+      <!-- SKILLS -->
+      <section class="resume-section">
+        <h3 class="resume-section__title">{{ 'resume.titles.skills' | translate }}</h3>
+        <div class="skills-table">
+          <div class="skills-table__header">
+            <span></span>
+            <span>School</span>
+            <span>Work</span>
+            <span>Hobby</span>
+          </div>
+          @for (skill of resumeData.Skills.ProgrammingLanguages; track skill.Name) {
+            <div class="skills-table__row">
+              <span class="skills-table__name">{{ skill.Name }}</span>
+              <span class="skills-table__value">{{ skill.Experience.FormattedSchool }}</span>
+              <span class="skills-table__value">{{ skill.Experience.FormattedWork }}</span>
+              <span class="skills-table__value">{{ skill.Experience.FormattedHobby }}</span>
+            </div>
+          }
+        </div>
 
-            <!-- HEADER -->
-            <section class="HeaderBlock Panel">
-                <h1 class="FirstName">{{ commonDataService.CommonData?.FirstName }}</h1>
-                <h1 class="Name">{{ commonDataService.CommonData?.Name }}</h1>
-                <h2 class="Title">{{ resumeData.Title | translate }}</h2>
-            </section>
+        <h4 class="resume-subtitle">{{ 'resume.titles.languages' | translate }}</h4>
+        <div class="languages-list">
+          @for (lang of resumeData.Skills.Languages; track lang.Name) {
+            <span class="language-item">{{ lang.Name }} ({{ lang.Proficiency }})</span>
+          }
+        </div>
+      </section>
 
-            <!-- EDUCATION -->
-            <section class="Panel">
-                <div class="Header">{{ 'resume.titles.education' | translate }}</div>
-                <div class="List">
-                    @for (edu of resumeData.Education; track $index) {
-                    <div class="Entry">
-                        <div class="EntryHeader">
-                            <div class="LeftSide">
-                                <h4 class="Degree">{{ edu.Degree | translate }}</h4>
-                                <div class="Year">({{ edu.FormattedDates }})</div>
-                            </div>
-                            <div class="RightSide">
-                                <div class="Company">{{ edu.School }}</div>
-                                <div class="Location">{{ edu.Location | translate }}</div>
-                            </div>
-                        </div>
-                        <p class="Description">{{ edu.Description | translate }}</p>
-                    </div>
-                    }
-                </div>
-            </section>
-            <!-- WORK EXPERIENCE -->
-            <section class="Panel">
-                <div class="Header">{{ 'resume.titles.workExperience' | translate }}</div>
-                <div class="List">
-                    @for (exp of resumeData.Experience; track $index) {
-                    <div class="Entry">
-                        <div class="EntryHeader">
-                            <div class="LeftSide">
-                                <h4 class="Degree">{{ exp.Title | translate }}</h4>
-                                <div class="Year">({{ exp.FormattedDates }})</div>
-                            </div>
-                            <div class="RightSide">
-                                <div class="Company">{{ exp.Company }}</div>
-                                <div class="Location">{{ exp.Location | translate }}</div>
-                            </div>
-                        </div>
-                        <p class="Description">{{ exp.Description | translate }}</p>
-                    </div>
-                    }
-                </div>
-            </section>
+      <!-- CERTIFICATES -->
+      <section class="resume-section">
+        <h3 class="resume-section__title">{{ 'titles.certificates' | translate }}</h3>
+        <div class="certificates-list">
+          @for (cert of common.Certificates; track cert.Title) {
+            <div class="cert-item">
+              <span class="cert-title">{{ cert.Title }}</span>
+              @if (cert.Issuer) {
+                <span class="cert-issuer">{{ cert.Issuer }}</span>
+              }
+            </div>
+          }
+        </div>
+      </section>
 
-            <!-- REFERENCES -->
-            <section class="Panel">
-                <div class="Header">{{ 'resume.titles.references' | translate }}</div>
-                <div class="References">
-                    @for (ref of resumeData.References; track $index) {
-                    <div class="ReferenceEntry">
-                        <div class="Degree">{{ ref.Name }}</div>
-                        <div class="Company">
-                            {{ ref.Title | translate }}
-                            @if(ref.Company) {
-                            <span>— {{ ref.Company | translate }}</span>
-                            }
-                        </div>
-                        <div class="ContactInfo">
-                            <i class="bi-telephone icon"></i>
-                            <a class="Phone" href="tel:{{ ref.Phone }}">{{ ref.Phone }}</a>
-                        </div>
-                        <div class="ContactInfo">
-                            <i class="bi-envelope icon"></i>
-                            <a [href]="'mailto:' + ref.Email">{{ ref.Email }}</a>
-                        </div>
-                    </div>
-                    }
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <!-- DOWNLOAD BUTTON -->
-    <button class="download-btn" (click)="downloadResumePDF()">
-        {{ 'resume.download' | translate }}
-    </button>
-</div>
+      <!-- REFERENCES -->
+      @if (resumeData.References?.length) {
+        <section class="resume-section">
+          <h3 class="resume-section__title">{{ 'resume.titles.references' | translate }}</h3>
+          <div class="references-list">
+            @for (ref of resumeData.References; track ref.Name) {
+              <div class="ref-item">
+                <h4>{{ ref.Name }}</h4>
+                <p>{{ ref.Title | translate }} @ {{ ref.Company }}</p>
+                <p class="ref-contact">
+                  <a [href]="'tel:' + ref.Phone">{{ ref.Phone }}</a> |
+                  <a [href]="'mailto:' + ref.Email">{{ ref.Email }}</a>
+                </p>
+              </div>
+            }
+          </div>
+        </section>
+      }
+    }
+  </div>
 }
+

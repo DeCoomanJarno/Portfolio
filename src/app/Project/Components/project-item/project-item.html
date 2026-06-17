@@ -1,5 +1,4 @@
-<div class="project-card animate" [routerLink]="['/Projects', project.id]">
-
+<article class="project-card" [routerLink]="['/Projects', project.id]">
   <div class="image-container" (click)="$event.stopPropagation()">
     @if (project.images && project.images.length > 0) {
       <div class="image-slider">
@@ -8,27 +7,28 @@
             [src]="image.startsWith('http') ? image : 'Resources/Projects/' + project.id + '/Images/' + image"
             [alt]="project.title"
             class="project-image"
-            [class.active]="$index === currentImageIndex" />
+            loading="lazy"
+            [class.active]="$index === currentImageIndex()" />
         }
       </div>
 
       @if (hasMultipleImages) {
         <div class="image-indicators">
-@for (image of project.images; track $index) {
-            <span
+          @for (image of project.images; track $index) {
+            <button
+              type="button"
               class="indicator"
-              [class.active]="$index === currentImageIndex"
-              (click)="setCurrentImage($index); $event.stopPropagation()"></span>
+              [class.active]="$index === currentImageIndex()"
+              [attr.aria-label]="'Image ' + ($index + 1)"
+              (click)="setCurrentImage($index); $event.stopPropagation()"></button>
           }
         </div>
       }
     }
+    <span class="project-category badge">{{ ('Project.Category.' + project.category) | translate }}</span>
   </div>
-              <div class="project-overlay">
-              <span class="project-category">{{ ('Project.Category.' + project.category) | translate}}</span>
-            </div>
-  <div class="project-info">
 
+  <div class="project-info">
     <div class="tech-list">
       @for (tech of project.technologies; track $index) {
         <img [src]="tech | icon" [alt]="tech" [matTooltip]="tech" [matTooltipPosition]="'above'" class="tech-icon" />
@@ -41,14 +41,14 @@
       <a
         [href]="project.link.url"
         target="_blank"
+        rel="noopener noreferrer"
         class="project-external-link"
         (click)="$event.stopPropagation()"
         title="{{ project.link.name || 'Visit' | translate }}">
         <span class="link-text">{{ project.link.name || 'Visit' | translate }}</span>
         <img [src]="project.link.icon | icon" [alt]="project.link.icon" />
-        <span class="link-arrow">→</span>
-        <span class="link-bg"></span>
+        <span class="link-arrow" aria-hidden="true">→</span>
       </a>
     }
   </div>
-</div>
+</article>
