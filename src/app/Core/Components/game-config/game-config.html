@@ -1,18 +1,142 @@
+<div class="config-container">
 
-<h5 class="card-title">Configuration</h5>
-<div class="form-group">
-    <label for="rows">Rows</label>
-    <input min="1" class="form-control" type="number" id="rows" (input)="UpdateRow($event)" [(ngModel)]="config!.rows" name="rows" />
-</div>
-<div class="form-group">
-    <label for="cols">Cols</label>
-    <input min="1" class="form-control" type="number" id="cols" (input)="UpdateCol($event)" [(ngModel)]="config!.cols" name="cols" />
-</div>
-<div class="form-group">
-    <label for="updateTime">Update Time (ms)</label>
-    <input min="1" class="form-control" type="number" id="updateTime" (input)="UpdateTime($event)" [(ngModel)]="config!.updateTime" name="updateTime" />
-</div>
-<div class="form-group">
-    <label for="cellSize">Cell Size (px)</label>
-    <input min="1" class="form-control" type="number" id="cellSize" (input)="UpdateCellSize($event)" [(ngModel)]="config!.cellSize" name="cellSize"/>
+  <h5>
+    {{ 'simulation.configuration' | translate }}
+  </h5>
+
+  <!-- IMPORTANT WRAPPER -->
+   @if(form)
+   {
+  <div [formGroup]="form">
+
+    <div class="config-section">
+
+      <h6>
+        {{ 'simulation.grid' | translate }}
+      </h6>
+
+      <div class="mb-3">
+        <label class="form-label">
+          {{ 'simulation.rows' | translate }}
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          min="1"
+          formControlName="rows">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">
+          {{ 'simulation.cols' | translate }}
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          min="1"
+          formControlName="cols">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">
+          {{ 'simulation.cell_size' | translate }}
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          min="1"
+          formControlName="cellSize">
+      </div>
+
+    </div>
+
+    <div class="config-section">
+
+      <h6>
+        {{ 'simulation.simulation' | translate }}
+      </h6>
+
+      <div class="mb-3">
+        <label class="form-label">
+          {{ 'simulation.update_time' | translate }}
+        </label>
+
+        <input
+          class="form-control"
+          type="number"
+          min="0"
+          formControlName="updateTime">
+      </div>
+
+    </div>
+
+  </div>
+   }
+
+  <!-- dynamic options -->
+  @if(options.length) {
+
+    <div class="config-section">
+
+      <h6>
+        {{ 'simulation.options' | translate }}
+      </h6>
+
+      @for(option of options; track option.key) {
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            {{ option.label | translate }}
+          </label>
+
+          @switch(option.type) {
+
+            @case('number') {
+              <input
+                class="form-control"
+                type="number"
+                [value]="option.value"
+                [min]="option.min"
+                [max]="option.max"
+                [step]="option.step"
+                (input)="updateOption(option, $any($event.target).value)">
+            }
+
+            @case('checkbox') {
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [checked]="option.value"
+                (change)="updateOption(option, $any($event.target).checked)">
+            }
+
+            @case('select') {
+              <select
+                class="form-select"
+                [value]="option.value"
+                (change)="updateOption(option, $any($event.target).value)">
+
+                @for(item of option.options; track item.value) {
+                  <option [value]="item.value">
+                    {{ item.label | translate }}
+                  </option>
+                }
+
+              </select>
+            }
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
 </div>

@@ -1,72 +1,157 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GameConfig } from '../../Models/GameConfig.Model';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
+
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { debounceTime, distinctUntilChanged, startWith } from 'rxjs/operators';
+
+import {
+  SimulationConfig,
+  ConfigOption,
+  SimulationConfigChange
+} from '../../Models/simulation-config.model';
 
 @Component({
-    selector: 'app-game-config',
-    imports: [FormsModule, ReactiveFormsModule],
-    templateUrl: './game-config.html',
+  selector: 'app-game-config',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslatePipe
+  ],
+  templateUrl: './game-config.html',
+  styleUrl: './game-config.scss'
 })
-export class GameConfigComponent implements OnInit {
-  @Input() config?: GameConfig = {rows: 20, cols: 20, cellSize: 20, updateTime: 100} // Default values -> can be override by the parent
+export class GameConfigComponent implements OnChanges {
 
-  @Output() ColsChanged = new EventEmitter<number>();
-  @Output() RowsChanged = new EventEmitter<number>();
-  @Output() CellSizeChanged = new EventEmitter<number>();
-  @Output() UpdateTimeChanged = new EventEmitter<number>();
+  @Input({ required: true })
+  config!: SimulationConfig;
 
-  @Output() ConfigChanged = new EventEmitter<{gameConfig: GameConfig | undefined, propertyChanged?: 'Rows' | 'Cols' | 'CellSize' | 'UpdateTime'}>();
+  @Input()
+  options: ConfigOption[] = [];
 
-  ngOnInit(): void {
-    // Merge default values with provided config
-    this.config = { 
-      rows: 20, 
-      cols: 20, 
-      cellSize: 20, 
-      updateTime: 100, 
-      ...this.config 
-    };
-    
-    this.RowsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Rows'});}) ;
-    this.ColsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Cols'});}) ;
-    this.CellSizeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'CellSize'});}) ;
-    this.UpdateTimeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'UpdateTime'});}) ;
+  @Output()
+  configChanged = new EventEmitter<SimulationConfigChange>();
+
+  form!: FormGroup;
+
+  private lastEmitted!: SimulationConfig;
+
+  constructor(private fb: FormBuilder) {}
+
+  // ----------------------------
+  // INPUT SYNC
+  // ----------------------------
+
+  ngOnChanges(): void {
+    if (!this.config) return;
+
+    if (!this.form) {
+      this.buildForm();
+      this.bindValueChanges();
+    } else {
+      this.patchForm();
+    }
   }
 
-  UpdateCol($event: Event) {
-    if(!this.config)
-      return;
+  // ----------------------------
+  // FORM SETUP
+  // ----------------------------
 
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cols = Number(inputElement.value);
-    this.ColsChanged.emit(this.config.cols);
-  }
-  
-  UpdateRow($event: Event) {
-    if(!this.config)
-      return;
+  private buildForm(): void {
+    this.form = this.fb.group({
+      rows: [this.config.rows],
+      cols: [this.config.cols],
+      updateTime: [this.config.updateTime],
+      cellSize: [this.config.cellSize]
+    });
 
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.rows = Number(inputElement.value);
-    this.RowsChanged.emit(this.config.rows);
-  }
-  
-  UpdateCellSize($event: Event) {
-    if(!this.config)
-      return;
-    
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cellSize = Number(inputElement.value);
-    this.CellSizeChanged.emit(this.config.cellSize);
+    this.lastEmitted = { ...this.config };
   }
 
-  UpdateTime($event: Event): void {
-    if(!this.config)
-      return;
-    
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.updateTime = Number(inputElement.value);
-    this.UpdateTimeChanged.emit(this.config.updateTime);
+  private patchForm(): void {
+    this.form.patchValue(
+      {
+        rows: this.config.rows,
+        cols: this.config.cols,
+        updateTime: this.config.updateTime,
+        cellSize: this.config.cellSize
+      },
+      { emitEvent: false } // IMPORTANT: prevents loops
+    );
   }
 
+  // ----------------------------
+  // REACTIVE STREAM
+  // ----------------------------
+
+  private bindValueChanges(): void {
+    this.form.valueChanges
+      .pipe(
+        startWith(this.form.value),
+        debounceTime(0), // yield to browser (prevents startup blocking)
+        distinctUntilChanged((a, b) => this.shallowEqual(a, b))
+      )
+      .subscribe(value => {
+
+        const newConfig: SimulationConfig = {
+          rows: Number(value.rows),
+          cols: Number(value.cols),
+          updateTime: Number(value.updateTime),
+          cellSize: Number(value.cellSize)
+        };
+
+        // avoid unnecessary emits
+        if (this.isSameConfig(newConfig)) return;
+
+        this.lastEmitted = newConfig;
+
+        this.configChanged.emit({
+          config: newConfig,
+          options: this.options
+        });
+      });
+  }
+
+  // ----------------------------
+  // OPTION HANDLING (lightweight)
+  // ----------------------------
+
+  updateOption(option: ConfigOption, value: any): void {
+    option.value = value;
+
+    this.configChanged.emit({
+      config: this.lastEmitted,
+      options: this.options
+    });
+  }
+
+  // ----------------------------
+  // HELPERS
+  // ----------------------------
+
+  private isSameConfig(next: SimulationConfig): boolean {
+    return (
+      this.lastEmitted.rows === next.rows &&
+      this.lastEmitted.cols === next.cols &&
+      this.lastEmitted.updateTime === next.updateTime &&
+      this.lastEmitted.cellSize === next.cellSize
+    );
+  }
+
+  private shallowEqual(a: any, b: any): boolean {
+    return (
+      a.rows === b.rows &&
+      a.cols === b.cols &&
+      a.updateTime === b.updateTime &&
+      a.cellSize === b.cellSize
+    );
+  }
 }

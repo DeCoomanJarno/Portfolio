@@ -1,185 +1,272 @@
-import { Component, OnInit } from '@angular/core';
-import { GameConfig } from '../../../../Core/Models/GameConfig.Model';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameConfigComponent } from '../../../../Core/Components/game-config/game-config';
 import { LoadingComponent } from "../../../../Core/Components/loading/loading";
-import { Cell } from '../../../../Core/Models/Cell.Model';
+import { ConfigOption, SimulationConfig, SimulationConfigChange } from '../../../../Core/Models/simulation-config.model';
 
 @Component({
-    selector: 'app-game-of-life-page',
-    imports: [CommonModule, GameConfigComponent, LoadingComponent],
-    templateUrl: './game-of-life-page.html',
-    styleUrls: ['./game-of-life-page.scss']
+  selector: 'app-game-of-life-page',
+  standalone: true,
+  imports: [CommonModule, GameConfigComponent, LoadingComponent],
+  templateUrl: './game-of-life-page.html',
+  styleUrls: ['./game-of-life-page.scss']
 })
-export class GameOfLifePageComponent implements OnInit {
+export class GameOfLifePageComponent implements OnInit, AfterViewInit {
 
-  config: GameConfig = { rows: 100, cols: 100, updateTime: 100, cellSize: 10 };
-  grid!: Cell[][];
-  interval!: NodeJS.Timeout;
-  isRunning = false;
+  @ViewChild('canvas', { static: true })
+  canvas!: ElementRef<HTMLCanvasElement>;
+
+  private ctx!: CanvasRenderingContext2D;
+
+  config: SimulationConfig = {
+    rows: 100,
+    cols: 100,
+    updateTime: 0, // no interval anymore
+    cellSize: 6
+  };
+
+  lifeOptions: ConfigOption[] = [
+  
+];
+
+  private current!: Uint8Array;
+  private next!: Uint8Array;
+
+  private running = false;
   isLoading = false;
+
+  private animationId: number | null = null;
+  private lastUpdate = 0;
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.initializeGridAsync();
   }
 
-  initializeGridAsync(): void {
-    // Delay execution to prevent blocking the main thread
-    setTimeout(() => {
-      this.grid = this.CreateGrid();
-      this.Randomize();
-      this.isLoading = false;
-    }, 0);
+  ngAfterViewInit(): void {
+    this.ctx = this.canvas.nativeElement.getContext('2d')!;
+    this.resizeCanvas();
+    this.initGrid();
+    this.randomize();
+    this.draw();
+    this.isLoading = false;
   }
 
+  // ---------------------------
+  // GRID INIT
+  // ---------------------------
 
-  CreateGrid(): Cell[][] {
-    const newGrid: Cell[][] = new Array(this.config.rows);
+  private initGrid(): void {
+    const size = this.config.rows * this.config.cols;
+    this.current = new Uint8Array(size);
+    this.next = new Uint8Array(size);
+  }
 
-    for (let i = 0; i < this.config.rows; i++) {
-      const row: Cell[] = new Array(this.config.cols);
-      for (let j = 0; j < this.config.cols; j++) {
-        row[j] = { state: false, x: i, y: j };
+  private index(r: number, c: number): number {
+    return r * this.config.cols + c;
+  }
+
+  // ---------------------------
+  // CORE SIMULATION
+  // ---------------------------
+
+  private step(): void {
+    const { rows, cols } = this.config;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+
+        let alive = 0;
+
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) continue;
+
+            const rr = r + i;
+            const cc = c + j;
+
+            if (rr >= 0 && rr < rows && cc >= 0 && cc < cols) {
+              alive += this.current[this.index(rr, cc)];
+            }
+          }
+        }
+
+        const idx = this.index(r, c);
+        const self = this.current[idx];
+
+        this.next[idx] =
+          (self === 1 && (alive === 2 || alive === 3)) ||
+          (self === 0 && alive === 3)
+            ? 1
+            : 0;
       }
-      newGrid[i] = row;
     }
 
-    return newGrid;
+    // swap buffers
+    [this.current, this.next] = [this.next, this.current];
   }
 
+  // ---------------------------
+  // LOOP (HIGH PERFORMANCE)
+  // ---------------------------
+
+  private loop = (time: number) => {
+    if (!this.running) return;
+
+    if (time - this.lastUpdate > this.config.updateTime) {
+      this.step();
+      this.draw();
+      this.lastUpdate = time;
+    }
+
+    this.animationId = requestAnimationFrame(this.loop);
+  };
+
+  // ---------------------------
+  // DRAW (CANVAS ONLY)
+  // ---------------------------
+private getCssVar(name: string): string {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(name)
+    .trim();
+}
+  private draw(): void {
+    const { rows, cols, cellSize } = this.config;
+
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+  ctx.fillStyle = this.getCssVar('--color-primary');
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const idx = this.index(r, c);
+        if (this.current[idx] === 1) {
+          ctx.fillRect(
+            c * cellSize,
+            r * cellSize,
+            cellSize,
+            cellSize
+          );
+        }
+      }
+    }
+  }
+
+  // ---------------------------
+  // USER ACTIONS (same features)
+  // ---------------------------
 
   Activate(): void {
-    if (this.isRunning) return;
-    this.isRunning = true;
-    this.interval = setInterval(() => {
-      this.Update();
-    }, this.config.updateTime);
+    if (this.running) return;
+    this.running = true;
+    this.loop(performance.now());
   }
 
   Deactivate(): void {
-    if (!this.isRunning) return;
-    this.isRunning = false;
-    clearInterval(this.interval);
+    this.running = false;
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
   }
 
   Clear(): void {
     this.Deactivate();
-    this.isLoading = true;
-    setTimeout(() => {
-      this.grid = this.CreateGrid();
-      this.isLoading = false;
-    }, 0);
-  }
-
-
-  Update(): void {
-    const newGrid: Cell[][] = [];
-    for (let i = 0; i < this.config.rows; i++) {
-      newGrid[i] = [];
-      for (let j = 0; j < this.config.cols; j++) {
-        const aliveNeighbours = this.CountAliveNeighbours(i, j);
-        const currentCell = this.grid[i][j];
-        newGrid[i][j] = {
-          ...currentCell,
-          state: (currentCell.state && (aliveNeighbours === 2 || aliveNeighbours === 3)) ||
-            (!currentCell.state && aliveNeighbours === 3)
-        };
-      }
-    }
-    this.grid = newGrid;
-  }
-
-  CountAliveNeighbours(row: number, col: number): number {
-    let count = 0;
-    for (let i = -1; i <= 1; i++) {
-      for (let j = -1; j <= 1; j++) {
-        if (i === 0 && j === 0) continue;
-        const x = row + i;
-        const y = col + j;
-        if (x >= 0 && x < this.config.rows && y >= 0 && y < this.config.cols && this.grid[x][y].state) {
-          count++;
-        }
-      }
-    }
-    return count;
+    this.initGrid();
+    this.draw();
   }
 
   Randomize(): void {
-    for (const row of this.grid) {
-      for (const cell of row) {
-        cell.state = Math.random() > 0.5;
-      }
+    const size = this.config.rows * this.config.cols;
+    for (let i = 0; i < size; i++) {
+      this.current[i] = Math.random() > 0.5 ? 1 : 0;
     }
+    this.draw();
   }
 
+onCanvasClick(event: MouseEvent): void {
+  const canvas = this.canvas.nativeElement;
 
-  ToggleCell(row: number, col: number): void {
-    this.grid[row][col].state = !this.grid[row][col].state;
+  const rect = canvas.getBoundingClientRect();
+
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  const col = Math.floor(x / this.config.cellSize);
+  const row = Math.floor(y / this.config.cellSize);
+
+  if (
+    row < 0 || row >= this.config.rows ||
+    col < 0 || col >= this.config.cols
+  ) {
+    return;
   }
 
-  ConfigChange($event: { gameConfig: GameConfig | undefined, propertyChanged?: string | undefined }) {
-    if (!$event.gameConfig)
-      return;
+  const idx = this.index(row, col);
 
-    if ($event.propertyChanged === 'Rows' || $event.propertyChanged === 'Cols')
-      return;
+  // toggle cell
+  this.current[idx] = this.current[idx] ? 0 : 1;
 
-    if (this.isRunning) {
-      this.Deactivate()
-      this.config = $event.gameConfig;
-      this.Activate()
-    }
-    else {
-      this.config = $event.gameConfig;
-    }
+  // immediate redraw
+  this.draw();
+}
+
+  // ---------------------------
+  // RESIZE
+  // ---------------------------
+
+  RowsChanged(newRows: number): void {
+    this.config.rows = newRows;
+    this.rebuildGrid();
   }
 
-  RowsChanged(newRowCount: number) {
-    this.isLoading = true;
-
-    const currentRowCount = this.grid.length;
-
-    // Adjust the number of rows
-    if (newRowCount > currentRowCount) {
-      // Add new rows
-      for (let i = currentRowCount; i < newRowCount; i++) {
-        const arr = new Array(this.config.cols).fill(0).map((_, j) => {
-          return { state: false, x: j, y: i };
-        });
-        this.grid.push(arr);
-      }
-    } else if (newRowCount < currentRowCount) {
-      // Remove extra rows
-      this.grid.splice(newRowCount);
-    }
-
-    this.config.rows = newRowCount;
-    this.isLoading = false;
+  ColsChanged(newCols: number): void {
+    this.config.cols = newCols;
+    this.rebuildGrid();
   }
 
-  ColsChanged(newColCount: number) {
-    this.isLoading = true;
-    const currentColCount = this.grid[0]?.length || 0;
-
-    // Adjust the number of columns in each row
-    if (newColCount > currentColCount) {
-      // Add new columns to each row
-      for (let i = 0; i < this.grid.length; i++) {
-        const row = this.grid[i];
-        const newCells = new Array(newColCount - currentColCount).fill(0).map((_, j) => {
-          return { state: false, x: currentColCount + j, y: i };
-        });
-        row.push(...newCells);
-      }
-    } else if (newColCount < currentColCount) {
-      // Remove extra columns from each row
-      for (const element of this.grid) {
-        element.splice(newColCount);
-      }
-    }
-    this.config.cols = newColCount;
-    this.isLoading = false;
+  private rebuildGrid(): void {
+    this.Deactivate();
+    this.initGrid();
+    this.randomize();
+    this.resizeCanvas();
+    this.draw();
   }
+
+  private resizeCanvas(): void {
+    const canvas = this.canvas.nativeElement;
+    canvas.width = this.config.cols * this.config.cellSize;
+    canvas.height = this.config.rows * this.config.cellSize;
+  }
+
+  // ---------------------------
+  // CONFIG HOOK (kept compatible)
+  // ---------------------------
+  onConfigChanged(event: SimulationConfigChange): void {
+
+    if (!event.config) return;
+
+    this.config = event.config;
+    this.rebuildGrid();
+  const pattern =
+    event.options.find(
+      x => x.key === 'pattern'
+    )?.value;
+
+  const wrapEdges =
+    event.options.find(
+      x => x.key === 'wrapEdges'
+    )?.value;
+
+  // apply settings
+}
+randomize(): void {
+  const size = this.config.rows * this.config.cols;
+
+  for (let i = 0; i < size; i++) {
+    this.current[i] = Math.random() > 0.5 ? 1 : 0;
+  }
+
+  this.draw();
+}
 
 }

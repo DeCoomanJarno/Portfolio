@@ -1,24 +1,9 @@
 @use 'styles/index' as *;
 
-.grid {
-  display: grid;
-  gap: 1px;
-  margin-top: var(--space-5);
-}
 
-.cell {
-  border: 1px solid var(--color-outline);
-  cursor: pointer;
-
-  &.alive {
-    background-color: var(--color-on-surface);
-  }
-}
-
-.card {
-  margin-bottom: var(--space-3);
-}
-
-.btn {
-  margin: var(--space-1);
+canvas {
+  background: var(--color-background);
+  border-radius: 6px;
+  border:1px solid var(--color-primary); 
+  image-rendering: pixelated;
 }

@@ -58,5 +58,33 @@
     },
     "contact": {
         "email": "Email"
-    }
+    },
+  "simulation": {
+    "configuration": "Configuration",
+    "grid": "Grid",
+    "simulation": "Simulation",
+    "options": "Options",
+
+    "rows": "Rows",
+    "cols": "Columns",
+    "cell_size": "Cell size",
+    "update_time": "Update time",
+
+    "pattern": "Pattern",
+    "start_grid": "Start grid",
+    "start_direction": "Start direction",
+
+    "pattern_random": "Random",
+    "pattern_empty": "Empty",
+    "pattern_glider": "Glider",
+    "pattern_gosper": "Gosper gun",
+    "pattern_cross": "Cross",
+
+    "wrap_edges": "Wrap edges",
+
+    "up": "Up",
+    "right": "Right",
+    "down": "Down",
+    "left": "Left"
+}
 }
