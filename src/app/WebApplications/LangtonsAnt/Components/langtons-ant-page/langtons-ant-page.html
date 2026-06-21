@@ -16,9 +16,8 @@
 
       <div class="card-body">
 <app-game-config
-  [config]="config"
-  [options]="antOptions"
-  (configChanged)="onConfigChanged($event)">
+[config]="cfg"
+  (configChange)="onConfigChanged($event)">
 </app-game-config>
 
         <app-loading [isLoading]="isLoading"></app-loading>

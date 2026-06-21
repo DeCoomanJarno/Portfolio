@@ -1,35 +1,15 @@
-export interface SimulationConfig {
-  rows: number;
-  cols: number;
-  updateTime: number;
-  cellSize: number;
-}
-
-export type ConfigOptionType =
-  | 'number'
-  | 'select'
-  | 'checkbox';
-
-export interface ConfigOption {
-  key: string;
-
-  label: string;
-
-  type: ConfigOptionType;
-
-  value: any;
+export interface ConfigField<T> {
+  value: T;
+  type: 'slider' | 'toggle' | 'select';
 
   min?: number;
   max?: number;
   step?: number;
 
-  options?: {
-    value: any;
-    label: string;
-  }[];
+  options?: { label: string; value: any }[];
 }
-
-export interface SimulationConfigChange {
-  config: SimulationConfig;
-  options: ConfigOption[];
-}
+export type ConfigChange<T> = {
+  key: keyof T;
+  value: ConfigField<any>;
+  full: Record<keyof T, ConfigField<any>>;
+};

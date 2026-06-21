@@ -1,142 +1,44 @@
-<div class="config-container">
+<div class="config-panel">
 
-  <h5>
-    {{ 'simulation.configuration' | translate }}
-  </h5>
+  @for (field of config | keyvalue; track field.key) {
 
-  <!-- IMPORTANT WRAPPER -->
-   @if(form)
-   {
-  <div [formGroup]="form">
+    @let key = field.key;
+    @let c = field.value;
 
-    <div class="config-section">
+    <div class="config-control">
 
-      <h6>
-        {{ 'simulation.grid' | translate }}
-      </h6>
+      <label>{{ key }}</label>
 
-      <div class="mb-3">
-        <label class="form-label">
-          {{ 'simulation.rows' | translate }}
-        </label>
+      @if (c.type === 'slider') {
+        <input type="range"
+               [min]="c.min"
+               [max]="c.max"
+               [step]="c.step"
+               [value]="c.value"
+               (input)="update(key, $any($event.target).value)" />
 
-        <input
-          class="form-control"
-          type="number"
-          min="1"
-          formControlName="rows">
-      </div>
+        <span>{{ c.value }}</span>
+      }
 
-      <div class="mb-3">
-        <label class="form-label">
-          {{ 'simulation.cols' | translate }}
-        </label>
+      @if (c.type === 'toggle') {
+        <input type="checkbox"
+               [checked]="c.value"
+               (change)="update(key, $any($event.target).checked)" />
+      }
 
-        <input
-          class="form-control"
-          type="number"
-          min="1"
-          formControlName="cols">
-      </div>
+      @if (c.type === 'select') {
+        <select
+          [value]="c.value"
+          (change)="update(key, $any($event.target).value)">
 
-      <div class="mb-3">
-        <label class="form-label">
-          {{ 'simulation.cell_size' | translate }}
-        </label>
-
-        <input
-          class="form-control"
-          type="number"
-          min="1"
-          formControlName="cellSize">
-      </div>
-
-    </div>
-
-    <div class="config-section">
-
-      <h6>
-        {{ 'simulation.simulation' | translate }}
-      </h6>
-
-      <div class="mb-3">
-        <label class="form-label">
-          {{ 'simulation.update_time' | translate }}
-        </label>
-
-        <input
-          class="form-control"
-          type="number"
-          min="0"
-          formControlName="updateTime">
-      </div>
-
-    </div>
-
-  </div>
-   }
-
-  <!-- dynamic options -->
-  @if(options.length) {
-
-    <div class="config-section">
-
-      <h6>
-        {{ 'simulation.options' | translate }}
-      </h6>
-
-      @for(option of options; track option.key) {
-
-        <div class="mb-3">
-
-          <label class="form-label">
-            {{ option.label | translate }}
-          </label>
-
-          @switch(option.type) {
-
-            @case('number') {
-              <input
-                class="form-control"
-                type="number"
-                [value]="option.value"
-                [min]="option.min"
-                [max]="option.max"
-                [step]="option.step"
-                (input)="updateOption(option, $any($event.target).value)">
-            }
-
-            @case('checkbox') {
-              <input
-                type="checkbox"
-                class="form-check-input"
-                [checked]="option.value"
-                (change)="updateOption(option, $any($event.target).checked)">
-            }
-
-            @case('select') {
-              <select
-                class="form-select"
-                [value]="option.value"
-                (change)="updateOption(option, $any($event.target).value)">
-
-                @for(item of option.options; track item.value) {
-                  <option [value]="item.value">
-                    {{ item.label | translate }}
-                  </option>
-                }
-
-              </select>
-            }
-
+          @for (o of c.options; track o.value) {
+            <option [value]="o.value">{{ o.label }}</option>
           }
 
-        </div>
-
+        </select>
       }
 
     </div>
-
   }
 
 </div>
