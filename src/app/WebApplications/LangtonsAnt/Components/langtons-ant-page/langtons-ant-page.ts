@@ -9,7 +9,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from '../../../../Core/Components/loading/loading';
 import { GameConfigComponent } from '../../../../Core/Components/game-config/game-config';
-import { ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
+import { ConfigAction, ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
+import { BehaviorSubject } from 'rxjs';
 
 type Direction = 'up' | 'right' | 'down' | 'left';
 
@@ -36,37 +37,107 @@ export class LangtonsAntPageComponent implements OnInit, AfterViewInit {
 
   private ctx!: CanvasRenderingContext2D;
 
-  // ─────────────────────────────
-  // STATE
-  // ─────────────────────────────
-cfg: LangtonsAntConfigModel = {
-  rows: { value: 100, type: 'slider', min: 10, max: 300, step: 1 },
-  cols: { value: 100, type: 'slider', min: 10, max: 300, step: 1 },
-  cellSize: { value: 6, type: 'slider', min: 2, max: 12, step: 1 },
-  updateTime: { value: 10, type: 'slider', min: 1, max: 1000, step: 1 },
-  wrapEdges: { value: false, type: 'toggle' },
-
-  startDirection: {
-    value: 'up',
-    type: 'select',
-    options: [
-      { label: 'Up', value: 'up' },
-      { label: 'Right', value: 'right' },
-      { label: 'Down', value: 'down' },
-      { label: 'Left', value: 'left' }
-    ]
-  }
-};
-
   private grid!: Uint8Array;
 
   ant = { x: 0, y: 0, dir: 0 };
 
-  isRunning = false;
-  isLoading = false;
+private isRunning$ = new BehaviorSubject<boolean>(false);  
+isLoading = false;
 
   private animationId: number | null = null;
   private lastUpdate = 0;
+
+  // ─────────────────────────────
+  // STATE
+  // ─────────────────────────────
+cfg: LangtonsAntConfigModel = {
+  rows: {
+    value: 100,
+    min: 10,
+    max: 300,
+    step: 1,
+    type: 'slider',
+    labelKey: 'ant.rows.label',
+    descriptionKey: 'ant.rows.description'
+  },
+
+  cols: {
+    value: 100,
+    min: 10,
+    max: 300,
+    step: 1,
+    type: 'slider',
+    labelKey: 'ant.cols.label',
+    descriptionKey: 'ant.cols.description'
+  },
+
+  cellSize: {
+    value: 6,
+    min: 2,
+    max: 12,
+    step: 1,
+    type: 'slider',
+    unit: 'px',
+    labelKey: 'ant.cellSize.label',
+    descriptionKey: 'ant.cellSize.description'
+  },
+
+  updateTime: {
+    value: 10,
+    min: 1,
+    max: 10000,
+    step: 1,
+    type: 'slider',
+    unit: 'ms',
+    labelKey: 'ant.updateTime.label',
+    descriptionKey: 'ant.updateTime.description'
+  },
+
+  wrapEdges: {
+    value: true,
+    type: 'toggle',
+    labelKey: 'ant.wrapEdges.label',
+    descriptionKey: 'ant.wrapEdges.description'
+  },
+
+  startDirection: {
+    value: 'up',
+    type: 'select',
+    labelKey: 'ant.startDirection.label',
+    descriptionKey: 'ant.startDirection.description',
+    options: [
+      { labelKey: 'ant.direction.up', value: 'up' },
+      { labelKey: 'ant.direction.right', value: 'right' },
+      { labelKey: 'ant.direction.down', value: 'down' },
+      { labelKey: 'ant.direction.left', value: 'left' }
+    ]
+  }
+};
+
+actions: ConfigAction[] = [
+  {
+    labelKey: 'common.start',
+    variant: 'primary',
+    visible: () => !this.isRunning$.value,
+    execute: () => this.Activate()
+  },
+  {
+    labelKey: 'common.pause',
+    variant: 'warning',
+    visible: () => this.isRunning$.value,
+    execute: () => this.Deactivate()
+  },
+  {
+    labelKey: 'common.reset',
+    variant: 'danger',
+    execute: () => this.Clear()
+  },
+  {
+    labelKey: 'common.randomize',
+    variant: 'secondary',
+    execute: () => this.Randomize()
+  }
+];
 
   // ─────────────────────────────
   ngOnInit(): void {
@@ -146,30 +217,51 @@ private resetAnt(): void {
 }
 
   private step(): void {
-    const idx = this.index(this.ant.x, this.ant.y);
-    const cell = this.grid[idx];
+  const rows = this.cfg.rows.value;
+  const cols = this.cfg.cols.value;
 
-    this.ant.dir = cell === 0
-      ? (this.ant.dir + 1) % 4
-      : (this.ant.dir + 3) % 4;
+  const idx = this.index(this.ant.x, this.ant.y);
+  const cell = this.grid[idx];
 
-    this.grid[idx] ^= 1;
+  // turn
+  this.ant.dir = cell === 0
+    ? (this.ant.dir + 1) % 4
+    : (this.ant.dir + 3) % 4;
 
-    switch (this.ant.dir) {
-      case 0: this.ant.x--; break;
-      case 1: this.ant.y++; break;
-      case 2: this.ant.x++; break;
-      case 3: this.ant.y--; break;
-    }
+  // flip cell
+  this.grid[idx] ^= 1;
 
-    if (this.cfg.wrapEdges.value) {
-      this.ant.x = (this.ant.x + this.cfg.rows.value) % this.cfg.rows.value;
-      this.ant.y = (this.ant.y + this.cfg.cols.value) % this.cfg.cols.value;
+  // move
+  let x = this.ant.x;
+  let y = this.ant.y;
+
+  switch (this.ant.dir) {
+    case 0: x--; break;
+    case 1: y++; break;
+    case 2: x++; break;
+    case 3: y--; break;
+  }
+
+  // wrap OR clamp (THIS is the key fix)
+  if (this.cfg.wrapEdges.value) {
+    x = (x + rows) % rows;
+    y = (y + cols) % cols;
+  } else {
+    // clamp OR stop at edges safely
+    if (x < 0 || x >= rows || y < 0 || y >= cols) {
+      // reverse move (prevents invalid state)
+      this.ant.x = Math.min(Math.max(this.ant.x, 0), rows - 1);
+      this.ant.y = Math.min(Math.max(this.ant.y, 0), cols - 1);
+      return;
     }
   }
 
+  this.ant.x = x;
+  this.ant.y = y;
+}
+
   private loop = (t: number) => {
-    if (!this.isRunning) return;
+    if (!this.isRunning$.value) return;
 
     if (t - this.lastUpdate > this.cfg.updateTime.value) {
       this.step();
@@ -181,14 +273,14 @@ private resetAnt(): void {
   };
 
   Activate(): void {
-    if (this.isRunning) return;
-    this.isRunning = true;
-    this.lastUpdate = performance.now();
+    if (this.isRunning$.value) return;
+    this.isRunning$.next(true);
+        this.lastUpdate = performance.now();
     this.loop(this.lastUpdate);
   }
 
   Deactivate(): void {
-    this.isRunning = false;
+    this.isRunning$.next(false);
     if (this.animationId) cancelAnimationFrame(this.animationId);
   }
 

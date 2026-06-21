@@ -1,62 +1,25 @@
 <h1 class="text-center">Langton's Ant</h1>
 
-<div class="row mt-3">
-
-  <!-- CANVAS -->
-  <div class="col-md-9 d-flex justify-content-center align-items-center">
-    <canvas
-      #canvas
-      (click)="onCanvasClick($event)">
-    </canvas>
-  </div>
-
-  <!-- CONTROLS -->
-  <div class="col-md-3 d-flex align-items-center">
-    <div class="card config">
-
-      <div class="card-body">
-<app-game-config
-[config]="cfg"
-  (configChange)="onConfigChanged($event)">
-</app-game-config>
-
         <app-loading [isLoading]="isLoading"></app-loading>
 
-      </div>
+<div class="row mt-3 align-items-start">
 
-      <div class="card-body">
+  <!-- CANVAS -->
+  <div class="col-12 col-lg-9 d-flex justify-content-center align-items-start">
 
-        <button
-          class="btn btn-primary btn-block"
-          (click)="Activate()"
-          [disabled]="isLoading">
-          Start
-        </button>
+    <canvas #canvas></canvas>
 
-        <button
-          class="btn btn-danger btn-block"
-          (click)="Deactivate()"
-          [disabled]="isLoading">
-          Stop
-        </button>
+  </div>
 
-        <button
-          class="btn btn-warning btn-block"
-          (click)="Clear()"
-          [disabled]="isLoading">
-          Reset
-        </button>
+  <!-- CONFIG -->
+  <div class="col-12 col-lg-3">
 
-        <button
-          class="btn btn-info btn-block"
-          (click)="Randomize()"
-          [disabled]="isLoading">
-          Randomize
-        </button>
+    <app-game-config
+      [config]="cfg"
+      [actions]="actions"
+      (configChange)="onConfigChanged($event)">
+    </app-game-config>
 
-      </div>
-
-    </div>
   </div>
 
 </div>

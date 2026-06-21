@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
 
 import { GameConfigComponent } from '../../../../Core/Components/game-config/game-config';
 import { LoadingComponent } from '../../../../Core/Components/loading/loading';
-import { ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
+import { ConfigAction, ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
+import { async, BehaviorSubject, Observable } from 'rxjs';
 
 export interface LifeConfigModel{
   rows: ConfigField<number>;
@@ -34,27 +35,95 @@ export class GameOfLifePageComponent implements OnInit, AfterViewInit {
   private ctx!: CanvasRenderingContext2D;
 
   // ----------------------------
-  // SINGLE SOURCE OF TRUTH
-  // ----------------------------
-cfg: LifeConfigModel = {
-  rows: { value: 100, min: 10, max: 300, step: 1, type: 'slider' },
-  cols: { value: 100, min: 10, max: 300, step: 1, type: 'slider' },
-  cellSize: { value: 6, min: 2, max: 12, step: 1, type: 'slider' },
-  updateTime: { value: 10, min: 1, max: 10000, step: 1, type: 'slider' },
-  wrapEdges: { value: false, type: 'toggle' }
-};
-
-  // ----------------------------
   // GRID
   // ----------------------------
   private current!: Uint8Array;
   private next!: Uint8Array;
 
-  private running = false;
+  private isRunning$ = new BehaviorSubject<boolean>(false);
   isLoading = false;
 
   private animationId: number | null = null;
   private lastUpdate = 0;
+
+  // ----------------------------
+  // SINGLE SOURCE OF TRUTH
+  // ----------------------------
+cfg: LifeConfigModel = {
+  rows: {
+    value: 100,
+    min: 10,
+    max: 300,
+    step: 1,
+    type: 'slider',
+    labelKey: 'life.rows.label',
+    descriptionKey: 'life.rows.description'
+  },
+
+  cols: {
+    value: 100,
+    min: 10,
+    max: 300,
+    step: 1,
+    type: 'slider',
+    labelKey: 'life.cols.label',
+    descriptionKey: 'life.cols.description'
+  },
+
+  cellSize: {
+    value: 6,
+    min: 2,
+    max: 12,
+    step: 1,
+    type: 'slider',
+    unit: 'px',
+    labelKey: 'life.cellSize.label',
+    descriptionKey: 'life.cellSize.description'
+  },
+
+  updateTime: {
+    value: 10,
+    min: 1,
+    max: 10000,
+    step: 1,
+    type: 'slider',
+    unit: 'ms',
+    labelKey: 'life.updateTime.label',
+    descriptionKey: 'life.updateTime.description'
+  },
+
+  wrapEdges: {
+    value: false,
+    type: 'toggle',
+    labelKey: 'life.wrapEdges.label',
+    descriptionKey: 'life.wrapEdges.description'
+  }
+};
+
+actions: ConfigAction[] = [
+  {
+    labelKey: 'common.start',
+    variant: 'primary',
+    visible: () => !this.isRunning$.value,
+    execute: () => this.Activate()
+  },
+  {
+    labelKey: 'common.pause',
+    variant: 'warning',
+    visible: () => this.isRunning$.value,
+    execute: () => this.Deactivate()
+  },
+  {
+    labelKey: 'common.reset',
+    variant: 'danger',
+    execute: () => this.Clear()
+  },
+  {
+    labelKey: 'common.randomize',
+    variant: 'secondary',
+    execute: () => this.Randomize()
+  }
+];
 
   // ----------------------------
   // INIT
@@ -162,7 +231,7 @@ onConfigChanged(event: ConfigChange<LifeConfigModel>): void {
   // LOOP
   // ----------------------------
   private loop = (time: number) => {
-    if (!this.running) return;
+    if (!this.isRunning$.value) return;
 
     if (time - this.lastUpdate > this.cfg.updateTime.value) {
       this.step();
@@ -174,15 +243,15 @@ onConfigChanged(event: ConfigChange<LifeConfigModel>): void {
   };
 
   Activate(): void {
-    if (this.running) return;
+    if (this.isRunning$.value) return;
 
-    this.running = true;
+    this.isRunning$.next(true);
     this.lastUpdate = performance.now();
     this.loop(this.lastUpdate);
   }
 
   Deactivate(): void {
-    this.running = false;
+    this.isRunning$.next(false);
 
     if (this.animationId !== null) {
       cancelAnimationFrame(this.animationId);
