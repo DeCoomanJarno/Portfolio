@@ -1,277 +1,69 @@
 {
-    "freelance": {
-        "ui": {
-            "sending": "Aanvraag verzenden...",
-            "getQuote": "Offerte aanvragen",
-            "other": "Overig / Niet vermeld",
-            "close": "Sluiten"
-        },
-        "hero": {
-            "status": "Beschikbaar voor remote projecten",
-            "eyebrow": "Remote-First Developer & Software Engineer",
-            "title1": "Webapplicaties die",
-            "titleHighlight": "uw bedrijf vooruithelpen",
-            "subtitle": "Ik ontwerp en bouw moderne webapps met Angular en .NET — van eerste idee tot productie. Remote-first, async-vriendelijk en resultaatgericht. Zuivere architectuur, betrouwbare oplevering en heldere communicatie.",
-            "getintouch": "Start een project",
-            "viewwork": "Bekijk mijn werk",
-            "basedIn": "Remote Wereldwijd · Geen reizen nodig",
-            "techStack": "Kerntechnologieën"
-        },
-        "services": {
-            "label": "Diensten",
-            "title": "Wat ik voor u kan bouwen",
-            "subtitle": "End-to-end ontwikkeling afgestemd op uw bedrijfsdoelen — van responsieve webapps tot gespecialiseerde native software."
-        },
-        "ai": {
-            "label": "Learning in public",
-            "title": "Actief bezig met AI engineering",
-            "desc": "Ik verdiep mij volop in AI engineering — bouwen met LLM API's, experimenteren met retrieval- en agent-workflows, en AI-ondersteunde tooling in mijn dagelijkse ontwikkelpraktijk. Ik verkoop mezelf (nog) niet als AI-expert; ik breng de discipline van een engineer naar een snel evoluerend vakgebied.",
-            "points": {
-                "workflow": {
-                    "title": "AI-ondersteunde workflow",
-                    "desc": "Ik gebruik dagelijks AI-tooling voor code review, refactoring en prototyping — sneller opleveren, dezelfde engineeringstandaarden."
-                },
-                "integrations": {
-                    "title": "Praktische integraties",
-                    "desc": "Hands-on experimenten met LLM API's, embeddings en automatisering — eerst toegepast op kleine, echte use-cases."
-                },
-                "honest": {
-                    "title": "Eerlijke scoping",
-                    "desc": "Is AI niet het juiste gereedschap voor uw probleem? Dan zeg ik dat — en stel ik iets voor dat wél werkt."
-                }
-            }
-        },
-        "work": {
-            "label": "Portfolio",
-            "title": "Geselecteerd werk",
-            "subtitle": "Echte projecten die technische diepgang en probleemoplossend vermogen aantonen.",
-            "viewAll": "Bekijk alle projecten"
-        },
-        "why": {
-            "cards": {
-                "rapid": {
-                    "title": "Snelle levering",
-                    "desc": "Van briefing tot productie in dagen, met agile afstemming en directe feedbackloops."
-                },
-                "scale": {
-                    "title": "Gebouwd voor schaal",
-                    "desc": "Architectuur eerst, onderhoudbaarheid altijd — code die groei en audits overleeft."
-                },
-                "partner": {
-                    "title": "Team partner",
-                    "desc": "Soepele processen met bestaande teams — betrouwbare communicatie, geen ego."
-                }
-            }
-        },
-        "expertises": {
-            "title": "Technische Expertise",
-            "desc": "End-to-end ontwikkelingsdiensten afgestemd op uw bedrijfsdoelstellingen.",
-            "hour": "u",
-            "setup": " setup",
-            "starting": "Startprijs",
-            "projectBased": "Op basis van projectprijs",
-            "DESK": {
-                "title": "Desktopsoftware",
-                "desc": "Robuuste enterprise tools met offline ondersteuning, gebouwd met .NET/C#.",
-                "shortdesc": "Desktopapplicatiefunctionaliteiten configureren"
-            },
-            "CPP": {
-                "title": "High-Performance C++",
-                "desc": "Native systemen en low-level optimalisatie voor veeleisende toepassingen.",
-                "shortdesc": "Low-level ontwikkeling configureren"
-            },
-            "WEB": {
-                "title": "Moderne Webapps",
-                "desc": "Moderne, responsieve applicaties met Angular en TypeScript. Van websites tot complexe SPA's.",
-                "shortdesc": "Webapplicatiefunctionaliteiten configureren"
-            },
-            "VR": {
-                "title": "VR/AR-oplossingen",
-                "desc": "Immersieve ervaringen voor training, visualisatie en interactieve toepassingen.",
-                "shortdesc": "VR/AR-specifieke functionaliteiten configureren"
-            },
-            "AI": {
-                "title": "AI & Machine Learning",
-                "desc": "Slimme, data-gestuurde oplossingen met ML/AI. Van aanbevelingen tot predictive analytics en intelligente automatisering.",
-                "shortdesc": "AI/ML-services configureren"
-            }
-        },
-        "projects": {
-            "subtitle": "Echte projecten die technische expertise en probleemoplossend vermogen tonen."
-        },
-        "contact": {
-            "title": "Laten we samenwerken",
-            "cta_heading": "Klaar om iets buitengewoons te bouwen?",
-            "primary": {
-                "title": "Voorstel aanvragen",
-                "desc": "Beschrijf uw idee en ontvang een eerste inschatting.",
-                "link": "Start nu"
-            },
-            "schedule": {
-                "title": "Plan een kennismakingsgesprek",
-                "desc": "Een introductie van 30 minuten om haalbaarheid te bespreken.",
-                "link": "Bekijk kalender"
-            },
-            "linkedIn": {
-                "title": "Connecteer op LinkedIn",
-                "desc": "Bekijk mijn achtergrond en netwerk.",
-                "link": "Bekijk profiel"
-            },
-            "note": "Rechtstreeks contact met de ontwikkelaar • Geen bureaukosten • Eerlijk technisch advies"
-        },
-        "quote": {
-            "title": "Projectaanvraag",
-            "name": "Volledige naam",
-            "email": "Zakelijk e-mailadres",
-            "service": "Interessegebied",
-            "budget": "Verwacht budget",
-            "details": "Projectcontext",
-            "cancel": "Annuleren",
-            "submit": "Aanvraag versturen",
-            "placeholders": {
-                "name": "Jan Jansen",
-                "email": "jan@bedrijf.com",
-                "details": "Vertel me over het probleem, platform, timing en het gewenste resultaat."
-            },
-            "budgets": {
-                "small": "Micro / Prototype (< €2k)",
-                "medium": "Standaardproject (€2k - €5k)",
-                "large": "Enterprise / Complex (€5k+)",
-                "tbd": "Nog niet zeker / Te bespreken"
-            },
-            "errors": {
-                "submit": "Het verzenden van de offerteaanvraag is mislukt. Probeer opnieuw."
-            }
-        },
-        "process": {
-            "title": "Ontwikkelproces",
-            "subtitle": "Een gestructureerde aanpak om projectsucces te garanderen.",
-            "step1": {
-                "title": "Analyse",
-                "desc": "We stemmen doelstellingen, technische randvoorwaarden en succescriteria af."
-            },
-            "step2": {
-                "title": "Bouwen & Itereren",
-                "desc": "Snelle ontwikkelsprints met regelmatige demo’s voor feedback."
-            },
-            "step3": {
-                "title": "Lancering & Ondersteuning",
-                "desc": "Vlotte oplevering, overdracht van documentatie en monitoring van stabiliteit."
-            }
-        },
-        "modal": {
-            "success": {
-                "title": "Aanvraag verzonden!",
-                "desc": "Bedankt voor uw aanvraag.<br>Ik neem <strong>binnen 24 uur</strong> contact met u op."
-            }
-        },
-        "calc": {
-            "badge": "Kostencalculator",
-            "title": "Projectkostenschatting",
-            "subtitle": "Ontvang meteen een indicatieve kostprijs voor uw project",
-            "step1Title": "Projecttype & schaal",
-            "step1Desc": "Kies uw projectcategorie en een geschatte omvang",
-            "projectScale": "Projectomvang",
-            "hour": "u",
-            "size": {
-                "proto": {
-                    "title": "Klein / Prototype",
-                    "sub": "Proof of concept of MVP"
-                },
-                "mvp": {
-                    "title": "Middelgroot",
-                    "sub": "Applicatie met volledige functionaliteit"
-                },
-                "production": {
-                    "title": "Groot / Enterprise",
-                    "sub": "Productieklaar systeem"
-                }
-            },
-            "step2Title": "Kernfunctionaliteiten",
-            "step2Desc": "Selecteer de functionaliteiten die uw project nodig heeft",
-            "hasDesign": "Ontwerp aangeleverd",
-            "hasDesignDesc": "U beschikt reeds over professionele designs",
-            "hasBackend": "Backend / Server vereist",
-            "hasBackendDesc": "Serverlogica en databank",
-            "backend": {
-                "simple": "Eenvoudige API",
-                "medium": "Standaard backend",
-                "complex": "Complexe architectuur"
-            },
-            "needsAuth": "Gebruikersauthenticatie",
-            "needsPayments": "Betaalintegratie",
-            "needsAnalytics": "Analytics & tracking",
-            "step3vrTitle": "VR/AR-functionaliteiten",
-            "step3vrDesc": "Configureer virtual/augmented reality-specificaties",
-            "vr": {
-                "platforms": "Doelplatformen",
-                "interaction": "Interactiecomplexiteit",
-                "interactionBasic": "Basis (kijken/klikken)",
-                "interactionAdvanced": "Geavanceerd (handtracking)",
-                "interactionPhysics": "Fysica-gebaseerde interacties",
-                "graphics": "Visuele kwaliteit",
-                "graphicsLow": "Laag (mobiele VR)",
-                "graphicsMedium": "Middelmatig",
-                "graphicsHigh": "Hoog (PC VR)",
-                "graphicsUltra": "Ultra (fotorealistisch)",
-                "multiplayer": "Multiplayer-ondersteuning",
-                "voiceChat": "Spraakcommunicatie",
-                "customShaders": "Aangepaste visuele effecten"
-            },
-            "step3webTitle": "Webapplicatiefunctionaliteiten",
-            "step3webDesc": "Configureer de vereisten van uw webproject",
-            "web": {
-                "uiComplexity": "Interfacecomplexiteit",
-                "uiSimple": "Eenvoudig (enkele pagina’s)",
-                "uiMedium": "Gemiddeld (standaard app)",
-                "uiComplex": "Complex (veel functionaliteiten)",
-                "mobile": "Mobiel responsief",
-                "pwa": "Progressive Web App",
-                "ssr": "Server-side rendering",
-                "realtime": "Realtime updates",
-                "admin": "Admin dashboard"
-            },
-            "step3deskTitle": "Desktopapplicatiefunctionaliteiten",
-            "step3deskDesc": "Configureer desktopsoftwarevereisten",
-            "desk": {
-                "hardwareIO": "Hardware-integratie",
-                "ioSimple": "Eenvoudig (bestanden/USB)",
-                "ioMedium": "Gemiddeld (serieel/apparaten)",
-                "ioComplex": "Complex (custom hardware)",
-                "database": "Databasetype",
-                "dbSqlite": "SQLite (embedded)",
-                "dbSqlServer": "SQL Server",
-                "dbPostgres": "PostgreSQL",
-                "reporting": "Rapporten & exports",
-                "installer": "Professionele installer"
-            },
-            "step3cppTitle": "C++-projectfunctionaliteiten",
-            "step3cppDesc": "Configureer native ontwikkelvereisten",
-            "cpp": {
-                "platforms": "Doelplatformen",
-                "optimization": "Prestatieniveau",
-                "optStandard": "Standaard",
-                "optHigh": "Geoptimaliseerd",
-                "optExtreme": "Maximale prestaties",
-                "drivers": "Aangepaste drivers vereist",
-                "realtime": "Realtime verwerking",
-                "threading": "Multithreading",
-                "gui": "Grafische interface"
-            },
-            "step4Title": "Hardware & apparatuur",
-            "step4Desc": "Is specifieke hardware vereist voor het project?",
-            "needsHardware": "Aankoop van hardware nodig",
-            "resultTitle": "Geschatte projectkost",
-            "totalHours": "Ontwikkeluren",
-            "weeks": "weken (ongeveer)",
-            "costBreakdown": "Kostenoverzicht",
-            "development": "Ontwikkeling",
-            "discount": "Volumekorting",
-            "hardware": "Hardware & apparatuur",
-            "procurementFee": "Servicekost voor aankoop",
-            "totalEstimate": "Totale schatting",
-            "excludingVat": "Excl. 21% btw",
-            "disclaimer": "Dit is een indicatieve schatting. De uiteindelijke prijs hangt af van de gedetailleerde vereisten en kan variëren. Contacteer mij voor een nauwkeurige offerte."
-        }
+  "freelance": {
+    "hero": {
+      "status": "beschikbaar voor freelance werk",
+      "line1": "Ik bouw systemen",
+      "line2Prefix": "die",
+      "think": "denken",
+      "subtitle": "Full-stack .NET & Angular developer met focus op AI-integratie. Gevestigd in België — wereldwijd remote actief.",
+      "ctaPrimary": "Bekijk mijn werk",
+      "ctaSecondary": "Neem contact op",
+      "scroll": "scrollen",
+      "scrollLabel": "Scroll naar diensten"
+    },
+
+    "services": {
+      "eyebrow": "Wat ik doe",
+
+      "backend": {
+        "title": ".NET & C# ontwikkeling",
+        "desc": "Robuuste API’s, background workers en enterprise systemen op .NET 8 LTS. Schone architectuur en schaalbaar ontwerp."
+      },
+      "frontend": {
+        "title": "Angular applicaties",
+        "desc": "Schaalbare single-page applicaties met componentarchitectuur, RxJS state management en responsive UX."
+      },
+      "data": {
+        "title": "SQL & database design",
+        "desc": "Databasestructuur, query-optimalisatie en migraties die je data betrouwbaar en onderhoudbaar houden."
+      },
+      "ai": {
+        "title": "AI integratie",
+        "desc": "Intelligentie waar het waarde toevoegt: chatbots, RAG pipelines, automatisatie en contextuele API features."
+      }
+    },
+
+    "stats": {
+      "exp": "Professionele ervaring",
+      "tech": "Kerntechnologieën geleverd",
+      "remote": "Volledig remote en async werkbaar"
+    },
+
+    "why": {
+      "eyebrow": "Waarom samenwerken",
+      "title": "Geen overhead. Alleen resultaat.",
+
+      "fullstack": {
+        "title": "Full-stack standaard",
+        "body": "Van database tot frontend — complete features zonder overdrachtsverlies."
+      },
+
+      "ai": {
+        "title": "AI waar het telt",
+        "body": "Echte AI-integratie: automatisatie, RAG systemen en slimme workflows."
+      },
+
+      "delivery": {
+        "title": "Duidelijke scope, betrouwbare levering",
+        "body": "Heldere afspraken, regelmatige updates en voorspelbare oplevering."
+      }
+    },
+
+    "cta": {
+      "title": "Heb je een project in gedachten?",
+      "subtitle": "Vaste scope of doorlopend werk — helder afgebakend en volledig remote uitgevoerd.",
+      "primary": "Start het gesprek",
+      "secondary": "Bekijk mijn werk"
     }
+  }
 }
