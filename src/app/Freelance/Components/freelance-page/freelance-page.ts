@@ -1,285 +1,233 @@
-import {
-  Component,
-  AfterViewInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-  PLATFORM_ID,
-  Inject,
-  NgZone
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { CommonDataService } from '../../../Core/Services/common-data.service';
-import { IconModule } from '@angularlibrary/ui-lib';
-import { TranslateModule } from '@ngx-translate/core';
+import { ChangeDetectionStrategy, Component, AfterViewInit, OnDestroy, inject, signal, computed, NgZone, DestroyRef, PLATFORM_ID, Inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-interface ParticleNode {
-  x: number; y: number; z: number;
-  vx: number; vy: number; vz: number;
-}
+import { ProjectItemComponent } from '../../../Project/Components/project-item/project-item';
+import { ProjectPreviewModel } from '../../../Project/Models/project-model';
+import { ProjectService } from '../../../Project/Services/project-service';
+import { CONFIG, ExpertiseItem } from '../../Models/calc-config';
+import { CommonDataService } from '../../../Core/Services/common-data.service';
+import { FormspreeService } from '../../../Core/Services/formspree.service';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const FEATURED_PROJECT_COUNT = 3;
 
 @Component({
   selector: 'app-freelance-page',
   standalone: true,
-  imports: [RouterLink, IconModule, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, TranslateModule, RouterModule, ProjectItemComponent, FormsModule],
   templateUrl: './freelance-page.html',
   styleUrls: ['./freelance-page.scss']
 })
 export class FreelancePage implements AfterViewInit, OnDestroy {
-  @ViewChild('heroCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  private readonly isBrowser: boolean;
+  private readonly ngZone = inject(NgZone);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly formspreeService = inject(FormspreeService);
+  private readonly translateService = inject(TranslateService);
+  readonly commonDataService = inject(CommonDataService);
 
-  private threeRenderer: any;
-  private frameId = 0;
-  private mouseX = 0;
-  private mouseY = 0;
-  private cameraRef: any;
-  private boundMouseMove!: (e: MouseEvent) => void;
-  private boundResize!: () => void;
+  readonly projects = signal<ProjectPreviewModel[]>([]);
+  readonly featuredProjects = computed(() => this.projects().slice(0, FEATURED_PROJECT_COUNT));
 
-  // ─── Page content ──────────────────────────────────────────────────
- services = [
-  {
-    tag: 'Backend',
-    title: 'freelance.services.backend.title',
-    description: 'freelance.services.backend.desc',
-    tech: ['C#', '.NET 8', 'ASP.NET Core', 'EF Core'],
-    featured: false
-  },
-  {
-    tag: 'Frontend',
-    title: 'freelance.services.frontend.title',
-    description: 'freelance.services.frontend.desc',
-    tech: ['Angular 18', 'TypeScript', 'RxJS', 'SCSS'],
-    featured: false
-  },
-  {
-    tag: 'Data',
-    title: 'freelance.services.data.title',
-    description: 'freelance.services.data.desc',
-    tech: ['SQL Server', 'PostgreSQL', 'EF Migrations'],
-    featured: false
-  },
-  {
-    tag: 'AI ✦',
-    title: 'freelance.services.ai.title',
-    description: 'freelance.services.ai.desc',
-    tech: ['OpenAI API', 'Claude API', 'LangChain', 'RAG / Embeddings'],
-    featured: true
-  }
-];
-
-stats = [
-  { value: '2.5', unit: 'yrs', label: 'freelance.stats.exp' },
-  { value: '4', unit: '+', label: 'freelance.stats.tech' },
-  { value: '100', unit: '%', label: 'freelance.stats.remote' }
-];
-
-whys = [
-  {
-    icon: 'layers',
-    title: 'freelance.why.fullstack.title',
-    body: 'freelance.why.fullstack.body'
-  },
-  {
-    icon: 'psychology',
-    title: 'freelance.why.ai.title',
-    body: 'freelance.why.ai.body'
-  },
-  {
-    icon: 'schedule',
-    title: 'freelance.why.delivery.title',
-    body: 'freelance.why.delivery.body'
-  }
-];
-
-  readonly techItems = [
-    'C#', '.NET 10', 'Angular 22', 'TypeScript', 'SQL Server',
-    'PostgreSQL', 'EF Core', 'Azure', 'OpenAI API', 'Claude API',
-    'LangChain', 'RAG', 'Docker', 'Git', 'RxJS'
+  readonly services: ExpertiseItem[] = CONFIG.expertises.filter(item => item.id !== 'AI');
+  readonly allExpertises: ExpertiseItem[] = CONFIG.expertises;
+  readonly techStack: string[] = ['Angular', 'TypeScript', 'C#/.NET', 'C++', 'Unity', 'SQL'];
+  readonly processSteps = ['step1', 'step2', 'step3'];
+  readonly aiPoints = ['workflow', 'integrations', 'honest'];
+  readonly whyCards: { key: string; icon: string }[] = [
+    { key: 'rapid', icon: 'bi-lightning-charge' },
+    { key: 'scale', icon: 'bi-diagram-3' },
+    { key: 'partner', icon: 'bi-people' }
   ];
 
-  constructor(
-    public commonDataService: CommonDataService,
-    @Inject(PLATFORM_ID) private platformId: object,
-    private ngZone: NgZone
-  ) {}
+  readonly showQuoteModal = signal(false);
+  readonly isSubmitting = signal(false);
+  readonly submitSuccess = signal(false);
+  readonly submitError = signal<string | null>(null);
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
+  quoteForm = { name: '', email: '', service: '', budget: '', description: '' };
 
-    this.boundMouseMove = (e: MouseEvent) => {
-      this.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      this.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
+  private observer?: IntersectionObserver;
+  private heroTimeline?: gsap.core.Timeline;
+  private scrollTriggers: ScrollTrigger[] = [];
 
-    this.boundResize = () => {
-      if (!this.threeRenderer || !this.cameraRef) return;
-      this.cameraRef.aspect = window.innerWidth / window.innerHeight;
-      this.cameraRef.updateProjectionMatrix();
-      this.threeRenderer.setSize(window.innerWidth, window.innerHeight);
-    };
+  constructor(@Inject(PLATFORM_ID) platformId: object, projectService: ProjectService) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-    window.addEventListener('mousemove', this.boundMouseMove, { passive: true });
-    window.addEventListener('resize',    this.boundResize,    { passive: true });
-
-    // Run Three.js + GSAP outside Angular's change-detection zone
-    this.ngZone.runOutsideAngular(() => {
-      this.initParticles().then(() => this.initAnimations());
-    });
-  }
-
-  // ─── Three.js neural-net particles ─────────────────────────────────
-  private async initParticles(): Promise<void> {
-    const THREE = await import('three');
-    const canvas = this.canvasRef.nativeElement;
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-
-    const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 500);
-    camera.position.z = 28;
-    this.cameraRef = camera;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setSize(W, H);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.threeRenderer = renderer;
-
-    // Particle nodes
-    const COUNT    = 85;
-    const BOUND_X  = 26;
-    const BOUND_Y  = 17;
-    const BOUND_Z  = 8;
-    const LINK_MAX = 10; // max distance to draw a line (world units)
-
-    const nodes: ParticleNode[] = Array.from({ length: COUNT }, () => ({
-      x:  (Math.random() - 0.5) * BOUND_X * 2,
-      y:  (Math.random() - 0.5) * BOUND_Y * 2,
-      z:  (Math.random() - 0.5) * BOUND_Z * 2,
-      vx: (Math.random() - 0.5) * 0.016,
-      vy: (Math.random() - 0.5) * 0.016,
-      vz: (Math.random() - 0.5) * 0.007
-    }));
-
-    // Dot geometry — updated every frame
-    const dotPos = new Float32Array(COUNT * 3);
-    nodes.forEach((n, i) => {
-      dotPos[i * 3] = n.x; dotPos[i * 3 + 1] = n.y; dotPos[i * 3 + 2] = n.z;
-    });
-    const dotGeo = new THREE.BufferGeometry();
-    dotGeo.setAttribute('position', new THREE.BufferAttribute(dotPos, 3));
-    const dotMat = new THREE.PointsMaterial({ color: 0x5b9cf6, size: 0.2, transparent: true, opacity: 0.9 });
-    scene.add(new THREE.Points(dotGeo, dotMat));
-
-    // Line geometry — pre-allocated to avoid per-frame GC
-    const MAX_PAIRS = Math.ceil(COUNT * (COUNT - 1) / 2);
-    const lineBuf   = new Float32Array(MAX_PAIRS * 6);
-    const lineGeo   = new THREE.BufferGeometry();
-    lineGeo.setAttribute('position', new THREE.BufferAttribute(lineBuf, 3));
-    const lineMat = new THREE.LineBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.2 });
-    scene.add(new THREE.LineSegments(lineGeo, lineMat));
-
-    const LINK_SQ = LINK_MAX * LINK_MAX;
-    let camX = 0;
-    let camY = 0;
-
-    const tick = () => {
-      this.frameId = requestAnimationFrame(tick);
-
-      // Move nodes, bounce off walls
-      for (let i = 0; i < COUNT; i++) {
-        const n = nodes[i];
-        n.x += n.vx; n.y += n.vy; n.z += n.vz;
-        if (Math.abs(n.x) > BOUND_X) n.vx *= -1;
-        if (Math.abs(n.y) > BOUND_Y) n.vy *= -1;
-        if (Math.abs(n.z) > BOUND_Z) n.vz *= -1;
-        dotPos[i * 3]     = n.x;
-        dotPos[i * 3 + 1] = n.y;
-        dotPos[i * 3 + 2] = n.z;
-      }
-      dotGeo.attributes['position'].needsUpdate = true;
-
-      // Rebuild line buffer (no allocation — overwrite in place)
-      let li = 0;
-      for (let i = 0; i < COUNT; i++) {
-        for (let j = i + 1; j < COUNT; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dz = nodes[i].z - nodes[j].z;
-          if (dx * dx + dy * dy + dz * dz < LINK_SQ) {
-            lineBuf[li++] = nodes[i].x; lineBuf[li++] = nodes[i].y; lineBuf[li++] = nodes[i].z;
-            lineBuf[li++] = nodes[j].x; lineBuf[li++] = nodes[j].y; lineBuf[li++] = nodes[j].z;
+    projectService.getProjects()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(projects => {
+        if (projects?.length) {
+          this.projects.set(projects);
+          if (this.isBrowser) {
+            this.ngZone.runOutsideAngular(() => setTimeout(() => this.observeReveals(), 100));
           }
         }
-      }
-      lineBuf.fill(0, li); // zero-out stale segments
-      lineGeo.setDrawRange(0, li / 3);
-      lineGeo.attributes['position'].needsUpdate = true;
-
-      // Camera mouse-parallax (smoothed)
-      camX += (this.mouseX * 2.5 - camX) * 0.035;
-      camY += (-this.mouseY * 1.8 - camY) * 0.035;
-      camera.position.x = camX;
-      camera.position.y = camY;
-      camera.lookAt(scene.position);
-
-      renderer.render(scene, camera);
-    };
-    tick();
+      });
   }
 
-  // ─── GSAP scroll animations ─────────────────────────────────────────
-  private async initAnimations(): Promise<void> {
-    const { gsap }          = await import('gsap');
-    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-    gsap.registerPlugin(ScrollTrigger);
+  ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
 
-    // Small wait so Angular finishes rendering
-    await new Promise<void>(r => setTimeout(r, 60));
-
-    // Hero — orchestrated entrance, not scattered
-    gsap.timeline({ defaults: { ease: 'power3.out' } })
-      .from('.fp-badge',      { opacity: 0, y: 14, duration: 0.5  }, 0.15)
-      .from('.fp-h1-line-1',  { opacity: 0, y: 38, duration: 0.65 }, 0.32)
-      .from('.fp-h1-line-2',  { opacity: 0, y: 38, duration: 0.65 }, 0.48)
-      .from('.fp-hero-sub',   { opacity: 0, y: 22, duration: 0.55 }, 0.66)
-      .from('.fp-hero-ctas',  { opacity: 0, y: 16, duration: 0.50 }, 0.80)
-      .from('.fp-scroll-cue', { opacity: 0, duration: 0.4         }, 1.10);
-
-    // Services rows — stagger on first scroll into view
-    gsap.from('.fp-svc-row', {
-      scrollTrigger: { trigger: '.fp-services', start: 'top 72%' },
-      opacity: 0, y: 40, stagger: 0.1, duration: 0.65, ease: 'power3.out'
+    this.ngZone.runOutsideAngular(() => {
+      requestAnimationFrame(() => {
+        this.playHeroEntrance();
+        this.observeReveals();
+      });
     });
-
-    // Stats
-    gsap.from('.fp-stat', {
-      scrollTrigger: { trigger: '.fp-stats-band', start: 'top 82%' },
-      opacity: 0, y: 18, stagger: 0.1, duration: 0.5, ease: 'power2.out'
-    });
-
-    // Why cards
-    gsap.from('.fp-why-card', {
-      scrollTrigger: { trigger: '.fp-why', start: 'top 74%' },
-      opacity: 0, y: 28, stagger: 0.13, duration: 0.6, ease: 'power3.out'
-    });
-
-    // CTA
-    gsap.from('.fp-cta-inner', {
-      scrollTrigger: { trigger: '.fp-cta', start: 'top 80%' },
-      opacity: 0, y: 30, duration: 0.7, ease: 'power3.out'
-    });
-  }
-
-  scrollToServices(): void {
-    document.querySelector('.fp-services')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   ngOnDestroy(): void {
-    cancelAnimationFrame(this.frameId);
-    this.threeRenderer?.dispose();
-    if (this.boundMouseMove) window.removeEventListener('mousemove', this.boundMouseMove);
-    if (this.boundResize)    window.removeEventListener('resize',    this.boundResize);
+    this.observer?.disconnect();
+    this.heroTimeline?.kill();
+    this.scrollTriggers.forEach(st => st.kill());
+    document.body.style.overflow = '';
+  }
+
+  openQuoteModal(serviceId = ''): void {
+    if (serviceId) this.quoteForm.service = serviceId;
+    this.showQuoteModal.set(true);
+    this.submitSuccess.set(false);
+    this.submitError.set(null);
+    this.isSubmitting.set(false);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeQuoteModal(): void {
+    this.showQuoteModal.set(false);
+    document.body.style.overflow = '';
+  }
+
+  onBackdropClick(event: MouseEvent): void {
+    if (event.target === event.currentTarget) {
+      this.closeQuoteModal();
+    }
+  }
+
+  submitQuote(event: Event, form: NgForm): void {
+    event.preventDefault();
+    if (form.invalid) return;
+
+    this.isSubmitting.set(true);
+    this.submitError.set(null);
+
+    this.formspreeService.submitQuote({ ...this.quoteForm }).subscribe({
+      next: () => {
+        this.isSubmitting.set(false);
+        this.submitSuccess.set(true);
+        setTimeout(() => {
+          this.closeQuoteModal();
+          this.quoteForm = { name: '', email: '', service: '', budget: '', description: '' };
+        }, 2500);
+      },
+      error: (error: Error) => {
+        this.isSubmitting.set(false);
+        this.submitError.set(error.message || this.translateService.instant('freelance.quote.errors.submit'));
+      }
+    });
+  }
+
+  private playHeroEntrance(): void {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion) {
+      gsap.set('.hero [data-hero-reveal]', { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Main entrance timeline
+    this.heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.55 } });
+
+    this.heroTimeline
+      .from('.hero [data-hero-reveal]', {
+        opacity: 0,
+        y: 24,
+        stagger: 0.09
+      })
+      .fromTo('.hero .text-gradient', {
+        clipPath: 'inset(0 100% 0 0)'
+      }, {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 0.8,
+        ease: 'power2.inOut'
+      }, '-=0.3')
+      .from('.hero__chips .chip', {
+        opacity: 0,
+        scale: 0.8,
+        stagger: 0.06,
+        duration: 0.4,
+        ease: 'back.out(1.7)'
+      }, '-=0.4');
+
+    // Ambient floating orbs
+    gsap.to('.hero__orb--primary', {
+      x: 30, y: -20,
+      duration: 10,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    gsap.to('.hero__orb--secondary', {
+      x: -20, y: 25,
+      duration: 12,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    // Scroll parallax for hero content
+    const st = ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      animation: gsap.to('.hero__inner', {
+        y: -60,
+        opacity: 0.3,
+        ease: 'none'
+      })
+    });
+    this.scrollTriggers.push(st);
+  }
+
+  private observeReveals(): void {
+    this.observer?.disconnect();
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    this.observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          el.classList.add('active');
+
+          if (!reducedMotion) {
+            const staggerContainer = el.querySelector('[data-stagger]');
+            if (staggerContainer) {
+              gsap.from(staggerContainer.children, {
+                y: 24,
+                opacity: 0,
+                stagger: 0.08,
+                duration: 0.5,
+                ease: 'power2.out'
+              });
+            }
+          }
+
+          this.observer?.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal:not(.active)').forEach(el => this.observer?.observe(el));
   }
 }

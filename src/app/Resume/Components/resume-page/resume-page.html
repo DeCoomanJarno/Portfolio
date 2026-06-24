@@ -1,6 +1,8 @@
-@if (commonDataService.commonData$ | async; as common) {
+
+        @if (commonDataService.commonData$ | async; as common) {
   <div class="resume-page">
 
+    @if (resumeData$ | async; as resumeData) {
     <!-- RESUME HEADER WITH PHOTO -->
     <section class="resume-hero">
       <div class="resume-hero__photo">
@@ -32,15 +34,10 @@
           @if (common.LinkedIn_URL) {
             <div class="contact-item">
               <span class="label">LinkedIn:</span>
-              <a [href]="common.LinkedIn_URL" target="_blank" rel="noopener">Profile</a>
+              <a [href]="common.LinkedIn_URL" target="_blank" rel="noopener">{{ resumeData.Contact.LinkedIn_Preview }}</a>
             </div>
           }
         </div>
-
-        <button type="button" class="btn btn--primary resume-hero__download no-print" (click)="downloadPdf()">
-          <i class="bi bi-download" aria-hidden="true"></i>
-          {{ 'resume.downloadPdf' | translate }}
-        </button>
       </div>
     </section>
 
@@ -50,7 +47,6 @@
       <p class="resume-bio">{{ 'home.aboutMe' | translate }}</p>
     </section>
 
-    @if (resumeData$ | async; as resumeData) {
 
       <!-- EXPERIENCE -->
       <section class="resume-section">
@@ -64,7 +60,7 @@
               </div>
               <p class="resume-timeline__dates">{{ exp.FormattedDates | translate }} ({{ exp.Duration | translate }})</p>
               @if (exp.Location) {
-                <p class="resume-timeline__location">{{ exp.Location }}</p>
+                <p class="resume-timeline__location">{{ exp.Location | translate}}</p>
               }
               <p class="resume-timeline__desc">{{ exp.Description | translate }}</p>
             </div>
@@ -84,7 +80,7 @@
               </div>
               <p class="resume-timeline__dates">{{ edu.FormattedDates | translate }} ({{ edu.Duration | translate }})</p>
               @if (edu.Location) {
-                <p class="resume-timeline__location">{{ edu.Location }}</p>
+                <p class="resume-timeline__location">{{ edu.Location | translate }}</p>
               }
               <p class="resume-timeline__desc">{{ edu.Description | translate }}</p>
             </div>
@@ -120,21 +116,6 @@
         </div>
       </section>
 
-      <!-- CERTIFICATES -->
-      <section class="resume-section">
-        <h3 class="resume-section__title">{{ 'titles.certificates' | translate }}</h3>
-        <div class="certificates-list">
-          @for (cert of common.Certificates; track cert.Title) {
-            <div class="cert-item">
-              <span class="cert-title">{{ cert.Title }}</span>
-              @if (cert.Issuer) {
-                <span class="cert-issuer">{{ cert.Issuer }}</span>
-              }
-            </div>
-          }
-        </div>
-      </section>
-
       <!-- REFERENCES -->
       @if (resumeData.References?.length) {
         <section class="resume-section">
@@ -157,3 +138,8 @@
   </div>
 }
 
+
+        <button type="button" class="btn btn--primary resume-hero__download no-print" (click)="downloadPdf()">
+          <i class="bi bi-download" aria-hidden="true"></i>
+          {{ 'resume.downloadPdf' | translate }}
+        </button>

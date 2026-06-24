@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, HostListener, inject, signal, effect, NgZone } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, DestroyRef, ElementRef,
+  HostListener, inject, signal, effect, NgZone
+} from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -30,26 +33,38 @@ export class HeaderComponent {
   readonly isScrolled = signal(false);
 
   readonly demoLinks = [
-    { route: '/Calculator', labelKey: 'demos.calculator' },
-    { route: '/GameOfLife', labelKey: 'demos.gameOfLife' },
-    { route: '/LangtonsAnt', labelKey: 'demos.langtonsAnt' },
-    { route: '/Appointments', labelKey: 'demos.appointments' },
-    { route: '/Inventory', labelKey: 'demos.inventory' },
-    { route: '/Freelance-Calculator', labelKey: 'demos.rateCalculator' }
+    { route: '/Calculator',           labelKey: 'demos.calculator',     icon: 'bi-calculator'     },
+    { route: '/GameOfLife',           labelKey: 'demos.gameOfLife',     icon: 'bi-grid-3x3'       },
+    { route: '/LangtonsAnt',          labelKey: 'demos.langtonsAnt',    icon: 'bi-bug'             },
+    { route: '/Appointments',         labelKey: 'demos.appointments',   icon: 'bi-calendar-check' },
+    { route: '/Inventory',            labelKey: 'demos.inventory',      icon: 'bi-box-seam'       },
+    { route: '/Freelance-Calculator', labelKey: 'demos.rateCalculator', icon: 'bi-cash-coin'      }
   ];
 
+  private readonly isMobile = () =>
+    typeof window !== 'undefined' && window.innerWidth <= 991;
+
   private readonly prefersReducedMotion =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   constructor(router: Router) {
     router.events
-      .pipe(filter(event => event instanceof NavigationEnd), takeUntilDestroyed())
+      .pipe(filter(e => e instanceof NavigationEnd), takeUntilDestroyed())
       .subscribe(() => this.closeAll());
 
     effect(() => {
       const open = this.isMenuOpen();
       document.body.style.overflow = open ? 'hidden' : '';
-      if (open) this.animateMenuOpen();
+
+      // Only animate on mobile — desktop nav is always visible
+      if (!this.isMobile()) return;
+
+      if (open) {
+        this.animateDrawerOpen();
+      } else {
+        this.animateDrawerClose();
+      }
     });
 
     this.destroyRef.onDestroy(() => {
@@ -64,7 +79,10 @@ export class HeaderComponent {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (this.isDemosOpen() && !this.elementRef.nativeElement.contains(event.target as Node)) {
+    if (
+      this.isDemosOpen() &&
+      !this.elementRef.nativeElement.contains(event.target as Node)
+    ) {
       this.isDemosOpen.set(false);
     }
   }
@@ -76,7 +94,7 @@ export class HeaderComponent {
 
   toggleMenu(): void {
     this.isMenuOpen.update(open => !open);
-    this.isDemosOpen.set(false);
+    if (this.isMenuOpen()) this.isDemosOpen.set(false);
   }
 
   toggleDemos(event: Event): void {
@@ -97,27 +115,119 @@ export class HeaderComponent {
     this.themeService.toggle();
   }
 
-  private animateMenuOpen(): void {
+private animateDrawerOpen(): void {
     if (this.prefersReducedMotion) return;
 
     this.ngZone.runOutsideAngular(() => {
       const nav = this.elementRef.nativeElement.querySelector('.header__nav');
       if (!nav) return;
 
-      const links = nav.querySelectorAll('.header__link, .header__demos-link');
-      const actions = nav.querySelector('.header__actions');
+      const isMobileSheet = typeof window !== 'undefined' && window.innerWidth <= 600;
 
-      gsap.fromTo(links,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, stagger: 0.04, duration: 0.3, ease: 'power2.out' }
-      );
-
-      if (actions) {
-        gsap.fromTo(actions,
-          { opacity: 0, y: 8 },
-          { opacity: 1, y: 0, duration: 0.3, delay: 0.15, ease: 'power2.out' }
+      // Animate the main drawer panel
+      if (isMobileSheet) {
+        gsap.fromTo(
+          nav,
+          { y: '100%' },
+          { y: '0%', duration: 0.32, ease: 'power3.out', clearProps: 'y' }
+        );
+      } else {
+        gsap.fromTo(
+          nav,
+          { x: '100%' },
+          { x: '0%', duration: 0.32, ease: 'power3.out', clearProps: 'x' }
         );
       }
+
+      // Stagger the links in (sliding up on mobile, sliding left on tablet)
+      const items = nav.querySelectorAll(
+        '.header__link, .header__demos-item, .header__actions'
+      );
+      gsap.fromTo(
+        items,
+        { opacity: 0, x: isMobileSheet ? 0 : 20, y: isMobileSheet ? 20 : 0 },
+        { opacity: 1, x: 0, y: 0, stagger: 0.04, duration: 0.28, ease: 'power2.out', delay: 0.1 }
+      );
     });
+  }
+
+  private animateDrawerClose(): void {
+    if (this.prefersReducedMotion) return;
+
+    this.ngZone.runOutsideAngular(() => {
+      const nav = this.elementRef.nativeElement.querySelector('.header__nav');
+      if (!nav) return;
+
+      const isMobileSheet = typeof window !== 'undefined' && window.innerWidth <= 600;
+
+      // Slide down to bottom on mobile, slide right on tablet
+      if (isMobileSheet) {
+        gsap.to(nav, {
+          y: '100%',
+          duration: 0.25,
+          ease: 'power2.in',
+          onComplete: () => { gsap.set(nav, { clearProps: 'y' }); }
+        });
+      } else {
+        gsap.to(nav, {
+          x: '100%',
+          duration: 0.25,
+          ease: 'power2.in',
+          onComplete: () => { gsap.set(nav, { clearProps: 'x' }); }
+        });
+      }
+    });
+  }
+
+  // Add these properties to your class
+  private touchStartY = 0;
+  private currentTranslateY = 0;
+  private readonly SWIPE_THRESHOLD = 60; // Pixels required to trigger a close
+
+  // Add these methods
+  onTouchStart(event: TouchEvent): void {
+    if (typeof window === 'undefined' || window.innerWidth > 600) return;
+    
+    this.touchStartY = event.touches[0].clientY;
+    this.currentTranslateY = 0;
+    
+    const nav = this.elementRef.nativeElement.querySelector('.header__nav') as HTMLElement;
+    if (nav) {
+      // Disable CSS transitions so the panel tracks the finger instantly
+      nav.style.transition = 'none';
+    }
+  }
+
+  onTouchMove(event: TouchEvent): void {
+    if (typeof window === 'undefined' || window.innerWidth > 600) return;
+    
+    const deltaY = event.touches[0].clientY - this.touchStartY;
+
+    // Only allow dragging downward
+    if (deltaY > 0) {
+      this.currentTranslateY = deltaY;
+      const nav = this.elementRef.nativeElement.querySelector('.header__nav') as HTMLElement;
+      if (nav) {
+        nav.style.transform = `translateY(${deltaY}px)`;
+      }
+    }
+  }
+
+  onTouchEnd(): void {
+    if (typeof window === 'undefined' || window.innerWidth > 600) return;
+    
+    const nav = this.elementRef.nativeElement.querySelector('.header__nav') as HTMLElement;
+    if (nav) {
+      // Restore the CSS transition and clear the inline transform
+      nav.style.transition = '';
+      nav.style.transform = '';
+    }
+
+    // If dragged down far enough, close the menu
+    if (this.currentTranslateY > this.SWIPE_THRESHOLD) {
+      this.closeAll();
+    }
+    
+    this.currentTranslateY = 0;
   }
 }

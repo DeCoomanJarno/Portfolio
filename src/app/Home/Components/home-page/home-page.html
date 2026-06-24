@@ -1,420 +1,137 @@
 @if (commonData && (resumeData$ | async); as resumeData) {
-<div class="hp-root">
+<title>{{commonData.FullName}}</title>
+<div class="home">
 
-  <!-- ═══════════════════════════════════════════════════════
-       HERO — Three.js neural network + typewriter headline
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-hero">
-    <canvas #threeCanvas class="hp-canvas"></canvas>
-    <div class="hp-hero__noise"></div>
-
-    <div class="hp-hero__inner">
-      <div class="hp-hero__copy">
-
-        <!-- Available badge -->
-        <div class="hp-badge">
-          <span class="hp-badge__dot"></span>
-          <span>Open to freelance work</span>
-        </div>
-
-        <!-- Name -->
-        <h1 class="hp-name">{{ commonData.FullName }}</h1>
-
-        <!-- Typewriter role line — monospace terminal feel, the signature -->
-        <p class="hp-role">
-          <span class="hp-role__prompt">›&nbsp;</span>
-          <span class="hp-role__text">{{ typewriterText }}</span>
-          <span class="hp-cursor" [class.hp-cursor--on]="cursorOn">|</span>
-        </p>
-
-        <p class="hp-bio">{{ 'home.shortBio' | translate }}</p>
-
-        <div class="hp-hero__actions">
-          <a routerLink="/Projects" class="hp-btn hp-btn--primary">View Projects</a>
-          <a routerLink="/Resume"   class="hp-btn hp-btn--ghost">My Resume →</a>
-        </div>
-
-      </div>
-
-      <!-- Stats strip -->
-      <div class="hp-stats">
-        <div class="hp-stat">
-          <span class="hp-stat__num"><span data-count="">{{ resumeData.Experience.length }}</span>+</span>
-          <span class="hp-stat__label">Work experiences</span>
-        </div>
-        <div class="hp-stat">
-          <span class="hp-stat__num"><span data-count="">{{ resumeData.Education.length }}</span></span>
-          <span class="hp-stat__label">Degrees &amp; diplomas</span>
-        </div>
-        <div class="hp-stat">
-          <span class="hp-stat__num"><span data-count="">{{ commonData.Certificates.length }}</span>+</span>
-          <span class="hp-stat__label">Certificates earned</span>
-        </div>
-      </div>
+  <!-- ✅ HERO - unchanged -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 >{{ commonData.FullName }}</h1>
+      <h2>{{ 'home.title' | translate }}</h2>
+      <p>{{ 'home.shortBio' | translate }}</p>
+      <ui-button variant="tertiary" class="resume-button" routerLink="/Resume">{{ 'titles.resume' | translate
+        }}</ui-button>
     </div>
-
-    <!-- Animated scroll cue -->
-    <button class="hp-scroll" (click)="scrollTo('hp-services')" aria-label="Scroll down">
-      <div class="hp-scroll__track">
-        <div class="hp-scroll__dot"></div>
-      </div>
-      <span class="hp-scroll__label">Scroll</span>
-    </button>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       SERVICES
-  ═══════════════════════════════════════════════════════ -->
-  <section id="hp-services" class="hp-section hp-services">
-    <div class="hp-wrap">
-
-      <header class="hp-section__head reveal-up">
-        <p class="hp-eyebrow">What I build</p>
-        <h2 class="hp-section__title">AI-Powered Solutions</h2>
-        <p class="hp-section__sub">
-          I help teams ship intelligent software — from integrating LLMs and building RAG
-          pipelines to creating full Angular applications from scratch.
-        </p>
-      </header>
-
-      <div class="hp-services__grid stagger-parent">
-
-        <article class="hp-svc stagger-child">
-          <div class="hp-svc__icon">
-            <span class="material-symbols-rounded">psychology</span>
-          </div>
-          <h3>AI Integration</h3>
-          <p>LLMs, embeddings, RAG pipelines, and model fine-tuning wired into your existing product — invisibly and reliably.</p>
-        </article>
-
-        <article class="hp-svc stagger-child">
-          <div class="hp-svc__icon">
-            <span class="material-symbols-rounded">code_blocks</span>
-          </div>
-          <h3>Web Applications</h3>
-          <p>Full-stack Angular apps with clean architecture, real-time features, and developer-friendly APIs built to last.</p>
-        </article>
-
-        <article class="hp-svc stagger-child">
-          <div class="hp-svc__icon">
-            <span class="material-symbols-rounded">auto_fix_high</span>
-          </div>
-          <h3>Workflow Automation</h3>
-          <p>Saving your team hours each week with AI-driven automation — document processing, intelligent routing, smart notifications.</p>
-        </article>
-
-        <article class="hp-svc stagger-child">
-          <div class="hp-svc__icon">
-            <span class="material-symbols-rounded">monitoring</span>
-          </div>
-          <h3>Dashboards &amp; Tooling</h3>
-          <p>Data-rich internal tools and analytics dashboards that turn complex data into clear, actionable decisions.</p>
-        </article>
-
-      </div>
+    <div class="hero-image">
+      <img [src]="commonData.ProfileImage" alt="Profile Picture">
     </div>
   </section>
 
+  <!-- 🌟 ABOUT -->
+  <section class="section about">
+    <ui-section-title [title]="'titles.about' | translate"></ui-section-title>
+    <p>{{ 'home.aboutMe' | translate }}</p>
+  </section>
 
-  <!-- ═══════════════════════════════════════════════════════
-       ABOUT
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-section hp-about">
-    <div class="hp-wrap hp-about__layout">
-
-      <!-- Profile photo -->
-      <div class="hp-avatar-wrap reveal-left">
-        <div class="hp-avatar">
-          <img [src]="commonData.ProfileImage"
-               alt="{{ commonData.FullName }}"
-               class="hp-avatar__img" />
-          <div class="hp-avatar__ring hp-avatar__ring--1"></div>
-          <div class="hp-avatar__ring hp-avatar__ring--2"></div>
-          <div class="hp-avatar__glow"></div>
-        </div>
-      </div>
-
-      <!-- Copy -->
-      <div class="hp-about__copy reveal-right">
-        <p class="hp-eyebrow">About me</p>
-        <h2 class="hp-section__title">{{ 'titles.about' | translate }}</h2>
-        <p class="hp-about__bio">{{ 'home.aboutMe' | translate }}</p>
-
-        <div class="hp-tag-strip">
-          @for (cat of commonData.SkillCategories; track $index) {
-            <span class="hp-tag">{{ cat.Name | translate }}</span>
-          }
-        </div>
-
-        <a routerLink="/Resume" class="hp-btn hp-btn--outline">Full resume →</a>
-      </div>
-
+  <!-- 💼 EXPERIENCE TIMELINE -->
+  <section class="section experience">
+    <ui-section-title [title]="'resume.titles.workExperience' | translate"></ui-section-title>
+    <div class="timeline">
+      @for (exp of resumeData.Experience; track $index) {
+      <ui-timeline-item class="timeline-item" [title]="exp.Company | translate" [badge]="exp.Badge | translate"
+        [dates]="(exp.FormattedDates | translate) + ' (' + (exp.Duration | translate) + ')'" [location]="exp.Location"
+        [description]="exp.Description | translate">
+      </ui-timeline-item>
+      }
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       EXPERIENCE TIMELINE
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-section hp-exp">
-    <div class="hp-wrap">
-
-      <header class="hp-section__head reveal-up">
-        <p class="hp-eyebrow">Career path</p>
-        <h2 class="hp-section__title">{{ 'resume.titles.workExperience' | translate }}</h2>
-      </header>
-
-      <div class="hp-timeline">
-        @for (exp of resumeData.Experience; track $index) {
-          <div class="hp-tl-item reveal-up">
-            <div class="hp-tl-item__rail">
-              <div class="hp-tl-item__dot"></div>
-            </div>
-            <div class="hp-tl-item__body">
-              <div class="hp-tl-item__meta">
-                <span class="hp-tl-item__badge">{{ exp.Badge | translate }}</span>
-                <span class="hp-tl-item__dates">
-                  {{ exp.FormattedDates }}
-                  @if (exp.Duration) { · {{ exp.Duration | translate }} }
-                </span>
-              </div>
-              <h3 class="hp-tl-item__company">{{ exp.Company | translate }}</h3>
-              <p class="hp-tl-item__location">
-                <span class="material-symbols-rounded" style="font-size:0.9em;vertical-align:middle;">location_on</span>
-                {{ exp.Location | translate }}
-              </p>
-              <p class="hp-tl-item__desc">{{ exp.Description | translate }}</p>
-            </div>
-          </div>
-        }
-      </div>
-
+  <!-- 🎓 EDUCATION TIMELINE -->
+  <section class="section education">
+    <ui-section-title [title]="'resume.titles.education' | translate"></ui-section-title>
+    <div class="timeline">
+      @for (edu of resumeData.Education; track $index) {
+      <ui-timeline-item class="timeline-item" [title]="edu.Degree | translate" [badge]="edu.Level | translate"
+        [dates]="(edu.FormattedDates | translate) + ' (' + (edu.Duration | translate) + ')'" [location]="edu.Location"
+        [description]="edu.Description | translate">
+      </ui-timeline-item>
+      }
     </div>
   </section>
 
+  <!-- 🛠️ SKILLS -->
+  <section class="section skills">
+    <ui-section-title [title]="'resume.titles.skills' | translate"></ui-section-title>
 
-  <!-- ═══════════════════════════════════════════════════════
-       EDUCATION TIMELINE
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-section hp-edu">
-    <div class="hp-wrap">
-
-      <header class="hp-section__head reveal-up">
-        <p class="hp-eyebrow">Academic background</p>
-        <h2 class="hp-section__title">{{ 'resume.titles.education' | translate }}</h2>
-      </header>
-
-      <div class="hp-timeline">
-        @for (edu of resumeData.Education; track $index) {
-          <div class="hp-tl-item reveal-up">
-            <div class="hp-tl-item__rail">
-              <div class="hp-tl-item__dot hp-tl-item__dot--edu"></div>
-            </div>
-            <div class="hp-tl-item__body">
-              <div class="hp-tl-item__meta">
-                <span class="hp-tl-item__badge hp-tl-item__badge--edu">{{ edu.Level | translate }}</span>
-                <span class="hp-tl-item__dates">
-                  {{ edu.FormattedDates }}
-                  @if (edu.Duration) { · {{ edu.Duration | translate }} }
-                </span>
-              </div>
-              <h3 class="hp-tl-item__company">{{ edu.Degree | translate }}</h3>
-              <p class="hp-tl-item__location">{{ edu.School }} · {{ edu.Location | translate }}</p>
-              <p class="hp-tl-item__desc">{{ edu.Description | translate }}</p>
-            </div>
-          </div>
-        }
-      </div>
-
+    <div class="skills-grid">
+    @for (category of commonData.SkillCategories; track category.Name) {
+      <ui-skill-card [category]="category"></ui-skill-card>
+    }
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       SKILLS
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-section hp-skills">
-    <div class="hp-wrap">
-
-      <header class="hp-section__head reveal-up">
-        <p class="hp-eyebrow">Tech stack</p>
-        <h2 class="hp-section__title">{{ 'resume.titles.skills' | translate }}</h2>
-      </header>
-
-      <div class="hp-skills__grid stagger-parent">
-        @for (cat of commonData.SkillCategories; track $index) {
-          <div class="hp-skill-cat stagger-child">
-            <div class="hp-skill-cat__head">
-              <span class="material-symbols-rounded">{{ cat.Icon }}</span>
-              <h3>{{ cat.Name | translate }}</h3>
-            </div>
-            <div class="hp-skill-tags">
-              @for (skill of cat.Skills; track $index) {
-                <span class="hp-skill-tag">
-                  @if (skill.IconUrl) {
-                    <img [src]="skill.IconUrl" [alt]="skill.Name" class="hp-skill-tag__img" />
-                  }
-                  {{ skill.Name }}
-                </span>
-              }
-            </div>
-          </div>
-        }
-      </div>
-
+  <!-- 💻 Certificates -->
+  <section class="certificates">
+    <ui-section-title [title]="'Certificates'"></ui-section-title>
+    <div class="certificates-gallery">
+      @for (cert of commonData.Certificates; track cert.Title) {
+        <ui-certificate [certificate]="cert"></ui-certificate>
+      }
     </div>
   </section>
 
+  <!-- 💻 PROJECTS -->
+<section id="projects" class="section projects">
+  <ui-section-title [title]="'titles.projects' | translate"></ui-section-title>
+  <div class="projects-grid">
+    @for (project of projects; track project.id) {
+      <ui-project-item [project]="project"></ui-project-item>
+    }
+  </div>
+</section>
+<!-- 📬 CONTACT FORM -->
+<section class="section contact">
+  <ui-section-title [title]="'titles.contact' | translate"></ui-section-title>
+    <div class="contact-container">
+      <!-- Address -->
+      <a class="contact-card-item" [href]="resumeData.Contact.Address_Link" target="_blank">
+        <span class="material-symbols-rounded contact-icon">location_on</span>
+        <div class="contact-text">{{ resumeData.Contact.Address | translate }}</div>
+      </a>
 
-  <!-- ═══════════════════════════════════════════════════════
-       CERTIFICATES
-  ═══════════════════════════════════════════════════════ -->
-  @if (commonData.Certificates.length) {
-    <section class="hp-section hp-certs">
-      <div class="hp-wrap">
+      <!-- Email -->
+      @if (commonData.Contact.Email) {
+      <a class="contact-card-item" href="mailto:{{ commonData.Contact.Email }}">
+        <span class="material-symbols-rounded contact-icon">email</span>
+        <div class="contact-text">{{ commonData.Contact.Email }}</div>
+      </a>
+      }
 
-        <header class="hp-section__head reveal-up">
-          <p class="hp-eyebrow">Credentials</p>
-          <h2 class="hp-section__title">Certificates</h2>
-        </header>
+      <!-- Phone -->
+      @if (commonData.Contact.Phone) {
+      <a class="contact-card-item" href="tel:{{ commonData.Contact.Phone }}">
+        <span class="material-symbols-rounded contact-icon">phone</span>
+        <div class="contact-text">{{ commonData.Contact.Phone }}</div>
+      </a>
+      }
 
-        <div class="hp-certs__grid stagger-parent">
-          @for (cert of commonData.Certificates; track $index) {
-            @if (cert.Url) {
-              <a [href]="cert.Url"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="hp-cert hp-cert--link stagger-child">
-                <span class="material-symbols-rounded hp-cert__icon">workspace_premium</span>
-                <h4 class="hp-cert__title">{{ cert.Title | translate }}</h4>
-                <p class="hp-cert__meta">{{ cert.Issuer }} · {{ cert.Date }}</p>
-                <span class="hp-cert__arrow">↗</span>
-              </a>
-            } @else {
-              <div class="hp-cert stagger-child">
-                <span class="material-symbols-rounded hp-cert__icon">workspace_premium</span>
-                <h4 class="hp-cert__title">{{ cert.Title | translate }}</h4>
-                <p class="hp-cert__meta">{{ cert.Issuer }} · {{ cert.Date }}</p>
-              </div>
-            }
-          }
-        </div>
+      <!-- Website -->
+      @if (commonData.Website) {
+      <a class="contact-card-item" [href]="commonData.Website" target="_blank">
+        <span class="material-symbols-rounded contact-icon">public</span>
+        <div class="contact-text">{{ commonData.Website }}</div>
+      </a>
+      }
 
-      </div>
-    </section>
-  }
+      <!-- LinkedIn -->
+      @if (resumeData.Contact.LinkedIn_Preview) {
+      <a class="contact-card-item" [href]="resumeData.Contact.LinkedIn_Preview" target="_blank">
+        <i class="bi bi-linkedin contact-icon"></i>
+        <div class="contact-text">{{ resumeData.Contact.LinkedIn_Preview }}</div>
+      </a>
+      }
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       PROJECTS
-  ═══════════════════════════════════════════════════════ -->
-  <section id="projects" class="hp-section hp-projects">
-    <div class="hp-wrap">
-
-      <header class="hp-section__head reveal-up">
-        <p class="hp-eyebrow">Selected work</p>
-        <h2 class="hp-section__title">{{ 'titles.projects' | translate }}</h2>
-        <a routerLink="/Projects" class="hp-section__see-all">See all projects →</a>
-      </header>
-
-      <div class="hp-projects__grid">
-        @for (project of projects; track $index) {
-          <div class="reveal-up">
-            <ui-project-item [project]="project"></ui-project-item>
-          </div>
-        }
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       CONTACT — full-bleed CTA panel
-  ═══════════════════════════════════════════════════════ -->
-  <section class="hp-section hp-contact">
-    <div class="hp-wrap">
-      <div class="hp-contact__panel reveal-up">
-
-        <!-- Decorative grid -->
-        <div class="hp-contact__grid-deco" aria-hidden="true"></div>
-
-        <div class="hp-contact__copy">
-          <p class="hp-eyebrow hp-eyebrow--light">Let's talk</p>
-          <h2 class="hp-contact__title">Ready to build something intelligent?</h2>
-          <p class="hp-contact__sub">
-            Available for freelance projects, consulting, and full-time opportunities.
-            Tell me what you're building.
-          </p>
-        </div>
-
-        <div class="hp-contact__links">
-
-          @if (commonData.Contact.Email) {
-            <a class="hp-clink" href="mailto:{{ commonData.Contact.Email }}">
-              <span class="material-symbols-rounded">email</span>
-              <div>
-                <span class="hp-clink__label">Email</span>
-                <span class="hp-clink__value">{{ commonData.Contact.Email }}</span>
-              </div>
-            </a>
-          }
-
-          @if (resumeData.Contact.LinkedIn_Preview) {
-            <a class="hp-clink"
-               [href]="resumeData.Contact.LinkedIn_Preview"
-               target="_blank"
-               rel="noopener noreferrer">
-              <i class="bi bi-linkedin"></i>
-              <div>
-                <span class="hp-clink__label">LinkedIn</span>
-                <span class="hp-clink__value">{{ resumeData.Contact.LinkedIn_Preview }}</span>
-              </div>
-            </a>
-          }
-
-          @if (commonData.Github_URL) {
-            <a class="hp-clink"
-               [href]="commonData.Github_URL"
-               target="_blank"
-               rel="noopener noreferrer">
-              <i class="bi bi-github"></i>
-              <div>
-                <span class="hp-clink__label">GitHub</span>
-                <span class="hp-clink__value">{{ commonData.Github_URL }}</span>
-              </div>
-            </a>
-          }
-
-          @if (commonData.Contact.Phone) {
-            <a class="hp-clink" href="tel:{{ commonData.Contact.Phone }}">
-              <span class="material-symbols-rounded">phone</span>
-              <div>
-                <span class="hp-clink__label">Phone</span>
-                <span class="hp-clink__value">{{ commonData.Contact.Phone }}</span>
-              </div>
-            </a>
-          }
-
-          @if (resumeData.Contact.Address) {
-            <a class="hp-clink"
-               [href]="resumeData.Contact.Address_Link"
-               target="_blank"
-               rel="noopener noreferrer">
-              <span class="material-symbols-rounded">location_on</span>
-              <div>
-                <span class="hp-clink__label">Location</span>
-                <span class="hp-clink__value">{{ resumeData.Contact.Address | translate }}</span>
-              </div>
-            </a>
-          }
-
-        </div>
-
-      </div>
+      <!-- Github -->
+      @if (commonData.Github_URL) {
+      <a class="contact-card-item" [href]="commonData.Github_URL" target="_blank">
+        <span class="bi bi-github contact-icon"></span>
+        <div class="contact-text">{{ commonData.Github_URL }}</div>
+      </a>
+      }
     </div>
   </section>
 
 </div>
+}
+@else {
+<title>Home</title>
 }
