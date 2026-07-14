@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IconModule } from '@angularlibrary/ui-lib';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ui-certificate',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, IconModule],
   templateUrl: './certificate.html',
   styleUrls: ['./certificate.scss']
 })

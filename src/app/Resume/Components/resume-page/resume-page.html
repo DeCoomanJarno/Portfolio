@@ -6,34 +6,34 @@
     <!-- RESUME HEADER WITH PHOTO -->
     <section class="resume-hero">
       <div class="resume-hero__photo">
-        <img [src]="common.ProfileImage" alt="Profile Picture" />
+        <img [src]="common.ProfileImage" [alt]="'resume.photoAlt' | translate" />
       </div>
       <div class="resume-hero__info">
         <h1>{{ common.FullName }}</h1>
         <h2 class="resume-hero__role">{{ 'home.title' | translate }}</h2>
 
         <div class="resume-contact-grid">
-          @if (common.Contact?.Email) {
+          @if (common.Contact.Email) {
             <div class="contact-item">
-              <span class="label">Email:</span>
+              <span class="label">{{ 'resume.contactLabels.email' | translate }}:</span>
               <a [href]="'mailto:' + common.Contact.Email">{{ common.Contact.Email }}</a>
             </div>
           }
-          @if (common.Contact?.Phone) {
+          @if (common.Contact.Phone) {
             <div class="contact-item">
-              <span class="label">Phone:</span>
+              <span class="label">{{ 'resume.contactLabels.phone' | translate }}:</span>
               <a [href]="'tel:' + common.Contact.Phone">{{ common.Contact.Phone }}</a>
             </div>
           }
           @if ((resumeData$ | async)?.Contact?.Address) {
             <div class="contact-item">
-              <span class="label">Location:</span>
+              <span class="label">{{ 'resume.contactLabels.location' | translate }}:</span>
               <span>{{ (resumeData$ | async)?.Contact?.Address | translate }}</span>
             </div>
           }
           @if (common.LinkedIn_URL) {
             <div class="contact-item">
-              <span class="label">LinkedIn:</span>
+              <span class="label">{{ 'resume.contactLabels.linkedin' | translate }}:</span>
               <a [href]="common.LinkedIn_URL" target="_blank" rel="noopener">{{ resumeData.Contact.LinkedIn_Preview }}</a>
             </div>
           }
@@ -43,7 +43,7 @@
 
     <!-- ABOUT / BIO -->
     <section class="resume-section">
-      <h3 class="resume-section__title">About</h3>
+      <h3 class="resume-section__title">{{ 'resume.sections.about' | translate }}</h3>
       <p class="resume-bio">{{ 'home.aboutMe' | translate }}</p>
     </section>
 
@@ -94,9 +94,9 @@
         <div class="skills-table">
           <div class="skills-table__header">
             <span></span>
-            <span>School</span>
-            <span>Work</span>
-            <span>Hobby</span>
+            <span>{{ 'resume.skillsTable.school' | translate }}</span>
+            <span>{{ 'resume.skillsTable.work' | translate }}</span>
+            <span>{{ 'resume.skillsTable.hobby' | translate }}</span>
           </div>
           @for (skill of resumeData.Skills.ProgrammingLanguages; track skill.Name) {
             <div class="skills-table__row">
@@ -117,7 +117,7 @@
       </section>
 
       <!-- REFERENCES -->
-      @if (resumeData.References?.length) {
+      @if (resumeData.References.length) {
         <section class="resume-section">
           <h3 class="resume-section__title">{{ 'resume.titles.references' | translate }}</h3>
           <div class="references-list">

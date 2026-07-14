@@ -57,8 +57,8 @@ export const CONFIG = {
   expertises: [
     {
       id: 'AI',
-      title: 'AI & Machine Learning',
-      desc: 'Intelligent systems with TensorFlow and Python',
+      title: 'freelance.calc.expertises.AI.title',
+      desc: 'freelance.calc.expertises.AI.desc',
       icon: 'psychology',
       color: '#9c27b0',
       tags: ['ML/AI', 'TensorFlow', 'Python'],
@@ -74,8 +74,8 @@ export const CONFIG = {
     },
     {
       id: 'WEB',
-      title: 'Web Applications',
-      desc: 'Full-stack Angular and .NET solutions',
+      title: 'freelance.calc.expertises.WEB.title',
+      desc: 'freelance.calc.expertises.WEB.desc',
       icon: 'language',
       color: '#006680',
       tags: ['Angular', '.NET', 'TypeScript'],
@@ -91,8 +91,8 @@ export const CONFIG = {
     },
     {
       id: 'DESK',
-      title: 'Desktop Software',
-      desc: 'WPF and SQL-based business applications',
+      title: 'freelance.calc.expertises.DESK.title',
+      desc: 'freelance.calc.expertises.DESK.desc',
       icon: 'monitor',
       color: '#e5aa35',
       tags: ['WPF', 'SQL', 'C#'],
@@ -108,8 +108,8 @@ export const CONFIG = {
     },
     {
       id: 'VR',
-      title: 'VR/AR Development',
-      desc: 'Immersive experiences with Unity, Unreal, and WebXR',
+      title: 'freelance.calc.expertises.VR.title',
+      desc: 'freelance.calc.expertises.VR.desc',
       icon: 'view_in_ar',
       color: '#00b7c2',
       tags: ['Unity', 'Unreal Engine', 'OpenXR', 'WebXR'],
@@ -125,8 +125,8 @@ export const CONFIG = {
     },
     {
       id: 'CPP',
-      title: 'C++ Systems',
-      desc: 'High-performance Qt and embedded software',
+      title: 'freelance.calc.expertises.CPP.title',
+      desc: 'freelance.calc.expertises.CPP.desc',
       icon: 'memory',
       color: '#f44336',
       tags: ['Qt', 'C++98', 'C++23'],
@@ -268,14 +268,14 @@ export const CONFIG = {
   // HARDWARE CATALOG
   // -----------------------------------------------------
   hardware: [
-    { id: 'PICO4', name: 'Pico', price: 400, allowedTypes: ['VR'] },
-    { id: 'QUEST3', name: 'Quest',price: 550, allowedTypes: ['VR'] },
-    { id: 'STEAMVR_HEADSET', name: 'Steam VR',price: 1200, allowedTypes: ['VR'] },
-    { id: 'APPLEVP', name: 'Apple Vision Pro',price: 4000, allowedTypes: ['VR'] },
+    { id: 'PICO4', name: 'freelance.calc.hardware.pico4', price: 400, allowedTypes: ['VR'] },
+    { id: 'QUEST3', name: 'freelance.calc.hardware.quest3', price: 550, allowedTypes: ['VR'] },
+    { id: 'STEAMVR_HEADSET', name: 'freelance.calc.hardware.steamvr', price: 1200, allowedTypes: ['VR'] },
+    { id: 'APPLEVP', name: 'freelance.calc.hardware.applevp', price: 4000, allowedTypes: ['VR'] },
     
-    { id: 'ARDUINO', name: 'Arduino',price: 50, allowedTypes: ['DESK', 'CPP'] },
-    { id: 'RASPI',name: 'Raspberri Pi', price: 150, allowedTypes: ['DESK', 'CPP'] },
-    { id: 'INDUSTRIAL_PC', name: 'Basic PC',price: 800, allowedTypes: ['DESK', 'CPP'] },
-    { id: 'CUSTOM_PC', name: 'Custom PC',price: 1500, allowedTypes: ['DESK', 'CPP'] }
+    { id: 'ARDUINO', name: 'freelance.calc.hardware.arduino', price: 50, allowedTypes: ['DESK', 'CPP'] },
+    { id: 'RASPI',name: 'freelance.calc.hardware.raspberryPi', price: 150, allowedTypes: ['DESK', 'CPP'] },
+    { id: 'INDUSTRIAL_PC', name: 'freelance.calc.hardware.basicPc', price: 800, allowedTypes: ['DESK', 'CPP'] },
+    { id: 'CUSTOM_PC', name: 'freelance.calc.hardware.customPc', price: 1500, allowedTypes: ['DESK', 'CPP'] }
   ] as HardwareItem[]
 };

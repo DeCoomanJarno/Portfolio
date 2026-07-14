@@ -1,25 +1,29 @@
-<h1 class="text-center">Game Of Life</h1>
+<div class="section">
+  <div class="page-container">
+    <h1 class="text-center">{{ 'demos.gameOfLife' | translate }}</h1>
 
-<app-loading [isLoading]="isLoading"></app-loading>
+    <app-loading [isLoading]="isLoading"></app-loading>
 
-<div class="row mt-3 align-items-start">
+    <div class="row mt-3 align-items-start">
 
-  <!-- CANVAS -->
-  <div class="col-12 col-lg-9 d-flex justify-content-center align-items-start">
+      <!-- CANVAS -->
+      <div class="col-12 col-lg-9 d-flex justify-content-center align-items-start">
 
-    <canvas #canvas></canvas>
+        <canvas #canvas (click)="onCanvasClick($event)"></canvas>
 
+      </div>
+
+      <!-- CONFIG -->
+      <div class="col-12 col-lg-3">
+
+        <app-game-config
+          [config]="cfg"
+          [actions]="actions"
+          (configChange)="onConfigChanged($event)">
+        </app-game-config>
+
+      </div>
+
+    </div>
   </div>
-
-  <!-- CONFIG -->
-  <div class="col-12 col-lg-3">
-
-    <app-game-config
-      [config]="cfg"
-      [actions]="actions"
-      (configChange)="onConfigChanged($event)">
-    </app-game-config>
-
-  </div>
-
 </div>

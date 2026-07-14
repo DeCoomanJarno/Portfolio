@@ -28,6 +28,7 @@
 
       <!-- Nav links -->
       <ul class="header__links" role="list">
+        <span class="header__nav-pill" aria-hidden="true"></span>
         <li>
           <a class="header__link" routerLink="/Home" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}" (click)="closeAll()">
@@ -84,10 +85,11 @@
       <div class="header__actions">
         <div class="header__controls-row">
           <div class="header__lang" role="group" [attr.aria-label]="'aria.language' | translate">
+            <span class="header__lang-indicator" aria-hidden="true"></span>
             @for (lang of localeService.languages; track lang) {
               <button class="header__lang-btn" type="button"
                 [class.active]="localeService.current() === lang"
-                (click)="setLanguage(lang)"
+                (click)="setLanguage(lang, $event)"
                 [attr.aria-pressed]="localeService.current() === lang">
                 {{ lang.toUpperCase() }}
               </button>

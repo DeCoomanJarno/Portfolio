@@ -12,6 +12,21 @@
         "yearShort": "yr",
         "now": "Present",
         "title": "Software Engineer",
+        "photoAlt": "Profile picture",
+        "sections": {
+            "about": "About"
+        },
+        "contactLabels": {
+            "email": "Email",
+            "phone": "Phone",
+            "location": "Location",
+            "linkedin": "LinkedIn"
+        },
+        "skillsTable": {
+            "school": "School",
+            "work": "Work",
+            "hobby": "Hobby"
+        },
         "contact": {
             "address": "9260 Schellebelle, Belgium"
         },

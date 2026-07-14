@@ -5,57 +5,68 @@
 // --z-header + 1   = 501  (backdrop — dims page, click-through to drawer is intentional)
 // --z-header + 2   = 502  (nav panel — always on top)
 
+// Ensure the host element itself participates in z-index stacking.
+// Without this, GSAP's opacity animation creates a new stacking context on the
+// host with no z-index, causing it to fall behind positioned page content.
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+}
+
 // ── Header shell ──────────────────────────────────────────────────────────────
 .header {
   position: fixed;
-  inset-inline: 0;
-  top: 0;
-  z-index: var(--z-header);
+  top: clamp(8px, 1.4vw, 14px);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: min(calc(100% - clamp(1rem, 4vw, 2.5rem)), 1340px);
+    z-index: calc(var(--z-header) + 1);
   height: var(--header-height);
+  border-radius: var(--radius-lg); // floating rectangle
 
-  // Apply the background and transitions to a pseudo-element 
-  // so it doesn't break the fixed positioning of child elements.
+  // Glass surface lives on a pseudo-element so transform on the host
+  // never fights fixed/sticky children.
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    z-index: -1;
-    background: transparent;
-    border-bottom: 1px solid transparent;
+    z-index: -2;
+    border-radius: inherit;
+    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.12), var(--shadow-1);
     transition:
       background var(--duration-base) var(--ease-out),
       border-color var(--duration-base) var(--ease-out),
       box-shadow var(--duration-base) var(--ease-out);
   }
 
+  // Subtle brand-colour rim that lights up on scroll.
   &__accent-line {
     position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--gradient-brand);
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid var(--ai-accent);
     opacity: 0;
-    transform: scaleX(0.3);
-    transform-origin: left;
     pointer-events: none;
-    transition:
-      opacity var(--duration-base) var(--ease-out),
-      transform var(--duration-slow) var(--ease-out);
+    transition: opacity var(--duration-slow) var(--ease-out);
   }
 
   &--scrolled {
-    // Move the scrolled background styles to the pseudo-element
     &::before {
-      background: color-mix(in srgb, var(--color-surface) 85%, transparent);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
-      border-bottom-color: var(--color-outline);
-      box-shadow: var(--shadow-2);
+      background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+      border-color: var(--color-outline);
+      box-shadow: 0 8px 36px -10px rgba(0, 0, 0, 0.18), var(--shadow-2);
     }
 
     .header__accent-line {
-      opacity: 1;
-      transform: scaleX(1);
+      opacity: 0.3;
     }
   }
 }
@@ -66,6 +77,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
+  // The header itself is already width-constrained; override page-container.
+  max-width: none !important;
+  padding-inline: clamp(0.75rem, 2.4vw, 1.4rem) !important;
 }
 
 // ── Brand ─────────────────────────────────────────────────────────────────────
@@ -88,7 +102,7 @@
 .header__burger {
   display: none;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -131,7 +145,7 @@
 .header__backdrop {
   display: none;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: block;
     position: fixed;
     inset: 0;
@@ -152,6 +166,7 @@
 
 // ── Nav panel ─────────────────────────────────────────────────────────────────
 .header__nav {
+      opacity: 0;
   // Desktop: inline flex row
   @include mq(lg) {
     display: flex;
@@ -160,9 +175,12 @@
     flex: 1;
     margin-left: var(--space-6);
   }
+  @media (min-width: 1025px) {
+      opacity: 1;
+  }
 
-  // Tablet (601–991px): side drawer from the right
-  @media (min-width: 601px) and (max-width: 991px) {
+  // Tablet (601–1025px): side drawer from the right
+  @media (min-width: 601px) and (max-width: 1025px) {
     position: fixed;
     top: 0;
     right: 0;
@@ -188,6 +206,7 @@
 
     &--open {
       transform: translateX(0);
+      opacity: 1;
     }
   }
 
@@ -221,6 +240,7 @@
 
     &--open {
       transform: translateY(0);
+      opacity: 1;
     }
   }
 }
@@ -266,7 +286,7 @@
 .header__drawer-top {
   display: none;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -324,9 +344,10 @@
   @include mq(lg) {
     align-items: center;
     gap: var(--space-1);
+    position: relative; // anchor for hover pill
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     flex-direction: column;
     gap: 2px;
   }
@@ -382,7 +403,7 @@
   }
 
   // Tablet + mobile
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     width: 100%;
     padding: var(--space-3) var(--space-3);
     border-radius: var(--radius-md);
@@ -442,7 +463,7 @@
   }
 
   // Tablet + mobile: inline accordion
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: none;
     padding-left: var(--space-4);
     margin-top: 2px;
@@ -458,7 +479,7 @@
 
   @include mq(lg) { grid-template-columns: 1fr 1fr; }
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     grid-template-columns: 1fr;
     gap: 2px;
   }
@@ -478,7 +499,7 @@
     background var(--duration-fast) var(--ease-out),
     color var(--duration-fast) var(--ease-out);
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     min-height: 48px;
     padding: var(--space-2) var(--space-3);
   }
@@ -516,7 +537,7 @@
 .header__divider {
   display: none;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: block;
     height: 1px;
     background: var(--color-outline);
@@ -531,7 +552,7 @@
   align-items: center;
   gap: var(--space-2);
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-2);
@@ -542,7 +563,7 @@
 .header__controls-row {
   display: contents;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     display: flex;
     align-items: center;
     gap: var(--space-2);
@@ -557,8 +578,23 @@
   background: var(--color-background);
   border: 1px solid var(--color-outline);
   gap: 2px;
+  position: relative; // anchor for sliding indicator
 
-  @media (max-width: 991px) { flex: 1; }
+  @media (max-width: 1025px) { flex: 1; }
+}
+
+// Liquid sliding indicator — GSAP controls x + width
+.header__lang-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
+  width: 36px; // overridden by GSAP on init
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width;
 }
 
 .header__lang-btn {
@@ -573,13 +609,14 @@
   cursor: pointer;
   min-width: 36px;
   min-height: 30px;
-  transition:
-    background var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
+  position: relative;
+  z-index: 1;
+  transition: color var(--duration-fast) var(--ease-out);
 
   &.active {
-    background: var(--color-primary);
+    // Background is provided by .header__lang-indicator (GSAP animated)
     color: var(--color-on-primary);
+    font-weight: 700;
   }
 
   &:not(.active):hover {
@@ -587,7 +624,7 @@
     color: var(--color-on-surface);
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     flex: 1;
     text-align: center;
     font-size: 0.8rem;
@@ -619,7 +656,7 @@
     color: var(--color-on-surface);
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     width: 46px;
     height: 46px;
     border-radius: var(--radius-md);
@@ -639,7 +676,7 @@
   border-radius: var(--radius-full) !important;
   padding-inline: var(--space-5) !important;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1025px) {
     width: 100%;
     height: 52px;
     border-radius: var(--radius-md) !important;
@@ -668,4 +705,32 @@
 .header__brand:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+// ── Nav hover pill (desktop only) ─────────────────────────────────────────────
+.header__nav-pill {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 34px;
+    width: 0;
+    transform: translateY(-50%);
+    background: var(--color-surface-hover);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// Links sit above the pill
+.header__links > li {
+  @include mq(lg) {
+    position: relative;
+    z-index: 1;
+  }
 }

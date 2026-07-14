@@ -8,6 +8,12 @@
         "certificates": "Certificates",
         "demos": "Demos"
     },
+    "expertise": {
+    "ai": "AI & Machine Learning",
+    "cpp": "C++ Engineering",
+    "csharp": "C# Architecture",
+    "angular": "Angular Ecosystem"
+  },
     "demos": {
         "calculator": "Calculator",
         "gameOfLife": "Game of Life",
@@ -20,16 +26,122 @@
         "switchToLight": "Switch to light mode",
         "switchToDark": "Switch to dark mode"
     },
-    "footer": {
-        "tagline": "Freelance web developer & software engineer building modern, reliable web applications.",
-        "availability": "Available for freelance projects",
-        "navigation": "Navigation",
-        "connect": "Connect",
-        "rights": "All rights reserved."
+    "common": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "randomize": "Randomize"
     },
+    "config": {
+        "title": "Settings",
+        "actions": "Actions"
+    },
+    "life": {
+        "rows": {
+            "label": "Rows",
+            "description": "Number of rows in the grid"
+        },
+        "cols": {
+            "label": "Columns",
+            "description": "Number of columns in the grid"
+        },
+        "cellSize": {
+            "label": "Cell size",
+            "description": "Size of each cell"
+        },
+        "updateTime": {
+            "label": "Update time",
+            "description": "Milliseconds between simulation updates"
+        },
+        "wrapEdges": {
+            "label": "Wrap edges",
+            "description": "Continue cells on the opposite edge"
+        }
+    },
+    "ant": {
+        "rows": {
+            "label": "Rows",
+            "description": "Number of rows in the grid"
+        },
+        "cols": {
+            "label": "Columns",
+            "description": "Number of columns in the grid"
+        },
+        "cellSize": {
+            "label": "Cell size",
+            "description": "Size of each cell"
+        },
+        "updateTime": {
+            "label": "Update time",
+            "description": "Milliseconds between simulation updates"
+        },
+        "wrapEdges": {
+            "label": "Wrap edges",
+            "description": "Continue the ant on the opposite edge"
+        },
+        "startDirection": {
+            "label": "Start direction",
+            "description": "Initial facing direction of the ant"
+        },
+        "direction": {
+            "up": "Up",
+            "right": "Right",
+            "down": "Down",
+            "left": "Left"
+        }
+    },"footer": {
+    "tagline": "Building scalable, high-performance software systems and intelligent AI solutions.",
+    "available_for_freelance": "Available for freelance projects",
+    "expertise": "Expertise",
+    "company": "Navigation",
+    "connect": "Connect",
+        "syncing": "Syncing...",
+        "social": {
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "email": "Email"
+        },
+    "rights": "All rights reserved."
+  },
     "home": {
         "title": "Software Engineer",
-        "aboutMe": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions."
+        "aboutMe": "I am a driven software engineer with experience in game development, VR, and automation. I excel in collaborative environments and enjoy creating innovative, optimized solutions.",
+        "traits": {
+            "angular": "Angular",
+            "dotnet": "C# & .NET",
+            "cpp": "C++",
+            "ai": "AI & Machine Learning",
+            "vr": "VR Development",
+            "freelance": "Open to Freelance"
+        },
+        "stats": {
+            "yearsActive": "Years Active",
+            "projectsBuilt": "Projects Built",
+            "technologies": "Technologies"
+        },
+        "sections": {
+            "skills": "Technical Expertise",
+            "career": "Career",
+            "background": "Background",
+            "credentials": "Credentials",
+            "certificates": "Certificates"
+        },
+        "contact": {
+            "title": "Let's Connect",
+            "subtitle": "Open to interesting projects and conversations.",
+            "location": "Location",
+            "email": "Email",
+            "phone": "Phone",
+            "linkedin": "LinkedIn",
+            "github": "GitHub",
+            "website": "Website"
+        },
+        "easterEggs": {
+            "konamiTitle": "Cheat Code Activated!",
+            "konamiText": "↑↑↓↓←→←→BA — a classic.\nI see you're a person of culture.",
+            "persistenceTitle": "Persistence Detected!",
+            "persistenceText": "That's exactly the kind of determination\nI bring to every project."
+        }
     },
     "skill": {
         "names": {

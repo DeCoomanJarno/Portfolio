@@ -1,127 +1,270 @@
-<div class="freelance-page">
+<div class="fl-page">
+  <span class="fl-progress" aria-hidden="true">
+    <span class="fl-progress__bar" #scrollBar></span>
+  </span>
 
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__bg" aria-hidden="true">
-      <div class="hero__orb hero__orb--primary"></div>
-      <div class="hero__orb hero__orb--secondary"></div>
-    </div>
-    <div class="page-container hero__inner">
-      <span class="badge badge--accent hero__status" data-hero-reveal>
-        <span class="pulse-dot" aria-hidden="true"></span>
-        {{ 'freelance.hero.status' | translate }}
-      </span>
+  <nav class="minimap" aria-label="Page section navigation">
+    @for (sec of minimapSections; track sec.id; let idx = $index) {
+      <button 
+        type="button" 
+        class="minimap__tick" 
+        [class.minimap__tick--active]="activeSectionIndex() === idx"
+        (click)="scrollToSection(sec.id)"
+        [attr.aria-label]="('freelance.minimap.goTo' | translate) + ' ' + (sec.labelKey | translate)"
+      >
+        <span class="minimap__tick-label mono">{{ sec.labelKey | translate }}</span>
+      </button>
+    }
+  </nav>
 
-      <p class="eyebrow" data-hero-reveal>{{ 'freelance.hero.eyebrow' | translate }}</p>
+  <section class="hero" id="hero" aria-labelledby="hero-title" #heroSection>
+    <canvas class="hero__canvas" #heroCanvas aria-hidden="true"></canvas>
+    <div class="hero__aura" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="hero__vignette" aria-hidden="true"></div>
 
-      <h1 id="hero-title" class="hero__title" data-hero-reveal>
-        {{ 'freelance.hero.title1' | translate }}
-        <span class="text-gradient">{{ 'freelance.hero.titleHighlight' | translate }}</span>
-      </h1>
+    <div class="wrap hero__wrap">
+      <div class="hero__layout">
 
-      <p class="hero__subtitle" data-hero-reveal>{{ 'freelance.hero.subtitle' | translate }}</p>
+        <div class="hero__status-wrap fade-up">
+          <div class="hero__status glass-badge mono">
+            <span class="hero__ping" aria-hidden="true"></span>
+            {{ 'freelance.hero.available' | translate }}
+          </div>
+        </div>
 
-      <div class="hero__actions" data-hero-reveal>
-        <button type="button" class="btn btn--primary btn--lg" (click)="openQuoteModal()">
-          {{ 'freelance.hero.getintouch' | translate }}
-          <i class="bi bi-arrow-right" aria-hidden="true"></i>
-        </button>
-        <a routerLink="/Projects" class="btn btn--outline btn--lg">
-          {{ 'freelance.hero.viewwork' | translate }}
-        </a>
+        <h1 id="hero-title" class="hero__title">
+          <span class="sr-only">
+            {{ 'freelance.hero.prefix' | translate }} {{ 'freelance.hero.accent' | translate }} {{ 'freelance.hero.suffix' | translate }}
+          </span>
+          <span class="hero__lines" aria-hidden="true">
+            <span class="hero__line-mask">
+              <span class="hero__line">{{ 'freelance.hero.prefix' | translate }}</span>
+            </span>
+            <span class="hero__line-mask hero__line-mask--word">
+              <span class="hero__line hero__word" #heroWordEl>{{ heroWords()[heroWordIndex()] }}</span>
+            </span>
+            <span class="hero__line-mask">
+              <span class="hero__line">{{ 'freelance.hero.suffix' | translate }}</span>
+            </span>
+          </span>
+        </h1>
+
+        <div class="hero__sub-wrap fade-up">
+          <p class="hero__sub">{{ 'freelance.hero.subtitle' | translate }}</p>
+        </div>
+
+        <div class="hero__actions fade-up">
+          <button type="button" class="btn btn--primary btn--lg" data-magnetic (click)="openQuoteModal()">
+            <span>{{ 'freelance.hero.cta' | translate }}</span>
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+          <a routerLink="/Projects" class="btn btn--ghost btn--lg glass-btn" data-magnetic>
+            <span>{{ 'freelance.hero.viewwork' | translate }}</span>
+          </a>
+        </div>
+
       </div>
+    </div>
 
-      <p class="hero__location" data-hero-reveal>
-        <i class="bi bi-geo-alt" aria-hidden="true"></i>
-        {{ 'freelance.hero.basedIn' | translate }}
-      </p>
-
-      <div class="hero__stack" data-hero-reveal>
-        <span class="hero__stack-label">{{ 'freelance.hero.techStack' | translate }}</span>
-        <ul class="hero__chips">
-          @for (tech of techStack; track tech) {
-            <li class="chip">{{ tech }}</li>
-          }
-        </ul>
+    <div class="hero__foot fade-up">
+      <div class="wrap hero__foot-inner">
+        <button type="button" class="hero__scroll-cue mono" (click)="scrollToSection('approach')">
+          <span>{{ 'freelance.hero.scroll' | translate }}</span>
+          <span class="hero__scroll-line" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- WHY / TRUST -->
-  <section class="section section--tight why reveal">
-    <div class="page-container">
-      <div class="why__grid" data-stagger>
-        @for (card of whyCards; track card.key) {
-          <div class="card why__card">
-            <i class="bi {{ card.icon }} why__icon" aria-hidden="true"></i>
-            <h3 class="why__title">{{ 'freelance.why.cards.' + card.key + '.title' | translate }}</h3>
-            <p class="why__desc">{{ 'freelance.why.cards.' + card.key + '.desc' | translate }}</p>
+  <section class="section approach" id="approach" aria-labelledby="approach-title">
+    <div class="wrap">
+      <div class="grid-split">
+        <div class="grid-split__left fade-up-scroll">
+          <p class="eyebrow">{{ 'freelance.approach.label' | translate }}</p>
+          <h2 id="approach-title" class="sr-only">{{ 'freelance.approach.label' | translate }}</h2>
+        </div>
+        <div class="grid-split__right fade-up-scroll" data-delay="0.1">
+          <p class="approach__body">{{ 'freelance.approach.body' | translate }}</p>
+          <div class="approach__chips">
+            @for (chip of approachChipKeys; track chip) {
+              <div class="glass-card approach__chip">
+                <i class="bi bi-check2-circle accent-text" aria-hidden="true"></i>
+                <span class="mono">{{ 'freelance.approach.chips.' + chip | translate }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section capabilities" id="capabilities" aria-labelledby="cap-title">
+    <div class="wrap">
+      <div class="cap-sticky-layout">
+        
+        <div class="cap-sticky-layout__sidebar">
+          <div class="sticky-content fade-up-scroll">
+            <p class="eyebrow">{{ 'freelance.capabilities.label' | translate }}</p>
+            <h2 id="cap-title" class="display-title">{{ 'freelance.capabilities.title' | translate }}</h2>
+            <p class="text-muted">{{ 'freelance.capabilities.subtitle' | translate }}</p>
+          </div>
+        </div>
+
+        <div class="cap-sticky-layout__cards">
+          @for (cap of capabilities; track cap.id) {
+            <article class="glass-card sys-card cap-scroll-card hover-glow">
+              <div class="sys-card__header">
+                <div class="sys-card__icon"><i class="bi {{ capIcon[cap.id] }}"></i></div>
+                <h3 class="sys-card__title">{{ 'freelance.capabilities.' + cap.id + '.title' | translate }}</h3>
+                @if (cap.featured) { <span class="badge badge--gradient mono">{{ 'freelance.capabilities.featuredBadge' | translate }}</span> }
+              </div>
+              <p class="sys-card__desc">{{ 'freelance.capabilities.' + cap.id + '.desc' | translate }}</p>
+              <div class="sys-card__meta mono">
+                @for (t of cap.tags; track t) { <span class="glass-badge">{{ t }}</span> }
+              </div>
+              <div class="sys-card__footer">
+                <button type="button" class="btn-text accent-text" (click)="openQuoteModal(cap.id)">
+                  {{ 'freelance.ui.getQuote' | translate }} <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section agent" id="agent" aria-labelledby="agent-title">
+    <div class="wrap">
+      <div class="head head--center fade-up-scroll">
+        <p class="eyebrow">{{ 'freelance.agent.label' | translate }}</p>
+        <h2 id="agent-title" class="display-title">{{ 'freelance.agent.title' | translate }}</h2>
+      </div>
+
+      <div class="glass-card terminal-ui fade-up-scroll" data-delay="0.1">
+        <div class="terminal-ui__header mono">
+          <div class="terminal-ui__dots"><span></span><span></span><span></span></div>
+          <span class="terminal-ui__tab">{{ 'freelance.agent.tabLabel' | translate }}</span>
+          <span class="glass-badge">{{ 'freelance.agent.tokens' | translate }}</span>
+        </div>
+
+        <div class="terminal-ui__body">
+          <div class="terminal-req">
+            <span class="mono accent-text">>> {{ 'freelance.agent.promptLabel' | translate | uppercase }}:</span>
+            <span class="terminal-req__text">"{{ 'freelance.agent.prompt' | translate }}"</span>
+          </div>
+
+          <div class="terminal-steps">
+            <div class="terminal-line"><div class="terminal-line__progress"></div></div>
+            @for (step of agentSteps; track step.key; let i = $index) {
+              <div class="term-step" [attr.data-step]="step.key">
+                <div class="term-step__indicator mono">0{{ i + 1 }}</div>
+                <div class="term-step__content">
+                  <span class="term-step__title"><i class="bi {{ step.icon }}" aria-hidden="true"></i>{{ 'freelance.agent.steps.' + step.key + '.title' | translate }}</span>
+                  <span class="term-step__detail mono">{{ 'freelance.agent.steps.' + step.key + '.detail' | translate }}</span>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="glass-card terminal-res">
+            <span class="mono accent-text"><< {{ 'freelance.agent.resultLabel' | translate | uppercase }}:</span>
+            <p class="terminal-res__text">{{ 'freelance.agent.result' | translate }}</p>
+            <span class="terminal-res__caption mono">// {{ 'freelance.agent.caption' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="head fade-up-scroll">
+        <p class="eyebrow">{{ 'freelance.why.label' | translate }}</p>
+        <h2 id="why-title" class="display-title">{{ 'freelance.why.title' | translate }}</h2>
+      </div>
+
+      <div class="grid-2x2">
+        @for (key of whyKeys; track key) {
+          <article class="glass-card sys-card hover-glow fade-up-scroll">
+            <div class="sys-card__tag mono accent-text">{{ 'freelance.why.cards.' + key + '.tag' | translate }}</div>
+            <h3 class="sys-card__title">{{ 'freelance.why.cards.' + key + '.title' | translate }}</h3>
+            <p class="sys-card__desc">{{ 'freelance.why.cards.' + key + '.desc' | translate }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+  
+  <section class="section process" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="head head--center">
+        <p class="eyebrow">{{ 'freelance.process.label' | translate }}</p>
+        <h2 id="process-title" class="display-title">{{ 'freelance.process.title' | translate }}</h2>
+        <p class="head__sub">{{ 'freelance.process.subtitle' | translate }}</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-timeline__line">
+          <div class="process-timeline__progress" #processProgress></div>
+        </div>
+
+        @for (step of ['step1', 'step2', 'step3']; track step; let idx = $index) {
+          <div class="process-node">
+            <div class="process-node__marker mono">0{{ idx + 1 }}</div>
+            <div class="process-node__card glass-card fade-up-scroll">
+              <h3 class="process-node__title">{{ 'freelance.process.' + step + '.title' | translate }}</h3>
+              <p class="process-node__desc">{{ 'freelance.process.' + step + '.desc' | translate }}</p>
+            </div>
           </div>
         }
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section services reveal" aria-labelledby="services-title">
-    <div class="page-container">
-      <header class="section-head">
-        <p class="eyebrow">{{ 'freelance.services.label' | translate }}</p>
-        <h2 id="services-title">{{ 'freelance.services.title' | translate }}</h2>
-        <p class="section-head__subtitle">{{ 'freelance.services.subtitle' | translate }}</p>
-      </header>
-
-      <div class="services__grid" data-stagger>
-        @for (service of services; track service.id) {
-          <article class="card card--hover service-card">
-            <div class="service-card__icon" [style.--service-color]="service.color">
-              <span class="material-icons" aria-hidden="true">{{ service.icon }}</span>
-            </div>
-            <h3>{{ 'freelance.expertises.' + service.id + '.title' | translate }}</h3>
-            <p>{{ 'freelance.expertises.' + service.id + '.desc' | translate }}</p>
-            <ul class="service-card__tags">
-              @for (tag of service.tags; track tag) {
-                <li class="chip">{{ tag }}</li>
-              }
-            </ul>
-            <button type="button" class="btn btn--ghost btn--sm service-card__cta" (click)="openQuoteModal(service.id)">
-              {{ 'freelance.ui.getQuote' | translate }}
-              <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </button>
-          </article>
-        }
+  <section class="section work" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="head head--row fade-up-scroll">
+        <div>
+          <p class="eyebrow">{{ 'freelance.work.label' | translate }}</p>
+          <h2 id="work-title" class="display-title">{{ 'freelance.work.title' | translate }}</h2>
+        </div>
+        <a routerLink="/Projects" class="btn btn--ghost glass-btn">
+          <span>{{ 'freelance.work.viewAll' | translate }}</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
       </div>
 
-      <div class="card calc-banner">
-        <div class="calc-banner__text">
-          <span class="badge">{{ 'freelance.calc.badge' | translate }}</span>
-          <h3>{{ 'freelance.calc.title' | translate }}</h3>
-          <p>{{ 'freelance.calc.subtitle' | translate }}</p>
-        </div>
-        <a routerLink="/Freelance-Calculator" class="btn btn--secondary">
-          {{ 'freelance.calc.badge' | translate }}
-          <i class="bi bi-calculator" aria-hidden="true"></i>
-        </a>
+      <div class="project-grid">
+        @for (project of featuredProjects(); track project.id) {
+          <div class="project-wrapper fade-up-scroll">
+            <ui-project-item [project]="project"></ui-project-item>
+          </div>
+        }
       </div>
     </div>
   </section>
 
-  <!-- AI LEARNING TRACK -->
-  <section class="section section--tight ai reveal" aria-labelledby="ai-title">
-    <div class="page-container">
-      <div class="ai__panel card">
-        <header class="ai__head">
-          <p class="eyebrow">{{ 'freelance.ai.label' | translate }}</p>
-          <h2 id="ai-title">{{ 'freelance.ai.title' | translate }}</h2>
-        <p class="ai__desc">{{ 'freelance.ai.desc' | translate }}</p>
-        </header>
-        <div class="ai__points">
-          @for (point of aiPoints; track point) {
-            <div class="ai__point">
-              <i class="bi bi-stars" aria-hidden="true"></i>
-              <div>
-                <h3>{{ 'freelance.ai.points.' + point + '.title' | translate }}</h3>
-                <p>{{ 'freelance.ai.points.' + point + '.desc' | translate }}</p>
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="grid-split">
+        <div class="grid-split__left fade-up-scroll">
+          <p class="eyebrow">{{ 'freelance.faq.label' | translate }}</p>
+          <h2 id="faq-title" class="display-title">{{ 'freelance.faq.title' | translate }}</h2>
+          <p class="text-muted">{{ 'freelance.faq.subtitle' | translate }}</p>
+        </div>
+        
+        <div class="grid-split__right accordion">
+          @for (key of faqKeys; track key) {
+            <div class="glass-card accordion__item fade-up-scroll" [class.is-open]="openFaqKeys()[key]">
+              <button class="accordion__trigger" (click)="toggleFaq(key)">
+                <span>{{ 'freelance.faq.items.' + key + '.q' | translate }}</span>
+                <div class="accordion__icon"><i class="bi bi-plus"></i></div>
+              </button>
+              <div class="accordion__content" [style.maxHeight]="openFaqKeys()[key] ? '250px' : '0px'">
+                <p>{{ 'freelance.faq.items.' + key + '.a' | translate }}</p>
               </div>
             </div>
           }
@@ -130,169 +273,105 @@
     </div>
   </section>
 
-  <!-- FEATURED WORK -->
-  @if (featuredProjects().length) {
-    <section class="section work reveal" aria-labelledby="work-title">
-      <div class="page-container">
-        <header class="section-head">
-          <p class="eyebrow">{{ 'freelance.work.label' | translate }}</p>
-          <h2 id="work-title">{{ 'freelance.work.title' | translate }}</h2>
-          <p class="section-head__subtitle">{{ 'freelance.work.subtitle' | translate }}</p>
-        </header>
-
-        <div class="work__grid" data-stagger>
-          @for (project of featuredProjects(); track project.id) {
-            <ui-project-item [project]="project" />
-          }
+ <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap fade-up-scroll">
+      <div class="glass-card cta-banner">
+        <div class="cta-banner__glow" aria-hidden="true"></div>
+        <div class="cta-banner__grid" aria-hidden="true"></div>
+        
+        <div class="cta-banner__content">
+          <h2 id="contact-title" class="cta-banner__title">{{ 'freelance.contact.cta_heading' | translate }}</h2>
+          <p class="cta-banner__note">{{ 'freelance.contact.note' | translate }}</p>
         </div>
+        
+        <div class="cta-banner__actions">
+          <button type="button" class="btn btn--primary btn--lg cta-main-btn" data-magnetic (click)="openQuoteModal()">
+            <span>{{ 'freelance.contact.primary.title' | translate }}</span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
+          
+          @if(resumeDataService.resumeData$ | async; as resumeData )
+          {
 
-        <div class="work__more">
-          <a routerLink="/Projects" class="btn btn--outline">
-            {{ 'freelance.work.viewAll' | translate }}
-            <i class="bi bi-arrow-right" aria-hidden="true"></i>
-          </a>
+            
+            @if(commonDataService.commonData$ | async; as commonData)
+            {
+              <div class="cta-banner__shortcut mono">
+                <a [href]="'mailto:' + commonData!.Contact!.Email" class="link-hover">{{commonData!.Contact!.Email}}</a>
+                <span class="separator">//</span>
+                <a [href]="commonData.LinkedIn_URL" target="_blank" rel="noopener noreferrer" class="link-hover">{{ resumeData.Contact.LinkedIn_Preview}}</a>
+              </div>
+            }
+          }
         </div>
       </div>
-    </section>
-  }
+    </div>
+  </section>
 
-  <!-- PROCESS -->
-  <section class="section section--tight process reveal" aria-labelledby="process-title">
-    <div class="page-container">
-      <header class="section-head">
-        <h2 id="process-title">{{ 'freelance.process.title' | translate }}</h2>
-        <p class="section-head__subtitle">{{ 'freelance.process.subtitle' | translate }}</p>
-      </header>
+  @if (showQuoteModal()) {
+    <div class="modal-overlay" role="dialog" aria-modal="true" (click)="closeQuoteModal()">
+      <div class="glass-card modal-dialog" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="closeQuoteModal()"><i class="bi bi-x-lg"></i></button>
 
-      <ol class="process__steps" data-stagger>
-        @for (step of processSteps; track step; let i = $index) {
-          <li class="process__step">
-            <span class="process__num" aria-hidden="true">{{ i + 1 }}</span>
-            <h3>{{ 'freelance.process.' + step + '.title' | translate }}</h3>
-            <p>{{ 'freelance.process.' + step + '.desc' | translate }}</p>
-          </li>
+        @if (!submitSuccess()) {
+          <h2 class="display-title">{{ 'freelance.quote.title' | translate }}</h2>
+          <form #quoteNgForm="ngForm" (ngSubmit)="submitQuote(quoteNgForm)" class="minimal-form">
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="q-name" class="mono">{{ 'freelance.quote.name' | translate }}</label>
+                <input type="text" id="q-name" name="name" required [(ngModel)]="quoteForm.name">
+              </div>
+              <div class="form-group">
+                <label for="q-email" class="mono">{{ 'freelance.quote.email' | translate }}</label>
+                <input type="email" id="q-email" name="email" required email [(ngModel)]="quoteForm.email">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="q-service" class="mono">{{ 'freelance.quote.service' | translate }}</label>
+                <select id="q-service" name="service" [(ngModel)]="quoteForm.service">
+                  <option value="">{{ 'freelance.ui.other' | translate }}</option>
+                  @for (cap of capabilities; track cap.id) {
+                    <option [value]="cap.id">{{ 'freelance.capabilities.' + cap.id + '.title' | translate }}</option>
+                  }
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="q-budget" class="mono">{{ 'freelance.quote.budget' | translate }}</label>
+                <select id="q-budget" name="budget" [(ngModel)]="quoteForm.budget">
+                  <option value="small">{{ 'freelance.quote.budgets.small' | translate }}</option>
+                  <option value="medium">{{ 'freelance.quote.budgets.medium' | translate }}</option>
+                  <option value="large">{{ 'freelance.quote.budgets.large' | translate }}</option>
+                  <option value="tbd">{{ 'freelance.quote.budgets.tbd' | translate }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="q-details" class="mono">{{ 'freelance.quote.details' | translate }}</label>
+              <textarea id="q-details" name="description" rows="4" required [(ngModel)]="quoteForm.description"></textarea>
+            </div>
+
+            @if (submitError(); as error) {
+              <p class="form-error mono"><i class="bi bi-exclamation-triangle"></i> {{ error }}</p>
+            }
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary" [disabled]="isSubmitting() || quoteNgForm.invalid">
+                {{ isSubmitting() ? ('freelance.ui.sending' | translate) : ('freelance.quote.submit' | translate) }}
+              </button>
+            </div>
+          </form>
+        } @else {
+          <div class="modal-success">
+            <div class="success-icon pulse-green"><i class="bi bi-check2"></i></div>
+            <h2 class="display-title">{{ 'freelance.modal.success.title' | translate }}</h2>
+            <p>{{ 'freelance.modal.success.desc' | translate }}</p>
+          </div>
         }
-      </ol>
+      </div>
     </div>
-  </section>
-
-  <!-- CONTACT CTA -->
-  <section id="contact" class="section contact reveal" aria-labelledby="contact-title">
-    <div class="page-container">
-      <header class="section-head">
-        <p class="eyebrow">{{ 'freelance.contact.title' | translate }}</p>
-        <h2 id="contact-title">{{ 'freelance.contact.cta_heading' | translate }}</h2>
-      </header>
-
-      @if (commonDataService.commonData$ | async; as common) {
-        <div class="contact__grid" data-stagger>
-          <button type="button" class="card card--hover contact__card" (click)="openQuoteModal()">
-            <i class="bi bi-send contact__icon" aria-hidden="true"></i>
-            <h3>{{ 'freelance.contact.primary.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.primary.desc' | translate }}</p>
-            <span class="contact__link">{{ 'freelance.contact.primary.link' | translate }} <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          </button>
-
-          <a class="card card--hover contact__card" [href]="common.Calendly" target="_blank" rel="noopener">
-            <i class="bi bi-calendar-check contact__icon" aria-hidden="true"></i>
-            <h3>{{ 'freelance.contact.schedule.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.schedule.desc' | translate }}</p>
-            <span class="contact__link">{{ 'freelance.contact.schedule.link' | translate }} <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          </a>
-
-          <a class="card card--hover contact__card" [href]="common.LinkedIn_URL" target="_blank" rel="noopener">
-            <i class="bi bi-linkedin contact__icon" aria-hidden="true"></i>
-            <h3>{{ 'freelance.contact.linkedIn.title' | translate }}</h3>
-            <p>{{ 'freelance.contact.linkedIn.desc' | translate }}</p>
-            <span class="contact__link">{{ 'freelance.contact.linkedIn.link' | translate }} <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-          </a>
-        </div>
-      }
-
-      <p class="contact__note">{{ 'freelance.contact.note' | translate }}</p>
-    </div>
-  </section>
+  }
 </div>
-
-<!-- QUOTE MODAL -->
-@if (showQuoteModal()) {
-  <div class="modal-backdrop" (click)="onBackdropClick($event)">
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="quote-title">
-      <button type="button" class="modal-close" (click)="closeQuoteModal()" [attr.aria-label]="'freelance.ui.close' | translate">
-        <i class="bi bi-x-lg" aria-hidden="true"></i>
-      </button>
-
-      @if (submitSuccess()) {
-        <div class="modal-success">
-          <i class="bi bi-check-circle" aria-hidden="true"></i>
-          <h2>{{ 'freelance.modal.success.title' | translate }}</h2>
-          <p [innerHTML]="'freelance.modal.success.desc' | translate"></p>
-        </div>
-      } @else {
-        <h2 id="quote-title">{{ 'freelance.quote.title' | translate }}</h2>
-
-        <form #quoteNgForm="ngForm" (ngSubmit)="submitQuote($event, quoteNgForm)">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="quote-name">{{ 'freelance.quote.name' | translate }}</label>
-              <input id="quote-name" name="name" type="text" required
-                     [(ngModel)]="quoteForm.name"
-                     [placeholder]="'freelance.quote.placeholders.name' | translate" />
-            </div>
-            <div class="form-field">
-              <label for="quote-email">{{ 'freelance.quote.email' | translate }}</label>
-              <input id="quote-email" name="email" type="email" required email
-                     [(ngModel)]="quoteForm.email"
-                     [placeholder]="'freelance.quote.placeholders.email' | translate" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label for="quote-service">{{ 'freelance.quote.service' | translate }}</label>
-              <select id="quote-service" name="service" required [(ngModel)]="quoteForm.service">
-                @for (expertise of allExpertises; track expertise.id) {
-                  <option [value]="expertise.id">{{ 'freelance.expertises.' + expertise.id + '.title' | translate }}</option>
-                }
-                <option value="other">{{ 'freelance.ui.other' | translate }}</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="quote-budget">{{ 'freelance.quote.budget' | translate }}</label>
-              <select id="quote-budget" name="budget" required [(ngModel)]="quoteForm.budget">
-                <option value="small">{{ 'freelance.quote.budgets.small' | translate }}</option>
-                <option value="medium">{{ 'freelance.quote.budgets.medium' | translate }}</option>
-                <option value="large">{{ 'freelance.quote.budgets.large' | translate }}</option>
-                <option value="tbd">{{ 'freelance.quote.budgets.tbd' | translate }}</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-field">
-            <label for="quote-details">{{ 'freelance.quote.details' | translate }}</label>
-            <textarea id="quote-details" name="description" rows="4" required
-                      [(ngModel)]="quoteForm.description"
-                      [placeholder]="'freelance.quote.placeholders.details' | translate"></textarea>
-          </div>
-
-          @if (submitError(); as error) {
-            <p class="form-error" role="alert">{{ error }}</p>
-          }
-
-          <div class="modal-actions">
-            <button type="button" class="btn btn--ghost" (click)="closeQuoteModal()">
-              {{ 'freelance.quote.cancel' | translate }}
-            </button>
-            <button type="submit" class="btn btn--primary" [disabled]="isSubmitting() || quoteNgForm.invalid">
-              @if (isSubmitting()) {
-                {{ 'freelance.ui.sending' | translate }}
-              } @else {
-                {{ 'freelance.quote.submit' | translate }}
-              }
-            </button>
-          </div>
-        </form>
-      }
-    </div>
-  </div>
-}

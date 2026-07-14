@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface QuoteFormData {
   name: string;
@@ -25,7 +26,7 @@ export class FormspreeService {
   private readonly MAX_SUBMISSIONS_PER_MONTH = 45; // Leave 5 buffer for testing
   private readonly SUBMISSION_WINDOW_MS = 30 * 24 * 60 * 60 * 1000; // 30 days in ms
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private translate: TranslateService) {}
 
   /**
    * Check if user can submit form based on rate limiting
@@ -49,7 +50,9 @@ export class FormspreeService {
       if (recentTimestamps.length >= this.MAX_SUBMISSIONS_PER_MONTH) {
         const oldestTimestamp = recentTimestamps[0];
         const timeUntilReset = new Date(oldestTimestamp + this.SUBMISSION_WINDOW_MS);
-        return `Rate limit exceeded. Please try again after ${timeUntilReset.toLocaleDateString()}`;
+        return this.translate.instant('freelance.quote.errors.rateLimit', {
+          date: timeUntilReset.toLocaleDateString()
+        });
       }
 
       return null;
@@ -131,16 +134,16 @@ export class FormspreeService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Failed to submit quote request.';
+    let errorMessage = this.translate.instant('freelance.quote.errors.submitFallback');
     
     if (error.status === 400) {
-      errorMessage = 'Invalid form data. Please check your input.';
+      errorMessage = this.translate.instant('freelance.quote.errors.invalidForm');
     } else if (error.status === 429) {
-      errorMessage = 'Too many requests. Please try again later.';
+      errorMessage = this.translate.instant('freelance.quote.errors.tooManyRequests');
     } else if (error.status >= 500) {
-      errorMessage = 'Server error. Please try again later.';
+      errorMessage = this.translate.instant('freelance.quote.errors.serverError');
     } else if (error.status === 0) {
-      errorMessage = 'Network error. Please check your connection.';
+      errorMessage = this.translate.instant('freelance.quote.errors.networkError');
     }
 
     return throwError(() => new Error(errorMessage));

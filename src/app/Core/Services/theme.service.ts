@@ -19,7 +19,8 @@ export class ThemeService {
       ?.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', () => {
         if (this.mode() === 'system') {
-          this.isDark.set(this.resolveIsDark('system'));
+          // FIX: Explicitly call apply so the DOM classList updates on OS theme change
+          this.apply('system');
         }
       });
   }
@@ -44,11 +45,13 @@ export class ThemeService {
 
   private apply(mode: ThemeMode): void {
     const root = this.document.documentElement;
+    const isDarkResolved = this.resolveIsDark(mode);
+    
     root.classList.remove('light', 'dark');
-    if (mode !== 'system') {
-      root.classList.add(mode);
-    }
-    this.isDark.set(this.resolveIsDark(mode));
+    // FIX: Always explicitly add 'light' or 'dark', even if the mode is 'system'
+    root.classList.add(isDarkResolved ? 'dark' : 'light');
+    
+    this.isDark.set(isDarkResolved);
   }
 
   private readStoredMode(): ThemeMode {

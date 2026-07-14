@@ -12,6 +12,21 @@
         "yearShort": "jr",
         "now": "Heden",
         "title": "Software Engineer",
+        "photoAlt": "Profielfoto",
+        "sections": {
+            "about": "Over mij"
+        },
+        "contactLabels": {
+            "email": "E-mail",
+            "phone": "Telefoon",
+            "location": "Locatie",
+            "linkedin": "LinkedIn"
+        },
+        "skillsTable": {
+            "school": "School",
+            "work": "Werk",
+            "hobby": "Hobby"
+        },
         "contact": {
             "address": "9260 Schellebelle, België"
         },

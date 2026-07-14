@@ -18,7 +18,8 @@ export interface ProjectModel {
   export enum ProjectCategory {
   All = "all",
   Web = "web",
-  Desktop = "desktop",
   VrAr = "vr/ar",
+  Ai = "AI",
+  Desktop = "desktop",
   Cpp = "cpp"
   }

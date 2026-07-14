@@ -63,6 +63,29 @@
   --shadow-2: 0 4px 10px -2px rgba(10, 31, 38, 0.08), 0 2px 4px rgba(10, 31, 38, 0.06);
   --shadow-3: 0 12px 28px -6px rgba(10, 31, 38, 0.14), 0 4px 10px -4px rgba(10, 31, 38, 0.08);
   --shadow-4: 0 24px 48px -12px rgba(10, 31, 38, 0.22);
+
+  // ── AI / landing accents (theme-aware, light) ──
+  // Darken the base accent slightly for better contrast on white
+  --ai-accent: #00667a; 
+  --ai-accent-2: #008196;
+  
+  // Double the opacity of the glows to make them pop against the light background
+  --ai-glow: rgba(0, 150, 168, 0.90);         // Was 0.20
+  --ai-glow-soft: rgba(0, 150, 168, 0.98);    // Was 0.09
+  --ai-glow-strong: rgba(0, 150, 168, 0.90);  // Was 0.30
+  
+  // Boost the aurora opacities for the hero canvas
+  --hero-aurora-1: rgba(0, 183, 194, 0.85);   // Was 0.16
+  --hero-aurora-2: rgba(79, 214, 255, 0.85);  // Was 0.12
+  --hero-aurora-3: rgba(0, 102, 128, 0.80);   // Was 0.10
+
+  --ai-ink-soft: rgba(22, 25, 27, 0.70);
+  --ai-grad: linear-gradient(115deg, #006680 0%, #00a3ad 55%, #0aa6c4 100%);
+  --ai-grad-text: linear-gradient(115deg, #007e95 0%, #00a7b5 55%, #0089a8 100%);
+  --hero-grid: rgba(0, 102, 128, 0.95);
+  --glass-bg: rgba(255, 255, 255, 1.72);
+  --glass-bg-strong: rgba(255, 255, 255, 1.88);
+  --glass-border: rgba(10, 31, 38, 0.99);
 }
 
 @mixin dark-colors {
@@ -124,6 +147,23 @@
   --shadow-2: 0 4px 10px -2px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-3: 0 12px 28px -6px rgba(0, 0, 0, 0.55), 0 4px 10px -4px rgba(0, 0, 0, 0.35);
   --shadow-4: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+
+  // ── AI / landing accents (theme-aware, dark) ──
+  --ai-accent: #19e3da;
+  --ai-accent-2: #4fd6ff;
+  --ai-ink-soft: rgba(232, 237, 239, 0.74);
+  --ai-glow: rgba(0, 224, 213, 0.34);
+  --ai-glow-soft: rgba(25, 227, 218, 0.14);
+  --ai-glow-strong: rgba(0, 224, 213, 0.55);
+  --ai-grad: linear-gradient(115deg, #00e0d5 0%, #19e3da 46%, #0aa6c4 100%);
+  --ai-grad-text: linear-gradient(115deg, #19e3da 0%, #00e0d5 55%, #4fd6ff 100%);
+  --hero-aurora-1: rgba(0, 224, 213, 0.20);
+  --hero-aurora-2: rgba(79, 214, 255, 0.16);
+  --hero-aurora-3: rgba(0, 102, 128, 0.22);
+  --hero-grid: rgba(255, 255, 255, 0.035);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.09);
 }
 
 :root {

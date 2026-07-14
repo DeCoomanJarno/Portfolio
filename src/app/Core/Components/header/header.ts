@@ -1,8 +1,8 @@
 import {
-  ChangeDetectionStrategy, Component, DestroyRef, ElementRef,
+  AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef,
   HostListener, inject, signal, effect, NgZone
 } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
@@ -20,7 +20,7 @@ import gsap from 'gsap';
   templateUrl: './header.html',
   styleUrls: ['./header.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
   readonly themeService = inject(ThemeService);
   readonly localeService = inject(LocaleService);
   readonly commonDataService = inject(CommonDataService);
@@ -42,7 +42,7 @@ export class HeaderComponent {
   ];
 
   private readonly isMobile = () =>
-    typeof window !== 'undefined' && window.innerWidth <= 991;
+    typeof window !== 'undefined' && window.innerWidth <= 1025;
 
   private readonly prefersReducedMotion =
     typeof window !== 'undefined' &&
@@ -50,8 +50,23 @@ export class HeaderComponent {
 
   constructor(router: Router) {
     router.events
-      .pipe(filter(e => e instanceof NavigationEnd), takeUntilDestroyed())
-      .subscribe(() => this.closeAll());
+      .pipe(filter(e => e instanceof NavigationStart || e instanceof NavigationEnd), takeUntilDestroyed())
+      .subscribe(e => {
+        // Pulse the accent border during navigation — looks great with the floating rect
+        const line = this.elementRef.nativeElement.querySelector('.header__accent-line') as HTMLElement;
+        if (e instanceof NavigationStart) {
+          this.ngZone.runOutsideAngular(() => {
+            if (line && !this.prefersReducedMotion)
+              gsap.to(line, { opacity: 0.9, duration: 0.25, overwrite: true });
+          });
+        } else {
+          this.closeAll();
+          this.ngZone.runOutsideAngular(() => {
+            if (line && !this.prefersReducedMotion)
+              gsap.to(line, { opacity: this.isScrolled() ? 0.3 : 0, duration: 0.5, delay: 0.15, overwrite: true });
+          });
+        }
+      });
 
     effect(() => {
       const open = this.isMenuOpen();
@@ -62,6 +77,8 @@ export class HeaderComponent {
 
       if (open) {
         this.animateDrawerOpen();
+        // Reposition lang indicator after the drawer slides in (320 ms animation)
+        setTimeout(() => this.repositionLangIndicator(), 350);
       } else {
         this.animateDrawerClose();
       }
@@ -107,12 +124,138 @@ export class HeaderComponent {
     this.isDemosOpen.set(false);
   }
 
-  setLanguage(lang: string): void {
+  ngAfterViewInit(): void {
+    if (this.prefersReducedMotion) return;
+    this.ngZone.runOutsideAngular(() => {
+      gsap.from(this.elementRef.nativeElement, {
+        y: -80, opacity: 0, scale: 0.96,
+        duration: 0.75, ease: 'back.out(1.5)', delay: 0.08, clearProps: 'all'
+      });
+      this.initNavPill();
+      this.initLangIndicator();
+    });
+  }
+
+  setLanguage(lang: string, event?: Event): void {
+    if (event && !this.prefersReducedMotion) {
+      const btn = event.currentTarget as HTMLElement;
+      const container = btn.closest('.header__lang') as HTMLElement;
+      const indicator = container?.querySelector('.header__lang-indicator') as HTMLElement;
+
+      if (indicator && container) {
+        this.ngZone.runOutsideAngular(() => {
+          const cRect = container.getBoundingClientRect();
+          const bRect = btn.getBoundingClientRect();
+          const targetX = bRect.left - cRect.left - 3;
+          // x slides fast, width snaps with elastic bounce = liquid stretch
+          gsap.timeline()
+            .to(indicator, { x: targetX, duration: 0.28, ease: 'power3.out' })
+            .to(indicator, { width: bRect.width, duration: 0.44, ease: 'elastic.out(1.2, 0.5)' }, '<');
+        });
+      }
+    }
     this.localeService.use(lang);
   }
 
   toggleTheme(): void {
-    this.themeService.toggle();
+    if (this.prefersReducedMotion) { this.themeService.toggle(); return; }
+    this.ngZone.runOutsideAngular(() => {
+      const btn = this.elementRef.nativeElement.querySelector('.header__theme') as HTMLElement;
+      const icon = btn?.querySelector('.header__theme-icon') as HTMLElement;
+
+      if (icon) {
+        // Compress icon → switch theme at tightest point (invisible) → bounce back as new icon
+        gsap.timeline()
+          .to(icon, { scale: 0.5, duration: 0.13, ease: 'power2.in' })
+          .call(() => this.ngZone.run(() => this.themeService.toggle()))
+          .to(icon, { scale: 1.2, duration: 0.18, ease: 'power2.out' })
+          .to(icon, { scale: 1,   duration: 0.12, ease: 'power2.in' });
+      } else {
+        this.ngZone.run(() => this.themeService.toggle());
+      }
+
+      // Small ambient glow burst from the button — not full-screen
+      if (btn) {
+        const { left, top, width, height } = btn.getBoundingClientRect();
+        const cx = left + width / 2;
+        const cy = top + height / 2;
+        const isDark = this.themeService.isDark();
+        const glow = document.createElement('div');
+        Object.assign(glow.style, {
+          position: 'fixed',
+          left: `${cx}px`, top: `${cy}px`,
+          width: '0', height: '0',
+          borderRadius: '50%',
+          zIndex: '9998', pointerEvents: 'none',
+          transform: 'translate(-50%, -50%)',
+          background: isDark
+            ? 'radial-gradient(circle, rgba(255,240,200,0.65) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(80,60,200,0.55) 0%, transparent 70%)',
+        });
+        document.body.appendChild(glow);
+        gsap.to(glow, {
+          width: '240px', height: '240px', opacity: 0,
+          duration: 0.5, ease: 'power2.out',
+          onComplete: () => glow.remove()
+        });
+      }
+    });
+  }
+
+  private repositionLangIndicator(): void {
+    this.ngZone.runOutsideAngular(() => {
+      const container = this.elementRef.nativeElement.querySelector('.header__lang') as HTMLElement;
+      const indicator = container?.querySelector('.header__lang-indicator') as HTMLElement;
+      if (!container || !indicator) return;
+      const activeBtn = container.querySelector('.header__lang-btn.active') as HTMLElement;
+      if (!activeBtn) return;
+      const cRect = container.getBoundingClientRect();
+      const bRect = activeBtn.getBoundingClientRect();
+      gsap.set(indicator, { x: bRect.left - cRect.left - 3, width: bRect.width });
+    });
+  }
+
+  private initLangIndicator(): void {
+    this.repositionLangIndicator();
+    const container = this.elementRef.nativeElement.querySelector('.header__lang') as HTMLElement;
+    if (!container) return;
+    const ro = new ResizeObserver(() => this.repositionLangIndicator());
+    ro.observe(container);
+    this.destroyRef.onDestroy(() => ro.disconnect());
+  }
+
+  private initNavPill(): void {
+    const ul = this.elementRef.nativeElement.querySelector('.header__links') as HTMLElement;
+    const pill = this.elementRef.nativeElement.querySelector('.header__nav-pill') as HTMLElement;
+    if (!ul || !pill || window.innerWidth <= 1025) return;
+
+    let pillVisible = false;
+
+    ul.addEventListener('mouseleave', () => {
+      gsap.to(pill, { opacity: 0, scaleY: 0.85, duration: 0.18, overwrite: true });
+      pillVisible = false;
+    });
+
+    ul.querySelectorAll<HTMLElement>(':scope > li').forEach(li => {
+      li.addEventListener('mouseenter', () => {
+        if (window.innerWidth <= 1025) return;
+        const ulRect = ul.getBoundingClientRect();
+        const liRect = li.getBoundingClientRect();
+        if (!pillVisible) {
+          gsap.set(pill, { x: liRect.left - ulRect.left, width: liRect.width, scaleY: 0.7 });
+          gsap.to(pill, { opacity: 1, scaleY: 1, duration: 0.28, ease: 'back.out(2.5)', overwrite: true });
+          pillVisible = true;
+        } else {
+          gsap.to(pill, {
+            x: liRect.left - ulRect.left,
+            width: liRect.width,
+            opacity: 1, scaleY: 1,
+            duration: 0.22, ease: 'power2.out',
+            overwrite: true,
+          });
+        }
+      });
+    });
   }
 
 private animateDrawerOpen(): void {

@@ -12,6 +12,7 @@ import { GameConfigComponent } from '../../../../Core/Components/game-config/gam
 import { LoadingComponent } from '../../../../Core/Components/loading/loading';
 import { ConfigAction, ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
 import { async, BehaviorSubject, Observable } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface LifeConfigModel{
   rows: ConfigField<number>;
@@ -23,7 +24,7 @@ export interface LifeConfigModel{
 @Component({
   selector: 'app-game-of-life-page',
   standalone: true,
-  imports: [CommonModule, GameConfigComponent, LoadingComponent],
+  imports: [CommonModule, GameConfigComponent, LoadingComponent, TranslatePipe],
   templateUrl: './game-of-life-page.html',
   styleUrls: ['./game-of-life-page.scss']
 })
@@ -312,9 +313,14 @@ onConfigChanged(event: ConfigChange<LifeConfigModel>): void {
 
   onCanvasClick(event: MouseEvent): void {
     const rect = this.canvas.nativeElement.getBoundingClientRect();
+    const scaleX = this.canvas.nativeElement.width / rect.width;
+    const scaleY = this.canvas.nativeElement.height / rect.height;
 
-    const col = Math.floor((event.clientX - rect.left) / this.cfg.cellSize.value);
-    const row = Math.floor((event.clientY - rect.top) / this.cfg.cellSize.value);
+    const canvasX = (event.clientX - rect.left) * scaleX;
+    const canvasY = (event.clientY - rect.top) * scaleY;
+
+    const col = Math.floor(canvasX / this.cfg.cellSize.value);
+    const row = Math.floor(canvasY / this.cfg.cellSize.value);
 
     if (
       row < 0 || row >= this.cfg.rows.value ||

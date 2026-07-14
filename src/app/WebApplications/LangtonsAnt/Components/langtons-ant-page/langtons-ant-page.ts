@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { LoadingComponent } from '../../../../Core/Components/loading/loading';
 import { GameConfigComponent } from '../../../../Core/Components/game-config/game-config';
 import { ConfigAction, ConfigChange, ConfigField } from '../../../../Core/Models/simulation-config.model';
@@ -26,7 +27,7 @@ export interface LangtonsAntConfigModel{
 @Component({
   selector: 'app-langtons-ant-page',
   standalone: true,
-  imports: [CommonModule, GameConfigComponent, LoadingComponent],
+  imports: [CommonModule, TranslateModule, GameConfigComponent, LoadingComponent],
   templateUrl: './langtons-ant-page.html',
   styleUrls: ['./langtons-ant-page.scss']
 })
@@ -336,9 +337,14 @@ private resetAnt(): void {
 
   onCanvasClick(e: MouseEvent): void {
     const rect = this.canvas.nativeElement.getBoundingClientRect();
+    const scaleX = this.canvas.nativeElement.width / rect.width;
+    const scaleY = this.canvas.nativeElement.height / rect.height;
 
-    const col = Math.floor((e.clientX - rect.left) / this.cfg.cellSize.value);
-    const row = Math.floor((e.clientY - rect.top) / this.cfg.cellSize.value);
+    const canvasX = (e.clientX - rect.left) * scaleX;
+    const canvasY = (e.clientY - rect.top) * scaleY;
+
+    const col = Math.floor(canvasX / this.cfg.cellSize.value);
+    const row = Math.floor(canvasY / this.cfg.cellSize.value);
 
     if (row < 0 || col < 0 || row >= this.cfg.rows.value || col >= this.cfg.cols.value) return;
 

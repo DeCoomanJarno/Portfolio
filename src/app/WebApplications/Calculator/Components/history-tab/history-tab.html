@@ -1,12 +1,12 @@
 @if (history.length !== 0) {
     <div class="history active">
-        <h3>History</h3>
+        <h3>{{ 'freelance.calc.history.title' | translate }}</h3>
         <ul class="history-list">
             @for (item of history; track $index) {
                 <li (click)="LoadFromHistory(item)" class="history-item">
                     <span class="equation">{{ item.Equation }} = {{ item.Result }}</span>
                     @if (isProgrammingCalculation(item)) {
-                        <span class="mode">(Mode: {{ item.mode }})</span>
+                        <span class="mode">({{ 'freelance.calc.history.mode' | translate }}: {{ item.mode }})</span>
                     }       
                 </li>         
             }

@@ -44,8 +44,8 @@
         rel="noopener noreferrer"
         class="project-external-link"
         (click)="$event.stopPropagation()"
-        title="{{ project.link.name || 'Visit' | translate }}">
-        <span class="link-text">{{ project.link.name || 'Visit' | translate }}</span>
+        [title]="project.link.name ? (project.link.name | translate) : ('Project.Visit' | translate)">
+        <span class="link-text">{{ project.link.name ? (project.link.name | translate) : ('Project.Visit' | translate) }}</span>
         <img [src]="project.link.icon | icon" [alt]="project.link.icon" />
         <span class="link-arrow" aria-hidden="true">→</span>
       </a>

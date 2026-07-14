@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Calculation } from '../base-calculator/base-calculator';
 import { ProgrammingCalculation } from '../programming-calculator/programming-calculator';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-history-tab',
-    imports: [],
+    imports: [TranslatePipe],
     templateUrl: './history-tab.html',
     styleUrls: ['./history-tab.scss'] // Fixed the property name from styleUrl to styleUrls
 })

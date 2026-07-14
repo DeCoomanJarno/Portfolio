@@ -20,16 +20,122 @@
         "switchToLight": "Schakel naar licht thema",
         "switchToDark": "Schakel naar donker thema"
     },
+    "common": {
+        "start": "Starten",
+        "pause": "Pauzeren",
+        "reset": "Resetten",
+        "randomize": "Willekeurig maken"
+    },
+    "config": {
+        "title": "Instellingen",
+        "actions": "Acties"
+    },
+    "life": {
+        "rows": {
+            "label": "Rijen",
+            "description": "Aantal rijen in het raster"
+        },
+        "cols": {
+            "label": "Kolommen",
+            "description": "Aantal kolommen in het raster"
+        },
+        "cellSize": {
+            "label": "Celgrootte",
+            "description": "Grootte van elke cel"
+        },
+        "updateTime": {
+            "label": "Bijwerktijd",
+            "description": "Milliseconden tussen simulatie-updates"
+        },
+        "wrapEdges": {
+            "label": "Randen doorlopen",
+            "description": "Laat cellen verdergaan aan de tegenoverliggende rand"
+        }
+    },
+    "ant": {
+        "rows": {
+            "label": "Rijen",
+            "description": "Aantal rijen in het raster"
+        },
+        "cols": {
+            "label": "Kolommen",
+            "description": "Aantal kolommen in het raster"
+        },
+        "cellSize": {
+            "label": "Celgrootte",
+            "description": "Grootte van elke cel"
+        },
+        "updateTime": {
+            "label": "Bijwerktijd",
+            "description": "Milliseconden tussen simulatie-updates"
+        },
+        "wrapEdges": {
+            "label": "Randen doorlopen",
+            "description": "Laat de mier verdergaan aan de tegenoverliggende rand"
+        },
+        "startDirection": {
+            "label": "Startrichting",
+            "description": "Beginrichting van de mier"
+        },
+        "direction": {
+            "up": "Omhoog",
+            "right": "Rechts",
+            "down": "Omlaag",
+            "left": "Links"
+        }
+    },
     "footer": {
         "tagline": "Freelance webontwikkelaar & software engineer die moderne, betrouwbare webapplicaties bouwt.",
-        "availability": "Beschikbaar voor freelance projecten",
+        "available_for_freelance": "Beschikbaar voor freelance projecten",
         "navigation": "Navigatie",
         "connect": "Connect",
+        "syncing": "Synchroniseren...",
+        "social": {
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "email": "E-mail"
+        },
         "rights": "Alle rechten voorbehouden."
     },
     "home": {
         "title": "Software Engineer",
-        "aboutMe": "Ik ben een gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Ik blink uit in samenwerkingsgerichte omgevingen en vind het leuk om innovatieve, geoptimaliseerde oplossingen te creëren."
+        "aboutMe": "Ik ben een gedreven software engineer met ervaring in gameontwikkeling, VR en automatisering. Ik blink uit in samenwerkingsgerichte omgevingen en vind het leuk om innovatieve, geoptimaliseerde oplossingen te creëren.",
+        "traits": {
+            "angular": "Angular",
+            "dotnet": "C# & .NET",
+            "cpp": "C++",
+            "ai": "AI & Machine Learning",
+            "vr": "VR-ontwikkeling",
+            "freelance": "Open voor freelance"
+        },
+        "stats": {
+            "yearsActive": "Jaren actief",
+            "projectsBuilt": "Gebouwde projecten",
+            "technologies": "Technologieën"
+        },
+        "sections": {
+            "skills": "Technische expertise",
+            "career": "Carrière",
+            "background": "Achtergrond",
+            "credentials": "Referenties",
+            "certificates": "Certificaten"
+        },
+        "contact": {
+            "title": "Laten we verbinden",
+            "subtitle": "Open voor interessante projecten en gesprekken.",
+            "location": "Locatie",
+            "email": "E-mail",
+            "phone": "Telefoon",
+            "linkedin": "LinkedIn",
+            "github": "GitHub",
+            "website": "Website"
+        },
+        "easterEggs": {
+            "konamiTitle": "Cheatcode geactiveerd!",
+            "konamiText": "↑↑↓↓←→←→BA — een klassieker.\nIk zie dat je van cultuur houdt.",
+            "persistenceTitle": "Volharding gedetecteerd!",
+            "persistenceText": "Dat is precies het soort vastberadenheid\ndat ik in elk project stop."
+        }
     },
     "skill": {
         "names": {

@@ -6,6 +6,7 @@
     "Links": "Links",
     "Copy": "Copy",
     "Copied": "Copied!",
+    "Visit": "Visit",
     "NotFound": "Project not found.",
     "ImageAlt": "Project image {{index}}",
     "Category": {
@@ -13,6 +14,7 @@
       "vr/ar": "VR / AR",
       "desktop": "Desktop",
       "cpp": "C++",
+      "AI": "AI",
       "all": "All"
     },
     "GameOfLife": {
