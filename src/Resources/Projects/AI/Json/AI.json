@@ -1,0 +1,56 @@
+{
+  "title": "Project.AI.Title",
+  "description": "Project.AI.Description",
+  "content": [
+    {
+      "type": "image",
+      "value": "AI_Landing.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.AI.Content.0"
+    },
+    {
+      "type": "image",
+      "value": "AI_Analyzer.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.AI.Content.1"
+    },
+    {
+      "type": "image",
+      "value": "AI_Dashboard.png"
+    },
+    {
+      "type": "text",
+      "value": "Project.AI.Content.2"
+    },
+    {
+      "type": "other",
+      "value": "Project.AI.Content.3"
+    }
+  ],
+  "features": [
+    "Project.AI.Features.0",
+    "Project.AI.Features.1",
+    "Project.AI.Features.2",
+    "Project.AI.Features.3"
+  ],
+  "futurePlans": [
+    "Project.AI.Future.0",
+    "Project.AI.Future.1",
+    "Project.AI.Future.2",
+    "Project.AI.Future.3"
+  ],
+  "links": [
+    {
+      "name": "Project.AI.Links.Live",
+      "url": "/AI"
+    },
+    {
+      "name": "Project.AI.Links.Analyzer",
+      "url": "/AI/Analyzer"
+    }
+  ]
+}

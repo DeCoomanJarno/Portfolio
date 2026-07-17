@@ -38,7 +38,8 @@ export class HeaderComponent implements AfterViewInit {
     { route: '/LangtonsAnt',          labelKey: 'demos.langtonsAnt',    icon: 'bi-bug'             },
     { route: '/Appointments',         labelKey: 'demos.appointments',   icon: 'bi-calendar-check' },
     { route: '/Inventory',            labelKey: 'demos.inventory',      icon: 'bi-box-seam'       },
-    { route: '/Freelance-Calculator', labelKey: 'demos.rateCalculator', icon: 'bi-cash-coin'      }
+    { route: '/Freelance-Calculator', labelKey: 'demos.rateCalculator', icon: 'bi-cash-coin'      },
+    { route: '/AI',                   labelKey: 'demos.aiConcept',     icon: 'bi-stars'         }
   ];
 
   private readonly isMobile = () =>

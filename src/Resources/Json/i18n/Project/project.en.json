@@ -7,6 +7,7 @@
     "Copy": "Copy",
     "Copied": "Copied!",
     "Visit": "Visit",
+    "View": "View project",
     "NotFound": "Project not found.",
     "ImageAlt": "Project image {{index}}",
     "Category": {
@@ -17,6 +18,32 @@
       "AI": "AI",
       "all": "All"
     },
+    "AI": {
+      "Title": "AI Architecture Studio",
+      "Description": "A portfolio concept for an AI architecture assistant that turns project descriptions into blueprints, technology stacks, roadmaps, and realistic recommendations in English and Dutch.",
+  "Content": [
+        "This is a portfolio mockup rather than a shipped product. It presents how an AI software-architect feature could look and feel inside a polished website.",
+        "The analyzer view simulates a more realistic reasoning process by streaming step-by-step status updates, switching labels based on the active language, and delivering output with a confidence score for the generated architecture.",
+        "The dashboard combines layered architecture diagrams, translated summaries, technology recommendations, delivery roadmaps, and AI opportunities. The screenshots are illustrative mockups created for the portfolio.",
+        "<h4>Concept links and visuals</h4><ul><li>The project card links to the interactive AI concept demo on this portfolio site.</li><li>The case study links to the analyzer so visitors can try the workflow immediately.</li><li>The preview images are local illustrative mockups, not captured production screenshots.</li><li>The same functionality is fully translated using ngx-translate for both English and Dutch.</li></ul>"
+  ],
+  "Features": [
+        "Concept demo integration with the landing page and analyzer",
+    "Localized UI and generated labels in English and Dutch",
+        "Illustrative screenshot-style previews for the landing page, analyzer, and dashboard",
+    "Confidence score and realistic analysis workflow"
+  ],
+  "Future": [
+        "Add more domain profiles and richer heuristics to the concept",
+        "Optionally connect real API integrations for live parsing",
+        "Replace mockup previews with actual captures when the concept is implemented",
+        "Expand the project page with more in-depth technical notes"
+  ],
+  "Links": {
+        "Live": "Open concept demo",
+    "Analyzer": "Try the Analyzer"
+  }
+},
     "GameOfLife": {
       "Title": "Conway's Game of Life",
       "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",

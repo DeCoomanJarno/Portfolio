@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import gsap from 'gsap';
@@ -61,6 +61,8 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
   private readonly isBrowser  = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly ngZone     = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly hostEl     = inject(ElementRef<HTMLElement>);
+  private readonly route      = inject(ActivatedRoute);
   private readonly formspree  = inject(FormspreeService);
   private readonly translate  = inject(TranslateService);
   private readonly themeService   = inject(ThemeService);
@@ -123,6 +125,7 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
 
   quoteForm = { name: '', email: '', service: '', budget: 'medium', description: '' };
   private heroWordTimer?: ReturnType<typeof setTimeout>;
+  private scrollIdleTimer?: ReturnType<typeof setTimeout>;
   private waveField: HeroWaveField | null = null;
   private heroVisible = true;
   private isDestroyed = false;
@@ -150,6 +153,7 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
     if (!this.isBrowser) return;
 
     this.loadHeroWords();
+    this.initFragmentScrollSync();
     
     this.ngZone.runOutsideAngular(() => {
       // Small timeout ensures DOM is fully rendered before GSAP calculations
@@ -159,6 +163,7 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
         this.initMagneticButtons();
         this.initGlobalScrollAnimations();
         this.initAgentTerminalSimulation();
+        this.initScrollPerfGuard();
       }, 50);
     });
   }
@@ -166,6 +171,7 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.isDestroyed = true;
     if (this.heroWordTimer) clearTimeout(this.heroWordTimer);
+    if (this.scrollIdleTimer) clearTimeout(this.scrollIdleTimer);
     this.cleanupFns.forEach(fn => fn());
     this.waveField?.destroy();
     this.waveField = null;
@@ -296,6 +302,44 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
   private syncWaveRunning(): void {
     this.waveField?.setRunning(this.heroVisible && !document.hidden);
   }
+
+  /**
+   * `backdrop-filter` blur is re-sampled every frame for every glass surface,
+   * which is the dominant scroll cost on this page. Drop it (via a host class)
+   * while the user is actively scrolling and restore it the moment they stop —
+   * the motion masks the change, so the glass look is preserved when it matters.
+   */
+  private initScrollPerfGuard(): void {
+    const host = this.hostEl.nativeElement as HTMLElement;
+    let scrolling = false;
+
+    const onScroll = (): void => {
+      if (!scrolling) {
+        scrolling = true;
+        host.classList.add('is-scrolling');
+      }
+      if (this.scrollIdleTimer) clearTimeout(this.scrollIdleTimer);
+      this.scrollIdleTimer = setTimeout(() => {
+        scrolling = false;
+        host.classList.remove('is-scrolling');
+      }, 120);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    this.cleanupFns.push(() => window.removeEventListener('scroll', onScroll));
+  }
+
+  private initFragmentScrollSync(): void {
+    this.route.fragment.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(fragment => {
+      if (!fragment) return;
+
+      // Wait for the lazy component and layout to settle before scrolling.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => this.scrollToSection(fragment));
+      });
+    });
+  }
+
 private buildWavePalette(isDark: boolean): WavePalette {
     const styles = getComputedStyle(document.documentElement);
     const read = (name: string, fallback: string): string => styles.getPropertyValue(name).trim() || fallback;

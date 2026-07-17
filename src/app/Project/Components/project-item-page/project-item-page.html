@@ -34,7 +34,7 @@
                   {{ preview.link.name | translate }}
                 </a>
               }
-              @for (link of project.links; track link.url) {
+              @for (link of projectLinks(); track link.url) {
                 <a [href]="link.url" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
                   {{ link.name | translate }}
                 </a>

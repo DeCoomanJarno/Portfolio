@@ -1,0 +1,213 @@
+{
+  "ai": {
+    "landing": {
+      "version": "ENGINE RELEASE v2.1",
+      "title": "AI",
+      "titleAccent": "Studio",
+      "subtitle": "Architectuurassistent",
+      "description": "Versnel je software-engineeringtrajecten. Beschrijf je projectvereisten om direct volledige architectuurblauwdrukken, technologiestacks, implementatieplannen en concrete AI-kansen te genereren.",
+      "cta": "Studio openen",
+      "features": {
+        "blueprints": {
+          "title": "Directe blauwdrukken",
+          "description": "Visualiseer modulaire architectuurtopologieën met heldere, interactieve diagrammen."
+        },
+        "timelines": {
+          "title": "Agile tijdlijnen",
+          "description": "Ontvang gestructureerde implementatieplannen met realistische taakverdelingen en voortgangsmetingen."
+        },
+        "opportunities": {
+          "title": "AI-kansen",
+          "description": "Ontdek waar je strategisch machine learning-modellen kunt inzetten om de productwaarde te maximaliseren."
+        }
+      }
+    },
+    "analyzer": {
+      "brand": "AI",
+      "brandAccent": "STUDIO",
+      "tagline": "ARCHITECT WERKRUIMTE",
+      "input": {
+        "heading": "Softwarespecificatie definiëren",
+        "description": "Geef een beschrijving op hoofdlijnen van je software-idee. De cognitieve regels-engine analyseert je functionele patronen en stelt een architectuurrapport op ondernemingsniveau samen.",
+        "placeholder": "Beschrijf je software-idee (bijv. 'Ik heb een reserveringsapplicatie voor een restaurant nodig' of 'Een VR-trainingssuite voor piloten')...",
+        "hint": "Tip: noem real-time, betalingen, authenticatie, analytics of compliance voor een rijkere blauwdruk.",
+        "button": "Projectspecificaties analyseren"
+      },
+      "processing": {
+        "heading": "Blauwdruk ontwerpen",
+        "sub": "De structurele parser analyseert je beschrijvingsvectoren..."
+      },
+      "steps": {
+        "reading": "Projectvereisten lezen",
+        "extracting": "Beperkingen en mogelijkheden extraheren",
+        "detecting": "Domeincontext afleiden ({{domain}})",
+        "evaluating": "Complexiteit en opleveringsrisico scoren",
+        "designing": "Architectuurblauwdruk ontwerpen",
+        "selecting": "Passende technologiestacks selecteren",
+        "generating": "Roadmap en AI-kansen genereren"
+      }
+    },
+    "dashboard": {
+      "back": "Projectspecificaties verfijnen",
+      "verified": "ARCHITECTVERIFICATIE GEÏNSTANTIEERD",
+      "risks": "Gesignaleerde systeemrisico's",
+      "recommendations": "Strategische uitvoeringsrichtlijnen"
+    },
+    "analysis": {
+      "description": {
+        "base": "Een productarchitectuur met {{complexity}} complexiteit voor {{summaryStem}}.",
+        "prioritizes": "Het prioriteert {{capabilities}}.",
+        "crossDomain": "De vereisten lijken domeinoverstijgend, dus het plan legt de nadruk op modulaire grenzen en incrementele validatie."
+      },
+      "capabilities": {
+        "auth": "veilige identiteit en autorisatie",
+        "realtime": "real-time synchronisatie",
+        "analytics": "besluitvormende analyses",
+        "integrations": "integraties met externe systemen",
+        "mobile": "mobiele gebruikersstromen",
+        "search": "snel zoeken en ontdekken"
+      }
+    },
+    "summary": {
+      "confidence": "Matchbetrouwbaarheid",
+      "signalsLabel": "Gedetecteerde mogelijkheden"
+    },
+    "profileCopy": {
+      "hospitality": {
+        "summaryStem": "reserveringen, bestelstromen en gastoperaties",
+        "coreTechnologies": {
+          "angular20": "Snelle dashboard- en workflow-UI voor boekingen, tafels en staftaken.",
+          "aspNetCoreApi": "Sterke transactionele grens voor reserveringen en orderorkestratie.",
+          "postgresql": "Betrouwbaar relationeel model voor boekingen, voorraad en klantgegevens.",
+          "redis": "State-cache met lage latency voor op slot gebaseerde tafels toewijzing en sessies."
+        },
+        "aiIdeas": {
+          "demandAware": {
+            "description": "Voorspel vraagvensters en optimaliseer automatisch tafeltoewijzingen.",
+            "businessValue": "Verhoogt de servicecapaciteit en vermindert lege tafels."
+          },
+          "orderAnomaly": {
+            "description": "Detecteer ongebruikelijke annuleringen of no-show patronen vóór piekuren.",
+            "businessValue": "Vermindert verspilling en verbetert de planningbetrouwbaarheid."
+          }
+        },
+        "baseRisks": {
+          "peakHour": "Concurrentie tijdens piekuren kan reserveringsracecondities veroorzaken zonder schrijfvergrendelingen.",
+          "dashboardDrift": "Operationele dashboards kunnen afwijken van de backend-werkelijkheid zonder event-gedreven updates."
+        },
+        "baseRecommendations": {
+          "transactionIsolation": "Gebruik transactie-isolatie plus optimistic concurrency op boekingsoperaties.",
+          "eventStream": "Publiceer reserverings- en orderwijzigingen via een event stream zodat clients gesynchroniseerd blijven."
+        }
+      }
+    },
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "infrastructure": "Infrastructuur",
+      "integration": "Integratie"
+    },
+    "productTypes": {
+      "commerce": "Commerceplatform",
+      "operations": "Operationsplatform",
+      "intelligence": "Intelligence Hub",
+      "workspace": "Werkruimtepaneel",
+      "simulation": "Simulatiesuite",
+      "general": "Productplatform"
+    },
+    "technology": {
+      "title": "Passende technologiestack"
+    },
+    "architecture": {
+      "title": "Topologiestroomdiagram",
+      "nodes": {
+        "user": "Eindgebruiker",
+        "frontend": "Clienttoepassing",
+        "api": "Applicatie-API",
+        "database": "Primaire database",
+        "mobile": "Mobiele client",
+        "events": "Realtime eventlaag",
+        "ai": "AI-inferentieservice",
+        "search": "Zoekindex",
+        "external": "Externe integraties"
+      }
+    },
+    "timeline": {
+      "title": "Agile opleveringsroadmap",
+      "weeks": {
+        "week1": "Week 1",
+        "week2": "Week 2",
+        "week3": "Week 3",
+        "week4": "Week 4",
+        "week5": "Week 5"
+      },
+      "titles": {
+        "week1": "Domeinmodellering & technische basis",
+        "week2": "Kernfunctionaliteit & serviceworkflows",
+        "week3": "Integraties, analyses & betrouwbaarheid",
+        "week4": "Versteviging, beveiligingsreview & lancering",
+        "week5": "Opschaling & operationele gereedheid"
+      },
+      "descriptions": {
+        "week1": "Scherp de scope, kernentiteiten, API-grenzen en kwaliteitsgates voor release af.",
+        "week2": "Implementeer kritieke gebruikersstromen, persistentiestromen en toegangscontrole.",
+        "week3": "{{clauses}}",
+        "week3Fallback": "Breid QA-automatisering, observability en releasegereedheidstests uit.",
+        "week4": "Voer belastingtests uit, modelleer bedreigingen voor risicovolle onderdelen en rond de productie-uitrol af.",
+        "week5": "Valideer multi-region veerkracht, on-call runbooks en capaciteitsruimte."
+      },
+      "clauses": {
+        "integrations": "koppel externe integraties met webhooks die opnieuw kunnen proberen",
+        "analytics": "instrumenteer KPI's en operationele dashboards",
+        "realtime": "optimaliseer eventpijplijnen voor updates met lage latency",
+        "search": "tune zoekrelevantie en indexeringspijplijnen",
+        "offline": "valideer offline synchronisatie en conflictoplossing"
+      }
+    },
+    "opportunities": {
+      "title": "AI-optimalisatievectoren",
+      "impact": "Belangrijkste impact"
+    },
+    "complexity": {
+      "suffix": "Complexiteit",
+      "Low": "Laag",
+      "Medium": "Gemiddeld",
+      "High": "Hoog",
+      "Enterprise": "Enterprise"
+    },
+    "difficulty": {
+      "suffix": "Complexiteit",
+      "Easy": "Eenvoudig",
+      "Medium": "Gemiddeld",
+      "Hard": "Complex"
+    },
+    "domains": {
+      "hospitality": "Horeca- & gastvrijheidssystemen",
+      "commerce": "Digitale commerce-systemen",
+      "xr-training": "Spatial computing & XR-training",
+      "enterprise-saas": "Enterprise operations-SaaS",
+      "healthcare": "Zorg & zorgcoördinatie",
+      "fintech": "Financiële technologieplatformen",
+      "education": "Leer- & onderwijsplatformen",
+      "logistics": "Logistiek & wagenparkbeheer",
+      "product-platform": "Domeinoverstijgend productplatform"
+    },
+    "signals": {
+      "realtime": "Real-time",
+      "mobile": "Mobiel",
+      "payments": "Betalingen",
+      "auth": "Authenticatie",
+      "analytics": "Analytics",
+      "ai": "AI / ML",
+      "integrations": "Integraties",
+      "multitenant": "Multi-tenant",
+      "compliance": "Compliance",
+      "offline": "Offline",
+      "collaboration": "Samenwerking",
+      "highTraffic": "Hoog verkeer",
+      "search": "Zoeken",
+      "notifications": "Notificaties"
+    }
+  }
+}

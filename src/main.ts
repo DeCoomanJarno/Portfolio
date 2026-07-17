@@ -17,6 +17,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
     { prefix: './Resources/Json/i18n/Project/project.', suffix: '.json' },
     { prefix: './Resources/Json/i18n/Project/appointment/appointment.', suffix: '.json' },
     { prefix: './Resources/Json/i18n/Project/inventory/inventory.', suffix: '.json' },
+    { prefix: './Resources/Json/i18n/AI/ai.', suffix: '.json' },
   ]);
 }
 

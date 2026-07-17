@@ -14,7 +14,8 @@
         "langtonsAnt": "Langton's Ant",
         "appointments": "Afsprakenplanner",
         "inventory": "Voorraadbeheer",
-        "rateCalculator": "Tariefcalculator"
+        "rateCalculator": "Tariefcalculator",
+        "aiConcept": "AI-concept"
     },
     "theme": {
         "switchToLight": "Schakel naar licht thema",

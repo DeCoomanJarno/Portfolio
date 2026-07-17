@@ -13,7 +13,6 @@ import { Certificate } from '../../../Core/Components/certificate/certificate';
 import { RevealDirective } from '../../../Core/Directives/reveal.directive';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { delay } from 'rxjs';
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -20,7 +20,8 @@
         "langtonsAnt": "Langton's Ant",
         "appointments": "Appointment Scheduler",
         "inventory": "Inventory Manager",
-        "rateCalculator": "Rate Calculator"
+        "rateCalculator": "Rate Calculator",
+        "aiConcept": "AI Concept"
     },
     "theme": {
         "switchToLight": "Switch to light mode",

@@ -30,6 +30,15 @@ export class ProjectItemPageComponent {
   readonly preview = signal<ProjectPreviewModel | undefined>(undefined);
   readonly copiedIndex = signal<number | null>(null);
 
+  projectLinks(): ProjectModel['links'] {
+    const projectLinks = this.project()?.links ?? [];
+    const previewUrl = this.preview()?.link?.url;
+
+    return previewUrl
+      ? projectLinks.filter(link => link.url !== previewUrl)
+      : projectLinks;
+  }
+
   constructor() {
     const projectId = this.route.snapshot.paramMap.get('id') || '';
 

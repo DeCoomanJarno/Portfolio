@@ -48,5 +48,13 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./WebApplications/inventory/inventory-module').then(m => m.InventoryModule)
     },
+    {
+        path: 'AI',
+        loadComponent: () => import('./AI/Features/landing-component/landing-component').then(m => m.LandingComponent)
+    },
+    {
+        path: 'AI/Analyzer',
+        loadComponent: () => import('./AI/Features/analyzer-component/analyzer-component').then(m => m.AnalyzerComponent)
+    },
     { path: '**', redirectTo: 'Home' }
 ];

@@ -1,0 +1,29 @@
+<div class="glass-panel summary-box">
+      <div class="summary-top">
+        <span class="domain-tag">{{ domainKey | translate }}</span>
+        <span class="complexity-badge" [ngClass]="levelClass">
+          {{ ('ai.complexity.' + complexity) | translate }} {{ 'ai.complexity.suffix' | translate }}
+        </span>
+      </div>
+      <h2>{{ title }}</h2>
+      <p>{{ description }}</p>
+
+      <div class="summary-meta">
+        <div class="confidence" *ngIf="confidence > 0">
+          <div class="confidence-head">
+            <span class="meta-label">{{ 'ai.summary.confidence' | translate }}</span>
+            <span class="meta-value">{{ confidence }}%</span>
+          </div>
+          <div class="confidence-track">
+            <div class="confidence-fill" [style.width.%]="confidence"></div>
+          </div>
+        </div>
+
+        <div class="signals" *ngIf="signalKeys.length">
+          <span class="meta-label">{{ 'ai.summary.signalsLabel' | translate }}</span>
+          <div class="signal-chips">
+            <span class="signal-chip" *ngFor="let key of signalKeys">{{ key | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>

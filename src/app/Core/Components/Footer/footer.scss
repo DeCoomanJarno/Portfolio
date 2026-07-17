@@ -14,11 +14,14 @@
     bottom: -30%;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
+    width: min(90%, 900px);
     height: 120%;
-    background: var(--gradient-hero);
-    filter: blur(120px);
-    opacity: 0.5;
+    // A radial gradient reproduces the soft aura of a 120px blur at a fraction
+    // of the paint cost — important because GSAP animates its scale/opacity.
+    background: radial-gradient(ellipse at center,
+      var(--color-primary-soft) 0%,
+      transparent 70%);
+    opacity: 0.6;
     z-index: 0;
     pointer-events: none;
     border-radius: 50%;
@@ -166,15 +169,13 @@
     padding: var(--space-6);
     box-shadow: var(--shadow-3);
     transform-style: preserve-3d;
-    
-    // Glassmorphism core
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: linear-gradient(
-      135deg, 
-      var(--color-primary-soft) 0%, 
-      transparent 100%
-    );
+
+    // Dropped backdrop-filter: VanillaTilt applies a 3D transform on every
+    // pointer move, forcing the blurred backdrop to re-render each frame. A
+    // layered translucent surface keeps the glass look without the per-frame cost.
+    background:
+      linear-gradient(135deg, var(--color-primary-soft) 0%, transparent 100%),
+      color-mix(in srgb, var(--color-surface) 88%, transparent);
 
     &__content {
       transform: translateZ(25px); // Pushes content into 3D space

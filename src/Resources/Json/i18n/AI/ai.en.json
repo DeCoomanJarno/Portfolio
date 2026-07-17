@@ -1,0 +1,213 @@
+{
+  "ai": {
+    "landing": {
+      "version": "ENGINE RELEASE v2.1",
+      "title": "AI",
+      "titleAccent": "Studio",
+      "subtitle": "Architecture Assistant",
+      "description": "Accelerate your software engineering pipelines. Describe your project requirements to instantly generate comprehensive architectural blueprints, technology stacks, implementation roadmaps, and actionable AI opportunities.",
+      "cta": "Open Studio",
+      "features": {
+        "blueprints": {
+          "title": "Instant Blueprints",
+          "description": "Visualize modular architecture topologies using clean, interactive diagrams."
+        },
+        "timelines": {
+          "title": "Agile Timelines",
+          "description": "Get structured implementation roadmaps with realistic task breakdowns and progress metrics."
+        },
+        "opportunities": {
+          "title": "AI Opportunities",
+          "description": "Identify where to strategically inject machine learning models to maximize product value."
+        }
+      }
+    },
+    "analyzer": {
+      "brand": "AI",
+      "brandAccent": "STUDIO",
+      "tagline": "ARCHITECT WORKBENCH",
+      "input": {
+        "heading": "Define Software Specification",
+        "description": "Provide a high-level description of your software idea. The cognitive rules engine will parse your functional patterns and construct an enterprise architecture report.",
+        "placeholder": "Describe your software idea (e.g., 'I need a booking application for a restaurant' or 'A VR training suite for pilots')...",
+        "hint": "Tip: mention real-time, payments, authentication, analytics or compliance for a richer blueprint.",
+        "button": "Analyze Project Specs"
+      },
+      "processing": {
+        "heading": "Architecting Blueprint",
+        "sub": "Running the structural parser over your description vectors..."
+      },
+      "steps": {
+        "reading": "Reading project requirements",
+        "extracting": "Extracting constraints and capabilities",
+        "detecting": "Inferring domain context ({{domain}})",
+        "evaluating": "Scoring complexity and delivery risk",
+        "designing": "Designing architecture blueprint",
+        "selecting": "Selecting aligned technology stacks",
+        "generating": "Generating roadmap and AI opportunities"
+      }
+    },
+    "dashboard": {
+      "back": "Refine Project Specs",
+      "verified": "ARCHITECT VERIFICATION INSTANTIATED",
+      "risks": "Flagged System Risks",
+      "recommendations": "Strategic Execution Directives"
+    },
+    "analysis": {
+      "description": {
+        "base": "A {{complexity}} complexity product architecture for {{summaryStem}}.",
+        "prioritizes": "It prioritizes {{capabilities}}.",
+        "crossDomain": "The requirements appear cross-domain, so the plan emphasizes modular boundaries and incremental validation."
+      },
+      "capabilities": {
+        "auth": "secure identity and authorization",
+        "realtime": "real-time synchronization",
+        "analytics": "decision-grade analytics",
+        "integrations": "external system integrations",
+        "mobile": "mobile-ready user journeys",
+        "search": "fast search and discovery"
+      }
+    },
+    "summary": {
+      "confidence": "Match confidence",
+      "signalsLabel": "Detected capabilities"
+    },
+    "profileCopy": {
+      "hospitality": {
+        "summaryStem": "reservation, order flow, and guest operations",
+        "coreTechnologies": {
+          "angular20": "Fast dashboard and workflow UI for bookings, tables, and staff tasks.",
+          "aspNetCoreApi": "Strong transactional boundary for reservations and order orchestration.",
+          "postgresql": "Reliable relational model for bookings, inventory, and customer data.",
+          "redis": "Low-latency state cache for lock-based table allocation and sessions."
+        },
+        "aiIdeas": {
+          "demandAware": {
+            "description": "Forecast demand windows and optimize seating assignments automatically.",
+            "businessValue": "Increases service capacity and reduces idle tables."
+          },
+          "orderAnomaly": {
+            "description": "Detect unusual cancellation or no-show patterns before peak hours.",
+            "businessValue": "Reduces waste and improves scheduling confidence."
+          }
+        },
+        "baseRisks": {
+          "peakHour": "Peak-hour contention can cause reservation race conditions without lock-safe writes.",
+          "dashboardDrift": "Operational dashboards may drift from backend truth without event-driven updates."
+        },
+        "baseRecommendations": {
+          "transactionIsolation": "Use transaction isolation plus optimistic concurrency on booking operations.",
+          "eventStream": "Publish reservation and order changes through an event stream to keep clients synchronized."
+        }
+      }
+    },
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "infrastructure": "Infrastructure",
+      "integration": "Integration"
+    },
+    "productTypes": {
+      "commerce": "Commerce Platform",
+      "operations": "Operations Platform",
+      "intelligence": "Intelligence Hub",
+      "workspace": "Workspace Portal",
+      "simulation": "Simulation Suite",
+      "general": "Product Platform"
+    },
+    "technology": {
+      "title": "Aligned Technology Stack"
+    },
+    "architecture": {
+      "title": "Topology Flow Diagram",
+      "nodes": {
+        "user": "End User",
+        "frontend": "Client Application",
+        "api": "Application API",
+        "database": "Primary Database",
+        "mobile": "Mobile Client",
+        "events": "Realtime Event Layer",
+        "ai": "AI Inference Service",
+        "search": "Search Index",
+        "external": "External Integrations"
+      }
+    },
+    "timeline": {
+      "title": "Agile Delivery Roadmap",
+      "weeks": {
+        "week1": "Week 1",
+        "week2": "Week 2",
+        "week3": "Week 3",
+        "week4": "Week 4",
+        "week5": "Week 5"
+      },
+      "titles": {
+        "week1": "Domain Modeling & Technical Baseline",
+        "week2": "Core Features & Service Workflows",
+        "week3": "Integrations, Analytics & Reliability",
+        "week4": "Hardening, Security Review & Launch",
+        "week5": "Scale-out & Operational Readiness"
+      },
+      "descriptions": {
+        "week1": "Lock scope, core entities, API boundaries, and release quality gates.",
+        "week2": "Implement critical user journeys, persistence flows, and access controls.",
+        "week3": "{{clauses}}",
+        "week3Fallback": "Expand QA automation, observability, and deployment readiness checks.",
+        "week4": "Run load tests, threat-model high-risk surfaces, and finalize production rollout.",
+        "week5": "Validate multi-region resilience, on-call runbooks, and capacity headroom."
+      },
+      "clauses": {
+        "integrations": "wire external integrations with retry-safe webhooks",
+        "analytics": "instrument KPIs and operational dashboards",
+        "realtime": "optimize event pipelines for low-latency updates",
+        "search": "tune search relevance and indexing pipelines",
+        "offline": "validate offline sync and conflict resolution"
+      }
+    },
+    "opportunities": {
+      "title": "AI Optimization Vectors",
+      "impact": "Primary Impact"
+    },
+    "complexity": {
+      "suffix": "Complexity",
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High",
+      "Enterprise": "Enterprise"
+    },
+    "difficulty": {
+      "suffix": "Complexity",
+      "Easy": "Easy",
+      "Medium": "Medium",
+      "Hard": "Hard"
+    },
+    "domains": {
+      "hospitality": "Food Service & Hospitality Systems",
+      "commerce": "Digital Commerce Systems",
+      "xr-training": "Spatial Computing & XR Training",
+      "enterprise-saas": "Enterprise Operations SaaS",
+      "healthcare": "Healthcare & Care Coordination",
+      "fintech": "Financial Technology Platforms",
+      "education": "Learning & Education Platforms",
+      "logistics": "Logistics & Fleet Operations",
+      "product-platform": "Cross-domain Product Platform"
+    },
+    "signals": {
+      "realtime": "Real-time",
+      "mobile": "Mobile",
+      "payments": "Payments",
+      "auth": "Authentication",
+      "analytics": "Analytics",
+      "ai": "AI / ML",
+      "integrations": "Integrations",
+      "multitenant": "Multi-tenant",
+      "compliance": "Compliance",
+      "offline": "Offline",
+      "collaboration": "Collaboration",
+      "highTraffic": "High traffic",
+      "search": "Search",
+      "notifications": "Notifications"
+    }
+  }
+}

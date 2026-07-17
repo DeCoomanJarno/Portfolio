@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  ElementRef,
   Inject,
   Input,
   OnInit,
@@ -28,15 +29,20 @@ export class ProjectItemComponent implements OnInit {
   hasMultipleImages = false;
   currentImageIndex = signal(0);
 
+  private readonly isBrowser: boolean;
+
   constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private destroyRef: DestroyRef
-  ) {}
+    @Inject(PLATFORM_ID) platformId: object,
+    private destroyRef: DestroyRef,
+    private host: ElementRef<HTMLElement>
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     this.hasMultipleImages = !!this.project.images && this.project.images.length > 1;
 
-    if (isPlatformBrowser(this.platformId) && this.hasMultipleImages) {
+    if (this.isBrowser && this.hasMultipleImages) {
       const intervalId = setInterval(() => {
         this.currentImageIndex.update(
           index => (index + 1) % (this.project.images?.length || 1)
@@ -48,5 +54,29 @@ export class ProjectItemComponent implements OnInit {
 
   setCurrentImage(index: number): void {
     this.currentImageIndex.set(index);
+  }
+
+  /** Track the pointer to drive the spotlight glow and subtle 3D tilt. */
+  onPointerMove(event: PointerEvent): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    const el = this.host.nativeElement;
+    const rect = el.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    el.style.setProperty('--mx', `${(x * 100).toFixed(2)}%`);
+    el.style.setProperty('--my', `${(y * 100).toFixed(2)}%`);
+    el.style.setProperty('--tilt-x', `${((0.5 - y) * 5).toFixed(2)}deg`);
+    el.style.setProperty('--tilt-y', `${((x - 0.5) * 5).toFixed(2)}deg`);
+  }
+
+  onPointerLeave(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    const el = this.host.nativeElement;
+    el.style.setProperty('--tilt-x', '0deg');
+    el.style.setProperty('--tilt-y', '0deg');
   }
 }

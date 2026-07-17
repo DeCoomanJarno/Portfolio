@@ -1,0 +1,12 @@
+<div class="glass-panel tech-stack-box">
+      <h3>{{ 'ai.technology.title' | translate }}</h3>
+      <div class="tech-grid">
+        <div class="tech-card" *ngFor="let tech of technologies">
+          <div class="card-head">
+            <span class="category">{{ tech.category }}</span>
+            <span class="name">{{ tech.name }}</span>
+          </div>
+          <p>{{ tech.explanation }}</p>
+        </div>
+      </div>
+    </div>

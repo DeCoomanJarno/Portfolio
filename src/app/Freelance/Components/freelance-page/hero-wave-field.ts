@@ -39,7 +39,7 @@ interface WaveUniforms {
   [uniform: string]: IUniform;
 }
 
-const GRID_COLS = 120;
+const GRID_COLS = 100;
 const GRID_ROWS = 60;
 const SPACING_X = 0.46;
 const SPACING_Z = 0.5;
@@ -134,7 +134,8 @@ export class HeroWaveField {
   private lastFrameTime = 0;
   private pointerTarget = { x: 0, y: 0 };
   private pointerCurrent = { x: 0, y: 0 };
-  private static readonly FRAME_INTERVAL = 1000 / 30; // throttle to 30fps
+  
+  private static readonly FRAME_INTERVAL = 1000 / 30;
 
   static async create(canvas: HTMLCanvasElement, palette: WavePalette): Promise<HeroWaveField | null> {
     try {
@@ -289,7 +290,7 @@ export class HeroWaveField {
   private loop = (timestamp: DOMHighResTimeStamp): void => {
     if (!this.running || this.disposed) return;
     this.rafId = requestAnimationFrame(this.loop);
-    // Throttle to 30fps — this is a decorative background, not interactive.
+    // Throttle to ~60fps — decorative background, but choppy at 30.
     if (timestamp - this.lastFrameTime < HeroWaveField.FRAME_INTERVAL) return;
     this.lastFrameTime = timestamp;
     this.timer.update(timestamp);

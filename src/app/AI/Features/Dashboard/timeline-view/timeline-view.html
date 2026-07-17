@@ -1,0 +1,20 @@
+<div class="glass-panel timeline-box">
+      <h3>{{ 'ai.timeline.title' | translate }}</h3>
+      <div class="timeline-trail">
+        <div class="step" *ngFor="let item of timeline">
+          <div class="step-aside">
+            <span class="step-week">{{ item.week }}</span>
+            <span class="step-tag">{{ item.title }}</span>
+          </div>
+          <div class="step-content">
+            <p>{{ item.description }}</p>
+            <div class="completion-bar">
+              <div class="bar-track">
+                <div class="bar-fill" [style.width.%]="item.progress"></div>
+              </div>
+              <span class="percentage">{{ item.progress }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

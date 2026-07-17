@@ -1,5 +1,25 @@
 [
   {
+    "id": "AI",
+    "category": "AI",
+    "title": "Project.AI.Title",
+    "description": "Project.AI.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript"
+    ],
+    "images": [
+      "AI_Landing.png",
+      "AI_Analyzer.png",
+      "AI_Dashboard.png"
+    ],
+    "link": {
+      "name": "Project.AI.Links.Live",
+      "icon": "Export",
+      "url": "/AI"
+    }
+  },
+  {
     "id": "TaskFlow",
     "category": "web",
     "title": "Project.TaskFlow.Title",
