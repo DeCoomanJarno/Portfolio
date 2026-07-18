@@ -15,7 +15,8 @@
         "appointments": "Afsprakenplanner",
         "inventory": "Voorraadbeheer",
         "rateCalculator": "Tariefcalculator",
-        "aiConcept": "AI-concept"
+        "aiConcept": "AI-concept",
+        "demandForecaster": "Predictive Warehouse"
     },
     "theme": {
         "switchToLight": "Schakel naar licht thema",

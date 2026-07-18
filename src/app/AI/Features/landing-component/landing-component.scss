@@ -97,7 +97,38 @@
         outline-offset: 3px;
       }
     }
+    .secondary-btn {
+      color: var(--color-on-background);
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: var(--space-4) var(--space-6);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      border: 1px solid var(--glass-border);
+      background: color-mix(in srgb, var(--glass-bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      transition: transform var(--duration-base) var(--ease-out), border-color var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out);
+      &:hover {
+        transform: translateY(-2px);
+        border-color: var(--ai-accent);
+        background: color-mix(in srgb, var(--glass-bg) 100%, var(--color-primary-soft) 8%);
+        .arrow { transform: translateX(4px); }
+      }
+      &:focus-visible {
+        outline: 2px solid var(--ai-accent);
+        outline-offset: 3px;
+      }
+    }
     .arrow { transition: transform var(--duration-fast) var(--ease-out); }
+    .action-row {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

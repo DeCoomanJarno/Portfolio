@@ -56,5 +56,9 @@ export const routes: Routes = [
         path: 'AI/Analyzer',
         loadComponent: () => import('./AI/Features/analyzer-component/analyzer-component').then(m => m.AnalyzerComponent)
     },
+    {
+        path: 'AI/Demand-Forecaster',
+        loadComponent: () => import('./AI/Features/demand-forecaster/demand-forecaster').then(m => m.DemandForecasterComponent)
+    },
     { path: '**', redirectTo: 'Home' }
 ];

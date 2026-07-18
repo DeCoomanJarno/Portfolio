@@ -1,0 +1,14 @@
+{
+  "title": "Project.DemandForecast.Title",
+  "description": "Project.DemandForecast.Description",
+  "content": [
+    { "type": "image", "value": "DemandForecast.svg" },
+    { "type": "text", "value": "Project.DemandForecast.Content.0" },
+    { "type": "text", "value": "Project.DemandForecast.Content.1" },
+    { "type": "text", "value": "Project.DemandForecast.Content.2" },
+    { "type": "other", "value": "Project.DemandForecast.Content.3" }
+  ],
+  "features": ["Project.DemandForecast.Features.0", "Project.DemandForecast.Features.1", "Project.DemandForecast.Features.2", "Project.DemandForecast.Features.3"],
+  "futurePlans": ["Project.DemandForecast.Future.0", "Project.DemandForecast.Future.1", "Project.DemandForecast.Future.2", "Project.DemandForecast.Future.3"],
+  "links": [{ "name": "Project.DemandForecast.Links.Live", "url": "/AI/Demand-Forecaster" }]
+}

@@ -44,6 +44,19 @@
     "Analyzer": "Try the Analyzer"
   }
 },
+    "DemandForecast": {
+      "Title": "Predictive Warehouse",
+      "Description": "A live warehouse simulation where pattern recognition predicts demand and autonomously places replenishment orders before stockouts occur.",
+      "Content": [
+        "Predictive Warehouse is a complete operations simulation rather than a static forecast calculator. Products consume stock every simulated day, deliveries have real lead times, and demand changes under promotions, seasonal growth, and supplier disruptions.",
+        "The forecasting model recognizes recent patterns, estimates next-day demand, calculates a dynamic reorder point, and places replenishment orders autonomously. Turning the model off exposes the same warehouse to a fixed planning baseline.",
+        "Because both strategies run against the same demand stream, the interface can demonstrate concrete value: service level, missed demand, prevented stockouts, protected order value, and every decision made by the model.",
+        "<h4>Value for clients</h4><ul><li>See inventory risk before materials run out.</li><li>Adapt order timing to changing demand and supplier lead times.</li><li>Compare AI-controlled replenishment with fixed manual planning in a transparent simulation.</li></ul>"
+      ],
+      "Features": ["Live multi-product warehouse simulation", "Pattern-based demand forecasting", "Autonomous replenishment orders", "AI versus fixed-planning impact comparison"],
+      "Future": ["Connect real ERP and order-history data", "Train category-specific forecasting models", "Add purchasing approval workflows", "Send alerts for high-risk inventory"],
+      "Links": { "Live": "Open Predictive Warehouse" }
+    },
     "GameOfLife": {
       "Title": "Conway's Game of Life",
       "Description": "An implementation of Conway's Game of Life using C++ and SDL2, featuring dynamic cell updates and rendering.",

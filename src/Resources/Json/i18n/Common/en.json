@@ -21,7 +21,8 @@
         "appointments": "Appointment Scheduler",
         "inventory": "Inventory Manager",
         "rateCalculator": "Rate Calculator",
-        "aiConcept": "AI Concept"
+        "aiConcept": "AI Concept",
+        "demandForecaster": "Predictive Warehouse"
     },
     "theme": {
         "switchToLight": "Switch to light mode",

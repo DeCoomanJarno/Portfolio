@@ -20,6 +20,25 @@
     }
   },
   {
+    "id": "DemandForecast",
+    "category": "AI",
+    "title": "Project.DemandForecast.Title",
+    "description": "Project.DemandForecast.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript",
+      "Pattern Recognition"
+    ],
+    "images": [
+      "DemandForecast.svg"
+    ],
+    "link": {
+      "name": "Project.DemandForecast.Links.Live",
+      "icon": "Export",
+      "url": "/AI/Demand-Forecaster"
+    }
+  },
+  {
     "id": "TaskFlow",
     "category": "web",
     "title": "Project.TaskFlow.Title",

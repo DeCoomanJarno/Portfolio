@@ -44,6 +44,19 @@
         "Analyzer": "Probeer de analyzer"
       }
     },
+    "DemandForecast": {
+      "Title": "Predictive Warehouse",
+      "Description": "Een live magazijnsimulatie waarin patroonherkenning de vraag voorspelt en autonoom aanvulbestellingen plaatst voordat stockouts ontstaan.",
+      "Content": [
+        "Predictive Warehouse is een volledige operationele simulatie in plaats van een statische forecastcalculator. Producten verbruiken elke simulatiedag voorraad, leveringen hebben echte doorlooptijden en de vraag verandert door promoties, seizoensgroei en leveranciersproblemen.",
+        "Het forecastmodel herkent recente patronen, schat de volgende dagvraag, berekent een dynamisch bestelpunt en plaatst autonoom aanvulbestellingen. Wanneer het model uitgeschakeld wordt, werkt hetzelfde magazijn met een vaste planningsbaseline.",
+        "Omdat beide strategieën tegen dezelfde vraagstroom draaien, toont de interface concrete waarde: serviceniveau, gemiste vraag, voorkomen stockouts, beschermde orderwaarde en iedere beslissing van het model.",
+        "<h4>Waarde voor klanten</h4><ul><li>Zie voorraadrisico voordat materialen opraken.</li><li>Pas bestelmomenten aan veranderende vraag en levertijden aan.</li><li>Vergelijk AI-gestuurde aanvulling transparant met vaste manuele planning.</li></ul>"
+      ],
+      "Features": ["Live magazijnsimulatie met meerdere producten", "Patroongebaseerde vraagvoorspelling", "Autonome aanvulbestellingen", "Impactvergelijking tussen AI en vaste planning"],
+      "Future": ["Echte ERP- en orderhistoriek koppelen", "Forecastmodellen per productcategorie trainen", "Inkoopgoedkeuringsflows toevoegen", "Alerts sturen voor risicovolle voorraad"],
+      "Links": { "Live": "Open Predictive Warehouse" }
+    },
     "GameOfLife": {
       "Title": "Conway's Game of Life",
       "Description": "Een implementatie van Conway's Game of Life met C++ en SDL2, met dynamische celupdates en rendering.",
