@@ -317,11 +317,14 @@ export class FreelancePage implements OnInit, AfterViewInit, OnDestroy {
       if (!scrolling) {
         scrolling = true;
         host.classList.add('is-scrolling');
+        // Freeze decorative WebGL work while scrolling to reduce frame drops.
+        this.waveField?.setRunning(false);
       }
       if (this.scrollIdleTimer) clearTimeout(this.scrollIdleTimer);
       this.scrollIdleTimer = setTimeout(() => {
         scrolling = false;
         host.classList.remove('is-scrolling');
+        this.syncWaveRunning();
       }, 120);
     };
 
@@ -387,21 +390,14 @@ private buildWavePalette(isDark: boolean): WavePalette {
 
   // ── Scroll Behaviors ──
   private initGlobalScrollAnimations(): void {
+    this.initSectionSpy();
+
     if (this.scrollBarRef?.nativeElement) {
       gsap.to(this.scrollBarRef.nativeElement, {
         scaleX: 1, ease: 'none',
         scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'bottom bottom', scrub: 0.1 }
       });
     }
-
-    this.minimapSections.forEach((sec, idx) => {
-      ScrollTrigger.create({
-        trigger: `#${sec.id}`, start: 'top 50%', end: 'bottom 50%',
-        onToggle: (self) => {
-          if (self.isActive) this.ngZone.run(() => this.activeSectionIndex.set(idx));
-        }
-      });
-    });
 
     const fadeEls = gsap.utils.toArray('.fade-up-scroll') as HTMLElement[];
     fadeEls.forEach(el => {
@@ -438,6 +434,36 @@ private buildWavePalette(isDark: boolean): WavePalette {
         }
       });
     }
+  }
+
+  private initSectionSpy(): void {
+    const sections = this.minimapSections
+      .map((sec, idx) => ({ idx, el: document.getElementById(sec.id) }))
+      .filter((s): s is { idx: number; el: HTMLElement } => !!s.el);
+
+    if (!sections.length) return;
+
+    let current = this.activeSectionIndex();
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (!visible.length) return;
+      const target = visible[0].target as HTMLElement;
+      const hit = sections.find((section) => section.el === target);
+      if (!hit || hit.idx === current) return;
+
+      current = hit.idx;
+      this.ngZone.run(() => this.activeSectionIndex.set(hit.idx));
+    }, {
+      root: null,
+      rootMargin: '-45% 0px -50% 0px',
+      threshold: [0, 0.15, 0.35, 0.6]
+    });
+
+    sections.forEach((section) => observer.observe(section.el));
+    this.cleanupFns.push(() => observer.disconnect());
   }
 
   // ── Terminal Demo Timeline ──
@@ -511,10 +537,16 @@ private buildWavePalette(isDark: boolean): WavePalette {
     this.showQuoteModal.set(true);
     this.submitSuccess.set(false);
     this.submitError.set(null);
+    // PERF: Pause the wave animation while modal is open to free GPU/CPU.
+    this.waveField?.setRunning(false);
   }
 
   closeQuoteModal(): void {
     this.showQuoteModal.set(false);
+    // PERF: Resume the wave animation when modal closes.
+    if (this.heroVisible && !document.hidden) {
+      this.waveField?.setRunning(true);
+    }
   }
 
   submitQuote(form: NgForm): void {

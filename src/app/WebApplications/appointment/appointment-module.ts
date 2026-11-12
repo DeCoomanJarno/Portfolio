@@ -20,6 +20,7 @@ import { AppointmentRoutingModule } from './appointment-routing.module';
 import { TranslatePipe } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header';
 import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
+import { AuthService } from '@angularlibrary/core-lib';
 
 
 @NgModule({
@@ -47,7 +48,20 @@ import { AppointmentPageComponent } from './components/appointment-page/appointm
     MatSnackBarModule,
     TranslatePipe,
     MatRadioModule,
-    MatMenuModule,
+    MatMenuModule
   ]
 })
-export class AppointmentModule { }
+export class AppointmentModule {
+  constructor(auth: AuthService) {
+    let users = auth.getDemoCredentials();
+    users.find(t => t.username.includes('admin'))?.roles.push(
+      {
+        name: 'appointments:admin',
+        permissions: ['appointments:create', 'appointments:cancel', 'appointments:approve', 'appointments:decline']
+      }
+    )
+    users.forEach(user => {
+      auth.register(user)
+    });
+  }
+}

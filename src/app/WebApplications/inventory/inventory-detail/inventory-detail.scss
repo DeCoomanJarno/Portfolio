@@ -1,11 +1,18 @@
 @use 'styles/index' as *;
 
+:host {
+  display: block;
+  min-height: 100%;
+}
+
 .inventory-detail {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  padding: var(--space-5);
   background-color: var(--color-background);
+  max-width: min(980px, 100%);
+  min-height: 100%;
+  margin-inline: auto;
 }
 
 .detail-card {
@@ -13,21 +20,40 @@
   flex-direction: column;
   gap: var(--space-4);
   border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-outline) 70%, transparent);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-4);
 }
 
 .media-row {
   display: flex;
   gap: var(--space-4);
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-image {
   width: 100%;
-  min-height: 140px;
+  min-height: 180px;
+  max-height: 280px;
+  aspect-ratio: 16 / 6;
   object-fit: cover;
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
   margin-bottom: var(--space-4);
+}
+
+.detail-image--icon {
+  width: clamp(88px, 18vw, 132px);
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: var(--space-3);
+  margin-inline: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-outline) 60%, transparent);
+  background: radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 55%), var(--color-surface);
 }
 
 .placeholder {
@@ -98,12 +124,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-2) 0;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-1);
+  border-radius: var(--radius-xs);
   border-bottom: 1px dashed color-mix(in srgb, var(--color-outline) 40%, transparent);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  }
 }
 
 .label {
   font-weight: 600;
+  color: var(--color-muted);
 }
 
 .value {
@@ -128,6 +161,11 @@
   .detail-image {
     width: 100%;
     height: 180px;
+  }
+
+  .detail-image--icon {
+    width: clamp(80px, 28vw, 116px);
+    height: auto;
   }
 
   .value {

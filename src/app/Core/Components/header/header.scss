@@ -19,7 +19,7 @@
 // ── Header shell ──────────────────────────────────────────────────────────────
 .header {
   position: fixed;
-  top: clamp(8px, 1.4vw, 14px);
+  top: var(--header-top-offset);
   left: 0;
   right: 0;
   margin-inline: auto;

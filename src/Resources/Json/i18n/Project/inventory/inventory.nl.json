@@ -1,5 +1,6 @@
 {
     "Inventory": {
+        "Title": "Voorraad",
         "filter": {
             "all": "Alle",
             "available": "Beschikbaar",
@@ -19,10 +20,29 @@
         },
         "edit": {
             "title": "Bewerken",
+            "subtitle": "Werk de artikelgegevens bij en sla je wijzigingen op",
             "save": "Opslaan",
             "cancel": "Annuleren"
         },
+        "detail": {
+            "sku": "SKU",
+            "category": "Categorie",
+            "location": "Locatie",
+            "aisle": "Gang",
+            "bay": "Vak",
+            "shelf": "Plank",
+            "bin": "Bak",
+            "quantity": "Hoeveelheid",
+            "status": "Status",
+            "weight": "Gewicht",
+            "dimensions": "Afmetingen",
+            "supplier": "Leverancier",
+            "received": "Ontvangen",
+            "lotNumber": "Batchnummer",
+            "itemNotFound": "Artikel niet gevonden"
+        },
         "item": {
+            "id": "ID",
             "name": "Naam",
             "namePlaceholder": "Itemnaam",
             "nameRequired": "Naam is verplicht",

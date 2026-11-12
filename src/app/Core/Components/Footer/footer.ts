@@ -75,18 +75,16 @@ export class FooterComponent implements OnDestroy {
     // 1. Ignite the ambient glow
     tl.from(ambientGlow, {
       opacity: 0,
-      scale: 0.8,
-      duration: 1.5,
-      ease: 'power3.out'
+      duration: 1.1,
+      ease: 'power2.out'
     }, 0);
 
-    // 2. Stagger the grid items upward
+    // 2. Fade content in without positional movement to avoid CLS.
     tl.from(staggerItems, {
-      y: 40,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.55,
       stagger: 0.15,
-      ease: 'back.out(1.2)'
+      ease: 'power1.out'
     }, 0.2); // Start slightly after the glow ignites
   }
 

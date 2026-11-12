@@ -130,8 +130,11 @@ export class HeaderComponent implements AfterViewInit {
     if (this.prefersReducedMotion) return;
     this.ngZone.runOutsideAngular(() => {
       gsap.from(this.elementRef.nativeElement, {
-        y: -80, opacity: 0, scale: 0.96,
-        duration: 0.75, ease: 'back.out(1.5)', delay: 0.08, clearProps: 'all'
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power1.out',
+        delay: 0.04,
+        clearProps: 'opacity'
       });
       this.initNavPill();
       this.initLangIndicator();

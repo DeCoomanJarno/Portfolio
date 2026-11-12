@@ -1,6 +1,49 @@
-mat-card {
+.admin-view {
+  padding-block: clamp(3.5rem, 6rem, 7rem);
+}
+
+.admin-panel {
   background-color: var(--color-background);
   color: var(--color-on-background);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-5);
+}
+
+.admin-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+h2 {
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.status-filter {
+  width: min(280px, 100%);
+}
+
+.admin-empty {
+  color: var(--color-muted);
+  margin: 0 0 var(--space-4);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 860px;
 }
 
 .mat-mdc-table,
@@ -10,13 +53,40 @@ mat-card {
   color: var(--color-on-background) !important;
 }
 
-h2 {
-  color: var(--color-primary);
-  margin-bottom: var(--space-4);
+td small {
+  display: block;
+  color: var(--color-muted);
 }
 
-.mat-mdc-button {
-  color: var(--color-primary);
-  background-color: var(--color-surface);
-  margin-right: var(--space-4);
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--color-outline);
+}
+
+.status-pill.status-pending { color: #8a5f00; background: rgba(255, 209, 102, 0.2); }
+.status-pill.status-confirmed { color: #0f6c47; background: rgba(129, 199, 132, 0.22); }
+.status-pill.status-done { color: #0b5cab; background: rgba(100, 181, 246, 0.24); }
+.status-pill.status-cancelrequest { color: #7b1fa2; background: rgba(186, 104, 200, 0.2); }
+.status-pill.status-cancel { color: #b71c1c; background: rgba(239, 83, 80, 0.2); }
+
+.manage-cell {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.manage-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.admin-note {
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }

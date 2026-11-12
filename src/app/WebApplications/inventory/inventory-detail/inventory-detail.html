@@ -8,15 +8,15 @@
 
     <ui-card class="detail-card">
       <div class="media-row">
-        @if(item.imageUrl)
+        @if(getImageUrl(item); as imageUrl)
         {
-            <img class="detail-image" [src]="item.imageUrl" [alt]="item.name" />
+          <img class="detail-image" [class.detail-image--icon]="!item.imageUrl" [src]="imageUrl" [alt]="item.name" />
         }
         @else {
           <div class="detail-image placeholder">
             <div class="placeholder-inner">
               <div class="sku">{{ item.sku }}</div>
-              <div class="category">{{ 'inventory.detail.category.' + item.category | translate}}</div>
+              <div class="category">{{ 'Inventory.Categories.' + item.category | translate}}</div>
             </div>
           </div>
         }
@@ -24,32 +24,42 @@
 
       <div class="detail-section">
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.sku' | translate}}</span>
+          <span class="label">{{'Inventory.detail.sku' | translate}}</span>
           <span class="value">{{ item.sku }}</span>
         </div>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.location' | translate}}</span>
+          <span class="label">{{ 'Inventory.detail.category' | translate }}</span>
+          <span class="value">{{ 'Inventory.Categories.' + item.category | translate }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{'Inventory.detail.location' | translate}}</span>
           <span class="value">
-            {{ item.location.warehouseId }} · {{'inventory.detail.aisle' | translate}} {{ item.location.aisle }} · {{'inventory.detail.bay' | translate}} {{ item.location.bay }} · {{'inventory.detail.shelf' | translate}} {{ item.location.shelf }}
-            <span *ngIf="item.location.bin"> · {{'inventory.detail.bin' | translate}} {{ item.location.bin }}</span>
+            {{ item.location.warehouseId }} · {{'Inventory.detail.aisle' | translate}} {{ item.location.aisle }} · {{'Inventory.detail.bay' | translate}} {{ item.location.bay }} · {{'Inventory.detail.shelf' | translate}} {{ item.location.shelf }}
+            <span *ngIf="item.location.bin"> · {{'Inventory.detail.bin' | translate}} {{ item.location.bin }}</span>
           </span>
         </div>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.quantity' | translate}}</span>
+          <span class="label">{{'Inventory.detail.quantity' | translate}}</span>
           <span class="value quantity">{{ item.quantity }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span class="label">{{ 'Inventory.detail.status' | translate }}</span>
+          <span class="value">{{ item.status ? ('Inventory.Statuses.' + item.status | translate) : '—' }}</span>
         </div>
 
         <mat-divider></mat-divider>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.weight' | translate}}</span>
+          <span class="label">{{'Inventory.detail.weight' | translate}}</span>
           <span class="value">{{ item.weightKg ? (item.weightKg + ' kg') : '—' }}</span>
         </div>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.dimensions' | translate}}</span>
+          <span class="label">{{'Inventory.detail.dimensions' | translate}}</span>
           <span class="value">
             <ng-container *ngIf="item.dimensions">
               {{ item.dimensions.lengthMm }} × {{ item.dimensions.widthMm }} × {{ item.dimensions.heightMm }} mm
@@ -59,18 +69,18 @@
         </div>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.supplier' | translate}}</span>
+          <span class="label">{{'Inventory.detail.supplier' | translate}}</span>
           <span class="value">{{ item.supplier || '—' }}</span>
         </div>
 
         <div class="detail-row">
-          <span class="label">{{'inventory.detail.received' | translate}}</span>
+          <span class="label">{{'Inventory.detail.received' | translate}}</span>
           <span class="value">{{ item.receivedDate | date:'mediumDate' }}</span>
         </div>
         @if(item.lotNumber)
         {
           <div class="detail-row">
-            <span class="label">{{'inventory.detail.lotNumber' | translate}}</span>
+            <span class="label">{{'Inventory.detail.lotNumber' | translate}}</span>
             <span class="value">{{ item.lotNumber }}</span>
           </div>
         }
@@ -82,7 +92,7 @@
 @else {
 <ng-template>
   <div class="inventory-detail empty">
-    <ui-title size="Large">{{'inventory.detail.itemNotFound' | translate}}</ui-title>
+    <ui-title size="Large">{{'Inventory.detail.itemNotFound' | translate}}</ui-title>
   </div>
 </ng-template>
 

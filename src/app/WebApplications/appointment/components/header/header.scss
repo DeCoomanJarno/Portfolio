@@ -1,22 +1,44 @@
-.header-right {
-  position: absolute;
-  right: var(--space-4);
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-.mat-mdc-button {
-  color: var(--color-primary) !important;
-  background-color: var(--color-background) !important;
-  padding: var(--space-4);
+.appointment-header__eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.appointment-header p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-muted);
+}
+
+.appointment-header__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.appointment-header__actions .mat-mdc-button-base {
+  min-height: 40px;
 }
 
 ::ng-deep .mat-mdc-menu-panel {
   color: var(--color-primary) !important;
   background-color: var(--color-background) !important;
-  margin-top: var(--space-1);
-}
-
-.mat-mdc-menu-item {
-  color: var(--color-primary) !important;
-  background-color: var(--color-background) !important;
-  min-height: 2rem;
 }

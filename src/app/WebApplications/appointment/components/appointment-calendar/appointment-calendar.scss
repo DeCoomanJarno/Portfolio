@@ -1,0 +1,107 @@
+@use 'styles/index' as *;
+
+.calendar-view {
+  padding-block: clamp(3.5rem, 6rem, 7rem);
+}
+
+.calendar-panel {
+  background: var(--color-background);
+  color: var(--color-on-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-outline);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-5);
+}
+
+.calendar-panel h2 {
+  margin: 0 0 var(--space-4);
+  color: var(--color-primary);
+}
+
+.calendar-empty {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.day-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.day-card {
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  padding: var(--space-3);
+}
+
+.day-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.day-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.day-card header span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.day-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px dashed var(--color-outline);
+}
+
+.day-item:first-of-type {
+  border-top: none;
+}
+
+.day-item p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-muted);
+}
+
+.day-item__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--color-outline);
+}
+
+.status-pill.status-pending { color: #8a5f00; background: rgba(255, 209, 102, 0.2); }
+.status-pill.status-confirmed { color: #0f6c47; background: rgba(129, 199, 132, 0.22); }
+.status-pill.status-done { color: #0b5cab; background: rgba(100, 181, 246, 0.24); }
+.status-pill.status-cancelrequest { color: #7b1fa2; background: rgba(186, 104, 200, 0.2); }
+.status-pill.status-cancel { color: #b71c1c; background: rgba(239, 83, 80, 0.2); }
+
+@media (max-width: 680px) {
+  .day-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day-item__meta {
+    justify-content: flex-start;
+  }
+}

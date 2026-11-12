@@ -35,9 +35,9 @@ export class InventoryPage {
     );
 
     this.columns = [
-    { field: 'id', header: 'ID', sortable: true, filterable: true, visible: false },
+    { field: 'id', header: _translateService.instant('Inventory.item.id'), sortable: true, filterable: true, visible: false },
     { field: 'name', header: _translateService.instant('Inventory.item.name'), sortable: true, filterable: true, visible: true },
-    { field: 'sku', header: 'SKU', sortable: true, filterable: true },
+    { field: 'sku', header: _translateService.instant('Inventory.item.sku'), sortable: true, filterable: true },
     { field: 'quantity', header: _translateService.instant('Inventory.item.quantity'), sortable: true, filterable: true },
     { field: 'status', header: _translateService.instant('Inventory.item.status'), sortable: true, filterable: true },
     { field: 'category', header: _translateService.instant('Inventory.item.category') , sortable: true, filterable: true }

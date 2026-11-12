@@ -18,7 +18,8 @@
 :host(.is-scrolling) {
   .glass-card,
   .glass-btn,
-  .cta-banner {
+  .cta-banner,
+  .hero__foot {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
@@ -76,7 +77,7 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
 
 .section {
   position: relative;
-  padding-block: clamp(6rem, 12vw, 10rem);
+  padding-block: clamp(6rem, 6rem, 10rem);
   scroll-margin-top: calc(var(--header-height, 64px) + 2rem);
 }
 
@@ -325,7 +326,7 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-block: clamp(6rem, 14vh, 9rem);
+  padding-block: clamp(6rem, 6rem, 9rem);
 }
 
 // Canvas Wave
@@ -354,8 +355,8 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
   width: min(120vw, 1100px);
   height: 42rem;
   background: radial-gradient(ellipse at center, var(--ai-glow) 0%, transparent 70%);
-  filter: blur(48px);
-  opacity: 0.85;
+  filter: blur(36px);
+  opacity: 0.72;
 }
 
 .hero__grid {
@@ -440,7 +441,7 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 26px var(--ai-glow));
+  filter: drop-shadow(0 0 18px var(--ai-glow));
 }
 
 .hero__sub {
@@ -1118,9 +1119,9 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(5, 8, 10, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(5, 8, 10, 0.75);
+  /* PERF: Removed expensive backdrop-filter blur that caused black screen delay. */
+  /* backdrop-filter: blur(8px); */
   z-index: 2000;
   display: grid;
   place-items: center;
@@ -1133,8 +1134,12 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
   max-width: 600px;
   padding: 3rem;
   position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-4);
   animation: popup 0.3s var(--ease-out);
+  /* PERF: Removed glass-card blur (backdrop-filter); solid surface loads instantly. */
 }
 
 @keyframes popup {
@@ -1202,12 +1207,25 @@ $display: 'Space Grotesk', 'Sora', 'Segoe UI', sans-serif;
   font-size: 1rem;
   border-radius: var(--radius-md);
   transition: border-color 0.2s, box-shadow 0.2s;
+  /* PERF: Optimize rendering of form elements */
+  will-change: border-color, box-shadow;
+  contain: layout style paint;
 
   &:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--color-primary-soft);
   }
+}
+
+.form-group select {
+  /* PERF: Improve dropdown rendering performance */
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
 }
 
 .form-group textarea {

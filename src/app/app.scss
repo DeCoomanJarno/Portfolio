@@ -12,3 +12,9 @@
   flex-direction: column;
   min-height: 0;
 }
+
+@media (max-width: 1025px) {
+  .Content {
+    padding-top: calc(var(--header-clearance) + env(safe-area-inset-top));
+  }
+}

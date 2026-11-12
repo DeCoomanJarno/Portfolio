@@ -1,3 +1,117 @@
+:host {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/*
+  Core-lib `web-page` applies a fixed desktop height and its own padding on
+  `.webpage__content`. Override it per-route so this page can use full height
+  and the same section spacing pattern as the rest of the app.
+*/
+:host ::ng-deep web-page.inventory-view {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+:host ::ng-deep web-page.inventory-view .webpage {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+:host ::ng-deep web-page .side-panel{
+  padding-block: clamp(3.5rem, 6rem, 7rem) !important;
+  height: 100%;
+
+}
+:host ::ng-deep web-page.inventory-view .webpage__content {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  padding-inline: var(--page-gutter);
+  padding-block: clamp(3.5rem, 6rem, 7rem) !important;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  :host ::ng-deep web-page.inventory-view .webpage__content {
+    height: auto !important;
+  }
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .hotpick .value-container {
+  overflow: visible !important;
+
+  }
+:host ::ng-deep ui-hotpick.create-action-hotpick {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: visible !important;
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .create-button {
+  margin-right: 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .create-button .ui-button-wrapper {
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .create-button .ui-button {
+  height: 100% !important;
+  padding: 0.55rem 1rem !important;
+  border-radius: var(--radius-full);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 70%, transparent);
+  background: var(--color-primary);
+  color: var(--color-on-primary) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out), filter var(--duration-fast) var(--ease-out);
+  overflow: visible !important;
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .create-button .ui-button:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick .create-button .ui-button:active {
+  transform: translateY(0);
+}
+
+:host ::ng-deep ui-hotpick.create-action-hotpick,
+:host ::ng-deep ui-hotpick.create-action-hotpick > * {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep ui-table ui-filter > mat-card:last-of-type {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+:host ::ng-deep ui-table ui-filter > mat-card:last-of-type .actions {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+:host ::ng-deep web-page.inventory-view ui-side-panel .content {
+  padding-inline: var(--page-gutter) !important;
+}
+
 .create-button {
   margin-right: var(--space-2);
 }
@@ -10,7 +124,7 @@
 .menu-buttons {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1); // spacing between buttons
+  gap: var(--space-1);
   background-color: var(--color-background);
   color: var(--color-on-background);
 }

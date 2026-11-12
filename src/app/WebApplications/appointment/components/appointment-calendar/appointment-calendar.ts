@@ -1,12 +1,14 @@
 import { Component, OnInit, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Appointment } from '../../Models/appointment.model';
+import { TranslateService } from '@ngx-translate/core';
+import { Appointment, AppointmentStatus } from '../../Models/appointment.model';
 import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-appointment-calendar',
   standalone: false,
   templateUrl: './appointment-calendar.html',
+  styleUrl: './appointment-calendar.scss'
 })
 export class AppointmentCalendarComponent implements OnInit {
   appointments: Appointment[] = [];
@@ -14,13 +16,16 @@ export class AppointmentCalendarComponent implements OnInit {
 
   private readonly destroyRef = inject(DestroyRef);
 
-  constructor(private appointmentService: AppointmentService) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private translate: TranslateService,
+  ) {}
 
   ngOnInit(): void {
     this.appointmentService.getAppointmentsObservable()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
-      this.appointments = data.sort((a, b) => a.date.localeCompare(b.date));
+      this.appointments = [...data].sort((a, b) => `${a.date}T${a.time}`.localeCompare(`${b.date}T${b.time}`));
       this.groupedAppointments = this.groupByDate();
     });
   }
@@ -32,7 +37,22 @@ export class AppointmentCalendarComponent implements OnInit {
     }, {} as Record<string, Appointment[]>);
   }
 
-  getDates(): string[] {
-    return Object.keys(this.groupedAppointments);
+  getDateEntries(): Array<{ date: string; items: Appointment[] }> {
+    return Object.keys(this.groupedAppointments)
+      .sort((a, b) => a.localeCompare(b))
+      .map((date) => ({
+        date,
+        items: [...this.groupedAppointments[date]].sort((a, b) => a.time.localeCompare(b.time)),
+      }));
+  }
+
+  statusLabel(status: AppointmentStatus): string {
+    const key = `Appointment.BookAppointment.${status}`;
+    const translated = this.translate.instant(key);
+    return translated === key ? status : translated;
+  }
+
+  statusClass(status: AppointmentStatus): string {
+    return `status-${status.toLowerCase()}`;
   }
 }

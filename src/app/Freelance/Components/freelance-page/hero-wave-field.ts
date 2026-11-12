@@ -39,8 +39,8 @@ interface WaveUniforms {
   [uniform: string]: IUniform;
 }
 
-const GRID_COLS = 100;
-const GRID_ROWS = 60;
+const GRID_COLS = 84;
+const GRID_ROWS = 48;
 const SPACING_X = 0.46;
 const SPACING_Z = 0.5;
 const CAMERA_BASE_Y = 9.2;
@@ -135,7 +135,7 @@ export class HeroWaveField {
   private pointerTarget = { x: 0, y: 0 };
   private pointerCurrent = { x: 0, y: 0 };
   
-  private static readonly FRAME_INTERVAL = 1000 / 30;
+  private static readonly FRAME_INTERVAL = 1000 / 45;
 
   static async create(canvas: HTMLCanvasElement, palette: WavePalette): Promise<HeroWaveField | null> {
     try {
@@ -156,7 +156,7 @@ export class HeroWaveField {
   ) {
     const width = canvas.clientWidth || 1;
     const height = canvas.clientHeight || 1;
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas,
@@ -175,7 +175,7 @@ export class HeroWaveField {
     this.uniforms = {
       uTime: { value: 0 },
       uAmp: { value: 1.5 },
-      uSize: { value: 70 },
+      uSize: { value: 62 },
       uPixelRatio: { value: pixelRatio },
       uOpacity: { value: palette.opacity },
       uColorA: { value: new THREE.Color(palette.colorA) },
@@ -282,15 +282,18 @@ export class HeroWaveField {
     if (this.disposed) return;
     const width = this.canvas.clientWidth || 1;
     const height = this.canvas.clientHeight || 1;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
+    this.uniforms.uPixelRatio.value = pixelRatio;
+    this.renderer.setPixelRatio(pixelRatio);
     this.renderer.setSize(width, height, false);
   }
 
   private loop = (timestamp: DOMHighResTimeStamp): void => {
     if (!this.running || this.disposed) return;
     this.rafId = requestAnimationFrame(this.loop);
-    // Throttle to ~60fps — decorative background, but choppy at 30.
+    // Throttle to ~45fps for smoother motion at lower GPU cost than 60fps.
     if (timestamp - this.lastFrameTime < HeroWaveField.FRAME_INTERVAL) return;
     this.lastFrameTime = timestamp;
     this.timer.update(timestamp);
