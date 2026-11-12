@@ -1,7 +1,39 @@
-<!-- Header always visible -->
-<app-header></app-header>
+<section class="appointments-shell">
+  <app-appointment-header></app-appointment-header>
+  @if (isLoginRoute()) {
+    <aside class="appointments-shell__sticky-note" aria-label="Demo admin login users">
+      <h3>Demo Admin Users</h3>
+      <p>Use copy buttons to paste credentials into the login form.</p>
+      @if (copiedMessage) {
+        <div class="copy-feedback" role="status">{{ copiedMessage }}</div>
+      }
+      <ul>
+        @for (user of demoUsers; track user.username) {
+          <li>
+            <div class="demo-user-name">{{ user.username }}</div>
+            <div class="copy-actions">
+              <button mat-flat-button type="button" (click)="copyToClipboard(user.username, 'Username')">
+                Copy username
+              </button>
+              <button mat-stroked-button type="button" (click)="copyToClipboard(user.password, 'Password')">
+                Copy password
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+    </aside>
+  }
 
-<!-- Router outlet for module routes (booking, admin, calendar, etc.) -->
-<div class="container-fluid mt-3">
-  <router-outlet></router-outlet>
-</div>
+  <nav class="appointments-shell__nav" aria-label="Appointment sections">
+    <a routerLink="book" routerLinkActive="is-active">{{ 'Appointment.BookAppointment.Title' | translate }}</a>
+    @if (isAdmin()) {
+      <a routerLink="admin/dashboard" routerLinkActive="is-active">{{ 'Appointment.Admin.Title' | translate }}</a>
+      <a routerLink="admin/calendar" routerLinkActive="is-active">{{ 'Appointment.Calendar.Title' | translate }}</a>
+    }
+  </nav>
+
+  <div class="appointments-shell__content">
+    <router-outlet></router-outlet>
+  </div>
+</section>

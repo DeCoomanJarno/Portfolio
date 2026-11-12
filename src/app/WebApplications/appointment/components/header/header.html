@@ -1,16 +1,17 @@
-<div class="header-right">
-  @if((auth.getCurrentUser()); as user)
-  {
-    <ng-container>
-      <button mat-button [matMenuTriggerFor]="menu">{{ user.username }}</button>
+<header class="appointment-header">
+  <div class="appointment-header__meta">
+    <span class="appointment-header__eyebrow">Appointment center</span>
+    <p>Manage bookings, availability, and customer requests in one place.</p>
+  </div>
+
+  <div class="appointment-header__actions">
+    @if ((auth.getCurrentUser()); as user) {
+      <button mat-stroked-button [matMenuTriggerFor]="menu">{{ user.username }}</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">{{ 'Appointment.Login.Logout' | translate }}</button>
       </mat-menu>
-    </ng-container>
-  }
-@else{
-  <div>
-    <a mat-button color="accent" routerLink="/Appointments/login">{{ 'Appointment.Login.Login' | translate }}</a>
+    } @else {
+      <a mat-stroked-button routerLink="/Appointments/login">{{ 'Appointment.Login.Login' | translate }}</a>
+    }
   </div>
-}
-</div>
+</header>

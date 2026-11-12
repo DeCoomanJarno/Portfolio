@@ -36,12 +36,12 @@
                     <span class="material-icons">{{ e.icon }}</span>
                   </div>
                   <div class="type-content">
-                    <h3>{{ `freelance.expertises.${e.id}.title` | translate }}</h3>
-                    <p>{{ `freelance.expertises.${e.id}.shortdesc` | translate }}</p>
+                    <h3>{{ e.title | translate }}</h3>
+                    <p>{{ e.desc | translate }}</p>
                   </div>
                 </div>
                 <div class="type-rate-wrapper">
-                  <div class="type-rate">€{{ e.baseRate }}/{{'freelance.calc.hour' | translate}}</div>
+                  <div class="type-rate">€{{ e.baseRate }}/{{ 'freelance.calc.hour' | translate }}</div>
                 </div>
               </button>
               }
@@ -461,9 +461,9 @@
             @if(needsHardware()) {
             <div class="feature-nested">
               <select class="select-modern" [ngModel]="hardwareType()" (ngModelChange)="hardwareType.set($event)">
-                <option value="" disabled selected>Select Hardware</option>
+                <option value="" disabled selected>{{ 'freelance.calc.hardware.select' | translate }}</option>
                 @for (hw of availableHardware(); track hw.id) {
-                <option [value]="hw.id">{{ hw.name }} (€{{ hw.price }})</option>
+                <option [value]="hw.id">{{ hw.name | translate }} (€{{ hw.price }})</option>
                 }
               </select>
             </div>
@@ -504,7 +504,7 @@
   <div class="drawer-handle"></div>
   <div class="drawer-scroll">
     <ng-container *ngTemplateOutlet="resultContent"></ng-container>
-    <button class="close-drawer-btn" (click)="toggleMobileDetails()">Close Details</button>
+    <button class="close-drawer-btn" (click)="toggleMobileDetails()">{{ 'freelance.calc.hardware.closeDetails' | translate }}</button>
   </div>
 </div>
 }
@@ -566,7 +566,7 @@
     @if(estimate().hardwarePrice > 0) {
     <div class="breakdown-item hardware">
       <!-- Changed from 'calc.hardware' to 'freelance.calc.hardware' -->
-      <div class="breakdown-label"><span>{{ 'freelance.calc.hardware' | translate }}</span></div>
+      <div class="breakdown-label"><span>{{ 'freelance.calc.hardwareLabel' | translate }}</span></div>
       <div class="breakdown-value">€{{ estimate().hardwarePrice | number:'1.0-0' }}</div>
     </div>
     <div class="breakdown-item hardware">

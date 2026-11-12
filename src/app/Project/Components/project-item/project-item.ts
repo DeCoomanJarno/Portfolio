@@ -1,80 +1,82 @@
-import { AfterViewInit, Component, ElementRef, Input, Inject, OnInit, PLATFORM_ID, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  Inject,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+  signal
+} from '@angular/core';
 import { ProjectPreviewModel } from '../../Models/project-model';
 import { RouterLink } from '@angular/router';
-import { isPlatformBrowser, NgClass } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 import { TranslatePipe } from '@ngx-translate/core';
-import { animate, stagger } from 'animejs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'ui-project-item',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, IconPipe, MatTooltipModule, TranslatePipe],
   templateUrl: './project-item.html',
-  styleUrls: ['./project-item.css']
+  styleUrls: ['./project-item.scss']
 })
-export class ProjectItemComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProjectItemComponent implements OnInit {
   @Input() project!: ProjectPreviewModel;
-  hasMultipleImages: boolean | undefined;
-  currentImageIndex = 0;
-  private intervalId?: any;
+  hasMultipleImages = false;
+  currentImageIndex = signal(0);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private el: ElementRef) {}
+  private readonly isBrowser: boolean;
 
-  ngOnInit(): void {
-    this.hasMultipleImages = this.project.images && this.project.images.length > 1;
-
-    // Auto-slide only in browser context
-    if (isPlatformBrowser(this.platformId) && this.hasMultipleImages) {
-      this.startImageRotation();
-    }
+  constructor(
+    @Inject(PLATFORM_ID) platformId: object,
+    private destroyRef: DestroyRef,
+    private host: ElementRef<HTMLElement>
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  ngAfterViewInit(): void {
-  if (!isPlatformBrowser(this.platformId)) return;
+  ngOnInit(): void {
+    this.hasMultipleImages = !!this.project.images && this.project.images.length > 1;
 
-  const cards = this.el.nativeElement.querySelectorAll('.project-card.animate') as NodeListOf<HTMLElement>;
-
-  // Create observer for visible items only
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      const visibleCards = entries
-        .filter(entry => entry.isIntersecting)
-        .map(entry => entry.target as HTMLElement);
-
-      if (visibleCards.length > 0) {
-        // Animate only the visible batch, with delay between each
-        animate(visibleCards, {
-          opacity: [0, 1],
-          translateY: [30, 0],
-          duration: 800,
-          delay: stagger(120),
-          easing: 'easeOutCubic'
-        });
-
-        // Stop observing already animated items
-        visibleCards.forEach(card => obs.unobserve(card));
-      }
-    },
-    {
+    if (this.isBrowser && this.hasMultipleImages) {
+      const intervalId = setInterval(() => {
+        this.currentImageIndex.update(
+          index => (index + 1) % (this.project.images?.length || 1)
+        );
+      }, 4000);
+      this.destroyRef.onDestroy(() => clearInterval(intervalId));
     }
-  );
-
-  cards.forEach(card => observer.observe(card));
   }
 
   setCurrentImage(index: number): void {
-    this.currentImageIndex = index;
+    this.currentImageIndex.set(index);
   }
 
-  private startImageRotation(): void {
-    this.intervalId = setInterval(() => {
-      this.currentImageIndex =
-        (this.currentImageIndex + 1) % (this.project.images?.length || 1);
-    }, 4000); // 4 seconds per slide
+  /** Track the pointer to drive the spotlight glow and subtle 3D tilt. */
+  onPointerMove(event: PointerEvent): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    const el = this.host.nativeElement;
+    const rect = el.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    el.style.setProperty('--mx', `${(x * 100).toFixed(2)}%`);
+    el.style.setProperty('--my', `${(y * 100).toFixed(2)}%`);
+    el.style.setProperty('--tilt-x', `${((0.5 - y) * 5).toFixed(2)}deg`);
+    el.style.setProperty('--tilt-y', `${((x - 0.5) * 5).toFixed(2)}deg`);
   }
 
-  ngOnDestroy(): void {
-    if (this.intervalId) clearInterval(this.intervalId);
+  onPointerLeave(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+    const el = this.host.nativeElement;
+    el.style.setProperty('--tilt-x', '0deg');
+    el.style.setProperty('--tilt-y', '0deg');
   }
 }

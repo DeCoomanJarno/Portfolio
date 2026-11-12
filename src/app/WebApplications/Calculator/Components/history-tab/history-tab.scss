@@ -1,0 +1,111 @@
+@use 'styles/index' as *;
+
+// History Panel
+.history {
+  width: 300px;
+  flex-basis: 30%;
+  flex-grow: 1; // Allows it to resize responsively
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 500px; // Prevents overflow
+  overflow-y: auto;
+
+  // Show history when active
+  &.active {
+    display: block;
+  }
+
+  // History Title
+  h3 {
+    font-family: var(--font-family);
+    font-size: var(--text-lg);
+    color: var(--color-on-surface);
+    margin-bottom: var(--space-3);
+    text-align: center;
+    border-bottom: 2px solid var(--color-outline);
+    padding-bottom: var(--space-1);
+  }
+
+  // History List
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 350px; // Limits height
+    overflow-y: auto; // Enables scrolling
+    scrollbar-width: thin; // For Firefox
+    scrollbar-color: var(--color-outline-strong) transparent;
+
+    // Scrollbar Styling for Webkit Browsers (Chrome, Edge, Safari)
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-surface-hover);
+      border-radius: var(--radius-md);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-outline-strong);
+      border-radius: var(--radius-md);
+
+      &:hover {
+        background: var(--color-muted);
+      }
+    }
+  }
+}
+
+.history-item {
+  background-color: var(--color-surface-raised);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: var(--text-base);
+  color: var(--color-on-surface);
+  font-family: var(--font-family);
+  gap: var(--space-3); // Adds spacing between items
+
+  // Equation: Allows wrapping
+  .equation {
+    flex: 1; // Takes available space
+    word-wrap: anywhere; // Allows wrapping
+    overflow-wrap: anywhere; // Ensures long words wrap properly
+  }
+
+  // Mode: Stays on one line
+  .mode {
+    white-space: nowrap; // Prevents wrapping
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    flex-shrink: 0; // Prevents shrinking
+  }
+
+  // Hover and Active States
+  &:hover {
+    background-color: var(--color-primary-soft);
+    box-shadow: var(--shadow-2);
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--color-primary) 16%, transparent);
+  }
+
+  // Mode Information
+  span {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+}

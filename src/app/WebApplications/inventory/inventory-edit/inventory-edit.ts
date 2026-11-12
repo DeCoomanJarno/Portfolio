@@ -10,7 +10,7 @@ import { SidePanelService } from '@angularlibrary/core-lib';
   selector: 'app-inventory-edit',
   standalone: false,
   templateUrl: './inventory-edit.html',
-  styleUrl: './inventory-edit.css'
+  styleUrl: './inventory-edit.scss'
 })
 export class InventoryEdit  implements OnInit {
   form!: FormGroup;

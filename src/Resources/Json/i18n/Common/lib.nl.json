@@ -1,14 +1,17 @@
 {
     "Login": {
-        "Title": "Title",
-        "Username": "Username",
-        "Fullname": "Fullname",
-        "Password": "Password",
-        "Email": "Email",
-        "Login": "Login",
-        "GoToLogin": "Go To Login",
-        "Register": "Register",
-        "GoToRegister": "Go To Register",
-        "InvalidCredentials": "Invalid username or password"
+        "Title": "Titel",
+        "Username": "Gebruikersnaam",
+        "Fullname": "Volledige naam",
+        "Password": "Wachtwoord",
+        "Email": "E-mail",
+        "Login": "Inloggen",
+        "GoToLogin": "Ga naar inloggen",
+        "Register": "Registreren",
+        "GoToRegister": "Ga naar registreren",
+        "InvalidCredentials": "Ongeldige gebruikersnaam of wachtwoord"
+    },
+    "PlaceHolders": {
+        "Search": "Zoeken"
     }
 }

@@ -1,0 +1,29 @@
+.tech-stack-box {
+      padding: var(--space-5);
+      h3 { color: var(--color-on-surface); font-size: 1.25rem; margin-bottom: var(--space-5); font-weight: 600; letter-spacing: 0.5px; }
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+    }
+    .tech-card {
+      background: var(--color-surface-hover);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      transition: transform var(--duration-base) var(--ease-out), border-color var(--duration-base) var(--ease-out);
+      &:hover {
+        transform: translateY(-2px);
+        border-color: var(--ai-accent);
+      }
+    }
+    .card-head {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: var(--space-2);
+      .category { font-size: 0.7rem; color: var(--ai-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .name { font-size: 1.15rem; color: var(--color-on-surface); font-weight: 700; }
+    }
+    p { font-size: 0.85rem; line-height: 1.5; color: var(--ai-ink-soft); }

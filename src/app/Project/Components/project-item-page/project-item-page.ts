@@ -1,87 +1,81 @@
-import { AfterViewInit, Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, NgZone, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import hljs from 'highlight.js';
 
 import { ProjectModel, ProjectPreviewModel } from '../../Models/project-model';
 import { ProjectService } from '../../Services/project-service';
 import { IconPipe } from '../../../Core/Pipes/icon.pipe';
 
-import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-declare var bootstrap: any;
-
 @Component({
   selector: 'app-project-item-page',
   standalone: true,
-  imports: [IconPipe, TranslatePipe, MatTooltipModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [IconPipe, TranslatePipe, MatTooltipModule, RouterLink],
   templateUrl: './project-item-page.html',
-  styleUrl: './project-item-page.css'
+  styleUrl: './project-item-page.scss'
 })
-export class ProjectItemPageComponent implements OnInit, AfterViewInit {
-  project: ProjectModel | undefined;
-  projectPreviewModel: ProjectPreviewModel | undefined;
+export class ProjectItemPageComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly ngZone = inject(NgZone);
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly route = inject(ActivatedRoute);
+  private readonly projectService = inject(ProjectService);
+  private readonly translate = inject(TranslateService);
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private route: ActivatedRoute,
-    private projectService: ProjectService,
-    private translate: TranslateService
-  ) {}
+  readonly project = signal<ProjectModel | undefined>(undefined);
+  readonly preview = signal<ProjectPreviewModel | undefined>(undefined);
+  readonly copiedIndex = signal<number | null>(null);
 
-  ngOnInit(): void {
+  projectLinks(): ProjectModel['links'] {
+    const projectLinks = this.project()?.links ?? [];
+    const previewUrl = this.preview()?.link?.url;
+
+    return previewUrl
+      ? projectLinks.filter(link => link.url !== previewUrl)
+      : projectLinks;
+  }
+
+  constructor() {
     const projectId = this.route.snapshot.paramMap.get('id') || '';
 
-    // Load static preview info
     this.projectService.getProjectById(projectId)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(preview => this.projectPreviewModel = preview);
+      .subscribe(preview => this.preview.set(preview));
 
-    // Load localized project data on language change
     this.translate.onLangChange
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.loadProject(projectId);
-      });
+      .subscribe(() => this.loadProject(projectId));
 
-    // Initial load
     this.loadProject(projectId);
   }
 
-  private loadProject(projectId: string) {
-    this.projectService.getProjectJsonById(projectId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(project => {
-        this.project = project;
-        setTimeout(() => this.initializeEnhancements());
-      });
+  imageSrc(value: string): string {
+    return value.startsWith('http')
+      ? value
+      : `Resources/Projects/${this.preview()?.id}/Images/${value}`;
   }
 
-  ngAfterViewInit(): void {
-    this.initializeEnhancements();
-  }
-
-  private initializeEnhancements(): void {
-    hljs.highlightAll();
-    const tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
-    tooltipElements.forEach(el => new bootstrap.Tooltip(el));
-  }
-
-  ConvertToHTML(content: string): SafeHtml {
+  convertToHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 
-  copyCode(code: string, button: EventTarget | null) {
+  copyCode(code: string, index: number): void {
     navigator.clipboard.writeText(code).then(() => {
-      this.translate.get('Project.Copied').subscribe(msg => {
-        const tooltip = new bootstrap.Tooltip(button, { title: msg, trigger: 'manual' });
-        tooltip.show();
-        setTimeout(() => tooltip.hide(), 1000);
-      });
+      this.copiedIndex.set(index);
+      setTimeout(() => this.copiedIndex.set(null), 1500);
     });
+  }
+
+  private loadProject(projectId: string): void {
+    this.projectService.getProjectJsonById(projectId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(project => {
+        this.project.set(project);
+        this.ngZone.runOutsideAngular(() => setTimeout(() => hljs.highlightAll()));
+      });
   }
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable, switchMap } from 'rxjs';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
 import { CategoryIconService } from '../services/category-icon.service';
@@ -9,7 +9,7 @@ import { SidePanelService } from '@angularlibrary/core-lib';
   selector: 'app-inventory-detail',
   standalone: false,
   templateUrl: './inventory-detail.html',
-  styleUrl: './inventory-detail.css'
+  styleUrl: './inventory-detail.scss'
 })
 export class InventoryDetail implements OnInit {
   item$!: Observable<Item | undefined>;
@@ -26,6 +26,16 @@ export class InventoryDetail implements OnInit {
     // simple close: navigate back
     this.sidePanel.close();
   }
+
+  getImageUrl(item: Item): string | null {
+    if (item.imageUrl?.trim()) {
+      return item.imageUrl;
+    }
+
+    const iconName = this.categoryIconService.getIconName(item.category);
+    return iconName ? `/Resources/Projects/Inventory/Icons/${iconName}.svg` : null;
+  }
+
 GetConvertedItemState(item: Item): ("error"|"success"|"warning"|"info"|"unavailable"|"removed"|"accent"|"primary"|"bodytext"|"idle")|undefined {
   switch(item.status)
   {

@@ -1,0 +1,57 @@
+<div class="result-dashboard" *ngIf="analysis">
+      <div class="dashboard-controls">
+        <button class="back-link" (click)="reset.emit()">
+          ← {{ 'ai.dashboard.back' | translate }}
+        </button>
+        <div class="expert-tag">⚡ {{ 'ai.dashboard.verified' | translate }}</div>
+      </div>
+
+      <app-summary-card
+        [title]="analysis.title"
+        [description]="analysis.description"
+        [complexity]="analysis.complexity"
+        [domainKey]="analysis.domainKey"
+        [confidence]="analysis.confidence"
+        [signalKeys]="analysis.signalKeys"
+      ></app-summary-card>
+
+      <div class="layout-columns">
+        <div class="column-left">
+          <app-architecture-map
+            [nodes]="analysis.architectureNodes"
+            [edges]="analysis.architectureEdges"
+          ></app-architecture-map>
+
+          <app-technology-list
+            [technologies]="analysis.technologies"
+          ></app-technology-list>
+        </div>
+
+        <div class="column-right">
+          <app-timeline-view
+            [timeline]="analysis.timeline"
+          ></app-timeline-view>
+
+          <app-ai-opportunities
+            [opportunities]="analysis.aiOpportunities"
+          ></app-ai-opportunities>
+        </div>
+      </div>
+
+      <div class="glass-panel diagnostic-box">
+        <div class="diagnostic-grid">
+          <div class="section-risk">
+            <h4>⚠️ {{ 'ai.dashboard.risks' | translate }}</h4>
+            <ul>
+              <li *ngFor="let risk of analysis.risks">{{ risk }}</li>
+            </ul>
+          </div>
+          <div class="section-reco">
+            <h4>🎯 {{ 'ai.dashboard.recommendations' | translate }}</h4>
+            <ul>
+              <li *ngFor="let rec of analysis.recommendations">{{ rec }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>

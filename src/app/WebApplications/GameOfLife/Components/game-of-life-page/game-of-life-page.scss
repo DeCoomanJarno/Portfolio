@@ -1,0 +1,9 @@
+@use 'styles/index' as *;
+
+canvas {
+  background: var(--color-background);
+  border-radius: 6px;
+  border:1px solid var(--color-primary); 
+  image-rendering: pixelated;
+  cursor: pointer;
+}

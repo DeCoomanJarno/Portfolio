@@ -1,36 +1,19 @@
-import { Component } from '@angular/core';
-
-import {  RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './Core/Components/header/header';
 import { FooterComponent } from './Core/Components/Footer/footer';
-import { TranslateService } from '@ngx-translate/core';
-import { AppointmentModule } from './WebApplications/appointment/appointment-module';
-import { InventoryModule } from './WebApplications/inventory/inventory-module';
+import { BackToTopComponent } from './Core/Components/back-to-top/back-to-top';
+import { LocaleService } from './Core/Services/locale.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.html',
-    imports: [HeaderComponent, RouterModule, FooterComponent, AppointmentModule, InventoryModule],
-    styleUrls: ['./app.css'],
-    providers: [TranslateService]
+  selector: 'app-root',
+  templateUrl: './app.html',
+  imports: [HeaderComponent, RouterModule, FooterComponent, BackToTopComponent],
+  styleUrls: ['./app.scss'],
 })
-export class AppComponent { 
-    constructor(private translate: TranslateService) {
-    translate.addLangs(['en', 'nl']);
-    translate.setFallbackLang('en');
-    
-    // Determine initial language (localStorage -> browser -> fallback)
-    const savedLang = localStorage.getItem('selected-lang');
-    const lang = savedLang || translate.getBrowserLang() || 'en';
-    translate.use(lang);
+export class AppComponent {
 
-    // Update <html lang="...">
-    document.documentElement.lang = lang;
-
-    // Listen to language changes
-    translate.onLangChange.subscribe(event => {
-      document.documentElement.lang = event.lang;
-    });
+  constructor(localeService: LocaleService) {
+    localeService.init();
   }
-
 }

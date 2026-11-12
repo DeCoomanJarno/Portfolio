@@ -1,0 +1,736 @@
+@use 'styles/index' as *;
+
+// z-index map for this component
+// --z-header        = 500  (header bar)
+// --z-header + 1   = 501  (backdrop — dims page, click-through to drawer is intentional)
+// --z-header + 2   = 502  (nav panel — always on top)
+
+// Ensure the host element itself participates in z-index stacking.
+// Without this, GSAP's opacity animation creates a new stacking context on the
+// host with no z-index, causing it to fall behind positioned page content.
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+}
+
+// ── Header shell ──────────────────────────────────────────────────────────────
+.header {
+  position: fixed;
+  top: var(--header-top-offset);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: min(calc(100% - clamp(1rem, 4vw, 2.5rem)), 1340px);
+    z-index: calc(var(--z-header) + 1);
+  height: var(--header-height);
+  border-radius: var(--radius-lg); // floating rectangle
+
+  // Glass surface lives on a pseudo-element so transform on the host
+  // never fights fixed/sticky children.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    border-radius: inherit;
+    background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.12), var(--shadow-1);
+    transition:
+      background var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  // Subtle brand-colour rim that lights up on scroll.
+  &__accent-line {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid var(--ai-accent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-slow) var(--ease-out);
+  }
+
+  &--scrolled {
+    &::before {
+      background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+      border-color: var(--color-outline);
+      box-shadow: 0 8px 36px -10px rgba(0, 0, 0, 0.18), var(--shadow-2);
+    }
+
+    .header__accent-line {
+      opacity: 0.3;
+    }
+  }
+}
+// ── Inner layout ──────────────────────────────────────────────────────────────
+.header__inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  // The header itself is already width-constrained; override page-container.
+  max-width: none !important;
+  padding-inline: clamp(0.75rem, 2.4vw, 1.4rem) !important;
+}
+
+// ── Brand ─────────────────────────────────────────────────────────────────────
+.header__brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  outline-offset: 4px;
+  text-decoration: none;
+
+  ui-logo {
+    width: 40px;
+    height: 40px;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+}
+
+// ── Burger button ─────────────────────────────────────────────────────────────
+.header__burger {
+  display: none;
+
+  @media (max-width: 1025px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 1px solid var(--color-outline);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-on-surface);
+    cursor: pointer;
+    padding: 10px;
+    transition: background var(--duration-fast) var(--ease-out);
+
+    &:hover { background: var(--color-surface-hover); }
+  }
+}
+
+.header__burger-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+  transform-origin: center;
+
+  .header__burger[aria-expanded="true"] & {
+    &:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    &:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    &:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+// ── Backdrop — sits BELOW the nav panel, only dims the page ──────────────────
+.header__backdrop {
+  display: none;
+
+  @media (max-width: 1025px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    // z-index BELOW the nav panel so the panel gets all pointer events
+    z-index: calc(var(--z-header) + 1);
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-base) var(--ease-out);
+
+    &--visible {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+  }
+}
+
+// ── Nav panel ─────────────────────────────────────────────────────────────────
+.header__nav {
+      opacity: 0;
+  // Desktop: inline flex row
+  @include mq(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: var(--space-6);
+  }
+  @media (min-width: 1025px) {
+      opacity: 1;
+  }
+
+  // Tablet (601–1025px): side drawer from the right
+  @media (min-width: 601px) and (max-width: 1025px) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 80vw);
+    // ABOVE the backdrop
+    z-index: calc(var(--z-header) + 2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 0 var(--space-4) var(--space-5);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    background: var(--color-surface);
+    box-shadow: var(--shadow-4);
+
+    transform: translateX(100%);
+    transition: transform var(--duration-base) var(--ease-out);
+
+    &--open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  // Mobile (≤600px): bottom sheet that slides up
+  @media (max-width: 600px) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // max-height so it never covers the full screen — top portion stays visible
+    max-height: 82vh;
+    // ABOVE the backdrop
+    z-index: calc(var(--z-header) + 2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 0 var(--space-4) var(--space-5);
+    padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    background: var(--color-surface);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: var(--shadow-4);
+
+    transform: translateY(100%);
+    transition: transform var(--duration-base) var(--ease-out);
+
+    &--open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+// ── Drag handle (bottom sheet only) ──────────────────────────────────────────
+.header__sheet-handle {
+  display: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    
+    // Background covers the links scrolling beneath it
+    background: var(--color-surface);
+    
+    // Pulls the handle out to the edges to ignore the container's padding
+    margin-inline: calc(-1 * var(--space-4));
+    padding: var(--space-3) 0 var(--space-3);
+    flex-shrink: 0;
+    cursor: grab;
+    
+    // Prevents native pull-to-refresh/scrolling when dragging the handle
+    touch-action: none; 
+
+    &::before {
+      content: '';
+      width: 36px;
+      height: 4px;
+      border-radius: var(--radius-full);
+      background: var(--color-outline-strong);
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+// ── Drawer top bar (close row) — tablet + mobile ──────────────────────────────
+.header__drawer-top {
+  display: none;
+
+  @media (max-width: 1025px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--color-outline);
+    margin-bottom: var(--space-3);
+    margin-inline: calc(-1 * var(--space-4));
+    padding-inline: var(--space-4);
+  }
+
+  // Bottom sheet: no separate top bar needed — handle serves that role
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.header__drawer-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.header__drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-outline);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-on-surface);
+  }
+}
+
+// ── Nav link list ─────────────────────────────────────────────────────────────
+.header__links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include mq(lg) {
+    align-items: center;
+    gap: var(--space-1);
+    position: relative; // anchor for hover pill
+  }
+
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+// ── Individual nav link ───────────────────────────────────────────────────────
+.header__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+
+  // Desktop
+  @include mq(lg) {
+    padding: 0.5rem var(--space-3);
+    border-radius: var(--radius-sm);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: var(--space-3);
+      right: var(--space-3);
+      bottom: -1px;
+      height: 2px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform var(--duration-base) var(--ease-out);
+    }
+
+    &:hover {
+      color: var(--color-on-surface);
+      background: var(--color-surface-hover);
+    }
+
+    &.active {
+      color: var(--color-primary);
+      font-weight: 600;
+      &::after { transform: scaleX(1); }
+    }
+  }
+
+  // Tablet + mobile
+  @media (max-width: 1025px) {
+    width: 100%;
+    padding: var(--space-3) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    color: var(--color-on-surface);
+    justify-content: space-between;
+    min-height: 52px;
+
+    &:hover, &:focus-visible {
+      background: var(--color-surface-hover);
+    }
+
+    &.active {
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+// Hide mobile chevrons on desktop
+.header__link > .bi-chevron-right {
+  @include mq(lg) { display: none; }
+}
+
+// ── Demos dropdown ────────────────────────────────────────────────────────────
+.header__demos {
+  position: relative;
+}
+
+.header__chevron {
+  font-size: 0.7em;
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease-out);
+
+  .header__demos--open & { transform: rotate(180deg); }
+}
+
+.header__demos-panel {
+  // Desktop: floating dropdown
+  @include mq(lg) {
+    display: none;
+    position: absolute;
+    top: calc(100% + var(--space-3));
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    padding: var(--space-2);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-outline);
+    box-shadow: var(--shadow-4);
+    z-index: 1;
+    animation: panelIn var(--duration-base) var(--ease-out) both;
+
+    .header__demos--open & { display: block; }
+  }
+
+  // Tablet + mobile: inline accordion
+  @media (max-width: 1025px) {
+    display: none;
+    padding-left: var(--space-4);
+    margin-top: 2px;
+    border-left: 2px solid var(--color-primary-soft);
+
+    .header__demos--open & { display: block; }
+  }
+}
+
+.header__demos-grid {
+  display: grid;
+  gap: var(--space-1);
+
+  @include mq(lg) { grid-template-columns: 1fr 1fr; }
+
+  @media (max-width: 1025px) {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+.header__demos-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  text-decoration: none;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+
+  @media (max-width: 1025px) {
+    min-height: 48px;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  &:hover {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    .header__demos-icon { color: var(--color-primary); }
+  }
+
+  &.active {
+    color: var(--color-primary);
+    font-weight: 600;
+    .header__demos-icon { color: var(--color-primary); }
+  }
+}
+
+.header__demos-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-hover);
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.header__demos-label { flex: 1; }
+
+// ── Divider — mobile/tablet only ─────────────────────────────────────────────
+.header__divider {
+  display: none;
+
+  @media (max-width: 1025px) {
+    display: block;
+    height: 1px;
+    background: var(--color-outline);
+    margin: var(--space-3) 0;
+    flex-shrink: 0;
+  }
+}
+
+// ── Actions cluster ───────────────────────────────────────────────────────────
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+}
+
+// Language + theme share one row on mobile/tablet
+.header__controls-row {
+  display: contents;
+
+  @media (max-width: 1025px) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}
+
+// ── Language switcher ─────────────────────────────────────────────────────────
+.header__lang {
+  display: flex;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  border: 1px solid var(--color-outline);
+  gap: 2px;
+  position: relative; // anchor for sliding indicator
+
+  @media (max-width: 1025px) { flex: 1; }
+}
+
+// Liquid sliding indicator — GSAP controls x + width
+.header__lang-indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
+  width: 36px; // overridden by GSAP on init
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width;
+}
+
+.header__lang-btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  min-width: 36px;
+  min-height: 30px;
+  position: relative;
+  z-index: 1;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  &.active {
+    // Background is provided by .header__lang-indicator (GSAP animated)
+    color: var(--color-on-primary);
+    font-weight: 700;
+  }
+
+  &:not(.active):hover {
+    background: var(--color-surface-hover);
+    color: var(--color-on-surface);
+  }
+
+  @media (max-width: 1025px) {
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+    min-height: 38px;
+  }
+}
+
+// ── Theme toggle ──────────────────────────────────────────────────────────────
+.header__theme {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--color-background);
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+
+  &:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-on-surface);
+  }
+
+  @media (max-width: 1025px) {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+}
+
+.header__theme-icon {
+  font-size: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+// ── CTA ───────────────────────────────────────────────────────────────────────
+.header__cta {
+  white-space: nowrap;
+  border-radius: var(--radius-full) !important;
+  padding-inline: var(--space-5) !important;
+
+  @media (max-width: 1025px) {
+    width: 100%;
+    height: 52px;
+    border-radius: var(--radius-md) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-top: var(--space-1);
+  }
+}
+
+// ── Dropdown entrance animation ───────────────────────────────────────────────
+@keyframes panelIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+// ── Focus styles ──────────────────────────────────────────────────────────────
+.header__link:focus-visible,
+.header__lang-btn:focus-visible,
+.header__theme:focus-visible,
+.header__burger:focus-visible,
+.header__drawer-close:focus-visible,
+.header__cta:focus-visible,
+.header__demos-item:focus-visible,
+.header__brand:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+// ── Nav hover pill (desktop only) ─────────────────────────────────────────────
+.header__nav-pill {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 34px;
+    width: 0;
+    transform: translateY(-50%);
+    background: var(--color-surface-hover);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// Links sit above the pill
+.header__links > li {
+  @include mq(lg) {
+    position: relative;
+    z-index: 1;
+  }
+}

@@ -1,54 +1,85 @@
-<div class="project-card animate" [routerLink]="['/Projects', project.id]">
+<article
+  class="project-card"
+  [routerLink]="['/Projects', project.id]"
+  (pointermove)="onPointerMove($event)"
+  (pointerleave)="onPointerLeave()">
+  <span class="card-glow" aria-hidden="true"></span>
+  <span class="card-border" aria-hidden="true"></span>
 
-  <div class="image-container" (click)="$event.stopPropagation()">
-    @if (project.images && project.images.length > 0) {
-      <div class="image-slider">
-        @for (image of project.images; track $index) {
-          <img
-            [src]="image.startsWith('http') ? image : 'Resources/Projects/' + project.id + '/Images/' + image"
-            [alt]="project.title"
-            class="project-image"
-            [class.active]="$index === currentImageIndex" />
-        }
-      </div>
+  <div class="card-inner">
+    <div class="media" (click)="$event.stopPropagation()">
+      @if (project.images && project.images.length > 0) {
+        <div class="media-slider">
+          @for (image of project.images; track $index) {
+            <img
+              [src]="image.startsWith('http') ? image : 'Resources/Projects/' + project.id + '/Images/' + image"
+              [alt]="project.title"
+              class="media-image"
+              loading="lazy"
+              [class.active]="$index === currentImageIndex()" />
+          }
+        </div>
+      } @else {
+        <div class="media-placeholder" aria-hidden="true">
+          <span>{{ project.title.charAt(0) }}</span>
+        </div>
+      }
+
+      <div class="media-scrim" aria-hidden="true"></div>
+
+      <span class="category-chip">
+        <span class="category-dot" aria-hidden="true"></span>
+        {{ ('Project.Category.' + project.category) | translate }}
+      </span>
 
       @if (hasMultipleImages) {
-        <div class="image-indicators">
-@for (image of project.images; track $index) {
-            <span
+        <div class="indicators">
+          @for (image of project.images; track $index) {
+            <button
+              type="button"
               class="indicator"
-              [class.active]="$index === currentImageIndex"
-              (click)="setCurrentImage($index); $event.stopPropagation()"></span>
+              [class.active]="$index === currentImageIndex()"
+              [attr.aria-label]="'Image ' + ($index + 1)"
+              (click)="setCurrentImage($index); $event.stopPropagation()">
+              <span class="indicator-fill"></span>
+            </button>
           }
         </div>
       }
-    }
-  </div>
-              <div class="project-overlay">
-              <span class="project-category">{{ ('Project.Category.' + project.category) | translate}}</span>
-            </div>
-  <div class="project-info">
-
-    <div class="tech-list">
-      @for (tech of project.technologies; track $index) {
-        <img [src]="tech | icon" [alt]="tech" [matTooltip]="tech" [matTooltipPosition]="'above'" class="tech-icon" />
-      }
     </div>
-    <h3 class="project-title">{{ project.title | translate }}</h3>
-    <p class="project-description">{{ project.description | translate }}</p>
 
-    @if (project.link) {
-      <a
-        [href]="project.link.url"
-        target="_blank"
-        class="project-external-link"
-        (click)="$event.stopPropagation()"
-        title="{{ project.link.name || 'Visit' | translate }}">
-        <span class="link-text">{{ project.link.name || 'Visit' | translate }}</span>
-        <img [src]="project.link.icon | icon" [alt]="project.link.icon" />
-        <span class="link-arrow">→</span>
-        <span class="link-bg"></span>
-      </a>
-    }
+    <div class="content">
+      <h3 class="title">{{ project.title | translate }}</h3>
+      <p class="description">{{ project.description | translate }}</p>
+
+      <div class="tech-row">
+        @for (tech of project.technologies; track $index) {
+          <span class="tech-chip" [matTooltip]="tech" [matTooltipPosition]="'above'">
+            <img [src]="tech | icon" [alt]="tech" class="tech-icon" />
+          </span>
+        }
+      </div>
+
+      <div class="footer">
+        <span class="view-project">
+          {{ 'Project.View' | translate }}
+          <span class="view-arrow" aria-hidden="true">→</span>
+        </span>
+
+        @if (project.link) {
+          <a
+            [href]="project.link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="external-link"
+            (click)="$event.stopPropagation()"
+            [matTooltip]="project.link.name ? (project.link.name | translate) : ('Project.Visit' | translate)"
+            [matTooltipPosition]="'above'"
+            [attr.aria-label]="project.link.name ? (project.link.name | translate) : ('Project.Visit' | translate)">
+            <img [src]="project.link.icon | icon" [alt]="project.link.icon" />
+          </a>
+        }
+      </div>
+    </div>
   </div>
-</div>
+</article>

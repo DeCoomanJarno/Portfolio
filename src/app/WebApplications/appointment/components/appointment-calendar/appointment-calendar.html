@@ -1,20 +1,33 @@
-<div class="container mt-5">
-    <mat-card class="p-4 shadow-sm">
-        <h2 class="mb-4">{{ 'Appointment.Calendar.Title' | translate }}</h2>
+<section class="calendar-view">
+    <mat-card class="calendar-panel">
+        <h2>{{ 'Appointment.Calendar.Title' | translate }}</h2>
 
-        @for (date of getDates(); track $index)
-        {
-
-        <div>
-            <h4>{{ date }}</h4>
-            <ul>
-                @for (app of groupedAppointments[date]; track $index)
-                {
-                <li>{{ app.time }} - {{ app.name }} ({{ app.service }}) [{{ app.status }}]</li>
-                }
-            </ul>
-        </div>
+        @if (getDateEntries().length === 0) {
+            <p class="calendar-empty">No appointments planned yet.</p>
         }
 
+        <div class="day-list">
+            @for (entry of getDateEntries(); track entry.date) {
+                <article class="day-card">
+                    <header>
+                        <h3>{{ entry.date }}</h3>
+                        <span>{{ entry.items.length }} appointment(s)</span>
+                    </header>
+
+                    @for (app of entry.items; track app.id) {
+                        <div class="day-item">
+                            <div>
+                                <strong>{{ app.time }}</strong>
+                                <p>{{ app.name }} · {{ app.email }}</p>
+                            </div>
+                            <div class="day-item__meta">
+                                <span>{{ ('Appointment.Services.' + app.service) | translate }}</span>
+                                <span class="status-pill" [class]="'status-pill ' + statusClass(app.status)">{{ statusLabel(app.status) }}</span>
+                            </div>
+                        </div>
+                    }
+                </article>
+            }
+        </div>
     </mat-card>
-</div>
+</section>

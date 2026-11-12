@@ -1,5 +1,44 @@
 [
   {
+    "id": "AI",
+    "category": "AI",
+    "title": "Project.AI.Title",
+    "description": "Project.AI.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript"
+    ],
+    "images": [
+      "AI_Landing.png",
+      "AI_Analyzer.png",
+      "AI_Dashboard.png"
+    ],
+    "link": {
+      "name": "Project.AI.Links.Live",
+      "icon": "Export",
+      "url": "/AI"
+    }
+  },
+  {
+    "id": "DemandForecast",
+    "category": "AI",
+    "title": "Project.DemandForecast.Title",
+    "description": "Project.DemandForecast.Description",
+    "technologies": [
+      "Angular",
+      "TypeScript",
+      "Pattern Recognition"
+    ],
+    "images": [
+      "DemandForecast.svg"
+    ],
+    "link": {
+      "name": "Project.DemandForecast.Links.Live",
+      "icon": "Export",
+      "url": "/AI/Demand-Forecaster"
+    }
+  },
+  {
     "id": "TaskFlow",
     "category": "web",
     "title": "Project.TaskFlow.Title",

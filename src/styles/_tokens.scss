@@ -1,0 +1,258 @@
+// ============================================================
+// Design tokens — single source of truth.
+// Semantic color tokens come in light + dark variants; all other
+// tokens are theme-independent.
+// ============================================================
+
+@mixin light-colors {
+  // Brand
+  --color-primary: #006680;
+  --color-on-primary: #ffffff;
+  --color-primary-hover: #005266;
+  --color-primary-active: #08404b;
+  --color-primary-soft: rgba(0, 102, 128, 0.08);
+
+  --color-secondary: #00b7c2;
+  --color-on-secondary: #003238;
+  --color-secondary-hover: #00a3ad;
+  --color-secondary-active: #0f9299;
+  --color-secondary-soft: rgba(0, 183, 194, 0.12);
+
+  --color-accent: #e5aa35;
+  --color-on-accent: #2a1f04;
+  --color-accent-soft: rgba(229, 170, 53, 0.14);
+
+  // Surfaces
+  --color-background: #f7f9fa;
+  --color-on-background: #16191b;
+  --color-background-hover: #eceff1;
+  --color-background-active: #dde2e5;
+
+  --color-surface: #ffffff;
+  --color-on-surface: #16191b;
+  --color-surface-hover: #f1f4f5;
+  --color-surface-active: #e4e9eb;
+  --color-surface-raised: #ffffff;
+
+  --color-muted: #5b6770;
+  --color-outline: #d4dadd;
+  --color-outline-strong: #aeb8bd;
+
+  // Feedback
+  --color-success: #2e7d32;
+  --color-on-success: #ffffff;
+  --color-warning: #b26a00;
+  --color-on-warning: #ffffff;
+  --color-error: #c62828;
+  --color-on-error: #ffffff;
+  --color-info: #0277bd;
+  --color-on-info: #ffffff;
+
+  --color-disabled-bg: #e0e0e0;
+  --color-on-disabled: #9aa0a3;
+
+  // Effects
+  --color-box-shadow: rgba(10, 31, 38, 0.08);
+  --color-box-shadow-hover: rgba(10, 31, 38, 0.16);
+  --gradient-brand: linear-gradient(135deg, #006680 0%, #00b7c2 100%);
+  --gradient-hero: radial-gradient(at 20% 10%, rgba(0, 183, 194, 0.14) 0, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(0, 102, 128, 0.12) 0, transparent 55%),
+    radial-gradient(at 60% 80%, rgba(229, 170, 53, 0.07) 0, transparent 50%);
+
+  --shadow-1: 0 1px 2px rgba(10, 31, 38, 0.06), 0 1px 3px rgba(10, 31, 38, 0.08);
+  --shadow-2: 0 4px 10px -2px rgba(10, 31, 38, 0.08), 0 2px 4px rgba(10, 31, 38, 0.06);
+  --shadow-3: 0 12px 28px -6px rgba(10, 31, 38, 0.14), 0 4px 10px -4px rgba(10, 31, 38, 0.08);
+  --shadow-4: 0 24px 48px -12px rgba(10, 31, 38, 0.22);
+
+  // ── AI / landing accents (theme-aware, light) ──
+  // Darken the base accent slightly for better contrast on white
+  --ai-accent: #00667a; 
+  --ai-accent-2: #008196;
+  
+  // Double the opacity of the glows to make them pop against the light background
+  --ai-glow: rgba(0, 150, 168, 0.90);         // Was 0.20
+  --ai-glow-soft: rgba(0, 150, 168, 0.98);    // Was 0.09
+  --ai-glow-strong: rgba(0, 150, 168, 0.90);  // Was 0.30
+  
+  // Boost the aurora opacities for the hero canvas
+  --hero-aurora-1: rgba(0, 183, 194, 0.85);   // Was 0.16
+  --hero-aurora-2: rgba(79, 214, 255, 0.85);  // Was 0.12
+  --hero-aurora-3: rgba(0, 102, 128, 0.80);   // Was 0.10
+
+  --ai-ink-soft: rgba(22, 25, 27, 0.70);
+  --ai-grad: linear-gradient(115deg, #006680 0%, #00a3ad 55%, #0aa6c4 100%);
+  --ai-grad-text: linear-gradient(115deg, #007e95 0%, #00a7b5 55%, #0089a8 100%);
+  --hero-grid: rgba(0, 102, 128, 0.95);
+  --glass-bg: rgba(255, 255, 255, 1.72);
+  --glass-bg-strong: rgba(255, 255, 255, 1.88);
+  --glass-border: rgba(10, 31, 38, 0.99);
+}
+
+@mixin dark-colors {
+  // Brand
+  --color-primary: #5ec6d8;
+  --color-on-primary: #00303c;
+  --color-primary-hover: #7ad2e1;
+  --color-primary-active: #41b4c8;
+  --color-primary-soft: rgba(94, 198, 216, 0.12);
+
+  --color-secondary: #19e3da;
+  --color-on-secondary: #00302d;
+  --color-secondary-hover: #4eeae2;
+  --color-secondary-active: #0fc8bf;
+  --color-secondary-soft: rgba(25, 227, 218, 0.12);
+
+  --color-accent: #ffd166;
+  --color-on-accent: #2a1f04;
+  --color-accent-soft: rgba(255, 209, 102, 0.14);
+
+  // Surfaces
+  --color-background: #0e1417;
+  --color-on-background: #e8edef;
+  --color-background-hover: #182024;
+  --color-background-active: #223036;
+
+  --color-surface: #151d21;
+  --color-on-surface: #e8edef;
+  --color-surface-hover: #1d272c;
+  --color-surface-active: #263238;
+  --color-surface-raised: #1a2429;
+
+  --color-muted: #92a0a8;
+  --color-outline: #2c383e;
+  --color-outline-strong: #43545c;
+
+  // Feedback
+  --color-success: #81c784;
+  --color-on-success: #0c2a0e;
+  --color-warning: #ffc947;
+  --color-on-warning: #2c1f00;
+  --color-error: #ff8a80;
+  --color-on-error: #3c0a06;
+  --color-info: #64b5f6;
+  --color-on-info: #062845;
+
+  --color-disabled-bg: #2c3338;
+  --color-on-disabled: #79858b;
+
+  // Effects
+  --color-box-shadow: rgba(0, 0, 0, 0.4);
+  --color-box-shadow-hover: rgba(0, 0, 0, 0.6);
+  --gradient-brand: linear-gradient(135deg, #2a8aa0 0%, #19e3da 100%);
+  --gradient-hero: radial-gradient(at 20% 10%, rgba(25, 227, 218, 0.1) 0, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(94, 198, 216, 0.09) 0, transparent 55%),
+    radial-gradient(at 60% 80%, rgba(255, 209, 102, 0.05) 0, transparent 50%);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 10px -2px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 12px 28px -6px rgba(0, 0, 0, 0.55), 0 4px 10px -4px rgba(0, 0, 0, 0.35);
+  --shadow-4: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+
+  // ── AI / landing accents (theme-aware, dark) ──
+  --ai-accent: #19e3da;
+  --ai-accent-2: #4fd6ff;
+  --ai-ink-soft: rgba(232, 237, 239, 0.74);
+  --ai-glow: rgba(0, 224, 213, 0.34);
+  --ai-glow-soft: rgba(25, 227, 218, 0.14);
+  --ai-glow-strong: rgba(0, 224, 213, 0.55);
+  --ai-grad: linear-gradient(115deg, #00e0d5 0%, #19e3da 46%, #0aa6c4 100%);
+  --ai-grad-text: linear-gradient(115deg, #19e3da 0%, #00e0d5 55%, #4fd6ff 100%);
+  --hero-aurora-1: rgba(0, 224, 213, 0.20);
+  --hero-aurora-2: rgba(79, 214, 255, 0.16);
+  --hero-aurora-3: rgba(0, 102, 128, 0.22);
+  --hero-grid: rgba(255, 255, 255, 0.035);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.09);
+}
+
+:root {
+  @include light-colors;
+
+  // Spacing — 4px base scale.
+  --space-1: 0.25rem; //  4px
+  --space-2: 0.5rem; //  8px
+  --space-3: 0.75rem; // 12px
+  --space-4: 1rem; // 16px
+  --space-5: 1.5rem; // 24px
+  --space-6: 2rem; // 32px
+  --space-7: 2.5rem; // 40px
+  --space-8: 3rem; // 48px
+  --space-9: 4rem; // 64px
+  --space-10: 5rem; // 80px
+  --space-11: 6rem; // 96px
+  --space-12: 8rem; // 128px
+
+  // Legacy aliases (style-lib names still used by lib components).
+  --spacing-xs: var(--space-1);
+  --spacing-s: var(--space-2);
+  --spacing-m: var(--space-4);
+  --spacing-l: var(--space-5);
+  --spacing-xl: var(--space-6);
+  --spacing-xxl: var(--space-8);
+
+  // Radius
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  --border-radius-xs: var(--radius-xs);
+  --border-radius-s: var(--radius-sm);
+  --border-radius-m: var(--radius-md);
+  --border-radius-l: var(--radius-lg);
+
+  // Icon sizes (legacy names kept)
+  --icon-size-xs: 16px;
+  --icon-size-s: 20px;
+  --icon-size-m: 24px;
+  --icon-size-l: 32px;
+  --icon-size-xl: 42px;
+  --icon-size-xxl: 48px;
+
+  --size-xs: 4px;
+  --size-s: 8px;
+  --size-m: 16px;
+  --size-m20: 20px;
+  --size-l: 24px;
+  --size-xl: 32px;
+
+  // Motion
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-duration: var(--duration-base);
+  --transition-ease: var(--ease-out);
+
+  // Z-index scale
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-header: 500;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
+
+  // Layout
+  --page-max-width: 1200px;
+  --page-max-width-wide: 1440px;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-top-offset: clamp(8px, 1.4vw, 14px);
+  --header-height: 4.25rem;
+  --header-clearance: calc(var(--header-height) + var(--header-top-offset));
+}
+
+// Dark theme: explicit class wins; otherwise follow the OS.
+html.dark {
+  @include dark-colors;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    @include dark-colors;
+  }
+}

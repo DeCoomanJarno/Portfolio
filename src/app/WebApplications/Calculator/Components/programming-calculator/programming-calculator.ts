@@ -31,8 +31,8 @@ export class ProgrammingModeValue {
     imports: [FormsModule, NgClass, ReactiveFormsModule, HistoryTabComponent],
     templateUrl: './programming-calculator.html',
     styleUrls: [
-        './programming-calculator.css',
-        '../base-calculator/base-calculator.css',
+        './programming-calculator.scss',
+        '../base-calculator/base-calculator.scss',
     ]
 })
 export class ProgrammingCalculatorComponent {
@@ -122,7 +122,7 @@ private escapeRegex(value: string): string {
     }
 
     try {
-      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
+      const number = this.safeEvaluate(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
       this.tempResult = number.toString();
       this.updateValues(number);
     } catch (error) { }
@@ -133,7 +133,7 @@ private escapeRegex(value: string): string {
     this.currentValue = this.currentValue.slice(0, -1);
 
     try {
-      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))) ?? 0;
+      const number = this.safeEvaluate(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))) ?? 0;
       this.tempResult = number.toString();
       this.updateValues(number);
     } catch (error) { }
@@ -153,7 +153,7 @@ private escapeRegex(value: string): string {
     this.currentValue += buttonValue;
 
     try {
-      const number = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
+      const number = this.safeEvaluate(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec)));
       this.tempResult = number.toString();
       this.updateValues(number);
     } catch (error) { }
@@ -178,7 +178,7 @@ private escapeRegex(value: string): string {
   switchMode(base: EProgrammingMode): void {
     try {
       let convertedExpression = this.convertExpression(base);
-      this.tempResult = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
+      this.tempResult = this.safeEvaluate(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
 
       this.currentValue = convertedExpression;
       this.currentMode = base;
@@ -211,10 +211,24 @@ private escapeRegex(value: string): string {
     return expression.replaceAll('×', '*').replaceAll('÷', '/');
   }
 
+  private safeEvaluate(expression: string): number {
+    const sanitized = expression.replace(/\s/g, '');
+    const allowedPattern = /^[0-9a-fA-F+\-*/().]+$/;
+    if (!allowedPattern.test(sanitized)) {
+      throw new Error('Invalid expression');
+    }
+    const fn = new Function(`"use strict"; return (${sanitized});`);
+    const result = fn();
+    if (typeof result !== 'number' || !isFinite(result)) {
+      throw new Error('Invalid result');
+    }
+    return result;
+  }
+
   /** Updates temporary result */
   updateTemporary(): void {
     try {
-      this.tempResult = eval(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
+      this.tempResult = this.safeEvaluate(this.replaceOperators(this.convertExpression(EProgrammingMode.Dec))).toString();
     } catch (error) { }
   }
 
@@ -223,7 +237,7 @@ private escapeRegex(value: string): string {
     try {
       this.error = '';
       const convertHexExpression = this.convertExpression(EProgrammingMode.Dec);
-      const calculatedResult = eval(this.replaceOperators(convertHexExpression));
+      const calculatedResult = this.safeEvaluate(this.replaceOperators(convertHexExpression));
 
       if (convertHexExpression === calculatedResult.toString()) return;
 

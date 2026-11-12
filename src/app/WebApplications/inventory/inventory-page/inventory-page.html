@@ -1,4 +1,4 @@
-<web-page>
+<web-page class="inventory-view">
   <!-- 📌 Page Title -->
   <ui-title>{{ 'Inventory.Title' | translate }}</ui-title>
 
@@ -20,7 +20,7 @@
     </ui-hotpick>
     }
 
-    <ui-hotpick select="action" [hasLabel]="false">
+    <ui-hotpick class="create-action-hotpick" select="action" [hasLabel]="false">
       <ui-button class="create-button" matButton="filled" (click)="Create()">{{'Inventory.actions.create' |
         translate}}</ui-button>
     </ui-hotpick>

@@ -1,36 +1,32 @@
 {
     "resume": {
-        "profile": "Driven software engineer with experience in game development, VR, and automation. Excels in collaborative environments and enjoys creating innovative, optimized solutions.",
-        "download": "Print PDF",
-        "driverLicense": "Driver License",
-        "languageProficiency": {
-            "Native": "Native",
-            "Fluent": "Fluent",
-            "Basic": "Basic"
-        },
         "titles": {
-            "contact": "Contact",
-            "profile": "Profile",
             "skills": "Skills",
-            "programmingLanguage": "Programming Languages",
-            "language": "Languages",
             "education": "Education",
             "workExperience": "Work Experience",
-            "references": "References",
-            "download": "Download"
+            "languages": "Languages",
+            "references": "References"
         },
-        "skillNames": {
+        "downloadPdf": "Download PDF",
+        "monthShort": "mo",
+        "yearShort": "yr",
+        "now": "Present",
+        "title": "Software Engineer",
+        "photoAlt": "Profile picture",
+        "sections": {
+            "about": "About"
+        },
+        "contactLabels": {
+            "email": "Email",
+            "phone": "Phone",
+            "location": "Location",
+            "linkedin": "LinkedIn"
+        },
+        "skillsTable": {
             "school": "School",
             "work": "Work",
             "hobby": "Hobby"
         },
-        "monthShort": "mo",
-        "yearShort": "yr",
-        "now": "Present",
-        "Native": "Native",
-        "Fluent": "Fluent",
-        "Basic": "Basic",
-        "title": "Software Engineer",
         "contact": {
             "address": "9260 Schellebelle, Belgium"
         },

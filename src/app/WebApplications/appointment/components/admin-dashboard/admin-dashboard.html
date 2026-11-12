@@ -1,74 +1,95 @@
-<div class="container mt-5">
-  <mat-card class="p-4 shadow-sm">
-    <h2 class="mb-4">{{ 'Appointment.Admin.Title' | translate }}</h2>
-    <table mat-table [dataSource]="appointments" class="w-100">
+<section class="admin-view">
+  <mat-card class="admin-panel">
+    <div class="admin-panel__head">
+      <h2>{{ 'Appointment.Admin.Title' | translate }}</h2>
+      <mat-form-field appearance="outline" class="status-filter">
+        <mat-label>{{ 'Appointment.Admin.Status' | translate }}</mat-label>
+        <mat-select [(value)]="selectedStatus">
+          <mat-option [value]="'All'">All</mat-option>
+          <mat-option [value]="statusEnum.Pending">{{ statusLabel(statusEnum.Pending) }}</mat-option>
+          <mat-option [value]="statusEnum.Confirmed">{{ statusLabel(statusEnum.Confirmed) }}</mat-option>
+          <mat-option [value]="statusEnum.Done">{{ statusLabel(statusEnum.Done) }}</mat-option>
+          <mat-option [value]="statusEnum.CancelRequest">{{ statusLabel(statusEnum.CancelRequest) }}</mat-option>
+          <mat-option [value]="statusEnum.Cancel">{{ statusLabel(statusEnum.Cancel) }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Name' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.name }}</td>
-      </ng-container>
+    @if (filteredAppointments.length === 0) {
+      <p class="admin-empty">No appointments found for this filter.</p>
+    }
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Email' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.email }}</td>
-      </ng-container>
+    <div class="table-wrap">
+      <table mat-table [dataSource]="filteredAppointments" class="admin-table">
+        <ng-container matColumnDef="customer">
+          <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Name' | translate }}</th>
+          <td mat-cell *matCellDef="let app">
+            <strong>{{ app.name }}</strong>
+            <small>{{ app.email }}</small>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="service">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Service' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.service }}</td>
-      </ng-container>
+        <ng-container matColumnDef="service">
+          <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Service' | translate }}</th>
+          <td mat-cell *matCellDef="let app">{{ ('Appointment.Services.' + app.service) | translate }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Date' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.date }}</td>
-      </ng-container>
+        <ng-container matColumnDef="schedule">
+          <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Date' | translate }}</th>
+          <td mat-cell *matCellDef="let app">{{ app.date }} {{ app.time }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Time' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.time }}</td>
-      </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Status' | translate }}</th>
+          <td mat-cell *matCellDef="let app">
+            <span class="status-pill" [class]="'status-pill ' + statusClass(app.status)">{{ statusLabel(app.status) }}</span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Status' | translate }}</th>
-        <td mat-cell *matCellDef="let app">{{ app.status }}</td>
-      </ng-container>
+        <ng-container matColumnDef="manage">
+          <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Actions' | translate }}</th>
+          <td mat-cell *matCellDef="let app" class="manage-cell">
+            <div class="manage-actions">
+              @if (canApprovePending(app)) {
+                <button mat-stroked-button color="primary" (click)="approvePending(app)">
+                  {{ 'Appointment.Admin.Confirm' | translate }}
+                </button>
+                <button mat-stroked-button color="warn" (click)="declinePending(app)">
+                  {{ 'Appointment.Admin.Cancel' | translate }}
+                </button>
+              }
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>{{ 'Appointment.Admin.Actions' | translate }}</th>
-        <td mat-cell *matCellDef="let app">
-          <!-- Approve pending -->
-          <button mat-button color="primary" *ngIf="app.status === statusEnum.Pending" 
-                  (click)="updateStatus(app, statusEnum.Confirmed)">
-            {{ 'Appointment.Admin.Confirm' | translate }}
-          </button>
+              @if (canApproveCancellation(app)) {
+                <button mat-stroked-button color="warn" (click)="approveCancellation(app)">
+                  {{ 'Appointment.Admin.ApproveCancel' | translate }}
+                </button>
+                <button mat-stroked-button (click)="denyCancellation(app)">
+                  Keep confirmed
+                </button>
+              }
 
-          <!-- Approve pending -->
-          <button mat-button color="primary" *ngIf="app.status === statusEnum.Pending" 
-                  (click)="updateStatus(app, statusEnum.Cancel)">
-            {{ 'Appointment.Admin.Cancel' | translate }}
-          </button>
+              @if (canMarkDone(app)) {
+                <button mat-stroked-button color="accent" (click)="markDone(app)">
+                  {{ 'Appointment.Admin.Done' | translate }}
+                </button>
+              }
 
-          <!-- Mark done -->
-          <button mat-button color="accent" *ngIf="app.status === statusEnum.Confirmed" 
-                  (click)="updateStatus(app, statusEnum.Done)">
-            {{ 'Appointment.Admin.Done' | translate }}
-          </button>
+              @if (isClosed(app)) {
+                <span class="admin-note">No action required</span>
+              }
+            </div>
 
-          <!-- Handle cancellation requests -->
-          <button mat-button color="warn" *ngIf="app.status === statusEnum.CancelRequest" 
-                  (click)="updateStatus(app, statusEnum.Cancel)">
-            {{ 'Appointment.Admin.ApproveCancel' | translate }}
-          </button>
+            @if (canDelete(app)) {
+              <button mat-stroked-button color="warn" (click)="deleteAppointment(app.id)">
+                {{ 'Appointment.Admin.Delete' | translate }}
+              </button>
+            }
+          </td>
+        </ng-container>
 
-          <!-- Delete any appointment -->
-          <button mat-button color="warn" (click)="deleteAppointment(app.id)">
-            {{ 'Appointment.Admin.Delete' | translate }}
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
   </mat-card>
-</div>
+</section>

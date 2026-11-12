@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="AI Studio analyzer mockup">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07131a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <rect x="110" y="90" width="1380" height="720" rx="36" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.12"/>
+  <rect x="165" y="140" width="1270" height="70" rx="20" fill="#ffffff" opacity="0.05"/>
+  <text x="200" y="185" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="26">Architect Workbench</text>
+  <rect x="165" y="245" width="1270" height="250" rx="24" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.10"/>
+  <text x="200" y="295" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="22">Describe your software idea...</text>
+  <rect x="165" y="525" width="320" height="68" rx="18" fill="#0ea5a4"/>
+  <text x="325" y="569" fill="#08111f" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700" text-anchor="middle">Analyze Project Specs</text>
+  <rect x="560" y="525" width="875" height="240" rx="24" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.10"/>
+  <text x="600" y="575" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">Reading requirements</text>
+  <text x="600" y="625" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="20">Extracting constraints and capabilities</text>
+  <text x="600" y="670" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="20">Inferring domain context</text>
+  <text x="600" y="715" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="20">Generating roadmap and opportunities</text>
+</svg>

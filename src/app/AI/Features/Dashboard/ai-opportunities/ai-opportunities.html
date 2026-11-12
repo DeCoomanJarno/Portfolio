@@ -1,0 +1,18 @@
+<div class="glass-panel AI-opps-box">
+      <h3>{{ 'ai.opportunities.title' | translate }}</h3>
+      <div class="opps-grid">
+        <div class="opp-card" *ngFor="let opp of opportunities">
+          <div class="opp-head">
+            <span class="difficulty-tag" [ngClass]="difficultyClass(opp.difficulty)">
+              {{ ('ai.difficulty.' + opp.difficulty) | translate }} {{ 'ai.difficulty.suffix' | translate }}
+            </span>
+            <h4>{{ opp.name }}</h4>
+          </div>
+          <p>{{ opp.description }}</p>
+          <div class="opp-footer">
+            <span class="label">{{ 'ai.opportunities.impact' | translate }}:</span>
+            <span class="value">{{ opp.businessValue }}</span>
+          </div>
+        </div>
+      </div>
+    </div>

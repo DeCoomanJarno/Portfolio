@@ -1,99 +1,121 @@
-<div class="project-detail-page">
-  @if (project && projectPreviewModel) {
-    <title>{{project.title | translate }}</title>
+@if (project(); as project) {
+  <title>{{ project.title | translate }}</title>
 
-    <!-- Project Header -->
-    <section class="project-header">
-      <h1>{{ project.title | translate }}</h1>
-      <p class="project-description">{{ project.description | translate }}</p>
+  <div class="case-study section">
+    <div class="page-container">
 
-      @if (project.features.length > 0) {
-        <ul class="feature-list">
-          @for (feature of project.features; track $index) {
-            <li class="feature-item">{{ feature | translate }}</li>
-          }
-        </ul>
-      }
-    </section>
+      <a routerLink="/Projects" class="case-study__back">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+        {{ 'titles.projects' | translate }}
+      </a>
 
-    <!-- Content Section -->
-    @if (project.content.length > 0) {
-      <section class="content-section">
-        <h3>{{ 'Project.Description' | translate }}</h3>
-
-        @for (item of project.content; track $index) {
-          @if (item.type === 'text') {
-            <div class="text-block">
-              <p>{{ item.value | translate }}</p>
-            </div>
-          }
-          @else if (item.type === 'image') {
-            <div class="image-block" [class.right]="$index % 2 === 0" [class.left]="$index % 2 !== 0">
-              <img [src]="item.value.startsWith('http') ? item.value : 'Resources/Projects/' + projectPreviewModel.id + '/Images/' + item.value" [alt]="'Project.ImageAlt' | translate:{ index: $index+1 }">
-            </div>
-          }
-          @else if (item.type === 'code') {
-            <div class="code-block">
-              <pre><code [class]="item.codeLanguage ?? 'c'">{{ item.value }}</code></pre>
-              <button class="copy-button bi-copy" (click)="copyCode(item.value, $event.target)">
-                {{ 'Project.Copy' | translate }}
-              </button>
-            </div>
-          }
-          @else if (item.type === 'other') {
-            <div class="text-block other" [innerHTML]="ConvertToHTML(item.value | translate)"></div>
-          }
+      <!-- HEADER -->
+      <header class="case-study__header">
+        @if (preview(); as preview) {
+          <span class="badge">{{ 'Project.Category.' + preview.category | translate }}</span>
         }
-      </section>
-    }
+        <h1>{{ project.title | translate }}</h1>
+        <p class="case-study__description">{{ project.description | translate }}</p>
 
-    <!-- Future Plans -->
-    @if (project.futurePlans.length > 0) {
-      <section class="project-future-plans">
-        <h3>{{ 'Project.FuturePlans' | translate }}</h3>
-        <ul class="future-plans-list">
-          @for (plan of project.futurePlans; track $index) {
-            <li class="future-plan-item">{{ plan | translate }}</li>
-          }
-        </ul>
-      </section>
-    }
+        @if (preview(); as preview) {
+          <div class="case-study__meta">
+            @if (preview.technologies.length > 0) {
+              <ul class="case-study__tech">
+                @for (tech of preview.technologies; track tech) {
+                  <li>
+                    <img [src]="tech | icon" [matTooltip]="tech" matTooltipPosition="above" [alt]="tech" />
+                  </li>
+                }
+              </ul>
+            }
+            <div class="case-study__links">
+              @if (preview.link) {
+                <a [href]="preview.link.url" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
+                  {{ preview.link.name | translate }}
+                </a>
+              }
+              @for (link of projectLinks(); track link.url) {
+                <a [href]="link.url" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+                  {{ link.name | translate }}
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </header>
 
-    <!-- Technologies Used -->
-    @if (projectPreviewModel.technologies.length > 0) {
-      <section class="project-tech">
-        <h3>{{ 'Project.TechUsed' | translate }}</h3>
-        <ul class="tech-list">
-          @for (tech of projectPreviewModel.technologies; track $index) {
-            <li class="tech-item"  >
-              <img [src]="tech | icon" [matTooltip]="tech" [matTooltipPosition]="'above'" [alt]="tech" >
-            </li>
-          }
-        </ul>
-      </section>
-    }
+      <!-- FEATURES -->
+      @if (project.features.length > 0) {
+        <section class="case-study__features">
+          <ul>
+            @for (feature of project.features; track $index) {
+              <li>
+                <i class="bi bi-check-circle" aria-hidden="true"></i>
+                {{ feature | translate }}
+              </li>
+            }
+          </ul>
+        </section>
+      }
 
-    <!-- Links -->
-    @if (project.links.length > 0 || projectPreviewModel.link) {
-      <section class="project-links">
-        <h3>{{ 'Project.Links' | translate }}</h3>
-        <ul class="link-list">
-          @if (projectPreviewModel.link) {
-            <li class="link-item">
-              <a [href]="projectPreviewModel.link.url" target="_blank" class="project-link">{{ projectPreviewModel.link.name | translate }}</a>
-            </li>
-          }
-          @for (link of project.links; track $index) {
-            <li class="link-item">
-              <a [href]="link.url" target="_blank" class="project-link">{{ link.name | translate}}</a>
-            </li>
-          }
-        </ul>
-      </section>
-    }
+      <!-- CONTENT -->
+      @if (project.content.length > 0) {
+        <section class="case-study__content">
+          <h2>{{ 'Project.Description' | translate }}</h2>
 
-  } @else {
-    <title>{{ 'Project.NotFound' | translate }}</title>
-    <p>{{ 'Project.NotFound' | translate }}</p>
-  }
-</div>
+          @for (item of project.content; track $index) {
+            @switch (item.type) {
+              @case ('text') {
+                <p class="case-study__text">{{ item.value | translate }}</p>
+              }
+              @case ('image') {
+                <figure class="case-study__image">
+                  <img [src]="imageSrc(item.value)" [alt]="'Project.ImageAlt' | translate: { index: $index + 1 }" loading="lazy" />
+                </figure>
+              }
+              @case ('code') {
+                <div class="case-study__code">
+                  <button type="button" class="case-study__copy" (click)="copyCode(item.value, $index)">
+                    @if (copiedIndex() === $index) {
+                      <i class="bi bi-check-lg" aria-hidden="true"></i>
+                      {{ 'Project.Copied' | translate }}
+                    } @else {
+                      <i class="bi bi-copy" aria-hidden="true"></i>
+                      {{ 'Project.Copy' | translate }}
+                    }
+                  </button>
+                  <pre><code [class]="item.codeLanguage ?? 'c'">{{ item.value }}</code></pre>
+                </div>
+              }
+              @case ('other') {
+                <div class="case-study__text case-study__rich" [innerHTML]="convertToHtml(item.value | translate)"></div>
+              }
+            }
+          }
+        </section>
+      }
+
+      <!-- FUTURE PLANS -->
+      @if (project.futurePlans.length > 0) {
+        <section class="case-study__future card">
+          <h2>{{ 'Project.FuturePlans' | translate }}</h2>
+          <ul>
+            @for (plan of project.futurePlans; track $index) {
+              <li>
+                <i class="bi bi-arrow-up-right-circle" aria-hidden="true"></i>
+                {{ plan | translate }}
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+  </div>
+} @else {
+  <title>{{ 'Project.NotFound' | translate }}</title>
+  <div class="section">
+    <div class="page-container">
+      <p>{{ 'Project.NotFound' | translate }}</p>
+    </div>
+  </div>
+}

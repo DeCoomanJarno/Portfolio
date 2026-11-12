@@ -1,0 +1,226 @@
+<main class="warehouse-app">
+  <header class="app-header">
+    <div>
+      <span class="eyebrow"><i class="bi bi-boxes" aria-hidden="true"></i>{{ 'ai.demandForecast.warehouse.eyebrow' | translate }}</span>
+      <h1>{{ 'ai.demandForecast.warehouse.title' | translate }}</h1>
+      <p>{{ 'ai.demandForecast.warehouse.subtitle' | translate }}</p>
+    </div>
+    <div class="day-counter">
+      <span>{{ 'ai.demandForecast.warehouse.day' | translate }}</span>
+      <strong>{{ day() }}</strong>
+    </div>
+  </header>
+
+  <section class="command-bar" aria-label="Simulation controls">
+    <div class="playback">
+      <button type="button" class="primary-action" (click)="toggleRunning()">
+        <i [class]="running() ? 'bi bi-pause-fill' : 'bi bi-play-fill'" aria-hidden="true"></i>
+        {{ (running() ? 'ai.demandForecast.warehouse.controls.pause' : 'ai.demandForecast.warehouse.controls.start') | translate }}
+      </button>
+      <button type="button" class="icon-action" (click)="stepDay()" [attr.aria-label]="'ai.demandForecast.warehouse.controls.step' | translate" [title]="'ai.demandForecast.warehouse.controls.step' | translate">
+        <i class="bi bi-skip-forward-fill" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="icon-action" (click)="reset()" [attr.aria-label]="'ai.demandForecast.warehouse.controls.reset' | translate" [title]="'ai.demandForecast.warehouse.controls.reset' | translate">
+        <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
+      </button>
+      <label class="speed-control">
+        <span>{{ 'ai.demandForecast.warehouse.controls.speed' | translate }}</span>
+        <select [value]="speed()" (change)="setSpeed($event)">
+          <option [value]="1200">1x</option>
+          <option [value]="700">2x</option>
+          <option [value]="320">4x</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="scenario-control">
+      <span>{{ 'ai.demandForecast.warehouse.scenarios.label' | translate }}</span>
+      <div class="segments">
+        <button type="button" [class.active]="scenario() === 'normal'" (click)="setScenario('normal')">{{ 'ai.demandForecast.warehouse.scenarios.normal' | translate }}</button>
+        <button type="button" [class.active]="scenario() === 'promotion'" (click)="setScenario('promotion')">{{ 'ai.demandForecast.warehouse.scenarios.promotion' | translate }}</button>
+        <button type="button" [class.active]="scenario() === 'seasonal'" (click)="setScenario('seasonal')">{{ 'ai.demandForecast.warehouse.scenarios.seasonal' | translate }}</button>
+        <button type="button" [class.active]="scenario() === 'supplier'" (click)="setScenario('supplier')">{{ 'ai.demandForecast.warehouse.scenarios.supplier' | translate }}</button>
+      </div>
+    </div>
+
+    <button type="button" class="ai-toggle" [class.enabled]="aiEnabled()" (click)="toggleAi()" role="switch" [attr.aria-checked]="aiEnabled()">
+      <span class="toggle-track"><span></span></span>
+      <span>
+        <strong>{{ 'ai.demandForecast.warehouse.ai.title' | translate }}</strong>
+        <small>{{ (aiEnabled() ? 'ai.demandForecast.warehouse.ai.active' : 'ai.demandForecast.warehouse.ai.inactive') | translate }}</small>
+      </span>
+    </button>
+  </section>
+
+  <section class="kpi-strip">
+    <article>
+      <i class="bi bi-box-seam" aria-hidden="true"></i>
+      <span>{{ 'ai.demandForecast.warehouse.kpis.stock' | translate }}</span>
+      <strong>{{ totalStock() | number }}</strong>
+    </article>
+    <article>
+      <i class="bi bi-truck" aria-hidden="true"></i>
+      <span>{{ 'ai.demandForecast.warehouse.kpis.incoming' | translate }}</span>
+      <strong>{{ totalIncoming() | number }}</strong>
+    </article>
+    <article>
+      <i class="bi bi-bullseye" aria-hidden="true"></i>
+      <span>{{ 'ai.demandForecast.warehouse.kpis.service' | translate }}</span>
+      <strong>{{ serviceLevel() }}%</strong>
+    </article>
+    <article [class.alert]="criticalCount() > 0">
+      <i class="bi bi-exclamation-triangle" aria-hidden="true"></i>
+      <span>{{ 'ai.demandForecast.warehouse.kpis.critical' | translate }}</span>
+      <strong>{{ criticalCount() }}</strong>
+    </article>
+  </section>
+
+  <section class="main-grid">
+    <article class="panel warehouse-panel">
+      <div class="panel-heading">
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.floor.kicker' | translate }}</span>
+          <h2>{{ 'ai.demandForecast.warehouse.floor.title' | translate }}</h2>
+        </div>
+        <span class="live-indicator"><i></i>{{ 'ai.demandForecast.warehouse.floor.live' | translate }}</span>
+      </div>
+
+      <div class="warehouse-floor">
+        @for (product of products(); track product.id) {
+          <button type="button" class="rack" [class.selected]="selectedProductId() === product.id" [class.critical]="product.status === 'critical'" [class.watch]="product.status === 'watch'" (click)="selectProduct(product.id)">
+            <div class="rack-head">
+              <span>{{ product.nameKey | translate }}</span>
+              <strong>{{ product.stock }}/{{ product.capacity }}</strong>
+            </div>
+            <div class="shelf" aria-hidden="true">
+              @for (slot of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]; track slot) {
+                <span [class.filled]="slot < (product.stock / product.capacity) * 12" [style.--product-color]="product.color"></span>
+              }
+            </div>
+            <div class="stock-bar"><span [style.width.%]="(product.stock / product.capacity) * 100" [style.background]="product.color"></span></div>
+            <div class="rack-foot">
+              <span>{{ ('ai.demandForecast.warehouse.status.' + product.status) | translate }}</span>
+              @if (product.incoming > 0) {
+                <span><i class="bi bi-truck" aria-hidden="true"></i> {{ product.incoming }} · D{{ product.arrivalDay }}</span>
+              }
+            </div>
+          </button>
+        }
+      </div>
+    </article>
+
+    <aside class="panel ai-panel">
+      <div class="panel-heading">
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.ai.kicker' | translate }}</span>
+          <h2>{{ selectedProduct().nameKey | translate }}</h2>
+        </div>
+        <span class="model-status" [class.off]="!aiEnabled()"><i></i>{{ (aiEnabled() ? 'ai.demandForecast.warehouse.ai.monitoring' : 'ai.demandForecast.warehouse.ai.offline') | translate }}</span>
+      </div>
+
+      <div class="prediction-grid">
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.ai.predictedDemand' | translate }}</span>
+          <strong>{{ selectedProduct().forecast }}</strong>
+          <small>{{ 'ai.demandForecast.warehouse.ai.unitsDay' | translate }}</small>
+        </div>
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.ai.reorderPoint' | translate }}</span>
+          <strong>{{ selectedProduct().reorderPoint }}</strong>
+          <small>{{ 'ai.demandForecast.warehouse.units' | translate }}</small>
+        </div>
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.ai.leadTime' | translate }}</span>
+          <strong>{{ selectedProduct().leadTime + (scenario() === 'supplier' ? 3 : 0) }}</strong>
+          <small>{{ 'ai.demandForecast.warehouse.days' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="forecast-chart">
+        <div class="chart-legend">
+          <span><i class="actual-dot"></i>{{ 'ai.demandForecast.warehouse.chart.actual' | translate }}</span>
+          <span><i class="forecast-dot"></i>{{ 'ai.demandForecast.warehouse.chart.forecast' | translate }}</span>
+        </div>
+        <div class="chart-bars">
+          @for (point of chartPoints(); track point.day) {
+            <div class="chart-column">
+              <div class="bars">
+                <span class="forecast-bar" [style.height.%]="point.forecastHeight"></span>
+                <span class="actual-bar" [style.height.%]="point.actualHeight"></span>
+              </div>
+              <small>{{ point.day }}</small>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="decision-card" [class.disabled]="!aiEnabled()">
+        <i class="bi bi-stars" aria-hidden="true"></i>
+        <div>
+          <strong>{{ 'ai.demandForecast.warehouse.ai.decision' | translate }}</strong>
+          <p>
+            @if (!aiEnabled()) {
+              {{ 'ai.demandForecast.warehouse.ai.manualDecision' | translate:{ day: nextFixedOrderDay() } }}
+            } @else if (selectedProduct().incoming > 0) {
+              {{ 'ai.demandForecast.warehouse.ai.orderPlaced' | translate:{ quantity: selectedProduct().incoming, day: selectedProduct().arrivalDay } }}
+            } @else if (selectedProduct().stock <= selectedProduct().reorderPoint) {
+              {{ 'ai.demandForecast.warehouse.ai.orderPending' | translate }}
+            } @else {
+              {{ 'ai.demandForecast.warehouse.ai.holdStock' | translate:{ threshold: selectedProduct().reorderPoint } }}
+            }
+          </p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="bottom-grid">
+    <article class="panel impact-panel">
+      <div class="panel-heading">
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.impact.kicker' | translate }}</span>
+          <h2>{{ 'ai.demandForecast.warehouse.impact.title' | translate }}</h2>
+        </div>
+      </div>
+      <div class="impact-comparison">
+        <div class="baseline">
+          <span>{{ 'ai.demandForecast.warehouse.impact.withoutAi' | translate }}</span>
+          <strong>{{ baselineMissed() }}</strong>
+          <small>{{ 'ai.demandForecast.warehouse.impact.missedUnits' | translate }}</small>
+        </div>
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        <div class="with-ai">
+          <span>{{ 'ai.demandForecast.warehouse.impact.withAi' | translate }}</span>
+          <strong>{{ missedOrders() }}</strong>
+          <small>{{ 'ai.demandForecast.warehouse.impact.missedUnits' | translate }}</small>
+        </div>
+      </div>
+      <div class="value-row">
+        <div><span>{{ 'ai.demandForecast.warehouse.impact.prevented' | translate }}</span><strong>{{ preventedStockouts() }}</strong></div>
+        <div><span>{{ 'ai.demandForecast.warehouse.impact.value' | translate }}</span><strong>€{{ savedValue() | number }}</strong></div>
+        <div><span>{{ 'ai.demandForecast.warehouse.impact.fixedOrders' | translate }}</span><strong>{{ baselineOrdersPlaced() }}</strong></div>
+        <div><span>{{ 'ai.demandForecast.warehouse.impact.adaptiveOrders' | translate }}</span><strong>{{ adaptiveOrdersPlaced() }}</strong></div>
+      </div>
+    </article>
+
+    <article class="panel activity-panel">
+      <div class="panel-heading">
+        <div>
+          <span>{{ 'ai.demandForecast.warehouse.activity.kicker' | translate }}</span>
+          <h2>{{ 'ai.demandForecast.warehouse.activity.title' | translate }}</h2>
+        </div>
+      </div>
+      <div class="activity-list">
+        @for (item of activity(); track item.id) {
+          <div class="activity-item" [class]="'activity-item ' + item.type">
+            <i [class]="item.type === 'order' ? 'bi bi-cart-plus' : item.type === 'delivery' ? 'bi bi-truck' : item.type === 'risk' ? 'bi bi-exclamation-triangle' : 'bi bi-cpu'" aria-hidden="true"></i>
+            <div>
+              <span>{{ item.messageKey | translate:item.params }}</span>
+              <small>{{ 'ai.demandForecast.warehouse.day' | translate }} {{ item.day }}</small>
+            </div>
+          </div>
+        }
+      </div>
+    </article>
+  </section>
+</main>

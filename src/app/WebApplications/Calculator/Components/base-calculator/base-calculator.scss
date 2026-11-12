@@ -1,0 +1,130 @@
+@use 'styles/index' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-5); // Space between calculator and history tab
+  padding: var(--space-5);
+}
+
+// Ensure calculator doesn't stretch too much
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-outline);
+  color: var(--color-on-surface);
+  font-family: var(--font-family);
+}
+
+// Temporary result styling
+.temporary-result {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--space-3);
+  background-color: var(--color-surface-hover);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-align: right;
+  text-wrap: nowrap;
+}
+
+.error {
+  text-align: left;
+  text-wrap: wrap;
+}
+
+.display {
+  background-color: var(--color-surface-active);
+  padding: var(--space-3);
+  font-size: var(--text-2xl);
+  text-align: right;
+  border-bottom: 1px solid var(--color-outline);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  overflow-x: auto; // Enables horizontal scrolling
+  white-space: nowrap; // Ensures text stays on a single line
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    font-size: var(--text-xl);
+    background: none;
+    border: none;
+    color: var(--color-on-surface);
+    text-align: right;
+    outline: none;
+    padding: var(--space-1) var(--space-3);
+    white-space: nowrap; // Prevents wrapping
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.active {
+  font-weight: bold;
+  background-color: var(--color-surface-active);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+button {
+  background-color: var(--color-surface-active);
+  border: none;
+  border-radius: var(--radius-xs);
+  color: var(--color-on-surface);
+  font-size: var(--text-lg);
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out);
+
+  &:disabled {
+    background-color: var(--color-disabled-bg);
+    color: var(--color-on-disabled);
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    color: var(--color-on-primary);
+  }
+
+  &:active {
+    background-color: var(--color-primary-active);
+    color: var(--color-on-primary);
+  }
+
+  &.double-width {
+    grid-column: span 2;
+  }
+
+  &.operators {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+
+  &.equals {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    grid-column: span 4;
+  }
+}
+
+.four-width {
+  grid-column: span 4;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(3, 1fr);
+}

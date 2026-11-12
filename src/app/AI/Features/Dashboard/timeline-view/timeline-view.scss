@@ -1,0 +1,68 @@
+.timeline-box {
+      padding: var(--space-5);
+      h3 { color: var(--color-on-surface); font-size: 1.25rem; margin-bottom: var(--space-5); font-weight: 600; letter-spacing: 0.5px; }
+    }
+    .timeline-trail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--ai-accent), transparent);
+      }
+    }
+    .step {
+      display: flex;
+      gap: var(--space-5);
+      position: relative;
+    }
+    .step-aside {
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-left: 36px;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 16px;
+        top: 4px;
+        width: 10px;
+        height: 10px;
+        border-radius: var(--radius-full);
+        background: var(--ai-accent);
+        border: 2px solid var(--color-surface);
+        box-shadow: 0 0 0 3px var(--color-primary-soft);
+        z-index: 2;
+      }
+    }
+    .step-week { font-size: 0.8rem; color: var(--ai-accent); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+    .step-tag { font-size: 0.95rem; color: var(--color-on-surface); font-weight: 600; }
+    .step-content {
+      flex: 1;
+      background: var(--color-surface-hover);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      p { font-size: 0.88rem; line-height: 1.5; color: var(--ai-ink-soft); margin-bottom: var(--space-3); }
+    }
+    .completion-bar { display: flex; align-items: center; gap: var(--space-3); }
+    .bar-track { flex: 1; height: 5px; background: var(--color-surface-active); border-radius: var(--radius-full); overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      background: var(--ai-grad);
+      border-radius: var(--radius-full);
+      transition: width 1s var(--ease-out);
+    }
+    .percentage { font-size: 0.75rem; color: var(--color-muted); font-weight: 700; width: 32px; text-align: right; }
+    @media (max-width: 768px) {
+      .timeline-trail::before { display: none; }
+      .step { flex-direction: column; gap: var(--space-2); }
+      .step-aside { min-width: auto; padding-left: 0; &::after { display: none; } }
+    }

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-loading',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
     templateUrl: './loading.html',
-    styleUrl: './loading.css'
+    styleUrls: ['./loading.scss']
 })
 export class LoadingComponent {
   @Input() isLoading = false

@@ -1,10 +1,10 @@
 <div class="skill-card">
     <div class="skill-header">
-        <span class="material-symbols-rounded">{{ category.Icon }}</span>
+        <ui-icon class="material-symbols-rounded" [icon]="category.Icon"></ui-icon>
         <h4>{{ category.Name | translate }}</h4>
     </div>
     <ul>
-        @for (skill of category.Skills; track $index) {
+        @for (skill of category.Skills; track skill.Name) {
         <li>
             @if (skill.IconUrl) {
             <img [src]="skill.IconUrl" [alt]="skill.Name" class="skill-icon" />

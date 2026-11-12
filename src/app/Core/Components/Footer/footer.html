@@ -1,17 +1,67 @@
-<div class="footer">
-    <div class="footer-content">
-      <div class="social-icons">
-        <a href="{{commonDataService.CommonData?.Github_URL}}" target="_blank" aria-label="GitHub">
-          <i class="bi-github"></i>
-        </a>
-        <a href="{{commonDataService.CommonData?.LinkedIn_URL}}" target="_blank" aria-label="LinkedIn">
-          <i class="bi-linkedin"></i>
-        </a>
-        <a href="mailto:{{commonDataService.CommonData?.Contact?.Email}}" aria-label="Email">
-          <i class="bi-envelope"></i>
-        </a>
+<footer class="footer" #footerContainer>
+  <div class="footer__ambient-glow" aria-hidden="true"></div>
+
+  <div class="page-container page-container--wide">
+    <div class="footer__grid">
+      
+      <div class="footer__brand gsap-reveal">
+        <span class="footer__name">{{ commonDataService.CommonData?.FullName }}</span>
+        <p class="footer__tagline">{{ 'footer.tagline' | translate }}</p>
+        
+        <div class="status-board">
+          @if (isAvailableForWork) {
+            <div class="status-board__item">
+              <span class="status-dot success" aria-hidden="true"></span>
+              <span>{{ 'footer.available_for_freelance' | translate }}</span>
+            </div>
+          }
+          <div class="status-board__item">
+            <span class="status-dot pulse-blue" aria-hidden="true"></span>
+            <span class="time-readout">BE/CET {{ localTime() }}</span>
+          </div>
+        </div>
       </div>
-      <p>© {{ currentYear }} {{ commonDataService.CommonData?.FullName }}. All rights reserved.</p>
+
+      <div class="footer__nav-group gsap-reveal">
+        <nav class="footer__nav" [attr.aria-label]="'footer.expertise' | translate">
+          <span class="footer__heading">{{ 'footer.expertise' | translate }}</span>
+          <a routerLink="/Projects" fragment="ai">{{ 'expertise.ai' | translate }}</a>
+          <a routerLink="/Projects" fragment="cpp">{{ 'expertise.cpp' | translate }}</a>
+          <a routerLink="/Projects" fragment="csharp">{{ 'expertise.csharp' | translate }}</a>
+          <a routerLink="/Projects" fragment="angular">{{ 'expertise.angular' | translate }}</a>
+        </nav>
+
+        <nav class="footer__nav" [attr.aria-label]="'footer.navigation' | translate">
+          <span class="footer__heading">{{ 'footer.company' | translate }}</span>
+          <a routerLink="/Home">{{ 'titles.home' | translate }}</a>
+          <a routerLink="/About">{{ 'titles.about' | translate }}</a>
+          <a routerLink="/Resume">{{ 'titles.resume' | translate }}</a>
+        </nav>
+      </div>
+
+      <div class="tilt-card gsap-reveal" #tiltCard>
+        <div class="tilt-card__content">
+          <span class="footer__heading">{{ 'footer.connect' | translate }}</span>
+          <p class="tilt-card__desc">{{ 'footer.tagline' | translate }}</p>
+          
+          <div class="footer__socials">
+            <a [href]="commonDataService.CommonData?.Github_URL" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'footer.social.github' | translate">
+              <i class="bi bi-github" aria-hidden="true"></i>
+            </a>
+            <a [href]="commonDataService.CommonData?.LinkedIn_URL" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'footer.social.linkedin' | translate">
+              <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:{{ commonDataService.CommonData?.Contact?.Email }}" [attr.aria-label]="'footer.social.email' | translate">
+              <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom gsap-reveal">
+      <p>© {{ currentYear }} {{ commonDataService.CommonData?.FullName }}. {{ 'footer.rights' | translate }}</p>
     </div>
   </div>
-  
+</footer>

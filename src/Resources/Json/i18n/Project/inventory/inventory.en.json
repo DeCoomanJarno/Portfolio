@@ -20,10 +20,29 @@
     },
     "edit": {
       "title": "Edit",
+      "subtitle": "Update item details and save your changes",
       "save": "Save",
       "cancel": "Cancel"
     },
+    "detail": {
+      "sku": "SKU",
+      "category": "Category",
+      "location": "Location",
+      "aisle": "Aisle",
+      "bay": "Bay",
+      "shelf": "Shelf",
+      "bin": "Bin",
+      "quantity": "Quantity",
+      "status": "Status",
+      "weight": "Weight",
+      "dimensions": "Dimensions",
+      "supplier": "Supplier",
+      "received": "Received",
+      "lotNumber": "Lot number",
+      "itemNotFound": "Item not found"
+    },
     "item": {
+      "id": "ID",
       "name": "Name",
       "namePlaceholder": "Item Name",
       "nameRequired": "Name is required",

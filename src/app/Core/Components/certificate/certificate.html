@@ -2,7 +2,7 @@
       <a [href]="certificate.Url" target="_blank" class="certificate-card-link" rel="noopener noreferrer">
         <article class="certificate-card">
           <div class="certificate-badge">
-            <span class="material-symbols-rounded">workspace_premium</span>
+        <ui-icon class="material-symbols-rounded" icon="workspace_premium"></ui-icon>
           </div>
           <h3 class="certificate-title">{{ certificate.Title | translate }}</h3>
           <div class="certificate-info">
@@ -14,7 +14,7 @@
       } @else {
       <article class="certificate-card no-link">
         <div class="certificate-badge">
-          <span class="material-symbols-rounded">workspace_premium</span>
+        <ui-icon class="material-symbols-rounded" icon="workspace_premium"></ui-icon>
         </div>
         <h3 class="certificate-title">{{ certificate.Title | translate }}</h3>
         <div class="certificate-info">

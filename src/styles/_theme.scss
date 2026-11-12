@@ -1,0 +1,31 @@
+// ============================================================
+// Angular Material 3 theme — single theme block emitting
+// light-dark() values. `color-scheme` on <html> decides the
+// active scheme; .light/.dark classes force an override.
+// ============================================================
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+
+  @include mat.theme((
+    color: (
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: color-scheme
+    ),
+    typography: (
+      plain-family: Inter,
+      brand-family: Inter
+    ),
+    density: 0
+  ));
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}

@@ -1,0 +1,43 @@
+<div class="landing-container">
+  <div class="glow-sphere glow-primary"></div>
+  <div class="glow-sphere glow-secondary"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="hero">
+    <div class="sys-version">{{ 'ai.landing.version' | translate }}</div>
+    <h1 class="title">
+      {{ 'ai.landing.title' | translate }}
+      <span class="accent">{{ 'ai.landing.titleAccent' | translate }}</span>
+    </h1>
+    <h2 class="sub">{{ 'ai.landing.subtitle' | translate }}</h2>
+    <p class="desc">{{ 'ai.landing.description' | translate }}</p>
+    <div class="action-row">
+      <a routerLink="/AI/Analyzer" class="primary-btn">
+        <span>{{ 'ai.landing.cta' | translate }}</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a routerLink="/AI/Demand-Forecaster" class="secondary-btn">
+        <span>{{ 'ai.landing.ctaDemandForecast' | translate }}</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="feature-card">
+      <span class="card-icon" aria-hidden="true">⚡</span>
+      <h4>{{ 'ai.landing.features.blueprints.title' | translate }}</h4>
+      <p>{{ 'ai.landing.features.blueprints.description' | translate }}</p>
+    </div>
+    <div class="feature-card">
+      <span class="card-icon" aria-hidden="true">📅</span>
+      <h4>{{ 'ai.landing.features.timelines.title' | translate }}</h4>
+      <p>{{ 'ai.landing.features.timelines.description' | translate }}</p>
+    </div>
+    <div class="feature-card">
+      <span class="card-icon" aria-hidden="true">✨</span>
+      <h4>{{ 'ai.landing.features.opportunities.title' | translate }}</h4>
+      <p>{{ 'ai.landing.features.opportunities.description' | translate }}</p>
+    </div>
+  </div>
+</div>

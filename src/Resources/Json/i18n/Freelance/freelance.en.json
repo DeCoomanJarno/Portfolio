@@ -1,275 +1,374 @@
 {
   "freelance": {
-    "ui": {
-      "sending": "Sending Request...",
-      "getQuote": "Get a Quote",
-      "getOffer": "Request offer",
-      "other": "Other / Not Listed"
-    },
     "hero": {
-      "status": "Available for new projects",
-      "title1": "Freelance Software Developer",
-      "title2": "Engineering Digital Reality",
-      "subtitle": "Specialized in high-performance VR/AR, complex web applications, and enterprise software for forward-thinking businesses.",
-      "getintouch": "Request Quote",
-      "viewwork": "View Portfolio",
-      "techStack": "Core Technologies",
-      "badge1": {
-        "title": "Immersive Tech",
-        "sub": "VR/AR & 3D"
+      "available": "Available for freelance — a few build slots open",
+      "prefix": "I design & ship",
+      "accent": "AI agents, RAG pipelines, LLM copilots, AI-native apps",
+      "suffix": "that actually ship.",
+      "subtitle": "Software engineer by trade, freelance by night — retrieval, agents and automations wired into real products with the same discipline I bring to C#, .NET and Angular. Honest scope, calm delivery, code you own.",
+      "cta": "Start a project",
+      "viewwork": "See the work",
+      "scroll": "Scroll",
+      "roles": {
+        "agents": "AI agents",
+        "rag": "RAG pipelines",
+        "copilots": "LLM copilots",
+        "systems": "AI-native apps",
+        "default": "AI-native software"
       },
-      "badge2": {
-        "title": "Full Stack",
-        "sub": "Web & Desktop"
+      "proof": {
+        "stack": "C# · .NET · Angular · AI",
+        "remote": "Leeds, UK — remote · GMT",
+        "reply": "First reply within 24h"
       }
     },
-    "expertises": {
-      "title": "Technical Expertise",
-      "desc": "End-to-end development services tailored to your business goals.",
-      "hour": "hr",
-      "setup": " setup",
-      "DESK": {
-        "title": "Desktop Software",
-        "desc": "Robust, offline-capable enterprise tools built with .NET/C#.",
-        "shortdesc": "Configure desktop application features"
+    "approach": {
+      "label": "The honest version",
+      "body": "By day I engineer enterprise software at KION. By night, on weekends and during holidays, I build freelance projects end to end — architecture, code and delivery from a single pair of hands. Every project on this site is something I designed and shipped myself, so you can judge the work, not the pitch.",
+      "chips": {
+        "quote": "Fixed transparent quotes",
+        "async": "Async remote delivery",
+        "ownership": "You own the code"
+      }
+    },
+    "capabilities": {
+      "label": "What I can build for you",
+      "title": "AI-native software, built by an engineer.",
+      "subtitle": "One engineer across the whole stack — so your product stays coherent from data model to interface, with AI wired in exactly where it earns its place.",
+      "featuredBadge": "AI Integration",
+      "AI": {
+        "title": "AI features that actually ship",
+        "desc": "Assistants, retrieval-augmented search, agents and automations — grounded in your data, typed, observable and integrated properly. Not a weekend demo: production."
+      },
+      "ANGULAR": {
+        "title": "Web apps people enjoy using",
+        "desc": "Fast, accessible Angular front-ends with clean architecture — built so your team can keep extending them long after handover."
+      },
+      "DOTNET": {
+        "title": "Backends built to last",
+        "desc": "C# / .NET services, REST APIs and data models with Clean Architecture and CQRS — the kind of backend that survives audits and scale."
       },
       "CPP": {
-        "title": "High-Performance C++",
-        "desc": "Native systems and low-level optimization for demanding tasks.",
-        "shortdesc": "Configure low-level development"
-      },
-      "WEB": {
-        "title": "Modern Web Apps",
-        "desc": "Modern, responsive applications with Angular and TypeScript. From websites to complex SPAs.",
-        "shortdesc": "Configure web application features"
+        "title": "Performance when it's non-negotiable",
+        "desc": "C++ modules, simulations and engine logic for when every millisecond and every byte counts. My roots, still sharp."
       },
       "VR": {
-        "title": "VR/AR Solutions",
-        "desc": "Immersive experiences for training, visualization and interactive applications.",
-        "shortdesc": "Configure VR/AR-specific features"
+        "title": "Immersive VR & 3D",
+        "desc": "Real-time 3D, VR/AR prototypes and interactive visualisations — training sims, product configurators and spatial experiences built in Unity and WebGL."
       }
     },
-    "projects": {
-      "title": "Portfolio",
-      "subtitle": "Real projects demonstrating technical expertise and problem-solving.",
-      "Category": {
-        "all": "All Projects",
-        "web": "Web Apps",
-        "cpp": "C++ / Native",
-        "desktop": "Desktop Apps",
-        "vr/ar": "VR/AR"
-      }
+    "agent": {
+      "label": "AI, in practice",
+      "title": "From prompt to shipped feature.",
+      "promptLabel": "request",
+      "prompt": "Summarise this 40-page supplier contract and flag the risky clauses.",
+      "steps": {
+        "plan": {
+          "title": "Plan",
+          "detail": "Break the request into steps · pick the right tools"
+        },
+        "retrieve": {
+          "title": "Retrieve",
+          "detail": "Vector search across 41 pages · 12,480 tokens"
+        },
+        "reason": {
+          "title": "Reason",
+          "detail": "Score every clause by risk · keep the citations"
+        },
+        "generate": {
+          "title": "Generate",
+          "detail": "Draft a plain-language summary and a redline"
+        },
+        "verify": {
+          "title": "Verify",
+          "detail": "Check citations · guardrails · typed output"
+        }
+      },
+      "resultLabel": "result",
+      "result": "3 high-risk clauses found: auto-renewal (§7.2), unlimited liability (§11) and a 90-day termination lock-in (§14). Plain-language summary and a redline proposal are ready for review.",
+      "caption": "Typed end to end. Grounded in your documents. No hallucinated clauses.",
+      "tokens": "12,480 tokens",
+      "tabLabel": "agent_pipeline.ts"
     },
-    "pricing": {
-      "modelsTitle": "Engagement Models",
-      "modelsSubtitle": "Transparent pricing structures designed for flexibility or predictability.",
-      "hourly": {
-        "title": "Time & Materials",
-        "desc": "Agile development for evolving requirements. You pay for the exact time spent delivering value.",
-        "cta": "Start Hourly",
-        "flexible": "Maximum flexibility",
-        "perhour": "Detailed time reporting",
-        "reports": "Weekly sprints"
-      },
-      "fixed": {
-        "title": "Fixed Price Scope",
-        "desc": "Defined deliverables at a guaranteed cost. Perfect for projects with clear specifications.",
-        "cta": "Get Fixed Quote",
-        "fixed": "Budget security",
-        "milestone": "Milestone-based payments",
-        "warranty": "Includes bug-fix warranty"
-      },
-      "recommended": "Most Popular"
-    },
-    "contact": {
-      "title": "Let's Collaborate",
-      "desc": "Available for work",
-      "primary": {
-        "title": "Request a Proposal",
-        "desc": "Describe your vision and get a preliminary estimate.",
-        "link": "Start Now"
-      },
-      "schedule": {
-        "title": "Book a Discovery Call",
-        "desc": "A 30-min intro to discuss feasibility.",
-        "link": "View Calendar"
-      },
-      "linkedIn": {
-        "title": "Connect on LinkedIn",
-        "desc": "Verify my background and network.",
-        "link": "View Profile"
-      },
-      "note": "Direct developer contact • No agency overhead • Honest technical advice"
-    },
-    "value": {
-      "title": "The Freelance Advantage",
-      "subtitle": "What clients value in our collaboration",
-      "local": {
-        "title": "Local & Accessible",
-        "desc": "Based in Belgium. Available for on-site workshops and easy communication."
-      },
-      "quality": {
-        "title": "Quality Code",
-        "desc": "Solutions built to last and scale with your business."
-      },
-      "transparent": {
-        "title": "Radical Transparency",
-        "desc": "Clear communication, realistic estimates, and regular progress updates."
-      },
-      "flexible": {
-        "title": "Agile Mindset",
-        "desc": "Quick to pivot and adapt without bureaucratic delays."
-      }
-    },
-    "quote": {
-      "title": "Project Inquiry",
-      "name": "Full Name",
-      "email": "Business Email",
-      "service": "Area of Interest",
-      "budget": "Anticipated Budget",
-      "details": "Project Context",
-      "cancel": "Cancel",
-      "submit": "Compose Email",
-      "budgets": {
-        "small": "Micro / Prototype (< €2k)",
-        "medium": "Standard Project (€2k - €5k)",
-        "large": "Enterprise / Complex (€5k+)",
-        "tbd": "Not sure yet / To be discussed"
-      },
-      "errors": {
-        "email": "Please enter a valid email address"
+    "why": {
+      "label": "The difference",
+      "title": "Senior engineering, AI-native instinct.",
+      "cards": {
+        "ownership": {
+          "title": "Full-stack ownership",
+          "desc": "Data model to API to interface to deployment — no handoffs, no blame gaps, no excuses.",
+          "tag": "// end-to-end"
+        },
+        "ship": {
+          "title": "Ships on deadline",
+          "desc": "Real constraints, real clients, real production pressure. Familiar territory — I deliver.",
+          "tag": "// prod-ready"
+        },
+        "direct": {
+          "title": "Direct line to the engineer",
+          "desc": "No account managers, no markup. You talk to the person actually writing the code.",
+          "tag": "// no overhead"
+        },
+        "ai": {
+          "title": "AI done honestly",
+          "desc": "Semantic Kernel, RAG, custom agents — and the honesty to tell you when you don't need them.",
+          "tag": "// no hype"
+        }
       }
     },
     "process": {
-      "title": "Development Process",
-      "subtitle": "A structured approach to ensure project success.",
+      "label": "How we work together",
+      "title": "From first message to shipped — no friction.",
+      "subtitle": "A calm, predictable rhythm that keeps you in control the whole way through.",
       "step1": {
         "title": "Discovery",
-        "desc": "We align on objectives, technical constraints, and success metrics."
+        "desc": "We scope the problem, define what success looks like, and agree a plan. You get a written proposal within 48 hours — no surprises later."
       },
       "step2": {
-        "title": "Build & Iterate",
-        "desc": "Rapid development sprints with regular demos to gather feedback."
+        "title": "Build in the open",
+        "desc": "Short, visible cycles with a running demo at every milestone. You see real progress every week, not status reports."
       },
       "step3": {
-        "title": "Launch & Support",
-        "desc": "Seamless deployment, documentation handover, and stability monitoring."
+        "title": "Ship & support",
+        "desc": "Tested, documented and deployed. The codebase is yours with a clean handover — and I stick around to make sure it lands."
+      }
+    },
+    "work": {
+      "label": "Selected work",
+      "title": "Recent projects",
+      "viewAll": "All projects"
+    },
+    "projects": {
+      "subtitle": "Selected freelance work and demos from the same stack I use in client projects."
+    },
+    "faq": {
+      "label": "Good to know",
+      "title": "Questions clients usually ask.",
+      "subtitle": "If yours isn't here, just ask — I answer honestly and fast.",
+      "items": {
+        "ai": {
+          "q": "Do I actually need AI?",
+          "a": "Often, no — and I'll tell you when a simpler solution is cheaper and more maintainable. When AI genuinely fits (search, extraction, agents, automation) I build it grounded in your data, with guardrails and tests — not vibes."
+        },
+        "pricing": {
+          "q": "How much will it cost?",
+          "a": "Most projects are fixed-scope with a clear quote up front, or time-boxed at a day rate for open-ended work. You'll always know the price before I start — no surprise invoices."
+        },
+        "timeline": {
+          "q": "How long does a project take?",
+          "a": "A focused MVP is usually a few weeks; larger builds run in milestones so you get working software early and often. I give you a realistic timeline in the proposal, not an optimistic one."
+        },
+        "comms": {
+          "q": "How do we stay in sync?",
+          "a": "Async-first: short written updates, decisions captured in writing, and a demo at every milestone. We hop on a call when it helps — but I won't fill your calendar with status meetings."
+        },
+        "team": {
+          "q": "Can you work with my team or existing codebase?",
+          "a": "Yes. I'm comfortable picking up an existing repo, following your conventions, and working alongside your developers — clear communication."
+        },
+        "changes": {
+          "q": "What if requirements change?",
+          "a": "They always do. Milestone-based delivery means we can re-prioritise between cycles without blowing the budget. You stay in control of what gets built next."
+        }
+      }
+    },
+    "contact": {
+      "cta_heading": "Have an AI feature or a product in mind? Let's talk.",
+      "note": "I usually reply within one business day. No sales calls — just a short written exchange to see if we're a good fit.",
+      "primary": {
+        "title": "Start a project"
+      }
+    },
+    "quote": {
+      "title": "Tell me about your project",
+      "name": "Your name",
+      "email": "Email",
+      "service": "What do you need?",
+      "budget": "Budget range",
+      "details": "Project details",
+      "submit": "Send message",
+      "budgets": {
+        "small": "< €2 000",
+        "medium": "€2 000 – €8 000",
+        "large": "> €8 000",
+        "tbd": "Let's discuss"
+      },
+      "errors": {
+        "submit": "We could not send your message right now.",
+        "submitFallback": "We could not send your message right now.",
+        "rateLimit": "Rate limit exceeded. Please try again after {{date}}.",
+        "invalidForm": "Invalid form data. Please check your input.",
+        "tooManyRequests": "Too many requests. Please try again later.",
+        "serverError": "Server error. Please try again later.",
+        "networkError": "Network error. Please check your connection."
       }
     },
     "modal": {
       "success": {
-        "title": "Request Sent!",
-        "desc": "I have prepared the draft in your default email client.<br>Please hit <strong>Send</strong> to complete the request."
+        "title": "Message received!",
+        "desc": "I'll review your project details and get back to you within one business day."
       }
     },
-      "calc": {
-      "badge": "Cost Calculator",
-      "title": "Project Cost Estimator",
-      "subtitle": "Get an instant ballpark estimate for your project",
-      "step1Title": "Project Type & Scale",
-      "step1Desc": "Choose your project category and approximate size",
-      "projectScale": "Project Size",
-      "hour": "h",
+    "ui": {
+      "getQuote": "Get a quote",
+      "other": "Other / not sure",
+      "sending": "Sending…"
+    },
+    "minimap": {
+      "goTo": "Go to",
+      "intro": "Intro",
+      "approach": "Approach",
+      "capabilities": "Systems",
+      "agent": "AI Demo",
+      "process": "Process",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "calc": {
+      "title": "Freelance Calculator",
+      "badge": "Estimate your project",
+      "subtitle": "A rough estimate based on scope, platform and options.",
+      "step1Title": "Project type & size",
+      "step1Desc": "Choose the main discipline and the expected scope.",
+      "hour": "hour",
+      "projectScale": "Project scale",
       "size": {
         "proto": {
-          "title": "Small / Prototype",
-          "sub": "Proof of concept or MVP"
+          "title": "Prototype",
+          "sub": "Fast validation with minimal scope."
         },
         "mvp": {
-          "title": "Medium",
-          "sub": "Full-featured application"
+          "title": "MVP",
+          "sub": "A focused release with core functionality."
         },
         "production": {
-          "title": "Large / Enterprise",
-          "sub": "Production-ready system"
+          "title": "Production",
+          "sub": "A larger build with room to scale."
         }
       },
-      "step2Title": "Core Features",
-      "step2Desc": "Select the functionality your project requires",
-      "hasDesign": "Design Provided",
-      "hasDesignDesc": "You already have professional designs",
-      "hasBackend": "Backend / Server Required",
-      "hasBackendDesc": "Server-side logic and database",
+      "step2Title": "Common features",
+      "step2Desc": "Pick the features that apply across most projects.",
+      "hasDesign": "Needs design work",
+      "hasDesignDesc": "Wireframes, layouts and visual direction.",
+      "hasBackend": "Needs backend work",
+      "hasBackendDesc": "APIs, databases and server-side logic.",
       "backend": {
-        "simple": "Simple API",
-        "medium": "Standard Backend",
-        "complex": "Complex Architecture"
+        "simple": "Simple backend",
+        "medium": "Moderate backend",
+        "complex": "Complex backend"
       },
-      "needsAuth": "User Authentication",
-      "needsPayments": "Payment Integration",
-      "needsAnalytics": "Analytics & Tracking",
-      "step3vrTitle": "VR/AR Features",
-      "step3vrDesc": "Configure virtual/augmented reality specifics",
+      "needsAuth": "Authentication",
+      "needsPayments": "Payments",
+      "needsAnalytics": "Analytics",
+      "step3vrTitle": "VR / AR specifics",
+      "step3vrDesc": "Extra work for immersive or spatial projects.",
       "vr": {
-        "platforms": "Target Platforms",
-        "interaction": "Interaction Complexity",
-        "interactionBasic": "Basic (gaze/click)",
-        "interactionAdvanced": "Advanced (hand tracking)",
-        "interactionPhysics": "Physics-based interactions",
-        "graphics": "Visual Quality",
-        "graphicsLow": "Low (mobile VR)",
+        "platforms": "Platforms",
+        "interaction": "Interaction",
+        "interactionBasic": "Basic",
+        "interactionAdvanced": "Advanced",
+        "interactionPhysics": "Physics",
+        "graphics": "Graphics",
+        "graphicsLow": "Low",
         "graphicsMedium": "Medium",
-        "graphicsHigh": "High (PC VR)",
-        "graphicsUltra": "Ultra (photorealistic)",
-        "multiplayer": "Multiplayer Support",
-        "voiceChat": "Voice Communication",
-        "customShaders": "Custom Visual Effects"
+        "graphicsHigh": "High",
+        "graphicsUltra": "Ultra",
+        "multiplayer": "Multiplayer",
+        "voiceChat": "Voice chat",
+        "customShaders": "Custom shaders"
       },
-      "step3webTitle": "Web Application Features",
-      "step3webDesc": "Configure your web project requirements",
+      "step3webTitle": "Web specifics",
+      "step3webDesc": "Extra work for modern web applications.",
       "web": {
-        "uiComplexity": "Interface Complexity",
-        "uiSimple": "Simple (few pages)",
-        "uiMedium": "Medium (standard app)",
-        "uiComplex": "Complex (many features)",
-        "mobile": "Mobile Responsive",
-        "pwa": "Progressive Web App",
-        "ssr": "Server-Side Rendering",
-        "realtime": "Real-time Updates",
-        "admin": "Admin Dashboard"
+        "uiComplexity": "UI complexity",
+        "uiSimple": "Simple",
+        "uiMedium": "Medium",
+        "uiComplex": "Complex",
+        "mobile": "Mobile support",
+        "pwa": "Progressive web app",
+        "ssr": "Server-side rendering",
+        "realtime": "Realtime updates",
+        "admin": "Admin area"
       },
-      "step3deskTitle": "Desktop Application Features",
-      "step3deskDesc": "Configure desktop software requirements",
+      "step3deskTitle": "Desktop specifics",
+      "step3deskDesc": "Extra work for desktop and embedded tooling.",
       "desk": {
-        "hardwareIO": "Hardware Integration",
-        "ioSimple": "Simple (files/USB)",
-        "ioMedium": "Medium (serial/devices)",
-        "ioComplex": "Complex (custom hardware)",
-        "database": "Database Type",
-        "dbSqlite": "SQLite (embedded)",
+        "hardwareIO": "Hardware / I/O integration",
+        "ioSimple": "Simple I/O",
+        "ioMedium": "Moderate I/O",
+        "ioComplex": "Complex I/O",
+        "database": "Database integration",
+        "dbSqlite": "SQLite",
         "dbSqlServer": "SQL Server",
         "dbPostgres": "PostgreSQL",
-        "reporting": "Reports & Exports",
-        "installer": "Professional Installer"
+        "reporting": "Reporting",
+        "installer": "Installer"
       },
-      "step3cppTitle": "C++ Project Features",
-      "step3cppDesc": "Configure native development requirements",
+      "step3cppTitle": "C++ specifics",
+      "step3cppDesc": "Extra work for systems, embedded and performance-sensitive software.",
       "cpp": {
-        "platforms": "Target Platforms",
-        "optimization": "Performance Level",
+        "platforms": "Target platforms",
+        "optimization": "Optimization level",
         "optStandard": "Standard",
-        "optHigh": "Optimized",
-        "optExtreme": "Maximum Performance",
-        "drivers": "Custom Drivers Required",
-        "realtime": "Real-time Processing",
-        "threading": "Multithreading",
-        "gui": "Graphical Interface"
+        "optHigh": "High",
+        "optExtreme": "Extreme",
+        "drivers": "Drivers / low-level integration",
+        "realtime": "Realtime processing",
+        "threading": "Threading",
+        "gui": "GUI"
       },
-      "step4Title": "Hardware & Equipment",
-      "step4Desc": "Does the project require specific hardware?",
-      "needsHardware": "Hardware Procurement Needed",
-      "resultTitle": "Estimated Project Cost",
-      "totalHours": "Development Hours",
-      "weeks": "weeks (approx.)",
-      "costBreakdown": "Cost Breakdown",
+      "step4Title": "Hardware",
+      "step4Desc": "Add any devices or target machines the project needs.",
+      "needsHardware": "Requires hardware",
+      "hardwareLabel": "Hardware",
+      "hardware": {
+        "select": "Select hardware",
+        "closeDetails": "Close details",
+        "pico4": "Pico",
+        "quest3": "Quest",
+        "steamvr": "Steam VR",
+        "applevp": "Apple Vision Pro",
+        "arduino": "Arduino",
+        "raspberryPi": "Raspberry Pi",
+        "basicPc": "Basic PC",
+        "customPc": "Custom PC"
+      },
+      "totalEstimate": "Total estimate",
+      "resultTitle": "Estimate breakdown",
+      "totalHours": "Total hours",
+      "weeks": "weeks",
+      "costBreakdown": "Cost breakdown",
       "development": "Development",
-      "discount": "Volume Discount",
-      "hardware": "Hardware & Equipment",
-      "procurementFee": "Procurement Service Fee",
-      "totalEstimate": "Total Estimate",
-      "excludingVat": "Excl. 21% VAT",
-      "requestQuote": "Request Formal Quote",
-      "disclaimer": "This is an indicative estimate. Final pricing depends on detailed requirements and may vary. Contact me for an accurate quote."
+      "discount": "Discount",
+      "procurementFee": "Procurement fee",
+      "excludingVat": "Excluding VAT",
+      "disclaimer": "This is a rough estimate. Final scope depends on requirements and implementation details.",
+      "history": {
+        "title": "History",
+        "mode": "Mode"
+      },
+      "expertises": {
+        "AI": {
+          "title": "AI & Machine Learning",
+          "desc": "Intelligent systems with TensorFlow and Python"
+        },
+        "WEB": {
+          "title": "Web Applications",
+          "desc": "Full-stack Angular and .NET solutions"
+        },
+        "DESK": {
+          "title": "Desktop Software",
+          "desc": "WPF and SQL-based business applications"
+        },
+        "VR": {
+          "title": "VR/AR Development",
+          "desc": "Immersive experiences with Unity, Unreal, and WebXR"
+        },
+        "CPP": {
+          "title": "C++ Systems",
+          "desc": "High-performance Qt and embedded software"
+        }
+      }
     }
   }
 }

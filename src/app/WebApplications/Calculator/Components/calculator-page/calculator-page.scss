@@ -1,0 +1,53 @@
+@use 'styles/index' as *;
+
+// Page Layout
+.calculator-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+}
+
+// Button Container
+.calculator-switch {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+
+  // Button Styling
+  button {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-base);
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    transition: all var(--duration-base) var(--ease-out);
+
+    // Hover Effect
+    &:hover {
+      background-color: var(--color-primary-hover);
+      box-shadow: var(--shadow-2);
+      transform: translateY(-2px);
+    }
+
+    // Active/Selected Button
+    &.active {
+      background-color: var(--color-primary-active);
+      transform: scale(1.05);
+      box-shadow: var(--shadow-2);
+    }
+  }
+}
+
+// Calculator Container
+.calculator-container {
+  width: 90%;
+  max-width: 1200px;
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+}

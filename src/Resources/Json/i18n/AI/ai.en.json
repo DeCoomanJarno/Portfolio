@@ -1,0 +1,492 @@
+{
+  "ai": {
+    "landing": {
+      "version": "ENGINE RELEASE v2.1",
+      "title": "AI",
+      "titleAccent": "Studio",
+      "subtitle": "Architecture Assistant",
+      "description": "Accelerate your software engineering pipelines. Describe your project requirements to instantly generate comprehensive architectural blueprints, technology stacks, implementation roadmaps, and actionable AI opportunities.",
+      "cta": "Open Studio",
+      "ctaDemandForecast": "Open Predictive Warehouse",
+      "features": {
+        "blueprints": {
+          "title": "Instant Blueprints",
+          "description": "Visualize modular architecture topologies using clean, interactive diagrams."
+        },
+        "timelines": {
+          "title": "Agile Timelines",
+          "description": "Get structured implementation roadmaps with realistic task breakdowns and progress metrics."
+        },
+        "opportunities": {
+          "title": "AI Opportunities",
+          "description": "Identify where to strategically inject machine learning models to maximize product value."
+        }
+      }
+    },
+    "analyzer": {
+      "brand": "AI",
+      "brandAccent": "STUDIO",
+      "tagline": "ARCHITECT WORKBENCH",
+      "input": {
+        "heading": "Define Software Specification",
+        "description": "Provide a high-level description of your software idea. The cognitive rules engine will parse your functional patterns and construct an enterprise architecture report.",
+        "placeholder": "Describe your software idea (e.g., 'I need a booking application for a restaurant' or 'A VR training suite for pilots')...",
+        "hint": "Tip: mention real-time, payments, authentication, analytics or compliance for a richer blueprint.",
+        "button": "Analyze Project Specs"
+      },
+      "processing": {
+        "heading": "Architecting Blueprint",
+        "sub": "Running the structural parser over your description vectors..."
+      },
+      "steps": {
+        "reading": "Reading project requirements",
+        "extracting": "Extracting constraints and capabilities",
+        "detecting": "Inferring domain context ({{domain}})",
+        "evaluating": "Scoring complexity and delivery risk",
+        "designing": "Designing architecture blueprint",
+        "selecting": "Selecting aligned technology stacks",
+        "generating": "Generating roadmap and AI opportunities"
+      }
+    },
+    "dashboard": {
+      "back": "Refine Project Specs",
+      "verified": "ARCHITECT VERIFICATION INSTANTIATED",
+      "risks": "Flagged System Risks",
+      "recommendations": "Strategic Execution Directives"
+    },
+    "analysis": {
+      "description": {
+        "base": "A {{complexity}} complexity product architecture for {{summaryStem}}.",
+        "prioritizes": "It prioritizes {{capabilities}}.",
+        "crossDomain": "The requirements appear cross-domain, so the plan emphasizes modular boundaries and incremental validation."
+      },
+      "capabilities": {
+        "auth": "secure identity and authorization",
+        "realtime": "real-time synchronization",
+        "analytics": "decision-grade analytics",
+        "integrations": "external system integrations",
+        "mobile": "mobile-ready user journeys",
+        "search": "fast search and discovery"
+      }
+    },
+    "summary": {
+      "confidence": "Match confidence",
+      "signalsLabel": "Detected capabilities"
+    },
+    "profileCopy": {
+      "hospitality": {
+        "summaryStem": "reservation, order flow, and guest operations",
+        "coreTechnologies": {
+          "angular20": "Fast dashboard and workflow UI for bookings, tables, and staff tasks.",
+          "aspNetCoreApi": "Strong transactional boundary for reservations and order orchestration.",
+          "postgresql": "Reliable relational model for bookings, inventory, and customer data.",
+          "redis": "Low-latency state cache for lock-based table allocation and sessions."
+        },
+        "aiIdeas": {
+          "demandAware": {
+            "description": "Forecast demand windows and optimize seating assignments automatically.",
+            "businessValue": "Increases service capacity and reduces idle tables."
+          },
+          "orderAnomaly": {
+            "description": "Detect unusual cancellation or no-show patterns before peak hours.",
+            "businessValue": "Reduces waste and improves scheduling confidence."
+          }
+        },
+        "baseRisks": {
+          "peakHour": "Peak-hour contention can cause reservation race conditions without lock-safe writes.",
+          "dashboardDrift": "Operational dashboards may drift from backend truth without event-driven updates."
+        },
+        "baseRecommendations": {
+          "transactionIsolation": "Use transaction isolation plus optimistic concurrency on booking operations.",
+          "eventStream": "Publish reservation and order changes through an event stream to keep clients synchronized."
+        }
+      }
+    },
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "infrastructure": "Infrastructure",
+      "integration": "Integration"
+    },
+    "productTypes": {
+      "commerce": "Commerce Platform",
+      "operations": "Operations Platform",
+      "intelligence": "Intelligence Hub",
+      "workspace": "Workspace Portal",
+      "simulation": "Simulation Suite",
+      "general": "Product Platform"
+    },
+    "technology": {
+      "title": "Aligned Technology Stack"
+    },
+    "architecture": {
+      "title": "Topology Flow Diagram",
+      "nodes": {
+        "user": "End User",
+        "frontend": "Client Application",
+        "api": "Application API",
+        "database": "Primary Database",
+        "mobile": "Mobile Client",
+        "events": "Realtime Event Layer",
+        "ai": "AI Inference Service",
+        "search": "Search Index",
+        "external": "External Integrations"
+      }
+    },
+    "timeline": {
+      "title": "Agile Delivery Roadmap",
+      "weeks": {
+        "week1": "Week 1",
+        "week2": "Week 2",
+        "week3": "Week 3",
+        "week4": "Week 4",
+        "week5": "Week 5"
+      },
+      "titles": {
+        "week1": "Domain Modeling & Technical Baseline",
+        "week2": "Core Features & Service Workflows",
+        "week3": "Integrations, Analytics & Reliability",
+        "week4": "Hardening, Security Review & Launch",
+        "week5": "Scale-out & Operational Readiness"
+      },
+      "descriptions": {
+        "week1": "Lock scope, core entities, API boundaries, and release quality gates.",
+        "week2": "Implement critical user journeys, persistence flows, and access controls.",
+        "week3": "{{clauses}}",
+        "week3Fallback": "Expand QA automation, observability, and deployment readiness checks.",
+        "week4": "Run load tests, threat-model high-risk surfaces, and finalize production rollout.",
+        "week5": "Validate multi-region resilience, on-call runbooks, and capacity headroom."
+      },
+      "clauses": {
+        "integrations": "wire external integrations with retry-safe webhooks",
+        "analytics": "instrument KPIs and operational dashboards",
+        "realtime": "optimize event pipelines for low-latency updates",
+        "search": "tune search relevance and indexing pipelines",
+        "offline": "validate offline sync and conflict resolution"
+      }
+    },
+    "opportunities": {
+      "title": "AI Optimization Vectors",
+      "impact": "Primary Impact"
+    },
+    "complexity": {
+      "suffix": "Complexity",
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High",
+      "Enterprise": "Enterprise"
+    },
+    "difficulty": {
+      "suffix": "Complexity",
+      "Easy": "Easy",
+      "Medium": "Medium",
+      "Hard": "Hard"
+    },
+    "domains": {
+      "hospitality": "Food Service & Hospitality Systems",
+      "commerce": "Digital Commerce Systems",
+      "xr-training": "Spatial Computing & XR Training",
+      "enterprise-saas": "Enterprise Operations SaaS",
+      "healthcare": "Healthcare & Care Coordination",
+      "fintech": "Financial Technology Platforms",
+      "education": "Learning & Education Platforms",
+      "logistics": "Logistics & Fleet Operations",
+      "product-platform": "Cross-domain Product Platform"
+    },
+    "projectBrief": {
+      "eyebrow": "AI PROJECT DISCOVERY",
+      "title": "From an idea to a clear project brief.",
+      "intro": "This AI-guided intake helps clients make their request concrete before the first conversation. Not a chatbot, but a clear route towards the right scope.",
+      "points": { "scope": "Focused first scope", "direction": "Suitable approach", "nextStep": "Clear next step" },
+      "form": { "title": "Tell us what you want to achieve", "description": "Choose what the project should do. You will immediately receive a practical starting point for the conversation.", "typeLabel": "What would you like to build?", "priorityLabel": "Where should it make the biggest difference?", "timelineLabel": "When would you like to start?", "detailsLabel": "Extra context (optional)", "detailsPlaceholder": "For example: who uses it, which process needs improvement, or what gets stuck today?", "submit": "Create my project brief" },
+      "types": {
+        "website": { "icon": "bi-window", "title": "Website", "description": "A clear online foundation that builds trust and enquiries." },
+        "portal": { "icon": "bi-kanban", "title": "Client or team portal", "description": "One place for processes, information, and collaboration." },
+        "commerce": { "icon": "bi-bag-check", "title": "Online sales", "description": "A conversion-focused flow for products, services, or bookings." },
+        "custom": { "icon": "bi-boxes", "title": "Custom solution", "description": "Software that makes a specific internal process smarter." }
+      },
+      "priorities": { "visibility": "Improve visibility", "automation": "Reduce manual work", "sales": "Create more enquiries or sales", "experience": "Create a better client experience" },
+      "timelines": { "flexible": "I am still exploring", "soon": "Within 1–3 months", "fixed": "I have a fixed deadline" },
+      "result": { "title": "Your initial direction", "description": "A starting point you can refine in a no-obligation conversation.", "recommendation": "Recommended first scope", "deliverables": "What fits in the first phase", "nextStep": "Logical next step", "empty": "Answer a few short questions on the left. A clear project direction will appear here." },
+      "results": {
+        "scope": {
+          "website": { "withDetails": "A goal-driven website with a clear message and a conversion path shaped around your context.", "withoutDetails": "A goal-driven website with a clear structure, trust-building content, and a strong contact flow." },
+          "portal": { "withDetails": "A focused portal that puts the users and process you described at its centre.", "withoutDetails": "A first portal flow that brings information, actions, and roles together in one clear place." },
+          "commerce": { "withDetails": "A sales flow that translates your offer and client journey into a frictionless online experience.", "withoutDetails": "A compact online sales experience with a clear product or service flow and measurable conversion points." },
+          "custom": { "withDetails": "A custom solution that validates the described bottleneck first and then automates it purposefully.", "withoutDetails": "A focused custom MVP that simplifies one important process and leaves room to learn." }
+        },
+        "deliverables": {
+          "website": ["Structure and page-level content plan", "Responsive design with clear calls to action", "Measurement plan for enquiries and behaviour"],
+          "portal": ["User flow and role overview", "Core screens for the most important tasks", "Technical proposal for secure data flows"],
+          "commerce": ["Product or service flow focused on conversion", "Checkout or enquiry experience", "Foundation for measurement and optimisation"],
+          "custom": ["Process analysis and tightly scoped MVP", "Working flow for the core action", "Plan to validate with real users"]
+        },
+        "nextSteps": { "flexible": "Plan a discovery conversation to sharpen goals, audience, and priorities together.", "soon": "Bring together the key decision-makers and existing information so the scope can be confirmed quickly.", "fixed": "Document the deadline, must-haves, and dependencies so we can immediately propose a feasible phased approach." }
+      }
+    },
+    "demandForecast": {
+      "eyebrow": "AI VALUE LAB",
+      "title": "Show clients what AI-controlled forecasting really changes.",
+      "intro": "A full client simulation workspace where multiple AI agents monitor demand risk, adapt replenishment strategy, and produce measurable business impact.",
+      "units": "units",
+      "days": "days",
+      "studio": {
+        "title": "Client simulation studio",
+        "description": "Configure the client context, describe the situation, and let the AI agents generate a coordinated forecast response.",
+        "run": "Run AI simulation",
+        "shock": "Inject disruption"
+      },
+      "profile": {
+        "industry": "Industry",
+        "volume": "Demand volume",
+        "volatility": "Demand volatility",
+        "priority": "Optimization goal"
+      },
+      "options": {
+        "industry": {
+          "retail": "Retail",
+          "manufacturing": "Manufacturing",
+          "ecommerce": "E-commerce",
+          "healthcare": "Healthcare"
+        },
+        "volume": {
+          "mid": "Mid-market",
+          "high": "High scale",
+          "enterprise": "Enterprise"
+        },
+        "volatility": {
+          "stable": "Stable",
+          "mixed": "Mixed",
+          "volatile": "Highly volatile"
+        },
+        "priority": {
+          "availability": "Protect availability",
+          "balanced": "Balance risk and cost",
+          "cost": "Protect cashflow"
+        }
+      },
+      "brief": {
+        "title": "Operational context",
+        "hint": "Write what is changing at the client: supplier constraints, campaign plans, region expansion, service pressure.",
+        "placeholder": "Example: New customer segment launches in week 4 while one key supplier has unstable lead times due to customs checks."
+      },
+      "presets": {
+        "supplyRisk": "Supplier disruption scenario",
+        "promoPeak": "Promotion demand spike",
+        "stableContract": "Stable contract demand"
+      },
+      "tabs": {
+        "overview": "Overview",
+        "agents": "Agent room",
+        "timeline": "Simulation timeline",
+        "business": "Business case"
+      },
+      "insight": {
+        "label": "AI coordination status",
+        "description": "The simulation tracks demand pressure at {{trend}} and projects around {{demand}} units per day under current assumptions."
+      },
+      "risk": {
+        "low": "Coordinated and stable",
+        "medium": "Monitored intervention",
+        "high": "Immediate orchestration required"
+      },
+      "narrative": {
+        "low": "AI agents keep stockout probability near {{prob}}% with minimal intervention overhead.",
+        "medium": "AI agents detect rising pressure; projected stockout probability is {{prob}}% and mitigation is active.",
+        "high": "AI agents detect a disruption pattern. Stockout probability is {{prob}}% and emergency controls are deployed."
+      },
+      "metrics": {
+        "confidence": "Model confidence",
+        "order": "Recommended order"
+      },
+      "breakdown": {
+        "range": "Demand range"
+      },
+      "drivers": {
+        "trend": "Demand trend pressure",
+        "leadTime": "Lead-time exposure",
+        "volatility": "Volatility sensitivity",
+        "scenarioSignals": "Scenario signal density"
+      },
+      "comparison": {
+        "title": "Baseline vs AI-controlled outcome",
+        "baseline": "Baseline",
+        "ai": "AI",
+        "metrics": {
+          "serviceLevel": "Service level",
+          "stockoutRisk": "Stockout risk",
+          "forecastAccuracy": "Forecast accuracy",
+          "manualWork": "Manual planning workload"
+        }
+      },
+      "recommendations": {
+        "title": "AI recommendations",
+        "expedite": "Trigger immediate PO escalation and secure allocation windows.",
+        "buffer": "Increase safety coverage on critical SKUs for the next cycle.",
+        "allocate": "Prioritize replenishment to high-value channels before peak weeks.",
+        "dualSource": "Activate secondary suppliers for long lead-time materials.",
+        "cashGuard": "Use segmented reorder thresholds to reduce tied-up working capital.",
+        "monitor": "Keep current cadence and continue weekly anomaly detection."
+      },
+      "agents": {
+        "names": {
+          "planner": "Demand Planner Agent",
+          "inventory": "Inventory Strategy Agent",
+          "risk": "Risk Sentinel Agent"
+        },
+        "descriptions": {
+          "planner": "Builds next-cycle forecast windows and updates reorder cadence from market and campaign signals.",
+          "inventory": "Optimizes stock positioning per service objective and supplier reliability.",
+          "risk": "Scores disruption exposure and deploys guardrails for stockout prevention."
+        },
+        "status": {
+          "watch": "Watch",
+          "adjust": "Adjust",
+          "execute": "Execute"
+        },
+        "actions": {
+          "rebalanceNow": "Rebalance replenishment immediately across top-risk SKUs.",
+          "adjustCadence": "Shift ordering cadence to absorb projected demand swings.",
+          "activateBackup": "Activate backup supplier lane for vulnerable categories.",
+          "monitorSuppliers": "Continue supplier stability monitoring and alerting.",
+          "keepGuardrails": "Keep current risk guardrails and monitor outliers.",
+          "raiseProtection": "Increase risk protection thresholds for next planning cycle."
+        }
+      },
+      "timeline": {
+        "title": "8-week AI action timeline",
+        "events": {
+          "signalSpike": "Demand signal spike detected; AI increased reorder pace.",
+          "supplierDelay": "Supplier delay predicted; backup path prepared.",
+          "bufferApplied": "Safety buffer applied to critical inventory lanes.",
+          "normalFlow": "Normal flow under active monitoring."
+        }
+      },
+      "chart": {
+        "week": "Week"
+      },
+      "business": {
+        "title": "Client value projection",
+        "annualSavings": "Annual savings",
+        "roi": "ROI",
+        "payback": "Payback",
+        "months": "months",
+        "healthScore": "Operational health score",
+        "narrativeHigh": "With AI orchestration enabled, the client absorbs disruption without the same service collapse seen in manual planning.",
+        "narrativeStandard": "AI coordination reduces workload and improves forecast quality, creating a reliable path to better service and lower risk."
+      },
+      "warehouse": {
+        "eyebrow": "Predictive warehouse",
+        "title": "AI that orders before stock becomes a problem.",
+        "subtitle": "Run a live warehouse and compare manual replenishment with pattern-based AI decisions under changing demand and supply conditions.",
+        "day": "Day",
+        "days": "days",
+        "units": "units",
+        "controls": {
+          "start": "Start simulation",
+          "pause": "Pause",
+          "step": "Advance one day",
+          "reset": "Reset simulation",
+          "speed": "Speed"
+        },
+        "scenarios": {
+          "label": "Demand environment",
+          "normal": "Normal",
+          "promotion": "Promotion",
+          "seasonal": "Seasonal growth",
+          "supplier": "Supplier delay"
+        },
+        "kpis": {
+          "stock": "Units in stock",
+          "incoming": "Incoming supply",
+          "service": "Service level",
+          "critical": "Critical SKUs"
+        },
+        "floor": {
+          "kicker": "Warehouse operations",
+          "title": "Inventory floor",
+          "live": "Live inventory"
+        },
+        "products": {
+          "filters": "Air filters",
+          "bearings": "Bearings",
+          "sensors": "Sensors",
+          "belts": "Drive belts",
+          "valves": "Control valves",
+          "motors": "Servo motors"
+        },
+        "status": {
+          "healthy": "Healthy",
+          "watch": "Watch",
+          "critical": "Critical"
+        },
+        "ai": {
+          "title": "AI replenishment",
+          "active": "Autonomous ordering enabled",
+          "inactive": "Manual ordering baseline",
+          "kicker": "Pattern recognition model",
+          "monitoring": "Monitoring",
+          "offline": "Offline",
+          "predictedDemand": "Predicted demand",
+          "unitsDay": "units / day",
+          "reorderPoint": "Dynamic reorder point",
+          "leadTime": "Expected lead time",
+          "decision": "Current AI decision",
+          "manualDecision": "The model is offline. Stock follows a fixed schedule, next order on day {{day}}.",
+          "orderPlaced": "Order for {{quantity}} units placed automatically. Expected on day {{day}}.",
+          "orderPending": "Reorder threshold reached. The model will create a replenishment order on the next cycle.",
+          "holdStock": "No action required. The model continues monitoring until stock approaches {{threshold}} units."
+        },
+        "chart": {
+          "actual": "Actual demand",
+          "forecast": "AI forecast"
+        },
+        "impact": {
+          "kicker": "Measured outcome",
+          "title": "AI versus fixed planning",
+          "withoutAi": "Fixed schedule",
+          "withAi": "AI replenishment",
+          "missedUnits": "unfulfilled units",
+          "prevented": "Lost sales prevented",
+          "value": "Protected order value",
+          "fixedOrders": "Fixed orders planned",
+          "adaptiveOrders": "Adaptive orders placed"
+        },
+        "activity": {
+          "kicker": "Decision log",
+          "title": "Warehouse activity",
+          "started": "Warehouse monitoring initialized.",
+          "aiEnabled": "AI replenishment enabled; dynamic reorder points are active.",
+          "aiDisabled": "AI replenishment disabled; fixed planning remains active.",
+          "delivery": "Incoming delivery received: {{quantity}} units.",
+          "order": "AI created a {{quantity}} unit order for arrival on day {{arrival}}.",
+          "manualOrder": "Fixed planning created a {{quantity}} unit order for arrival on day {{arrival}}.",
+          "risk": "Stock risk detected; forecast and reorder threshold updated.",
+          "scenario": {
+            "normal": "Demand returned to its normal operating pattern.",
+            "promotion": "Promotion signal activated; the model expects short demand peaks.",
+            "seasonal": "Seasonal growth activated; the model tracks an increasing trend.",
+            "supplier": "Supplier delay activated; expected lead times increased."
+          }
+        }
+      }
+    },
+    "signals": {
+      "realtime": "Real-time",
+      "mobile": "Mobile",
+      "payments": "Payments",
+      "auth": "Authentication",
+      "analytics": "Analytics",
+      "ai": "AI / ML",
+      "integrations": "Integrations",
+      "multitenant": "Multi-tenant",
+      "compliance": "Compliance",
+      "offline": "Offline",
+      "collaboration": "Collaboration",
+      "highTraffic": "High traffic",
+      "search": "Search",
+      "notifications": "Notifications"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="analyzer-container">
+  <div class="top-nav">
+    <span class="logo">{{ 'ai.analyzer.brand' | translate }} <span class="logo-ai">{{ 'ai.analyzer.brandAccent' | translate }}</span></span>
+    <span class="tagline">{{ 'ai.analyzer.tagline' | translate }}</span>
+  </div>
+
+  <div class="panel-box input-view" *ngIf="state === 'input'">
+    <h2>{{ 'ai.analyzer.input.heading' | translate }}</h2>
+    <p class="desc">{{ 'ai.analyzer.input.description' | translate }}</p>
+
+    <div class="text-group">
+      <textarea
+        [(ngModel)]="rawDescription"
+        [placeholder]="'ai.analyzer.input.placeholder' | translate"
+        rows="5"
+      ></textarea>
+    </div>
+
+    <p class="hint">{{ 'ai.analyzer.input.hint' | translate }}</p>
+
+    <button class="action-btn" [disabled]="!rawDescription.trim()" (click)="runAnalysis()">
+      {{ 'ai.analyzer.input.button' | translate }}
+    </button>
+  </div>
+
+  <div class="panel-box loading-view" *ngIf="state === 'processing'">
+    <h3>{{ 'ai.analyzer.processing.heading' | translate }}</h3>
+    <p class="sub">{{ 'ai.analyzer.processing.sub' | translate }}</p>
+
+    <div class="status-stack">
+      <div class="status-row" *ngFor="let step of steps" [ngClass]="step.status">
+        <div class="indicator">
+          <span class="spinner" *ngIf="step.status === 'processing'"></span>
+          <span class="tick" *ngIf="step.status === 'completed'">✓</span>
+          <span class="bullet" *ngIf="step.status === 'pending'"></span>
+        </div>
+        <span class="step-txt">{{ step.labelKey | translate: step.params }}</span>
+      </div>
+    </div>
+  </div>
+
+  <app-result-dashboard
+    *ngIf="state === 'resolved'"
+    [analysis]="analysisOutput"
+    (reset)="onReset()"
+  ></app-result-dashboard>
+</div>

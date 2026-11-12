@@ -6,6 +6,8 @@
     "Links": "Links",
     "Copy": "Kopiëren",
     "Copied": "Gekopieerd!",
+    "Visit": "Bezoek",
+    "View": "Bekijk project",
     "NotFound": "Project niet gevonden.",
     "ImageAlt": "Projectafbeelding {{index}}",
     "Category": {
@@ -13,7 +15,47 @@
       "vr/ar": "VR / AR",
       "desktop": "Desktop",
       "cpp": "C++",
+      "AI": "AI",
       "all": "Alles"
+    },
+    "AI": {
+      "Title": "AI Architectuurstudio",
+      "Description": "Een portfolio-concept voor een AI architectuurassistent die projectbeschrijvingen omzet in blauwdrukken, technologiestacks, roadmaps en realistische aanbevelingen in het Engels en Nederlands.",
+      "Content": [
+        "Dit is een portfolio-mockup en geen opgeleverd product. Het laat zien hoe een AI software-architect-feature eruit zou kunnen zien en aanvoelen binnen een gepolijste website.",
+        "De analyzer-view simuleert een realistischer redeneerproces: hij streamt stapsgewijze statusupdates, wisselt labels op basis van de actieve taal en levert output met betrouwbaarheidsscore voor de gegenereerde architectuur.",
+        "Het dashboard combineert gelaagde architectuurdiagrammen, vertaalde samenvattingen, technologierecommendaties, opleveringsroadmaps en AI-kansen. De screenshots zijn illustratieve mockups gemaakt voor deze portfolio.",
+        "<h4>Conceptlinks en visuals</h4><ul><li>De projectkaart linkt naar de interactieve AI conceptdemo op deze portfolio-site.</li><li>De case study linkt naar de analyzer zodat bezoekers de flow meteen kunnen uitproberen.</li><li>De voorbeeldafbeeldingen zijn lokale illustratieve mockups en geen opgenomen productiescreenshots.</li><li>Dezelfde functionaliteit is volledig vertaald via ngx-translate voor Engels en Nederlands.</li></ul>"
+      ],
+      "Features": [
+        "Conceptdemo-integratie met landing page en analyzer",
+        "Vertaalde UI en gegenereerde labels in Engels en Nederlands",
+        "Illustratieve screenshot-previews voor landing, analyzer en dashboard",
+        "Betrouwbaarheidsscore en realistische analyseflow"
+      ],
+      "Future": [
+        "Meer domeinprofielen en rijkere heuristieken aan het concept toevoegen",
+        "Optioneel echte API-integraties koppelen voor live parsing",
+        "Mockup-previews vervangen door echte captures wanneer het concept wordt geïmplementeerd",
+        "De projectpagina uitbreiden met diepere technische notities"
+      ],
+      "Links": {
+        "Live": "Open conceptdemo",
+        "Analyzer": "Probeer de analyzer"
+      }
+    },
+    "DemandForecast": {
+      "Title": "Predictive Warehouse",
+      "Description": "Een live magazijnsimulatie waarin patroonherkenning de vraag voorspelt en autonoom aanvulbestellingen plaatst voordat stockouts ontstaan.",
+      "Content": [
+        "Predictive Warehouse is een volledige operationele simulatie in plaats van een statische forecastcalculator. Producten verbruiken elke simulatiedag voorraad, leveringen hebben echte doorlooptijden en de vraag verandert door promoties, seizoensgroei en leveranciersproblemen.",
+        "Het forecastmodel herkent recente patronen, schat de volgende dagvraag, berekent een dynamisch bestelpunt en plaatst autonoom aanvulbestellingen. Wanneer het model uitgeschakeld wordt, werkt hetzelfde magazijn met een vaste planningsbaseline.",
+        "Omdat beide strategieën tegen dezelfde vraagstroom draaien, toont de interface concrete waarde: serviceniveau, gemiste vraag, voorkomen stockouts, beschermde orderwaarde en iedere beslissing van het model.",
+        "<h4>Waarde voor klanten</h4><ul><li>Zie voorraadrisico voordat materialen opraken.</li><li>Pas bestelmomenten aan veranderende vraag en levertijden aan.</li><li>Vergelijk AI-gestuurde aanvulling transparant met vaste manuele planning.</li></ul>"
+      ],
+      "Features": ["Live magazijnsimulatie met meerdere producten", "Patroongebaseerde vraagvoorspelling", "Autonome aanvulbestellingen", "Impactvergelijking tussen AI en vaste planning"],
+      "Future": ["Echte ERP- en orderhistoriek koppelen", "Forecastmodellen per productcategorie trainen", "Inkoopgoedkeuringsflows toevoegen", "Alerts sturen voor risicovolle voorraad"],
+      "Links": { "Live": "Open Predictive Warehouse" }
     },
     "GameOfLife": {
       "Title": "Conway's Game of Life",

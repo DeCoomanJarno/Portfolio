@@ -1,33 +1,29 @@
-<h1 class="text-center">Langton's</h1>
-<div class="row mt-3">
-  <div class="col-md-9 d-flex justify-content-center align-items-center">
-        <div class="grid"
-            [ngStyle]="{'grid-template-columns': 'repeat(' + config.cols + ', ' + config.cellSize + 'px)'}">
-            @for (row of grid; track $index) {
-            @for (cell of row; track $index) {
-            <div [class.alive]="cell.state" class="cell"
-                [ngStyle]="{'width': config.cellSize + 'px', 'height': config.cellSize + 'px'}" (keydown)="ToggleCell(cell.x,cell.y)"></div>
-            }
-            }
-        </div>
+<div class="section">
+  <div class="page-container">
+    <h1 class="text-center">{{ 'demos.langtonsAnt' | translate }}</h1>
+
+    <app-loading [isLoading]="isLoading"></app-loading>
+
+    <div class="row mt-3 align-items-start">
+
+      <!-- CANVAS -->
+      <div class="col-12 col-lg-9 d-flex justify-content-center align-items-start">
+
+        <canvas #canvas (click)="onCanvasClick($event)"></canvas>
+
+      </div>
+
+      <!-- CONFIG -->
+      <div class="col-12 col-lg-3">
+
+        <app-game-config
+          [config]="cfg"
+          [actions]="actions"
+          (configChange)="onConfigChanged($event)">
+        </app-game-config>
+
+      </div>
+
     </div>
-    <div class="col-md-3 d-flex align-items-center">
-        <div class="card config">
-            <div class="card-body">
-                <app-game-config [config]="config" (ConfigChanged)="ConfigChange($event)"
-                    (ColsChanged)="ColsChanged($event)" (RowsChanged)="RowsChanged($event)"></app-game-config>
-                <app-loading [isLoading]="isLoading"></app-loading>
-            </div>
-            <div class="card-body" >
-                <nav class="mb-9">
-                    <ul class="nav nav-tabs">
-                        <button (keydown)="Activate()" class="btn btn-primary btn-block" [disabled]="isLoading">Start</button>
-                        <button (keydown)="Deactivate()" class="btn btn-danger btn-block"[disabled]="isLoading">Stop</button>
-                        <button (keydown)="Clear()" class="btn btn-warning btn-block"[disabled]="isLoading">Reset</button>
-                        <button (keydown)="Randomize()" class="btn btn-info btn-block"[disabled]="isLoading">Randomize</button>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>

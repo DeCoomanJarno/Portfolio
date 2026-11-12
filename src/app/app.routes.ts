@@ -1,33 +1,64 @@
 import { Routes } from '@angular/router';
-import { GameOfLifePageComponent } from './WebApplications/GameOfLife/Components/game-of-life-page/game-of-life-page';
-import { HomePageComponent } from './Home/Components/home-page/home-page';
-import { LangtonsAntPageComponent } from './WebApplications/LangtonsAnt/Components/langtons-ant-page/langtons-ant-page';
-import { ResumePageComponent } from './Resume/Components/resume-page/resume-page';
-import { ProjectsPageComponent } from './Project/Components/projects-page/projects-page';
-import { CalculatorPageComponent } from './WebApplications/Calculator/Components/calculator-page/calculator-page';
-import { ProjectItemPageComponent } from './Project/Components/project-item-page/project-item-page';
-import { FreelancePage } from './Freelance/Components/freelance-page/freelance-page';
-import { Calculator } from './Freelance/Components/calculator/calculator';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
-    { path: 'Home', component: FreelancePage },
-    { path: 'About', component: HomePageComponent },
-    { path: 'Freelance-Calculator', component: Calculator },
-    { path: 'Projects', component: ProjectsPageComponent },
-    { path: 'Projects/:id', component: ProjectItemPageComponent },
-    { path: 'Resume', component: ResumePageComponent },
-    { path: 'GameOfLife', component: GameOfLifePageComponent },
-    { path: 'LangtonsAnt', component: LangtonsAntPageComponent },
-    { path: 'Calculator', component: CalculatorPageComponent },
+    {
+        path: 'Home',
+        loadComponent: () => import('./Freelance/Components/freelance-page/freelance-page').then(m => m.FreelancePage)
+    },
+    {
+        path: 'About',
+        loadComponent: () => import('./Home/Components/home-page/home-page').then(m => m.HomePageComponent)
+    },
+    {
+        path: 'Freelance-Calculator',
+        loadComponent: () => import('./Freelance/Components/calculator/calculator').then(m => m.Calculator)
+    },
+    {
+        path: 'Projects',
+        loadComponent: () => import('./Project/Components/projects-page/projects-page').then(m => m.ProjectsPageComponent)
+    },
+    {
+        path: 'Projects/:id',
+        loadComponent: () => import('./Project/Components/project-item-page/project-item-page').then(m => m.ProjectItemPageComponent)
+    },
+    {
+        path: 'Resume',
+        loadComponent: () => import('./Resume/Components/resume-page/resume-page').then(m => m.ResumePageComponent)
+    },
+    {
+        path: 'GameOfLife',
+        loadComponent: () => import('./WebApplications/GameOfLife/Components/game-of-life-page/game-of-life-page').then(m => m.GameOfLifePageComponent)
+    },
+    {
+        path: 'LangtonsAnt',
+        loadComponent: () => import('./WebApplications/LangtonsAnt/Components/langtons-ant-page/langtons-ant-page').then(m => m.LangtonsAntPageComponent)
+    },
+    {
+        path: 'Calculator',
+        loadComponent: () => import('./WebApplications/Calculator/Components/calculator-page/calculator-page').then(m => m.CalculatorPageComponent)
+    },
     {
         path: 'Appointments',
         loadChildren: () =>
             import('./WebApplications/appointment/appointment-module').then(m => m.AppointmentModule)
-    }, 
+    },
     {
         path: 'Inventory',
         loadChildren: () =>
             import('./WebApplications/inventory/inventory-module').then(m => m.InventoryModule)
-    }
+    },
+    {
+        path: 'AI',
+        loadComponent: () => import('./AI/Features/landing-component/landing-component').then(m => m.LandingComponent)
+    },
+    {
+        path: 'AI/Analyzer',
+        loadComponent: () => import('./AI/Features/analyzer-component/analyzer-component').then(m => m.AnalyzerComponent)
+    },
+    {
+        path: 'AI/Demand-Forecaster',
+        loadComponent: () => import('./AI/Features/demand-forecaster/demand-forecaster').then(m => m.DemandForecasterComponent)
+    },
+    { path: '**', redirectTo: 'Home' }
 ];

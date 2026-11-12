@@ -1,5 +1,6 @@
 // base-calculator.component.ts
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HistoryTabComponent } from '../history-tab/history-tab';
 
@@ -12,35 +13,36 @@ export interface Calculation {
     selector: 'app-base-calculator',
     imports: [ReactiveFormsModule, HistoryTabComponent],
     templateUrl: './base-calculator.html',
-    styleUrls: ['./base-calculator.css']
+    styleUrls: ['./base-calculator.scss']
 })
 export class BaseCalculatorComponent {
   @ViewChild('expressionInput') expressionInput!: ElementRef<HTMLInputElement>;
-  @Input() title: string = '';  // To customize the title
+  @Input() title: string = '';
   displayControl = new FormControl('');
   temporaryResult: string = '';
   error: string = '';
-  @ViewChild(HistoryTabComponent) historyTabComponent!: HistoryTabComponent; // Reference to HistoryTabComponent
+  @ViewChild(HistoryTabComponent) historyTabComponent!: HistoryTabComponent;
+
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
-    // Subscribe to changes in the displayControl value
-    this.displayControl.valueChanges.subscribe(value => {
+    this.displayControl.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(value => {
       this.updateTemporaryResult(value || '');
     });
   }
   // Function to handle Enter key
   handleKeyPress(event: KeyboardEvent) {
     const allowedCharacters = /[0-9+\-*/()]/;
-    var input = event.key;
+    const input = event.key;
     if (input === 'Enter') {
-      this.equals(); // Calculate if Enter is pressed
+      this.equals();
     }
-    if(input === 'Backspace')
-    {
+    if (input === 'Backspace') {
       this.backspace();
     }
-    if(!allowedCharacters.test(input))
-    {
+    if (!allowedCharacters.test(input)) {
       event.preventDefault();
     }
   }
@@ -68,9 +70,9 @@ export class BaseCalculatorComponent {
   
   updateTemporaryResult(value: string) {
     try {
-      const calculatedResult = eval(this.replaceConstants(value)).toString();
+      const calculatedResult = this.safeEvaluate(this.replaceConstants(value)).toString();
       this.temporaryResult = calculatedResult !== value ? calculatedResult : '';
-      this.error = ''; // Clear error if calculation is successful
+      this.error = '';
     } catch (error) {
     }
   }
@@ -81,11 +83,27 @@ export class BaseCalculatorComponent {
     .replace('×', '*')
     .replace(/π/g, 'Math.PI')
     .replace(/\be\b/g, 'Math.E')
-    .replace('²', '**2')  // Replace '²' with '**2' for square
-    .replace('√', 'Math.sqrt')  // Replace √ with Math.sqrt()
-    .replace('sin', 'Math.sin')  // Use Math.sin in eval
-    .replace('cos', 'Math.cos')  // Use Math.cos in eval
-    .replace('tan', 'Math.tan'); // Use Math.tan in eval
+    .replace('²', '**2')
+    .replace('√', 'Math.sqrt')
+    .replace('sin', 'Math.sin')
+    .replace('cos', 'Math.cos')
+    .replace('tan', 'Math.tan');
+  }
+
+  private safeEvaluate(expression: string): number {
+    // Validate: only allow numbers, operators, parentheses, dots, and Math functions
+    const sanitized = expression.replace(/\s/g, '');
+    const allowedPattern = /^[0-9+\-*/().,%Math.PIEsqrtsincotan*]+$/;
+    if (!allowedPattern.test(sanitized)) {
+      throw new Error('Invalid expression');
+    }
+    // Use Function constructor (no access to global scope) instead of eval
+    const fn = new Function('Math', `"use strict"; return (${sanitized});`);
+    const result = fn(Math);
+    if (typeof result !== 'number' || !isFinite(result)) {
+      throw new Error('Invalid result');
+    }
+    return result;
   }
 
   clear() {
@@ -111,21 +129,18 @@ export class BaseCalculatorComponent {
 
   equals() {
     try {
-      // Evaluate the expression
-      const formattedExpression = this.replaceConstants(this.displayControl.value || ''); // Format the expression
-      const calculatedResult = eval(formattedExpression).toString(); // Final calculation
+      const formattedExpression = this.replaceConstants(this.displayControl.value || '');
+      const calculatedResult = this.safeEvaluate(formattedExpression).toString();
 
-      // expression is just a number
       if (formattedExpression === calculatedResult)
         return;
 
-      // Save to history
       this.historyTabComponent.AddCalculation({ Result: calculatedResult, Equation: this.displayControl.value || ''})
 
-      this.displayControl.setValue(calculatedResult); // Override input with result
-      this.error = ''; // Clear any error messages
+      this.displayControl.setValue(calculatedResult);
+      this.error = '';
     } catch (error) {
-      this.error = error as string; // Clear any error messages
+      this.error = error as string;
     }
   }
 

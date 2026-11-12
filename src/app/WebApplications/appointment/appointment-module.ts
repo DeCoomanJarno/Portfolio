@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,7 @@ import { AppointmentRoutingModule } from './appointment-routing.module';
 import { TranslatePipe } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header';
 import { AppointmentPageComponent } from './components/appointment-page/appointment-page';
+import { AuthService } from '@angularlibrary/core-lib';
 
 
 @NgModule({
@@ -46,9 +47,21 @@ import { AppointmentPageComponent } from './components/appointment-page/appointm
     MatToolbarModule,
     MatSnackBarModule,
     TranslatePipe,
-    AsyncPipe,
     MatRadioModule,
-    MatMenuModule,
+    MatMenuModule
   ]
 })
-export class AppointmentModule { }
+export class AppointmentModule {
+  constructor(auth: AuthService) {
+    let users = auth.getDemoCredentials();
+    users.find(t => t.username.includes('admin'))?.roles.push(
+      {
+        name: 'appointments:admin',
+        permissions: ['appointments:create', 'appointments:cancel', 'appointments:approve', 'appointments:decline']
+      }
+    )
+    users.forEach(user => {
+      auth.register(user)
+    });
+  }
+}

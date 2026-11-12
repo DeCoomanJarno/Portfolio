@@ -1,73 +1,51 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GameConfig } from '../../Models/GameConfig.Model';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { ConfigAction, ConfigChange, ConfigField } from "../../Models/simulation-config.model";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-    selector: 'app-game-config',
-    imports: [FormsModule, ReactiveFormsModule],
-    templateUrl: './game-config.html',
-    styleUrl: './game-config.css'
+  selector: 'app-game-config',
+  standalone: true,
+  imports: [CommonModule, TranslateModule],
+  templateUrl: './game-config.html',
+  styleUrls: ['./game-config.scss']
 })
-export class GameConfigComponent implements OnInit {
-  @Input() config?: GameConfig = {rows: 20, cols: 20, cellSize: 20, updateTime: 100} // Default values -> can be override by the parent
+export class GameConfigComponent<T extends object> {
+  @Input({ required: true })
+  config!: Record<keyof T, ConfigField<any>>;
 
-  @Output() ColsChanged = new EventEmitter<number>();
-  @Output() RowsChanged = new EventEmitter<number>();
-  @Output() CellSizeChanged = new EventEmitter<number>();
-  @Output() UpdateTimeChanged = new EventEmitter<number>();
+  @Input()
+  actions?: ConfigAction[];
 
-  @Output() ConfigChanged = new EventEmitter<{gameConfig: GameConfig | undefined, propertyChanged?: 'Rows' | 'Cols' | 'CellSize' | 'UpdateTime'}>();
-
-  ngOnInit(): void {
-    // Merge default values with provided config
-    this.config = { 
-      rows: 20, 
-      cols: 20, 
-      cellSize: 20, 
-      updateTime: 100, 
-      ...this.config 
-    };
-    
-    this.RowsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Rows'});}) ;
-    this.ColsChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'Cols'});}) ;
-    this.CellSizeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'CellSize'});}) ;
-    this.UpdateTimeChanged.subscribe(() => {this.ConfigChanged.emit({gameConfig: this.config, propertyChanged: 'UpdateTime'});}) ;
-  }
-
-  UpdateCol($event: Event) {
-    if(!this.config)
-      return;
-
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cols = Number(inputElement.value);
-    this.ColsChanged.emit(this.config.cols);
-  }
+  @Output()
+  configChange = new EventEmitter<ConfigChange<T>>();  
   
-  UpdateRow($event: Event) {
-    if(!this.config)
-      return;
+update(key: string, value: any): void {
+  const field = this.config[key as keyof T];
+  if (!field) return;
 
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.rows = Number(inputElement.value);
-    this.RowsChanged.emit(this.config.rows);
-  }
-  
-  UpdateCellSize($event: Event) {
-    if(!this.config)
-      return;
-    
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.cellSize = Number(inputElement.value);
-    this.CellSizeChanged.emit(this.config.cellSize);
-  }
+  const parsed = this.cast(value);
 
-  UpdateTime($event: Event): void {
-    if(!this.config)
-      return;
-    
-    const inputElement = $event.target as HTMLInputElement;
-    this.config.updateTime = Number(inputElement.value);
-    this.UpdateTimeChanged.emit(this.config.updateTime);
-  }
+  const updatedField: ConfigField<any> = {
+    ...field,
+    value: parsed
+  };
 
+  this.config = {
+    ...this.config,
+    [key]: updatedField
+  };
+
+  this.configChange.emit({
+    key: key as keyof T,
+    value: updatedField,
+    full: this.config
+  });
+}
+  private cast(value: any): any {
+    if (value === 'true') return true;
+    if (value === 'false') return false;
+    if (value !== '' && !isNaN(value)) return Number(value);
+    return value;
+  }
 }

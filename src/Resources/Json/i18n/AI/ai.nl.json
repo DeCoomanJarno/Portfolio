@@ -1,0 +1,521 @@
+{
+  "ai": {
+    "landing": {
+      "version": "ENGINE RELEASE v2.1",
+      "title": "AI",
+      "titleAccent": "Studio",
+      "subtitle": "Architectuurassistent",
+      "description": "Versnel je software-engineeringtrajecten. Beschrijf je projectvereisten om direct volledige architectuurblauwdrukken, technologiestacks, implementatieplannen en concrete AI-kansen te genereren.",
+      "cta": "Studio openen",
+      "features": {
+        "blueprints": {
+          "title": "Directe blauwdrukken",
+          "description": "Visualiseer modulaire architectuurtopologieÃ«n met heldere, interactieve diagrammen."
+        },
+        "timelines": {
+          "title": "Agile tijdlijnen",
+          "description": "Ontvang gestructureerde implementatieplannen met realistische taakverdelingen en voortgangsmetingen."
+        },
+        "opportunities": {
+          "title": "AI-kansen",
+          "description": "Ontdek waar je strategisch machine learning-modellen kunt inzetten om de productwaarde te maximaliseren."
+        }
+      },
+      "ctaDemandForecast": "Predictive Warehouse openen"
+    },
+    "analyzer": {
+      "brand": "AI",
+      "brandAccent": "STUDIO",
+      "tagline": "ARCHITECT WERKRUIMTE",
+      "input": {
+        "heading": "Softwarespecificatie definiÃ«ren",
+        "description": "Geef een beschrijving op hoofdlijnen van je software-idee. De cognitieve regels-engine analyseert je functionele patronen en stelt een architectuurrapport op ondernemingsniveau samen.",
+        "placeholder": "Beschrijf je software-idee (bijv. 'Ik heb een reserveringsapplicatie voor een restaurant nodig' of 'Een VR-trainingssuite voor piloten')...",
+        "hint": "Tip: noem real-time, betalingen, authenticatie, analytics of compliance voor een rijkere blauwdruk.",
+        "button": "Projectspecificaties analyseren"
+      },
+      "processing": {
+        "heading": "Blauwdruk ontwerpen",
+        "sub": "De structurele parser analyseert je beschrijvingsvectoren..."
+      },
+      "steps": {
+        "reading": "Projectvereisten lezen",
+        "extracting": "Beperkingen en mogelijkheden extraheren",
+        "detecting": "Domeincontext afleiden ({{domain}})",
+        "evaluating": "Complexiteit en opleveringsrisico scoren",
+        "designing": "Architectuurblauwdruk ontwerpen",
+        "selecting": "Passende technologiestacks selecteren",
+        "generating": "Roadmap en AI-kansen genereren"
+      }
+    },
+    "dashboard": {
+      "back": "Projectspecificaties verfijnen",
+      "verified": "ARCHITECTVERIFICATIE GEÃNSTANTIEERD",
+      "risks": "Gesignaleerde systeemrisico's",
+      "recommendations": "Strategische uitvoeringsrichtlijnen"
+    },
+    "analysis": {
+      "description": {
+        "base": "Een productarchitectuur met {{complexity}} complexiteit voor {{summaryStem}}.",
+        "prioritizes": "Het prioriteert {{capabilities}}.",
+        "crossDomain": "De vereisten lijken domeinoverstijgend, dus het plan legt de nadruk op modulaire grenzen en incrementele validatie."
+      },
+      "capabilities": {
+        "auth": "veilige identiteit en autorisatie",
+        "realtime": "real-time synchronisatie",
+        "analytics": "besluitvormende analyses",
+        "integrations": "integraties met externe systemen",
+        "mobile": "mobiele gebruikersstromen",
+        "search": "snel zoeken en ontdekken"
+      }
+    },
+    "summary": {
+      "confidence": "Matchbetrouwbaarheid",
+      "signalsLabel": "Gedetecteerde mogelijkheden"
+    },
+    "profileCopy": {
+      "hospitality": {
+        "summaryStem": "reserveringen, bestelstromen en gastoperaties",
+        "coreTechnologies": {
+          "angular20": "Snelle dashboard- en workflow-UI voor boekingen, tafels en staftaken.",
+          "aspNetCoreApi": "Sterke transactionele grens voor reserveringen en orderorkestratie.",
+          "postgresql": "Betrouwbaar relationeel model voor boekingen, voorraad en klantgegevens.",
+          "redis": "State-cache met lage latency voor op slot gebaseerde tafels toewijzing en sessies."
+        },
+        "aiIdeas": {
+          "demandAware": {
+            "description": "Voorspel vraagvensters en optimaliseer automatisch tafeltoewijzingen.",
+            "businessValue": "Verhoogt de servicecapaciteit en vermindert lege tafels."
+          },
+          "orderAnomaly": {
+            "description": "Detecteer ongebruikelijke annuleringen of no-show patronen vÃ³Ã³r piekuren.",
+            "businessValue": "Vermindert verspilling en verbetert de planningbetrouwbaarheid."
+          }
+        },
+        "baseRisks": {
+          "peakHour": "Concurrentie tijdens piekuren kan reserveringsracecondities veroorzaken zonder schrijfvergrendelingen.",
+          "dashboardDrift": "Operationele dashboards kunnen afwijken van de backend-werkelijkheid zonder event-gedreven updates."
+        },
+        "week1": "Domeinmodellering & technische basis",
+        "week2": "Kernfunctionaliteit & serviceworkflows",
+        "week3": "Integraties, analyses & betrouwbaarheid",
+        "week4": "Versteviging, beveiligingsreview & lancering",
+        "week5": "Opschaling & operationele gereedheid"
+      },
+      "descriptions": {
+        "week1": "Scherp de scope, kernentiteiten, API-grenzen en kwaliteitsgates voor release af.",
+        "week2": "Implementeer kritieke gebruikersstromen, persistentiestromen en toegangscontrole.",
+        "week3": "{{clauses}}",
+        "week3Fallback": "Breid QA-automatisering, observability en releasegereedheidstests uit.",
+        "week4": "Voer belastingtests uit, modelleer bedreigingen voor risicovolle onderdelen en rond de productie-uitrol af.",
+        "week5": "Valideer multi-region veerkracht, on-call runbooks en capaciteitsruimte."
+      },
+      "clauses": {
+        "integrations": "koppel externe integraties met webhooks die opnieuw kunnen proberen",
+        "analytics": "instrumenteer KPI's en operationele dashboards",
+        "realtime": "optimaliseer eventpijplijnen voor updates met lage latency",
+        "search": "tune zoekrelevantie en indexeringspijplijnen",
+        "offline": "valideer offline synchronisatie en conflictoplossing"
+      }
+    },
+    "opportunities": {
+      "title": "AI-optimalisatievectoren",
+      "impact": "Belangrijkste impact"
+    },
+    "complexity": {
+      "suffix": "Complexiteit",
+      "Low": "Laag",
+      "Medium": "Gemiddeld",
+      "High": "Hoog",
+      "Enterprise": "Enterprise"
+    },
+    "difficulty": {
+      "suffix": "Complexiteit",
+      "Easy": "Eenvoudig",
+      "Medium": "Gemiddeld",
+      "Hard": "Complex"
+    },
+    "domains": {
+      "hospitality": "Horeca- & gastvrijheidssystemen",
+      "commerce": "Digitale commerce-systemen",
+      "xr-training": "Spatial computing & XR-training",
+      "enterprise-saas": "Enterprise operations-SaaS",
+      "healthcare": "Zorg & zorgcoÃ¶rdinatie",
+      "fintech": "FinanciÃ«le technologieplatformen",
+      "education": "Leer- & onderwijsplatformen",
+      "logistics": "Logistiek & wagenparkbeheer",
+      "product-platform": "Domeinoverstijgend productplatform"
+    },
+    "signals": {
+      "realtime": "Real-time",
+      "mobile": "Mobiel",
+      "payments": "Betalingen",
+      "auth": "Authenticatie",
+      "analytics": "Analytics",
+      "ai": "AI / ML",
+      "integrations": "Integraties",
+      "multitenant": "Multi-tenant",
+      "compliance": "Compliance",
+      "offline": "Offline",
+      "collaboration": "Samenwerking",
+      "highTraffic": "Hoog verkeer",
+      "search": "Zoeken",
+      "notifications": "Notificaties"
+    },
+    "projectBrief": {
+      "eyebrow": "AI PROJECT DISCOVERY",
+      "title": "Van idee naar een helder projectbrief.",
+      "intro": "Deze AI-gestuurde intake helpt klanten hun vraag concreet maken vÃ³Ã³r het eerste gesprek. Geen chatbot, maar een duidelijke route naar de juiste scope.",
+      "points": {
+        "scope": "Scherpe eerste scope",
+        "direction": "Passende aanpak",
+        "nextStep": "Duidelijke volgende stap"
+      },
+      "form": {
+        "title": "Vertel wat je wilt bereiken",
+        "description": "Kies wat het project moet doen. Je ontvangt meteen een praktisch vertrekpunt voor het gesprek.",
+        "typeLabel": "Wat wil je laten bouwen?",
+        "priorityLabel": "Waar moet het vooral verschil maken?",
+        "timelineLabel": "Wanneer wil je starten?",
+        "detailsLabel": "Extra context (optioneel)",
+        "detailsPlaceholder": "Bijvoorbeeld: wie gebruikt het, welk proces wil je verbeteren of wat loopt vandaag vast?",
+        "submit": "Maak mijn projectbrief"
+      },
+      "types": {
+        "website": {
+          "icon": "bi-window",
+          "title": "Website",
+          "description": "Een heldere online basis die vertrouwen en aanvragen opbouwt."
+        },
+        "portal": {
+          "icon": "bi-kanban",
+          "title": "Klant- of medewerkersportaal",
+          "description": "EÃ©n plek voor processen, informatie en samenwerking."
+        },
+        "commerce": {
+          "icon": "bi-bag-check",
+          "title": "Online verkoop",
+          "description": "Een conversiegerichte flow voor producten, diensten of boekingen."
+        },
+        "custom": {
+          "icon": "bi-boxes",
+          "title": "Maatwerkoplossing",
+          "description": "Software die een specifiek intern proces slimmer maakt."
+        }
+      },
+      "priorities": {
+        "visibility": "Beter zichtbaar zijn",
+        "automation": "Handmatig werk verminderen",
+        "sales": "Meer aanvragen of verkoop",
+        "experience": "Een betere klantervaring"
+      },
+      "timelines": {
+        "flexible": "Ik verken nog",
+        "soon": "Binnen 1â€“3 maanden",
+        "fixed": "Ik heb een vaste deadline"
+      },
+      "result": {
+        "title": "Jouw eerste richting",
+        "description": "Een startpunt dat je verder kunt verfijnen in een vrijblijvend gesprek.",
+        "recommendation": "Aanbevolen eerste scope",
+        "deliverables": "Wat er in de eerste fase past",
+        "nextStep": "Logische volgende stap",
+        "empty": "Beantwoord links een paar korte vragen. Hier verschijnt daarna een duidelijke projectrichting."
+      },
+      "results": {
+        "scope": {
+          "website": {
+            "withDetails": "Een doelgerichte website met een duidelijke boodschap en een conversiepad rond jouw context.",
+            "withoutDetails": "Een doelgerichte website met een heldere structuur, vertrouwenwekkende content en een sterke contactflow."
+          },
+          "portal": {
+            "withDetails": "Een afgebakend portaal dat jouw beschreven gebruikers en proces centraal zet.",
+            "withoutDetails": "Een eerste portaalflow die informatie, acties en rollen op Ã©Ã©n overzichtelijke plek samenbrengt."
+          },
+          "commerce": {
+            "withDetails": "Een verkoopflow die jouw aanbod en klantpad vertaalt naar een frictieloze online ervaring.",
+            "withoutDetails": "Een compacte online verkoopervaring met een duidelijke product- of dienstenflow en meetbare conversiepunten."
+          },
+          "custom": {
+            "withDetails": "Een maatwerkoplossing die het beschreven knelpunt eerst valideert en daarna gericht automatiseert.",
+            "withoutDetails": "Een afgebakende maatwerk-MVP die Ã©Ã©n belangrijk proces vereenvoudigt en ruimte laat om te leren."
+          }
+        },
+        "deliverables": {
+          "website": [
+            "Structuur en inhoudelijke pagina-opzet",
+            "Responsief ontwerp met duidelijke calls-to-action",
+            "Meetplan voor aanvragen en gedrag"
+          ],
+          "portal": [
+            "Gebruikersflow en rollenoverzicht",
+            "Kernschermen voor de belangrijkste taken",
+            "Technisch voorstel voor veilige gegevensstromen"
+          ],
+          "commerce": [
+            "Product- of dienstenflow met conversiefocus",
+            "Checkout- of aanvraagervaring",
+            "Basis voor metingen en optimalisatie"
+          ],
+          "custom": [
+            "Procesanalyse en scherp afgebakende MVP",
+            "Werkende flow voor de kernhandeling",
+            "Plan voor validatie met echte gebruikers"
+          ]
+        },
+        "nextSteps": {
+          "flexible": "Plan een verkennend gesprek om doelen, doelgroep en prioriteiten samen scherp te stellen.",
+          "soon": "Breng de belangrijkste beslissers en bestaande informatie samen; dan kan de scope snel worden bevestigd.",
+          "fixed": "Leg de deadline, must-haves en afhankelijkheden vast zodat we meteen een haalbare fasering kunnen voorstellen."
+        }
+      }
+    },
+    "demandForecast": {
+      "eyebrow": "AI VALUE LAB",
+      "title": "Toon klanten wat AI-gestuurde forecasting echt verandert.",
+      "intro": "Een volledige clientsimulatie-werkruimte waarin meerdere AI-agenten vraagrisico monitoren, aanvulstrategie bijsturen en meetbare businessimpact leveren.",
+      "units": "stuks",
+      "days": "dagen",
+      "studio": {
+        "title": "Client simulation studio",
+        "description": "Stel de clientcontext in, beschrijf de situatie en laat AI-agenten een gecoÃ¶rdineerde forecastrespons genereren.",
+        "run": "AI-simulatie starten",
+        "shock": "Verstoring injecteren"
+      },
+      "profile": {
+        "industry": "Sector",
+        "volume": "Vraagvolume",
+        "volatility": "Vraagvolatiliteit",
+        "priority": "Optimalisatiedoel"
+      },
+      "options": {
+        "industry": {
+          "retail": "Retail",
+          "manufacturing": "Productie",
+          "ecommerce": "E-commerce",
+          "healthcare": "Zorg"
+        },
+        "volume": {
+          "mid": "Mid-market",
+          "high": "Hoge schaal",
+          "enterprise": "Enterprise"
+        },
+        "volatility": {
+          "stable": "Stabiel",
+          "mixed": "Gemengd",
+          "volatile": "Sterk volatiel"
+        },
+        "priority": {
+          "availability": "Beschikbaarheid beschermen",
+          "balanced": "Risico en kost balanceren",
+          "cost": "Cashflow beschermen"
+        }
+      },
+      "brief": {
+        "title": "Operationele context",
+        "hint": "Beschrijf wat verandert bij de klant: leveranciersbeperkingen, campagneplannen, regio-uitbreiding, servicedruk.",
+        "placeholder": "Voorbeeld: Nieuwe klantsegmentlancering in week 4 terwijl een kritieke leverancier onstabiele levertijden heeft door douanecontroles."
+      },
+      "presets": {
+        "supplyRisk": "Scenario leveranciersverstoring",
+        "promoPeak": "Vraagpiek door promotie",
+        "stableContract": "Stabiele contractvraag"
+      },
+      "tabs": {
+        "overview": "Overzicht",
+        "agents": "Agentruimte",
+        "timeline": "Simulatietijdlijn",
+        "business": "Business case"
+      },
+      "insight": {
+        "label": "AI-coordinatiestatus",
+        "description": "De simulatie volgt vraagdruk op {{trend}} en projecteert ongeveer {{demand}} stuks per dag onder de huidige aannames."
+      },
+      "risk": {
+        "low": "Gecontroleerd en stabiel",
+        "medium": "Gemonitorde interventie",
+        "high": "Directe orchestratie vereist"
+      },
+      "narrative": {
+        "low": "AI-agenten houden de stockoutkans rond {{prob}}% met minimale interventie.",
+        "medium": "AI-agenten detecteren stijgende druk; verwachte stockoutkans is {{prob}}% en mitigatie is actief.",
+        "high": "AI-agenten detecteren een verstoringspatroon. Stockoutkans is {{prob}}% en noodmaatregelen zijn geactiveerd."
+      },
+      "metrics": {
+        "confidence": "Modelbetrouwbaarheid",
+        "order": "Aanbevolen bestelling"
+      },
+      "breakdown": {
+        "range": "Vraagrange"
+      },
+      "drivers": {
+        "trend": "Druk door vraagtrend",
+        "leadTime": "Blootstelling aan levertijd",
+        "volatility": "Volatiliteitsgevoeligheid",
+        "scenarioSignals": "Dichtheid van scenariosignalen"
+      },
+      "comparison": {
+        "title": "Baseline versus AI-gestuurde uitkomst",
+        "baseline": "Baseline",
+        "ai": "AI",
+        "metrics": {
+          "serviceLevel": "Serviceniveau",
+          "stockoutRisk": "Stockoutrisico",
+          "forecastAccuracy": "Forecastnauwkeurigheid",
+          "manualWork": "Manuele planningslast"
+        }
+      },
+      "recommendations": {
+        "title": "AI-aanbevelingen",
+        "expedite": "Activeer directe PO-escalatie en reserveer levervensters.",
+        "buffer": "Verhoog veiligheidsdekking op kritieke SKU's voor de volgende cyclus.",
+        "allocate": "Prioriteer aanvulling naar high-value kanalen vÃ³Ã³r piekweken.",
+        "dualSource": "Activeer secundaire leveranciers voor materialen met lange lead-time.",
+        "cashGuard": "Gebruik gesegmenteerde reorderdrempels om vastgelegd werkkapitaal te verlagen.",
+        "monitor": "Behoud huidige cadence en voer wekelijkse anomaliedetectie uit."
+      },
+      "agents": {
+        "names": {
+          "planner": "Demand Planner Agent",
+          "inventory": "Inventory Strategy Agent",
+          "risk": "Risk Sentinel Agent"
+        },
+        "descriptions": {
+          "planner": "Bouwt forecastvensters voor de volgende cyclus en past reordercadence aan op basis van markt- en campagnesignalen.",
+          "inventory": "Optimaliseert voorraadpositie volgens service-doel en leveranciersbetrouwbaarheid.",
+          "risk": "Scoort verstoringsblootstelling en activeert guardrails om stockouts te voorkomen."
+        },
+        "status": {
+          "watch": "Watch",
+          "adjust": "Adjust",
+          "execute": "Execute"
+        },
+        "actions": {
+          "rebalanceNow": "Herbalanceer aanvulling onmiddellijk over de hoogste-risico SKU's.",
+          "adjustCadence": "Verschuif bestelcadence om verwachte vraagschommelingen op te vangen.",
+          "activateBackup": "Activeer backupleveranciers voor kwetsbare categorieen.",
+          "monitorSuppliers": "Blijf leveranciersstabiliteit monitoren met alerts.",
+          "keepGuardrails": "Behoud huidige risk guardrails en monitor outliers.",
+          "raiseProtection": "Verhoog beschermingsdrempels voor de volgende planningscyclus."
+        }
+      },
+      "timeline": {
+        "title": "8-weken AI-actietijdlijn",
+        "events": {
+          "signalSpike": "Vraagsignaalpiek gedetecteerd; AI verhoogde reordertempo.",
+          "supplierDelay": "Leveranciersvertraging voorspeld; backuppad voorbereid.",
+          "bufferApplied": "Veiligheidsbuffer toegepast op kritieke voorraadroutes.",
+          "normalFlow": "Normale flow onder actieve monitoring."
+        }
+      },
+      "chart": {
+        "week": "Week"
+      },
+      "business": {
+        "title": "Projectie van klantwaarde",
+        "annualSavings": "Jaarlijkse besparing",
+        "roi": "ROI",
+        "payback": "Terugverdientijd",
+        "months": "maanden",
+        "healthScore": "Operationele health score",
+        "narrativeHigh": "Met AI-orchestratie geactiveerd kan de klant verstoringen opvangen zonder dezelfde service-inzinking als bij manuele planning.",
+        "narrativeStandard": "AI-coordinatie verlaagt werkdruk en verhoogt forecastkwaliteit, met een betrouwbaar pad naar betere service en lager risico."
+      },
+      "warehouse": {
+        "eyebrow": "Predictive warehouse",
+        "title": "AI die bestelt voordat voorraad een probleem wordt.",
+        "subtitle": "Simuleer een live magazijn en vergelijk manuele aanvulling met patroongestuurde AI-beslissingen bij veranderende vraag en levering.",
+        "day": "Dag",
+        "days": "dagen",
+        "units": "stuks",
+        "controls": {
+          "start": "Simulatie starten",
+          "pause": "Pauzeren",
+          "step": "Een dag verder",
+          "reset": "Simulatie resetten",
+          "speed": "Snelheid"
+        },
+        "scenarios": {
+          "label": "Vraagomgeving",
+          "normal": "Normaal",
+          "promotion": "Promotie",
+          "seasonal": "Seizoensgroei",
+          "supplier": "Leververtraging"
+        },
+        "kpis": {
+          "stock": "Stuks in voorraad",
+          "incoming": "Inkomende voorraad",
+          "service": "Serviceniveau",
+          "critical": "Kritieke SKU's"
+        },
+        "floor": {
+          "kicker": "Magazijnoperaties",
+          "title": "Voorraadvloer",
+          "live": "Live voorraad"
+        },
+        "products": {
+          "filters": "Luchtfilters",
+          "bearings": "Lagers",
+          "sensors": "Sensoren",
+          "belts": "Aandrijfriemen",
+          "valves": "Regelkleppen",
+          "motors": "Servomotoren"
+        },
+        "status": {
+          "healthy": "Gezond",
+          "watch": "Opvolgen",
+          "critical": "Kritiek"
+        },
+        "ai": {
+          "title": "AI-aanvulling",
+          "active": "Autonoom bestellen actief",
+          "inactive": "Baseline met manuele planning",
+          "kicker": "Model voor patroonherkenning",
+          "monitoring": "Monitoring",
+          "offline": "Offline",
+          "predictedDemand": "Voorspelde vraag",
+          "unitsDay": "stuks / dag",
+          "reorderPoint": "Dynamisch bestelpunt",
+          "leadTime": "Verwachte levertijd",
+          "decision": "Huidige AI-beslissing",
+          "manualDecision": "Het model is offline. Voorraad volgt een vast schema, volgende bestelling op dag {{day}}.",
+          "orderPlaced": "Bestelling van {{quantity}} stuks automatisch geplaatst. Verwacht op dag {{day}}.",
+          "orderPending": "Besteldrempel bereikt. Het model maakt in de volgende cyclus een aanvulbestelling.",
+          "holdStock": "Geen actie nodig. Het model blijft monitoren tot de voorraad {{threshold}} stuks nadert."
+        },
+        "chart": {
+          "actual": "Werkelijke vraag",
+          "forecast": "AI-voorspelling"
+        },
+        "impact": {
+          "kicker": "Gemeten resultaat",
+          "title": "AI versus vaste planning",
+          "withoutAi": "Vast schema",
+          "withAi": "AI-aanvulling",
+          "missedUnits": "niet-geleverde stuks",
+          "prevented": "Voorkomen gemiste verkoop",
+          "value": "Beschermde orderwaarde",
+          "fixedOrders": "Geplande vaste bestellingen",
+          "adaptiveOrders": "Geplaatste adaptieve bestellingen"
+        },
+        "activity": {
+          "kicker": "Beslissingslog",
+          "title": "Magazijnactiviteit",
+          "started": "Magazijnmonitoring gestart.",
+          "aiEnabled": "AI-aanvulling geactiveerd; dynamische besteldrempels zijn actief.",
+          "aiDisabled": "AI-aanvulling uitgeschakeld; vaste planning blijft actief.",
+          "delivery": "Inkomende levering ontvangen: {{quantity}} stuks.",
+          "order": "AI maakte een bestelling van {{quantity}} stuks voor levering op dag {{arrival}}.",
+          "manualOrder": "Vaste planning maakte een bestelling van {{quantity}} stuks voor levering op dag {{arrival}}.",
+          "risk": "Voorraadrisico gedetecteerd; voorspelling en besteldrempel bijgewerkt.",
+          "scenario": {
+            "normal": "Vraag teruggezet naar het normale werkpatroon.",
+            "promotion": "Promotiesignaal actief; het model verwacht korte vraagpieken.",
+            "seasonal": "Seizoensgroei actief; het model volgt een stijgende trend.",
+            "supplier": "Leververtraging actief; verwachte levertijden zijn verhoogd."
+          }
+        }
+      }
+    }
+  }
+}

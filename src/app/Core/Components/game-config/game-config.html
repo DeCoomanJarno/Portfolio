@@ -1,18 +1,159 @@
+<div class="config-panel">
 
-<h5 class="card-title">Configuration</h5>
-<div class="form-group">
-    <label for="rows">Rows</label>
-    <input min="1" class="form-control" type="number" id="rows" (input)="UpdateRow($event)" [(ngModel)]="config!.rows" name="rows" />
-</div>
-<div class="form-group">
-    <label for="cols">Cols</label>
-    <input min="1" class="form-control" type="number" id="cols" (input)="UpdateCol($event)" [(ngModel)]="config!.cols" name="cols" />
-</div>
-<div class="form-group">
-    <label for="updateTime">Update Time (ms)</label>
-    <input min="1" class="form-control" type="number" id="updateTime" (input)="UpdateTime($event)" [(ngModel)]="config!.updateTime" name="updateTime" />
-</div>
-<div class="form-group">
-    <label for="cellSize">Cell Size (px)</label>
-    <input min="1" class="form-control" type="number" id="cellSize" (input)="UpdateCellSize($event)" [(ngModel)]="config!.cellSize" name="cellSize"/>
+  <!-- TITLE -->
+  <div class="config-title">
+    {{ 'config.title' | translate }}
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="config-section">
+
+    @for (field of config | keyvalue; track field.key) {
+
+      @let key = field.key;
+      @let c = field.value;
+
+
+@if (c.type === 'toggle') {
+
+  <div class="config-control config-control--row toggle-row"
+       (click)="update(key, !c.value)">
+
+    <!-- LEFT -->
+    <div class="config-info">
+
+      <span class="config-label">
+        {{ (c.labelKey ?? key) | translate }}
+      </span>
+
+      @if (c.descriptionKey) {
+        <span class="config-description">
+          {{ c.descriptionKey | translate }}
+        </span>
+      }
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="config-toggle">
+      <label class="toggle-switch">
+        <input
+          type="checkbox"
+          [checked]="c.value"
+          (click)="$event.stopPropagation()"
+          (change)="update(key, $any($event.target).checked)" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+  </div>
+}
+      @if (c.type === 'slider') {
+
+        <div class="config-control config-control--slider">
+
+          <div class="config-header">
+
+            <div class="config-info">
+              <span class="config-label">
+                {{ (c.labelKey ?? key) | translate }}
+              </span>
+
+              @if (c.descriptionKey) {
+                <span class="config-description">
+                  {{ c.descriptionKey | translate }}
+                </span>
+              }
+            </div>
+
+            <span class="config-value">
+              {{ c.value }}{{ c.unit ? (' ' + c.unit) : '' }}
+            </span>
+
+          </div>
+
+          <input
+            type="range"
+            [min]="c.min"
+            [max]="c.max"
+            [step]="c.step"
+            [value]="c.value"
+            (input)="update(key, $any($event.target).value)" />
+
+        </div>
+      }
+
+      @if (c.type === 'select') {
+
+        <div class="config-control">
+
+          <div class="config-info">
+            <span class="config-label">
+              {{ (c.labelKey ?? key) | translate }}
+            </span>
+
+            @if (c.descriptionKey) {
+              <span class="config-description">
+                {{ c.descriptionKey | translate }}
+              </span>
+            }
+          </div>
+
+          <select
+            [value]="c.value"
+            (change)="update(key, $any($event.target).value)">
+
+            @for (o of c.options; track o.value) {
+              <option [value]="o.value">
+                {{ o.labelKey | translate }}
+              </option>
+            }
+
+          </select>
+
+        </div>
+      }
+
+    }
+
+  </div>
+
+  <!-- ACTIONS -->
+  @if (actions?.length) {
+
+    <div class="config-section">
+
+      <div class="config-section-title">
+        {{ 'config.actions' | translate }}
+      </div>
+
+      <div class="config-actions">
+
+        @for (action of actions; track action.labelKey) {
+
+          @if (!action.visible || action.visible()) {
+
+            <button
+              class="config-action"
+              [class.primary]="action.variant === 'primary'"
+              [class.secondary]="action.variant === 'secondary'"
+              [class.warning]="action.variant === 'warning'"
+              [class.danger]="action.variant === 'danger'"
+              [disabled]="action.disabled && action.disabled()"
+              (click)="action.execute()">
+
+              {{ action.labelKey | translate }}
+
+            </button>
+
+          }
+
+        }
+
+      </div>
+
+    </div>
+
+  }
+
 </div>

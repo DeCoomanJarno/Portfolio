@@ -1,0 +1,43 @@
+.architecture-map-box {
+      padding: var(--space-5);
+      h3 { color: var(--color-on-surface); font-size: 1.25rem; margin-bottom: var(--space-5); font-weight: 600; letter-spacing: 0.5px; }
+    }
+    .canvas-wrapper {
+      background: var(--color-surface-hover);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .edge-base {
+      stroke: var(--color-outline);
+      stroke-width: 2;
+    }
+    .edge-flow {
+      stroke: var(--ai-accent);
+      stroke-width: 2;
+      stroke-dasharray: 6 10;
+      animation: flow 1.4s linear infinite;
+    }
+    .arrow-head { fill: var(--ai-accent); }
+    .node-plate {
+      fill: var(--color-surface-raised);
+      stroke: var(--color-outline-strong);
+      stroke-width: 1.5px;
+      transition: stroke var(--duration-base) var(--ease-out);
+      &.user { stroke: var(--color-info); }
+      &.frontend { stroke: var(--color-secondary); }
+      &.api { stroke: var(--ai-accent); }
+      &.database { stroke: var(--color-accent); }
+      &.external { stroke: var(--color-primary); }
+    }
+    .indicator-icon {
+      fill: var(--color-primary-soft);
+      &.user { fill: var(--color-info); }
+      &.frontend { fill: var(--color-secondary); }
+      &.api { fill: var(--ai-accent); }
+      &.database { fill: var(--color-accent); }
+      &.external { fill: var(--color-primary); }
+    }
+    .node-symbol { font-size: 12px; }
+    .node-title { fill: var(--color-on-surface); font-weight: 600; font-size: 10px; font-family: var(--font-family); }
+    @keyframes flow { to { stroke-dashoffset: -16; } }
